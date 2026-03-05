@@ -1,0 +1,26 @@
+// Секция последние посты
+
+.posts-grid {
+	display: grid;
+	gap: var(--space-8);
+	grid-template-columns: 1fr;
+
+	@media (min-width: 768px) {
+		grid-template-columns: 1.5fr 1fr;
+		grid-auto-rows: minmax(240px, auto);
+	
+		& .card-post:first-child {
+			grid-column: 1;
+			grid-row: 1 / span 2;
+			height: 100%;
+		
+			.card-post__title {
+				font-size: var(--text-2xl);
+			}
+
+			.card-post__description {
+				font-size: var(--text-base);
+			}
+		}
+	}
+}

@@ -1,0 +1,82 @@
+//  Типографика
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+h1 { 
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+
+  @media (min-width: 1024px) {
+    font-size: var(--text-6xl);
+  }
+}
+
+h2 {
+  font-size: var(--text-3xl);
+
+  @media (min-width: 1024px) {
+    font-size: var(--text-5xl);
+  }
+ }
+ 
+h3 {
+  font-size: var(--text-2xl);
+}
+
+h4 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+}
+
+h5 {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+}
+
+h6 {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+p {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-6);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  
+  transition: color var(--duration-fast) var(--ease-in-out);
+  
+  &:hover {
+    color: var(--text-link-hover); 
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+}

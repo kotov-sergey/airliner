@@ -1,0 +1,87 @@
+/*Бургер меню начало*/
+.burger__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 30px;
+  height: 25px;
+  position: relative;
+}
+
+.burger__icon,
+.burger__icon::before,
+.burger__icon::after {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary); /*Цвет иконки бургера*/
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burger__icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.burger__icon::before {
+  content: '';
+  top: -8px;
+}
+.burger__icon::after {
+  content: '';
+  top: 8px;
+}
+
+.burger__btn.active .burger__icon {
+  background-color: transparent;
+}
+.burger__btn.active .burger__icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.burger__btn.active .burger__icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.header__nav {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background-color: var(--color-white); /*Фон открывающегося меню*/
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  z-index: 100;
+}
+
+.header__nav.active {
+  max-height: 300px;
+}
+
+@media (min-width: 992px) {
+  .burger__btn {
+    display: none;
+  }
+
+  .header__nav {
+    position: static;
+    max-height: none;
+    display: flex;
+    justify-content: flex-end;
+    background: none;
+  }
+
+  .header__list {
+    display: flex;
+  }
+	
+  .header__list li {
+	padding: 25px 20px;
+  }
+}
+/*Бургер меню конец*/

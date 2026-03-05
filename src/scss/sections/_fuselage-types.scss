@@ -1,0 +1,7 @@
+// Тип фюзеляжа
+
+@use '../abstracts/mixins' as *;
+
+.fuselage-types-grid {
+    @include grid-adaptive(1, 2, 3);
+}

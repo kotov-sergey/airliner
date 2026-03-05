@@ -1,0 +1,42 @@
+// Главный файл стилей (подключение всех стилей)
+
+// Abstractions (Инструменты)
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+
+// Base (Фундамент)
+@use 'base/normalize';
+@use 'base/reset';
+@use 'base/root';
+@use 'base/typography';
+@use 'base/global';
+
+// Layout (Каркас)
+@use 'layout/grid';
+@use 'layout/header';
+@use 'layout/footer';
+
+// Components (Кирпичики)
+@use 'components/buttons';
+@use 'components/section-header';
+@use 'components/card-brand';
+@use 'components/card-aircraft';
+@use 'components/card-post';
+@use 'components/card-fuselage';
+@use 'components/badges';
+
+// Sections (Крупные блоки)
+@use 'sections/hero';
+@use 'sections/brands';
+@use 'sections/aircrafts';
+@use 'sections/history';
+@use 'sections/fuselage-types';
+@use 'sections/posts';
+@use 'sections/cta';
+
+// Pages (Страницы)
+@use 'pages/single-airliner';
+
+// Utilities (Утилитарные классы)
+@use 'base/utilities';

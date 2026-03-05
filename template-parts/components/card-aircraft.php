@@ -1,0 +1,63 @@
+<?php
+
+// Верстка одной карточки авиалайнера
+
+$post_id = get_the_ID();
+
+// Alt для изображения
+$alt_text = 'Самолет ' . get_the_title() . ' на взлетной полосе';
+?>
+
+<article class="card-aircraft">
+	
+	<div class="card-aircraft__picture">
+		
+		<!-- Изображение авиалайнера -->
+		<a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
+			<?php 
+				if ( has_post_thumbnail() ) :
+					the_post_thumbnail( 'large', array(
+					'class'   => 'card-aircraft__image',
+					'alt' => $alt_text,
+					'loading' => 'lazy'              
+				) );
+				else : 
+			?>
+				<img 
+					src="<?php echo esc_url( get_template_directory_uri() . '/public/images/placeholder-image.svg' ); ?>" 
+					class="card-aircraft__image" 
+					alt="<?php echo esc_attr( $alt_text ); ?>"
+					loading="lazy" 
+				/>
+			<?php endif; ?>
+		</a>
+		
+	</div>
+
+	<div class="card-aircraft__body">
+		
+		<!-- Верхняя строка: Бренд и Тип фюзеляжа -->
+		<div class="card-aircraft__meta">
+			<?php the_airliner_badges( ['manufacturer', 'body-type'], 'home' ); ?>
+		</div>
+		
+		<!-- Название авиалайнера -->
+		<a href="<?php the_permalink(); ?>" class="card-aircraft__link">
+			<h3 class="card-aircraft__title">
+				<?php the_title(); ?>
+			</h3>
+		</a>
+		
+		<p class="card-aircraft__description">
+			<?php echo get_the_excerpt(); ?>
+		</p>
+		
+		<!-- Характеристики -->
+
+		<div class="card-aircraft__specs">
+			<?php the_airliner_spec('specs_performance', 'max_speed'); ?>
+			<?php the_airliner_spec('specs_weight', 'passengers'); ?>
+			<?php the_airliner_spec('specs_performance', 'range'); ?>
+		</div>
+	
+</article>

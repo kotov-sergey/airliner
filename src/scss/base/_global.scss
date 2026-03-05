@@ -1,0 +1,25 @@
+// Глобальные стили body, и т.п.
+
+// src/scss/base/_global.scss
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+main {
+	flex-grow: 1;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

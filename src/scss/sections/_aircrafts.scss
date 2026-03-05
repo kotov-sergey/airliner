@@ -1,0 +1,7 @@
+// Секция авиалайнеры
+
+@use '../abstracts/mixins' as *;
+
+.aircrafts-grid {
+	@include grid-adaptive(1, 1, 2);
+}

@@ -1,0 +1,8 @@
+{
+    "name": "user/airliner",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "php-stubs/acf-pro-stubs": "^6.5"
+    }
+}

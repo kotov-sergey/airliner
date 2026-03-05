@@ -1,0 +1,33 @@
+// Utilities (Утилитарные классы)
+
+// Выравнивание текста (Text Align)
+.text-center {
+  text-align: center;
+ }
+
+.text-right {
+  text-align: right; 
+}
+
+.text-left {
+  text-align: left;
+}
+
+// Цвета текста (Text Colors)
+.text-muted   {
+  color: var(--text-muted) !important;
+}
+
+.text-primary {
+  color: var(--color-primary-700) !important;
+}
+
+.text-accent  {
+  color: var(--color-accent) !important;
+ }
+
+// Трансформация текста (Авиа-стиль)
+.text-upper { 
+  text-transform: uppercase; 
+  letter-spacing: 0.05em; 
+}

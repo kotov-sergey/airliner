@@ -1,0 +1,36 @@
+.airliner-badges {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    gap: var(--space-3);
+
+    align-items: center;
+
+    &--home {
+        position: relative;
+        z-index: 2;
+
+        margin-bottom: var(--space-2);
+
+        .badge {
+            font-size: var(--text-xs);
+
+            background-color: var(--color-neutral-000);
+        }    
+    }
+
+    &--detail {
+        margin-bottom: var(--space-8);
+
+        .badge {
+            font-size: var(--text-xs);
+
+            padding: var(--space-2) var(--space-4);
+            background-color: var(--color-neutral-000);
+            
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+        }
+    }
+}

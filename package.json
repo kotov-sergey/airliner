@@ -1,0 +1,20 @@
+{
+  "name": "airliner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.97.2",
+    "vite": "^7.3.1",
+    "vite-plugin-live-reload": "^3.0.5"
+  }
+}

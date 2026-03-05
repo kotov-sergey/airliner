@@ -1,0 +1,82 @@
+// Шапка (header)
+
+.custom-logo-link {
+	display: inline-block;
+	width: 150px;
+	height: 40px;
+}
+
+.custom-logo {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.header {
+	width: 100%;
+	color: #FFFFFF;
+}
+
+.header--solid {
+	position: relative;
+	background-color: var(--color-neutral-900);
+}
+
+.header--transparent {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background-color: transparent;
+}
+
+.header .container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header__list {
+  	list-style: none;
+  	text-align: left;
+}
+
+.header__list li {
+  	padding: 15px 20px;
+}
+
+.header__list a {
+  	color: inherit;
+	text-transform: uppercase;
+  	text-decoration: none;
+  	font-size: 16px;
+	font-family: var(--font-primary);
+	transition: .3s ease-in-out;
+	font-weight: var(--fw-semi-bold);
+}
+
+.header__list a:hover {
+	color: var(--color-primary);
+}
+
+.header__list .current-menu-item a {
+	border-bottom: 1px solid #FFFFFF;
+	font-weight: 800;
+    padding-bottom: 15px;
+}
+
+.header__list .current_page_parent a {
+	color: var(--color-primary);
+}
+
+.header__list .current_page_parent {
+	background: var(--color-neutral);
+}
+
+@media (max-width: 992px) {
+	.header .container {
+		padding: 15px 20px;
+	}
+}

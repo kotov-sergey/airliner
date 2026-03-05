@@ -1,0 +1,7 @@
+// Секция производителей
+
+@use '../abstracts/mixins' as *;
+
+.brands-grid {
+	@include grid-adaptive(2, 2, 4);
+}

@@ -1,0 +1,85 @@
+// Сброс стандартных стилей всего сайта
+
+// 1. Использование box-sizing model, которая не добавляет padding к ширине блока
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Убираем стандартные отступы, где они мешают
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// Настройка body: улучшение шрифтов
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; // Сглаживание шрифтов для MacOS
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed; // Оптимизация рендеринга текста
+}
+
+// Медиа-контент: картинки и видео адаптивны по умолчанию
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+// Наследуем шрифты для форм
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  outline: none;
+}
+
+// Перенос текста, чтобы длинные слова не ломали layout
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+// Изоляция контекста для фреймворков (полезно для React/Vue/Vite)
+#root,
+#__next {
+  isolation: isolate;
+}
+
+// Списки без маркеров, если у них есть класс (для меню), но оставляем маркеры для обычного текста статьи
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+// Улучшенная прокрутка к якорям
+html {
+  scroll-behavior: smooth;
+}
+
+// ДОСТУПНОСТЬ (A11Y): Если пользователь отключил анимации в системе
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

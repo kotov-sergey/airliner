@@ -1,0 +1,71 @@
+// Кнопки
+
+// src/scss/components/_buttons.scss
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-base);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--duration-base) var(--ease-in-out);
+  border: none;
+  
+  // Primary Button (Действие: "Купить", "Подробнее")
+  &--primary {
+    background-color: var(--color-primary-700);
+    color: var(--color-neutral-000);
+    box-shadow: var(--shadow-md);
+
+    &:hover {
+      background-color: var(--color-primary-900);
+      color: var(--color-neutral-000); 
+    }
+  }
+
+  // Secondary Button (Второстепенное: "Характеристики")
+  &--secondary {
+    background-color: var(--color-neutral-000);
+    color: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-300);
+
+    &:hover {
+      background-color: var(--color-neutral-100);
+      border-color: var(--color-neutral-500);
+    }
+  }
+  
+  // Ghost Button (Прозрачная)
+  &--ghost {
+    background: transparent;
+    color: var(--color-primary-700);
+    
+    &:hover {
+      border-color: var(--color-primary-700);
+      background-color: var(--color-primary-100);
+      color: var(--color-primary-700);
+    }
+  }
+
+  // Outline Button (Прозрачная с обводкой)
+    &--outline {
+    background: transparent;
+    border: 2px solid var(--color-neutral-400);
+    color: var(--text-main);
+    
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--text-sm);
+    letter-spacing: 0.05em;
+
+    &:hover {
+      border-color: var(--color-primary-700);
+      color: var(--color-primary-700);
+      background-color: var(--color-primary-100);
+    }
+  }
+}
