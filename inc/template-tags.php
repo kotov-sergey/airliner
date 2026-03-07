@@ -132,7 +132,7 @@ function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airl
 }
 
 // Вывод одной характеристики из массива данных авиалайнера
-function the_airliner_spec( $group_key, $field_key ) {
+function the_airliner_spec( $group_key, $field_key, $css_mod='' ) {
     $config = get_airliner_specs_config();
 
     if ( ! isset( $config[$group_key]['fields'][$field_key] ) ) return;
@@ -153,7 +153,13 @@ function the_airliner_spec( $group_key, $field_key ) {
     $label = $field_config['label'];
     $unit = $field_config['unit'];
 
-    echo '<div class="spec-row">';
+    $classes = 'spec-row';
+
+    if ( ! empty( $css_mod ) ) {
+        $classes  .= ' ' . $css_mod;
+    }
+
+    echo '<div class="' . esc_attr( $classes ) . '">';
 
         echo '<div class="spec-row__name">';
             echo '<div class="spec-row__icon">' . $icon . '</div>';
