@@ -10,5 +10,8 @@ import './burger.js';
 // Скрипты кнопки hero-секции
 import './scroll.js';
 
+// Скрипты подключения галереи Glightbox
+import './gallery.js';
+
 // Твой JS код
 console.log('Vite подключен к WordPress!');
