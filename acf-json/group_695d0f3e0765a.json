@@ -1,7 +1,35 @@
 {
     "key": "group_695d0f3e0765a",
-    "title": "Характеристики авиалайнера",
+    "title": "Настройки авиалайнера",
     "fields": [
+        {
+            "key": "field_69aef0407c9a3",
+            "label": "Галерея авиалайнера",
+            "name": "airliner_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
+        },
         {
             "key": "field_69a71e2562a96",
             "label": "Размеры",
@@ -531,5 +559,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1772562791
+    "modified": 1773072517
 }

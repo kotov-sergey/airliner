@@ -1,10 +1,10 @@
 <?php
-$gallery = get_field( 'airliner-gallery' );
+$gallery = get_field( 'airliner_gallery' );
 
 if ( $gallery ) :
 ?>
     <!-- Верстка секции Галерея -->
-    <section class="section section-gallery">
+    <section class="section section-gallery section--white">
         <div class="container">
 
             <div class="gallery-grid">

@@ -1,0 +1,48 @@
+// Стили для авиалайнера секция Hero
+
+@use '../../abstracts/mixins' as *;
+
+.airliner-hero {
+
+    &__grid {
+        display: grid;
+        gap: var(--space-12);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+
+    &__picture {
+        position: relative;
+    }
+
+    &__image {
+        aspect-ratio: 16 / 9;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        border-radius: var(--radius-xl);
+    }
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        margin: 0;
+        margin-bottom: var(--space-6);
+    }
+
+    &__description {
+        margin-bottom: var(--space-10);
+    }
+
+    &__specs {
+        @include grid-adaptive( 2, 2, 2);
+        gap: var(--space-4);
+    }
+}

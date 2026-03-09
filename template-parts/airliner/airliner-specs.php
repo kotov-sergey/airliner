@@ -17,7 +17,7 @@
 
 <!-- Верстка секции Технические характеристики -->
 <?php if ( $has_specs_data ) : ?>
-    <section class="section section-specs section--white">
+    <section class="section section-specs">
         <div class="container">
             
             <h2>Технические характеристики</h2>
