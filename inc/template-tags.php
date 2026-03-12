@@ -173,3 +173,67 @@ function the_airliner_spec( $group_key, $field_key, $css_mod='' ) {
     
     echo '</div>';
 }
+
+// Генерация классов сетки для элементов галереи
+ function get_gallery_grid_classes( $total_count, $index ) {
+
+    $prefix = 'gallery-card';
+
+    $layouts = [
+
+        1 => [
+            0 => ['__lg--span-8', '__lg--start-3', '__lg--row-span-2'],
+        ],
+
+        3 => [
+            0 => ['__lg--span-8', '__lg--start-1', '__lg--row-span-2'],
+            1 => ['__lg--span-4', '__lg--start-9'],
+            2 => ['__lg--span-4', '__lg--start-9'],
+        ],      
+
+        5 => [
+            0 => ['__lg--span-3', '__lg--start-1'],
+            1 => ['__lg--span-3', '__lg--start-1'],
+            2 => ['__lg--span-6', '__lg--start-4', '__lg--row-span-2'],
+            3 => ['__lg--span-3', '__lg--start-10'],
+            4 => ['__lg--span-3', '__lg--start-10'],
+        ],  
+
+        7 => [
+            0 => ['__lg--span-4', '__lg--start-1'],
+            1 => ['__lg--span-4', '__lg--start-5'],
+            2 => ['__lg--span-4', '__lg--start-9'],
+            3 => ['__lg--span-3', '__lg--start-1'],
+            4 => ['__lg--span-3', '__lg--start-4'],
+            5 => ['__lg--span-3', '__lg--start-7'],
+            6 => ['__lg--span-3', '__lg--start-10'],
+        ],
+
+        9 => [
+            0 => ['__lg--span-6', '__lg--start-1'],
+            1 => ['__lg--span-6', '__lg--start-7'],
+            2 => ['__lg--span-4', '__lg--start-1'],
+            3 => ['__lg--span-4', '__lg--start-5'],
+            4 => ['__lg--span-4', '__lg--start-9'],
+            5 => ['__lg--span-3', '__lg--start-1'],
+            6 => ['__lg--span-3', '__lg--start-4'],
+            7 => ['__lg--span-3', '__lg--start-7'],
+            8 => ['__lg--span-3', '__lg--start-10'],
+        ],       
+    ];
+
+    $classes = [];
+
+    if ( isset( $layouts[$total_count] ) && isset( $layouts[$total_count][$index] ) ) {
+
+        foreach ( $layouts[$total_count][$index] as $modifier ) {
+            $classes[] = $prefix . $modifier;
+        }
+    }
+
+    else {
+        $classes[] = $prefix . '__lg--span-3';
+    } 
+
+    return implode( ' ', $classes );
+}

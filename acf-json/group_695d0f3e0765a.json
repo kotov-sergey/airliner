@@ -19,7 +19,7 @@
             "return_format": "array",
             "library": "all",
             "min": "",
-            "max": "",
+            "max": 10,
             "min_width": "",
             "min_height": "",
             "min_size": "",
@@ -559,5 +559,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1773072517
+    "modified": 1773339021
 }
