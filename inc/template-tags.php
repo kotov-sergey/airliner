@@ -182,43 +182,43 @@ function the_airliner_spec( $group_key, $field_key, $css_mod='' ) {
     $layouts = [
 
         1 => [
-            0 => ['__lg--span-8', '__lg--start-3', '__lg--row-span-2'],
+            0 => ['__lg--col-span-8', '__lg--col-start-3', '__lg--row-span-2'],
         ],
 
         3 => [
-            0 => ['__lg--span-8', '__lg--start-1', '__lg--row-span-2'],
-            1 => ['__lg--span-4', '__lg--start-9'],
-            2 => ['__lg--span-4', '__lg--start-9'],
+            0 => ['__lg--col-span-8', '__lg--col-start-1', '__lg--row-span-2'],
+            1 => ['__lg--col-span-4', '__lg--col-start-9'],
+            2 => ['__lg--col-span-4', '__lg--col-start-9'],
         ],      
 
         5 => [
-            0 => ['__lg--span-3', '__lg--start-1'],
-            1 => ['__lg--span-3', '__lg--start-1'],
-            2 => ['__lg--span-6', '__lg--start-4', '__lg--row-span-2'],
-            3 => ['__lg--span-3', '__lg--start-10'],
-            4 => ['__lg--span-3', '__lg--start-10'],
+            0 => ['__lg--col-span-3', '__lg--col-start-1', '__lg--row-start-1'],
+            1 => ['__lg--col-span-3', '__lg--col-start-1', '__lg--row-start-2'],
+            2 => ['__lg--col-span-6', '__lg--col-start-4', '__lg--row-span-2', '__lg--row-start-1'],
+            3 => ['__lg--col-span-3', '__lg--col-start-10', '__lg--row-start-1'],
+            4 => ['__lg--col-span-3', '__lg--col-start-10', '__lg--row-start-2'],
         ],  
 
         7 => [
-            0 => ['__lg--span-4', '__lg--start-1'],
-            1 => ['__lg--span-4', '__lg--start-5'],
-            2 => ['__lg--span-4', '__lg--start-9'],
-            3 => ['__lg--span-3', '__lg--start-1'],
-            4 => ['__lg--span-3', '__lg--start-4'],
-            5 => ['__lg--span-3', '__lg--start-7'],
-            6 => ['__lg--span-3', '__lg--start-10'],
+            0 => ['__lg--col-span-4', '__lg--col-start-1'],
+            1 => ['__lg--col-span-4', '__lg--col-start-5'],
+            2 => ['__lg--col-span-4', '__lg--col-start-9'],
+            3 => ['__lg--col-span-3', '__lg--col-start-1'],
+            4 => ['__lg--col-span-3', '__lg--col-start-4'],
+            5 => ['__lg--col-span-3', '__lg--col-start-7'],
+            6 => ['__lg--col-span-3', '__lg--col-start-10'],
         ],
 
         9 => [
-            0 => ['__lg--span-6', '__lg--start-1'],
-            1 => ['__lg--span-6', '__lg--start-7'],
-            2 => ['__lg--span-4', '__lg--start-1'],
-            3 => ['__lg--span-4', '__lg--start-5'],
-            4 => ['__lg--span-4', '__lg--start-9'],
-            5 => ['__lg--span-3', '__lg--start-1'],
-            6 => ['__lg--span-3', '__lg--start-4'],
-            7 => ['__lg--span-3', '__lg--start-7'],
-            8 => ['__lg--span-3', '__lg--start-10'],
+            0 => ['__lg--col-span-4', '__lg--col-start-1'],
+            1 => ['__lg--col-span-4', '__lg--col-start-5'],
+            2 => ['__lg--col-span-4', '__lg--col-start-9'],
+            3 => ['__lg--col-span-2', '__lg--col-start-1'],
+            4 => ['__lg--col-span-2', '__lg--col-start-3'],
+            5 => ['__lg--col-span-2', '__lg--col-start-5'],
+            6 => ['__lg--col-span-2', '__lg--col-start-7'],
+            7 => ['__lg--col-span-2', '__lg--col-start-9'],
+            8 => ['__lg--col-span-2', '__lg--col-start-11'],
         ],       
     ];
 
