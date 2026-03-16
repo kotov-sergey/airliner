@@ -26,10 +26,10 @@
 @use 'components/card-fuselage';
 @use 'components/badges';
 @use 'components/spec-row';
-@use 'components/airliner/hero';
-@use 'components/airliner/gallery';
-@use 'components/airliner/specs';
-@use 'components/airliner/content';
+@use 'components/airliner/airliner-hero';
+@use 'components/airliner/airliner-gallery';
+@use 'components/airliner/airliner-specs';
+@use 'components/airliner/airliner-content';
 
 // Sections (Крупные блоки)
 @use 'sections/hero';
