@@ -20,16 +20,20 @@
 // Components (Кирпичики)
 @use 'components/buttons';
 @use 'components/section-header';
+
 @use 'components/card-brand';
 @use 'components/card-aircraft';
 @use 'components/card-post';
 @use 'components/card-fuselage';
+
 @use 'components/badges';
 @use 'components/spec-row';
+
 @use 'components/airliner/airliner-hero';
 @use 'components/airliner/airliner-gallery';
 @use 'components/airliner/airliner-specs';
 @use 'components/airliner/airliner-content';
+@use 'components/airliner/airliner-related';
 
 // Sections (Крупные блоки)
 @use 'sections/hero';

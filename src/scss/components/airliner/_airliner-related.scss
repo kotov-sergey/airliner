@@ -1,0 +1,7 @@
+// Стили для секции Похожие авиалайнеры
+
+@use '../../abstracts/mixins' as *;
+
+.airliners-grid {
+    @include grid-adaptive( 1, 2, 3 );
+}
