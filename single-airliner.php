@@ -13,16 +13,16 @@ $post_id = get_the_ID();
 	?>
 	
 		<!-- Верстка Hero-секции -->
-		<?php get_template_part( 'template-parts/airliner/airliner', 'hero' ); ?>
+		<?php get_template_part( 'template-parts/airliner/hero' ); ?>
 
 		<!-- Верстка секции Галерея -->
-		<?php get_template_part( 'template-parts/airliner/airliner', 'gallery' ); ?>
+		<?php get_template_part( 'template-parts/airliner/gallery' ); ?>
 
 		<!-- Верстка секции Технические характеристики -->
-		<?php get_template_part( 'template-parts/airliner/airliner', 'specs' ); ?>
+		<?php get_template_part( 'template-parts/airliner/specs' ); ?>
 
 		<!-- Верстка секции Контента -->
-		<?php get_template_part( 'template-parts/airliner/airliner', 'content' ); ?>
+		<?php get_template_part( 'template-parts/airliner/content' ); ?>
 	
 	<?php endwhile; ?>
 	
