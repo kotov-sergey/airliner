@@ -2,7 +2,6 @@
 
 .spec-row {
     display: flex;
-    flex-direction: row;
 
     align-items: center;
     justify-content: space-between;
@@ -19,6 +18,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
 
         width: 36px;
         height: 36px;
@@ -27,15 +27,21 @@
         background-color: #e5e5e5;
     }
 
+    &__label {
+        white-space: nowrap;
+    }
+
     &__data {
         display: flex;
         flex-direction: row;
         gap: var(--space-1);
 
         font-weight: 700;
+
+        white-space: nowrap;
     }
 
-    &--hero {
+    &--vertical {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-3);
@@ -50,6 +56,29 @@
         .spec-row__name {
             font-size: var(--text-xs);
             text-transform: uppercase;
+        }
+    }
+
+    &--no-label {
+        gap: var(--space-2);
+  
+        .spec-row__icon {
+            width: auto;
+            height: auto;
+
+            background-color: transparent;
+        }
+
+        .spec-row__label {
+            display: none;
+        }
+
+        .spec-row__data {
+            font-weight: 400;
+        }
+
+        .spec-row__name {
+            gap: 0;
         }
     }
 }

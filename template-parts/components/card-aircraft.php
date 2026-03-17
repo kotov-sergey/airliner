@@ -49,15 +49,18 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		</a>
 		
 		<p class="card-aircraft__description">
-			<?php echo get_the_excerpt(); ?>
+			<?php
+				$excerpt = get_the_excerpt();
+				echo wp_trim_words( $excerpt, 10, '&hellip;') 
+			?>
 		</p>
 		
 		<!-- Характеристики -->
 
 		<div class="card-aircraft__specs">
-			<?php the_airliner_spec('specs_performance', 'max_speed'); ?>
-			<?php the_airliner_spec('specs_weight', 'passengers'); ?>
-			<?php the_airliner_spec('specs_performance', 'range'); ?>
+			<?php the_airliner_spec('specs_performance', 'max_speed', 'no-label' ); ?>
+			<?php the_airliner_spec('specs_weight', 'passengers', 'no-label'); ?>
+			<?php the_airliner_spec('specs_performance', 'range', 'no-label'); ?>
 		</div>
 	
 </article>

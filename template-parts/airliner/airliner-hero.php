@@ -29,10 +29,10 @@
 							</p>
 
 							<div class="info-card__specs">
-								<?php the_airliner_spec('specs_weight', 'passengers', 'spec-row--hero'); ?>
-								<?php the_airliner_spec('specs_performance', 'range', 'spec-row--hero'); ?>
-								<?php the_airliner_spec('specs_performance', 'max_speed', 'spec-row--hero'); ?>
-								<?php the_airliner_spec('specs_weight', 'mtow', 'spec-row--hero'); ?>
+								<?php the_airliner_spec('specs_weight', 'passengers', 'vertical'); ?>
+								<?php the_airliner_spec('specs_performance', 'range', 'vertical'); ?>
+								<?php the_airliner_spec('specs_performance', 'max_speed', 'vertical'); ?>
+								<?php the_airliner_spec('specs_weight', 'mtow', 'vertical'); ?>
 							</div>
 
 						</div>

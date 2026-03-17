@@ -92,8 +92,13 @@
 
     &__description {
         font-size: var(--text-sm);
-
         margin-bottom: 0;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     &__link::after {
@@ -109,6 +114,8 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
+        z-index: 2;
 
         font-size: var(--text-xs);
 
