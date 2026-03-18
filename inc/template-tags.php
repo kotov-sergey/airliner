@@ -153,13 +153,19 @@ function the_airliner_spec( $group_key, $field_key, $css_mod='' ) {
     $label = $field_config['label'];
     $unit = $field_config['unit'];
 
-    $classes = 'spec-row--';
+    $classes = 'spec-row';
 
     if ( ! empty( $css_mod ) ) {
-        $classes  .= $css_mod;
+        $mods_array = explode( ' ', $css_mod );
+        foreach ( $mods_array as $mod ) {
+            $mod = trim( $mod );
+            if ( ! empty( $mod ) ) {
+                $classes .= ' spec-row--' . $mod;
+            }
+        }
     }
 
-    echo '<div class="spec-row ' . esc_attr( $classes ) . '" title="' . esc_attr( $label ) . '">';
+    echo '<div class="' . esc_attr( $classes ) . '" title="' . esc_attr( $label ) . '">';
 
         echo '<div class="spec-row__name">';
             echo '<div class="spec-row__icon">' . $icon . '</div>';

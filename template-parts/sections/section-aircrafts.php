@@ -34,7 +34,8 @@ $airliners_query = new WP_Query([
 				<?php while ( $airliners_query->have_posts() ) : $airliners_query->the_post(); ?>
 				
 					<?php get_template_part( 'template-parts/components/card', 'aircraft', array(
-						'show_specs'=> $specs_to_show
+						'show_specs' => $specs_to_show,
+						'layout' => 'horizontal',
 					) ); ?>
 				
 				<?php endwhile; ?>

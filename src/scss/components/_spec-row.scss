@@ -25,6 +25,13 @@
 
         border-radius: var(--radius-lg);
         background-color: #e5e5e5;
+
+        svg {
+            width: 16px;
+            height: 16px;
+
+            object-fit: contain;
+        }
     }
 
     &__label {
@@ -59,15 +66,23 @@
         }
     }
 
-    &--no-label {
-        gap: var(--space-2);
-  
+    &--clean-icon {
         .spec-row__icon {
             width: auto;
             height: auto;
 
             background-color: transparent;
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
         }
+    }
+
+
+    &--no-label {
+        gap: var(--space-2);
 
         .spec-row__label {
             display: none;

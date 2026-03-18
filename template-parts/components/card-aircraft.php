@@ -4,11 +4,14 @@
 
 $post_id = get_the_ID();
 
+$layout = $args['layout'] ?? 'vertical';
+$card_class = 'card-aircraft card-aircraft--' . $layout;
+
 // Alt для изображения
 $alt_text = 'Самолет ' . get_the_title() . ' на взлетной полосе';
 ?>
 
-<article class="card-aircraft">
+<article class="<?php echo esc_attr( $card_class ); ?>">
 	
 	<div class="card-aircraft__picture">
 		
@@ -58,9 +61,9 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		<!-- Характеристики -->
 
 		<div class="card-aircraft__specs">
-			<?php the_airliner_spec('specs_performance', 'max_speed', 'no-label' ); ?>
-			<?php the_airliner_spec('specs_weight', 'passengers', 'no-label'); ?>
-			<?php the_airliner_spec('specs_performance', 'range', 'no-label'); ?>
+			<?php the_airliner_spec('specs_performance', 'max_speed', 'clean-icon no-label' ); ?>
+			<?php the_airliner_spec('specs_weight', 'passengers', 'clean-icon no-label'); ?>
+			<?php the_airliner_spec('specs_performance', 'range', 'clean-icon no-label'); ?>
 		</div>
 	
 </article>
