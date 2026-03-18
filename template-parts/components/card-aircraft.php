@@ -7,6 +7,11 @@ $post_id = get_the_ID();
 $layout = $args['layout'] ?? 'vertical';
 $card_class = 'card-aircraft card-aircraft--' . $layout;
 
+$spec_mods = 'clean-icon';
+if ( $layout === 'horizontal' ) {
+	$spec_mods .= ' no-label';
+}
+
 // Alt для изображения
 $alt_text = 'Самолет ' . get_the_title() . ' на взлетной полосе';
 ?>
@@ -16,25 +21,24 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 	<div class="card-aircraft__picture">
 		
 		<!-- Изображение авиалайнера -->
-		<a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
-			<?php 
-				if ( has_post_thumbnail() ) :
-					the_post_thumbnail( 'large', array(
-					'class'   => 'card-aircraft__image',
-					'alt' => $alt_text,
-					'loading' => 'lazy'              
-				) );
-				else : 
-			?>
-				<img 
-					src="<?php echo esc_url( get_template_directory_uri() . '/public/images/placeholder-image.svg' ); ?>" 
-					class="card-aircraft__image" 
-					alt="<?php echo esc_attr( $alt_text ); ?>"
-					loading="lazy" 
-				/>
-			<?php endif; ?>
-		</a>
-		
+
+		<?php 
+			if ( has_post_thumbnail() ) :
+				the_post_thumbnail( 'large', array(
+				'class'   => 'card-aircraft__image',
+				'alt' => $alt_text,
+				'loading' => 'lazy'              
+			) );
+			else : 
+		?>
+			<img 
+				src="<?php echo esc_url( get_template_directory_uri() . '/public/images/placeholder-image.svg' ); ?>" 
+				class="card-aircraft__image" 
+				alt="<?php echo esc_attr( $alt_text ); ?>"
+				loading="lazy" 
+			/>
+		<?php endif; ?>
+
 	</div>
 
 	<div class="card-aircraft__body">
@@ -50,20 +54,24 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 				<?php the_title(); ?>
 			</h3>
 		</a>
+
+		<?php if ( $layout === 'horizontal' ) : ?>
 		
-		<p class="card-aircraft__description">
-			<?php
-				$excerpt = get_the_excerpt();
-				echo wp_trim_words( $excerpt, 10, '&hellip;') 
-			?>
-		</p>
+			<p class="card-aircraft__description">
+				<?php
+					$excerpt = get_the_excerpt();
+					echo wp_trim_words( $excerpt, 10, '&hellip;') 
+				?>
+			</p>
+
+		<?php endif; ?>
 		
 		<!-- Характеристики -->
 
 		<div class="card-aircraft__specs">
-			<?php the_airliner_spec('specs_performance', 'max_speed', 'clean-icon no-label' ); ?>
-			<?php the_airliner_spec('specs_weight', 'passengers', 'clean-icon no-label'); ?>
-			<?php the_airliner_spec('specs_performance', 'range', 'clean-icon no-label'); ?>
+			<?php the_airliner_spec( 'specs_performance', 'max_speed', $spec_mods ); ?>
+			<?php the_airliner_spec( 'specs_weight', 'passengers', $spec_mods ); ?>
+			<?php the_airliner_spec( 'specs_performance', 'range', $spec_mods ); ?>
 		</div>
 	
 </article>

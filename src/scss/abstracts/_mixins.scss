@@ -16,20 +16,20 @@
 }
 
 // Адаптивная сетка grid
-@mixin grid-adaptive($mobile: 1, $tablet: null, $desktop: null, $gap: var(--space-8)) {
+@mixin grid-adaptive( $mobile: 1, $tablet: null, $desktop: null, $gap: var(--space-8) ) {
     display: grid;
     gap: $gap;
-    grid-template-columns: repeat($mobile, 1fr);
+    grid-template-columns: repeat( $mobile, 1fr );
 
     @if $tablet {
-        @media (min-width: 768px) {
-            grid-template-columns: repeat($tablet, 1fr);
+        @media ( min-width: 768px ) {
+            grid-template-columns: repeat( $tablet, 1fr );
         }   
     }
 
     @if $desktop {
-        @media (min-width: 1024px) {
-            grid-template-columns: repeat($desktop, 1fr);
+        @media ( min-width: 1024px ) {
+            grid-template-columns: repeat( $desktop, 1fr );
         }
     }
 }
