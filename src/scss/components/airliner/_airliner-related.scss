@@ -3,5 +3,5 @@
 @use '../../abstracts/mixins' as *;
 
 .airliners-grid {
-    @include grid-adaptive( 1, 2, 3 );
+    @include grid-adaptive( 1, 2, 4 );
 }

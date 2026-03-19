@@ -8,7 +8,7 @@
   justify-content: center;
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-md);
-  font-weight: 600;
+  font-weight: 400;
   font-size: var(--text-base);
   text-decoration: none;
   cursor: pointer;
@@ -57,8 +57,6 @@
     border: 2px solid var(--color-neutral-400);
     color: var(--text-main);
     
-    font-weight: 700;
-    text-transform: uppercase;
     font-size: var(--text-sm);
     letter-spacing: 0.05em;
 

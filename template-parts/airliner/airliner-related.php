@@ -18,7 +18,7 @@ else {
 
         $args = [
             'post_type' => 'airliner',
-            'posts_per_page' => 3,
+            'posts_per_page' => 4,
             'orderby' => 'rand',
             'post__not_in' => [$post_id],
             'tax_query' => [ [

@@ -7,9 +7,9 @@ $post_id = get_the_ID();
 $layout = $args['layout'] ?? 'vertical';
 $card_class = 'card-aircraft card-aircraft--' . $layout;
 
-$spec_mods = 'clean-icon';
+$spec_mods = 'clean-icon'; // По умолчанию иконка без фона
 if ( $layout === 'horizontal' ) {
-	$spec_mods .= ' no-label';
+	$spec_mods .= ' no-label'; // Горизонтальная карточка без лейбла
 }
 
 // Alt для изображения
@@ -21,7 +21,6 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 	<div class="card-aircraft__picture">
 		
 		<!-- Изображение авиалайнера -->
-
 		<?php 
 			if ( has_post_thumbnail() ) :
 				the_post_thumbnail( 'large', array(
@@ -45,9 +44,9 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		
 		<!-- Верхняя строка: Бренд и Тип фюзеляжа -->
 		<div class="card-aircraft__meta">
-			<?php the_airliner_badges( ['manufacturer', 'body-type'], 'home' ); ?>
+			<?php the_airliner_badges( ['manufacturer', 'body-type'], 'card' ); ?>
 		</div>
-		
+
 		<!-- Название авиалайнера -->
 		<a href="<?php the_permalink(); ?>" class="card-aircraft__link">
 			<h3 class="card-aircraft__title">
@@ -67,11 +66,27 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		<?php endif; ?>
 		
 		<!-- Характеристики -->
-
 		<div class="card-aircraft__specs">
 			<?php the_airliner_spec( 'specs_performance', 'max_speed', $spec_mods ); ?>
 			<?php the_airliner_spec( 'specs_weight', 'passengers', $spec_mods ); ?>
 			<?php the_airliner_spec( 'specs_performance', 'range', $spec_mods ); ?>
 		</div>
+
+		<!-- Кнопка Призыв к действию -->
+		<?php if ( $layout === 'vertical' ) : ?>
+
+			<div class="card-aircraft__actions">
+				<span class="btn btn--primary card-aircraft__btn-details">Подробнее</span>
+
+				<button type="button" class="btn btn--outline card-aircraft__btn-compare" aria-label="Добавить к сравнению">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+					<rect x="3" y="14" width="4" height="6" rx="1"/>
+					<rect x="10" y="9" width="4" height="11" rx="1"/>
+					<rect x="17" y="4" width="4" height="16" rx="1"/>
+					</svg>
+				</button>
+			</div>
+
+		<?php endif; ?>
 	
 </article>
