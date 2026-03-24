@@ -19,9 +19,19 @@
 <?php if ( $has_specs_data ) : ?>
     <section class="section section-specs">
         <div class="container">
-            
-            <h2>Технические характеристики</h2>
+    
+            <!-- Заголовок секции -->
+            <?php
+            get_template_part( 'template-parts/components/section-header', null, [
+                'index' => 3,
+                'section_label' => 'Характеристики',
+                'section_title' => 'Технические характеристики',
+                'section_description' => 'Полный список характеристик Boeing 787-8 Dreamliner с данными от производителя.',
+                'section_alignment' => 'row',
+            ]);
+            ?>
 
+            <!-- Сетка технических характеристик -->
             <div class="section-specs__grid">
                 <?php
                 foreach ( $config as $group_key => $group_data ) :

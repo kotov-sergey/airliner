@@ -42,10 +42,18 @@ else {
 <section class="section section-related">
     <div class="container">
 
-        <div class="section-header">
-            <h2>Возможно вам будет интересно</h2>
-        </div>
+        <!-- Заголовок секции -->
+        <?php
+        get_template_part( 'template-parts/components/section-header', null, [
+            'index' => 5,
+            'section_label' => 'Похожие модели',
+            'section_title' => 'Вам также будет интересно',
+            'section_description' => 'Изучите другие модели этого же класса. Сравните характеристики, вместимость и дальность полета с главными конкурентами.',
+            'section_alignment' => 'row',
+        ]);
+        ?>
 
+        <!-- Сетка похожих записей -->
         <?php if ( ! empty( $related_posts ) ) : ?>
 
             <div class="airliners-grid">

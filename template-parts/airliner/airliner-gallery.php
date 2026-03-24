@@ -12,8 +12,18 @@ $total_images = count( $gallery );
     <section class="section section-gallery section--white">
         <div class="container">
 
-            <h2>Галерея</h2>
+            <!-- Заголовок секции -->
+            <?php
+            get_template_part( 'template-parts/components/section-header', null, [
+                'index' => 2,
+                'section_label' => 'Медиа',
+                'section_title' => 'Галерея самолета',
+                'section_description' => 'Подборка лучших фотографий в высоком разрешении. От аэродинамики фюзеляжа до компоновки кресел.',
+                'section_alignment' => 'row',
+            ]);
+            ?>
 
+            <!-- Сетка галереи (изображений) -->
             <div class="gallery-grid">
                 <?php 
                 
@@ -26,7 +36,7 @@ $total_images = count( $gallery );
                     $alt = $image['alt']; // Alt-атрибут
                     $title = $image['title']; //Заголовок
                     $caption = $image['caption']; // Подпись
-                    $thumb_url = $image['sizes']['large'];
+                    $thumb_url = $image['sizes']['large']; // Размер изображения
                 ?>
 
                     <a href="<?php echo esc_url( $full_url ); ?>"
