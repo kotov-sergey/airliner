@@ -51,5 +51,10 @@
 		font-weight: 400;
 		margin-bottom: 0;
 
+		width: min-content;
+	}
+
+	&__description {
+		text-wrap: pretty;
 	}
 }
