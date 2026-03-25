@@ -47,7 +47,7 @@ else {
         get_template_part( 'template-parts/components/section-header', null, [
             'index' => 5,
             'section_label' => 'Похожие модели',
-            'section_title' => 'Вам также будет интересно',
+            'section_title' => 'Смотрите также',
             'section_description' => 'Изучите другие модели этого же класса. Сравните характеристики, вместимость и дальность полета с главными конкурентами.',
             'section_alignment' => 'row',
         ]);
