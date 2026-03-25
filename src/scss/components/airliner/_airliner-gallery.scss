@@ -1,6 +1,25 @@
 // Стили для детальной страницы авиалайнера Галерея
 .section-gallery {
     background-color: var(--color-neutral-900);
+
+    .section-header {
+        &__title {
+            color: var(--color-neutral-300);
+        }
+
+        &__description {
+            color: var(--color-neutral-300);  
+        }
+
+        &__label,
+        &__number {
+            color: var(--color-neutral-300);
+        }
+
+        &__divider {
+            background-color: var(--color-neutral-300);
+        }
+    }
 }
 
 .gallery-grid {
