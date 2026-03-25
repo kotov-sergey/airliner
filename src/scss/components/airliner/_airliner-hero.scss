@@ -6,11 +6,9 @@
 
     &__grid {
         display: grid;
-        gap: var(--space-12);
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-6);
+        grid-template-columns: 1fr;
     }
-
-
 
     &__picture {
         position: relative;
@@ -25,6 +23,13 @@
         object-fit: cover;
 
         border-radius: var(--radius-xl);
+    }
+
+    @media ( min-width: 768px ) {
+        &__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: var(--space-12); 
+        }
     }
 }
 
