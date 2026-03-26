@@ -2,7 +2,35 @@
 
 .entry-content {
 
-    h2 { font-size: var(--text-4xl); }
+    h2 { font-size: var(--text-4xl); margin: var(--space-13) 0px var(--space-8); }
     h3 { font-size: var(--text-3xl); }
+
+    p { margin: var(--space-4) 0px; }
+    p:last-child { margin-bottom: 0; }
+
+    figure {
+    
+        img {
+            border-radius: var(--radius-xl);
+        }
+
+        &:has(figcaption) img {
+           border-bottom-left-radius: 0;
+           border-bottom-right-radius: 0;
+        }
+
+        figcaption {
+            margin: 0;
+            background-color: var(--color-neutral-100);
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            padding: var(--space-4) var(--space-5);
+            font-weight: 500;
+
+            &::before {
+                content: '—';
+                margin-right: var(--space-1);
+            }
+        }
+    }
 
 }
