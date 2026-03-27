@@ -37,8 +37,10 @@
     }
 
     &__meta {
-        position: relative;
-        z-index: 2;
+        .badge {
+            position: relative;
+            z-index: 2;
+        }
     }
 
     &__body {
@@ -115,7 +117,6 @@
 
     &__btn-details {
         flex-grow: 1;
-        cursor: pointer;
 
         transition: all var(--duration-base) var(--ease-in-out);
     }

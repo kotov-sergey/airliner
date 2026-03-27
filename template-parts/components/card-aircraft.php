@@ -59,7 +59,7 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 			<p class="card-aircraft__description">
 				<?php
 					$excerpt = get_the_excerpt();
-					echo wp_trim_words( $excerpt, 10, '&hellip;') 
+					echo wp_trim_words( $excerpt, 10, '&hellip;');
 				?>
 			</p>
 
