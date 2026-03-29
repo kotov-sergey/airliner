@@ -37,6 +37,8 @@
 @use 'components/airliner/airliner-content';
 @use 'components/airliner/airliner-related';
 
+@use 'components/post-meta';
+
 // Sections (Крупные блоки)
 @use 'sections/hero';
 @use 'sections/brands';

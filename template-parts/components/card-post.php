@@ -1,8 +1,8 @@
 <?php
 // Карточка статьи
 
-$categories = get_the_category();
-$category_name = ! empty( $categories ) ? $categories[0]->name : '';
+$title = get_the_title();
+$description = get_the_excerpt();
 ?>
 <article class="card-post">
 
@@ -11,36 +11,22 @@ $category_name = ! empty( $categories ) ? $categories[0]->name : '';
         <div class="card-post__media">
             <?php the_post_thumbnail('large', array (
                 'class' => 'card-post__image',
-                'alt' => get_the_title(),
+                'alt' => $title,
             )); ?>
         </div>
 
         <div class="card-post__content">
 
             <div class="card-post__meta">
-                
-                <?php if ( $category_name ) : ?>
-                    <span class="card-post__category">
-                        <?php echo esc_html( $category_name ); ?>
-                    </span>
-                <?php endif; ?>
-
-                <time class="card-post__date" datetime="<?php echo get_the_date('c'); ?>">
-                    <?php echo get_the_date('j M, Y'); ?>
-                </time>
-                
-                <span class="card-post__read-time">
-                    <?php echo airliner_get_reading_time(); ?>
-                </span>
-            
+                <?php get_template_part( 'template-parts/components/post-meta' ); ?>
             </div>
 
             <h3 class="card-post__title" title="<?php the_title_attribute(); ?>">
-                <?php echo get_the_title(); ?>
+                <?php echo esc_html( $title ); ?>
             </h3>
             
             <div class="card-post__description">
-                <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
+                <?php echo wp_trim_words( $description, 20, '...' ); ?>
             </div>
 
             <div class="card-post__action">
