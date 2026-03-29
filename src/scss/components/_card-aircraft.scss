@@ -37,6 +37,8 @@
     }
 
     &__meta {
+        margin-bottom: var(--space-2);
+        
         .badge {
             position: relative;
             z-index: 2;
