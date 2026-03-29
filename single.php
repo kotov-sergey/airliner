@@ -1,28 +1,52 @@
+<?php
+//Шаблон страницы одной записи
+$description = get_the_excerpt();
+?>
 <?php get_header(); ?>
 
-<div class="page-wrapper">
-	<div class="container">
-		<div class="content-layout">
-			<div id="content" class="content-layout__main--full">
-				<main id="primary" class="main-content">
+<main class="post-single">
 
-					<?php if ( have_posts() ) :
-					while ( have_posts() ) : the_post();
-					get_template_part( 'template-parts/content', 'single' );
+	<?php while( have_posts() ) : the_post(); ?>
 
-					// Подключаем комментарии, если нужны
-					if ( comments_open() || get_comments_number() ) :
-					comments_template();
-					endif;
+		<article class="single-post">
+			
 
-					endwhile;
-					else :
-					get_template_part( 'template-parts/content', 'none' );
-					endif; ?>
-				</main>
+			<header class="single-post__header">
+
+				<?php if( has_post_thumbnail() ) : ?>
+					<div class="single-post__thumbnail">
+						<?php the_post_thumbnail( 'large' ); ?>
+					</div>
+				<?php endif; ?>
+
+				<div class="single-post__overlay"></div>
+
+				<div class="container">
+					<div class="single-post__meta">
+						<?php get_template_part( 'template-parts/components/post-meta' ); ?>
+					</div>
+				
+					<h1 class="single-post__title">
+						<?php the_title(); ?>
+					</h1>
+
+					<p class="single-post__description">
+						<?php echo esc_html( $description ); ?>
+					</p>
+				</div>
+			
+			</header>
+
+			<div class="container">
+				<div class="single-post__content entry-content">
+					<?php the_content(); ?>
+				</div>
 			</div>
-		</div>
-	</div>
-</div>
+
+		</article>
+
+	<?php endwhile; ?>
+
+</main>
 
 <?php get_footer(); ?>

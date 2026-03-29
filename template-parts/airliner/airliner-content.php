@@ -13,7 +13,7 @@ $content = get_the_content();
                 'section_label' => 'История',
                 'section_title' => 'История самолета',
                 'section_description' => 'Познакомьтесь с конструктивными особенностями, инновациями в аэродинамике и уровнем комфорта, которые делают этот лайнер уникальным.',
-                'section_alignment' => 'row',
+                'section_alignment' => 'column',
             ]);
             ?>
 

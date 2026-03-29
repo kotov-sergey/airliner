@@ -1,9 +1,7 @@
 <?php
 // Карточка статьи
-
-$title = get_the_title();
-$description = get_the_excerpt();
 ?>
+
 <article class="card-post">
 
     <a href="<?php echo get_the_permalink(); ?>" class="card-post__link" title="<?php the_title_attribute(); ?>">
@@ -22,11 +20,11 @@ $description = get_the_excerpt();
             </div>
 
             <h3 class="card-post__title" title="<?php the_title_attribute(); ?>">
-                <?php echo esc_html( $title ); ?>
+                <?php the_title(); ?>
             </h3>
             
             <div class="card-post__description">
-                <?php echo wp_trim_words( $description, 20, '...' ); ?>
+                <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
             </div>
 
             <div class="card-post__action">

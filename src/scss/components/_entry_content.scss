@@ -2,6 +2,9 @@
 
 .entry-content {
 
+    max-width: 800px;
+    margin: 0 auto;
+
     h2 { font-size: var(--text-4xl); margin: var(--space-13) 0px var(--space-8); }
     h3 { font-size: var(--text-3xl); }
 
@@ -9,7 +12,7 @@
     p:last-child { margin-bottom: 0; }
 
     figure {
-    
+
         img {
             border-radius: var(--radius-xl);
         }
