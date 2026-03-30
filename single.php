@@ -1,12 +1,16 @@
 <?php
 //Шаблон страницы одной записи
-$description = get_the_excerpt();
 ?>
+
 <?php get_header(); ?>
 
 <main class="post-single">
 
-	<?php while( have_posts() ) : the_post(); ?>
+	<?php while( have_posts() ) : the_post();
+		
+		$description = get_the_excerpt();
+	
+	?>
 
 		<article class="single-post">
 			
@@ -15,29 +19,36 @@ $description = get_the_excerpt();
 
 				<?php if( has_post_thumbnail() ) : ?>
 					<div class="single-post__thumbnail">
-						<?php the_post_thumbnail( 'large' ); ?>
+						<?php 
+							the_post_thumbnail( 'full', array(
+								'class' => 'single-post__image',
+								'loading' => 'eager',
+							) ); 
+						?>
 					</div>
 				<?php endif; ?>
 
 				<div class="single-post__overlay"></div>
 
 				<div class="container">
-					<div class="single-post__meta">
-						<?php get_template_part( 'template-parts/components/post-meta' ); ?>
-					</div>
-				
-					<h1 class="single-post__title">
-						<?php the_title(); ?>
-					</h1>
+					<div class="single-post__header-content">
+						<div class="single-post__meta">
+							<?php get_template_part( 'template-parts/components/post-meta' ); ?>
+						</div>
+					
+						<h1 class="single-post__title">
+							<?php the_title(); ?>
+						</h1>
 
-					<p class="single-post__description">
-						<?php echo esc_html( $description ); ?>
-					</p>
+						<div class="single-post__description">
+							<?php echo wp_kses_post( $description ); ?>
+						</div>
+					</div>
 				</div>
 			
 			</header>
 
-			<div class="container">
+			<div class="container container--narrow">
 				<div class="single-post__content entry-content">
 					<?php the_content(); ?>
 				</div>
