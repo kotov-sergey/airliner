@@ -5,6 +5,10 @@
   max-width: var(--container-width, 1280px);
   margin-inline: auto;
   padding-inline: var(--container-padding);
+
+  &--narrow {
+    max-width: calc( 800px + ( var(--container-padding) * 2 ) );
+  }
 }
 
 .section {

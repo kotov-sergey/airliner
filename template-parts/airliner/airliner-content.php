@@ -4,7 +4,7 @@ $content = get_the_content();
 ?>
     <!-- Верстка секции Контента -->
     <section class="section section-content section--white">
-        <div class="container">
+        <div class="container container--narrow">
   
             <!-- Заголовок секции -->
             <?php
