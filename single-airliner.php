@@ -25,7 +25,7 @@ $post_id = get_the_ID();
 		<?php get_template_part( 'template-parts/airliner/airliner', 'content' ); ?>
 
 		<!-- Верстка секции Похожие авиалайнеры -->
-		<?php get_template_part( 'template-parts/airliner/airliner', 'related' ); ?>		
+		<?php get_template_part( 'template-parts/airliner/airliner', 'related' ); ?>
 	
 	<?php endwhile; ?>
 	

@@ -12,17 +12,17 @@ $read_time = airliner_get_reading_time();
 <div class="post-meta">
 
     <?php if ( $category_name ) : ?>
-        <span class="card-post__category">
+        <span class="post-meta__category">
             <?php echo esc_html( $category_name ); ?>
         </span>
     <?php endif; ?>
 
-    <time class="card-post__date" datetime="<?php echo esc_attr( $datetime ); ?>">
+    <time class="post-meta__date" datetime="<?php echo esc_attr( $datetime ); ?>">
         <?php echo esc_html( $date ); ?>
     </time>
     
     <?php if ( $read_time ) : ?>
-        <span class="card-post__read-time">
+        <span class="post-meta__read-time">
             <?php echo esc_html( $read_time ); ?>
         </span>
     <?php endif; ?>

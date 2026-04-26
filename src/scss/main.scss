@@ -24,6 +24,7 @@
 @use 'components/card-brand';
 @use 'components/card-aircraft';
 @use 'components/card-post';
+@use 'components/card-promo';
 @use 'components/card-fuselage';
 
 @use 'components/badges';
@@ -37,6 +38,8 @@
 @use 'components/airliner/airliner-related';
 
 @use 'components/post-meta';
+
+@use 'components/post/post-related';
 
 // Sections (Крупные блоки)
 @use 'sections/hero';

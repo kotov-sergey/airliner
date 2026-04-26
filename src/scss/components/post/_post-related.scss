@@ -1,0 +1,6 @@
+// Стили для похожих статей
+@use '../../abstracts/mixins' as *;
+
+.post-grid {
+    @include grid-adaptive( 1, 2, 3 );
+}

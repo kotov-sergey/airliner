@@ -56,6 +56,8 @@
 
 		</article>
 
+		<?php get_template_part( 'template-parts/post/post', 'related' ); ?>
+
 	<?php endwhile; ?>
 
 </main>

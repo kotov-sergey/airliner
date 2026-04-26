@@ -25,7 +25,9 @@ $posts_query = new WP_Query([
 
 			<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
 
-				<?php get_template_part( 'template-parts/components/card', 'post' ); ?>
+				<?php get_template_part( 'template-parts/components/card', 'post', array (
+					'layout' => 'overlay',
+				) ); ?>
 
 			<?php endwhile; ?>
 		

@@ -1,8 +1,11 @@
+// Карточка поста на главной
+
+
 // Карточка поста обычная
 
 @use '../abstracts/mixins' as *;
 
-.post-card {
+.promo-card {
 	@include card-shell;
 
 	position: relative;
@@ -20,12 +23,12 @@
 		padding: var(--space-6);
 	}
 	
-	&__media {
+	&__background {
 		position: absolute;
 		inset: 0;
 	}
 
-	&__media::after {
+	&__background::after {
 		content: '';
 		position: absolute;
 		inset: 0;
