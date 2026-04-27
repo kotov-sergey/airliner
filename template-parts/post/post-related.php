@@ -18,7 +18,7 @@ $related_query = new WP_Query( $args );
 if ( $related_query->have_posts() ) :
 ?>
 
-<section class="section section-related">
+<section class="section section-related section--white">
 	<div class="container">
 
 		<!-- Заголовок секции -->
