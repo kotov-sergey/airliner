@@ -13,5 +13,8 @@ import './scroll.js';
 // Скрипты подключения галереи Glightbox
 import './gallery.js';
 
+// Скрипты для подключения AJAX-фильтров
+import './filter.js';
+
 // Твой JS код
 console.log('Vite подключен к WordPress!');

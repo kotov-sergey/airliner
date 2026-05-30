@@ -20,6 +20,11 @@
         background-color: var(--color-neutral-000);
     }
 
+    &__filter {
+        display: flex;
+        flex-direction: column;
+    }
+
     &__grid {
        @include grid-adaptive( 1, 2, 3);
        gap: var(--space-6);

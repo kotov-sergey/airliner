@@ -29,3 +29,8 @@
 	 * 6. Данные для авиалайнеров
 	 */
 	require get_template_directory() . '/inc/data-airliners.php';
+
+	/*
+	 * 7. AJAX-фильтры для страницы каталога
+	 */
+	require get_template_directory() . '/inc/ajax-filters.php';

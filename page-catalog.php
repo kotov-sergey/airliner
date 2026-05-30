@@ -22,18 +22,28 @@ get_header();
             <div class="page-catalog__layout">
 
                 <aside class="page-catalog__sidebar">
-                    <!-- Стили для фильтров в сайдбаре -->
-                    <h4>Фильтры</h4> 
+                    <!-- Форма фильтра -->
+                    <form id="airliner-filter" class="page-catalog__filter">
+                        <h3>Тип фюзеляжа</h3>
+                        
+                        <?php
+                        $types = get_terms( ['taxonomy' => 'body-type'] );
+                        foreach ( $types as $type ) : ?>
+                            <label>
+                                <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" >
+                                <?php echo $type->name; ?><br>
+                            </label>
+                        <?php endforeach; ?>
                     
-                    <p>Скорость</p>
-                    <input />
+                        <h3>Скорость от:</h3>
+                        <input type="number" name="max_speed" placeholder="Например: 800">
 
-                    <p>Пассажиры</p>
-                    <input />                    
+                        <button type="submit" class="btn btn--primary">Применить</button>
+                    </form>
                 </aside>
 
 
-                <div class="page-catalog__results" id="ajax-results">
+                <div class="page-catalog__results" id="catalog-results">
                     <div class="page-catalog__grid">
 
                         <?php
