@@ -24,19 +24,46 @@ get_header();
                 <aside class="page-catalog__sidebar">
                     <!-- Форма фильтра -->
                     <form id="airliner-filter" class="page-catalog__filter">
-                        <h3>Тип фюзеляжа</h3>
-                        
-                        <?php
-                        $types = get_terms( ['taxonomy' => 'body-type'] );
-                        foreach ( $types as $type ) : ?>
-                            <label>
-                                <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" >
-                                <?php echo $type->name; ?><br>
-                            </label>
-                        <?php endforeach; ?>
+                        <div class="page-catalog__block">
+                            <h3>Производитель</h3>
+                            <?php
+                            $brands = get_terms( ['taxonomy' => 'manufacturer'] );
+                            foreach ( $brands as $brand ) : ?>
+                                <label>
+                                    <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" >
+                                    <?php echo $brand->name; ?><br>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="page-catalog__block">
+                            <h3>Страна</h3>
+                            <?php
+                            $countries = get_terms( ['taxonomy' => 'country'] );
+                            foreach ( $countries as $country ) : ?>
+                                <label>
+                                    <input type="checkbox" name="country[]" value="<?php echo $country->term_id; ?>" >
+                                    <?php echo $country->name; ?><br>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
                     
-                        <h3>Скорость от:</h3>
-                        <input type="number" name="max_speed" placeholder="Например: 800">
+                        <div class="page-catalog__block">
+                            <h3>Тип фюзеляжа</h3>
+                            <?php
+                            $types = get_terms( ['taxonomy' => 'body-type'] );
+                            foreach ( $types as $type ) : ?>
+                                <label>
+                                    <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" >
+                                    <?php echo $type->name; ?><br>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                    
+                        <div class="page-catalog__block">
+                            <h3>Скорость</h3>
+                            <input type="number" name="max_speed" placeholder="Например: 800">
+                        </div>
 
                         <button type="submit" class="btn btn--primary">Применить</button>
                     </form>

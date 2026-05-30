@@ -20,6 +20,24 @@ function ajax_filter_airliners_handler() {
 
     // ЛОВИМ ДАННЫЕ ИЗ ФОРМЫ
     
+    // Если выбрали производителя (Таксономия)
+    if ( !empty($_POST['brand']) ) {
+        $args['tax_query'][] =[
+            'taxonomy' => 'manufacturer',
+            'field'    => 'term_id',
+            'terms'    => $_POST['brand'], // Массив выбранных ID
+        ];
+    }
+
+    // Если выбрали страну (Таксономия)
+    if ( !empty($_POST['country']) ) {
+        $args['tax_query'][] =[
+            'taxonomy' => 'country',
+            'field'    => 'term_id',
+            'terms'    => $_POST['country'], // Массив выбранных ID
+        ];
+    }    
+
     // Если выбрали тип фюзеляжа (Таксономия)
     if ( !empty($_POST['fuselage']) ) {
         $args['tax_query'][] =[
@@ -53,7 +71,7 @@ function ajax_filter_airliners_handler() {
                 ]);
             }
         echo '</div>';
-        
+
     } else {
         echo '<p class="text-muted">По вашему запросу лайнеров не найдено.</p>';
     }

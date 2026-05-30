@@ -11,7 +11,7 @@
         align-items: start;
     }
 
-    &__sidebar {
+    &__block {
         border: 1px solid var(--border-light);
         border-radius: var(--radius-2xl);
 
@@ -23,6 +23,7 @@
     &__filter {
         display: flex;
         flex-direction: column;
+        gap: var(--space-5);
     }
 
     &__grid {
