@@ -27,16 +27,7 @@ function ajax_filter_airliners_handler() {
             'field'    => 'term_id',
             'terms'    => $_POST['brand'], // Массив выбранных ID
         ];
-    }
-
-    // Если выбрали страну (Таксономия)
-    if ( !empty($_POST['country']) ) {
-        $args['tax_query'][] =[
-            'taxonomy' => 'country',
-            'field'    => 'term_id',
-            'terms'    => $_POST['country'], // Массив выбранных ID
-        ];
-    }    
+    }  
 
     // Если выбрали тип фюзеляжа (Таксономия)
     if ( !empty($_POST['fuselage']) ) {
@@ -47,12 +38,31 @@ function ajax_filter_airliners_handler() {
         ];
     }
 
-    // Если ввели минимальную скорость
-    if ( !empty($_POST['max_speed']) ) {
+    // Если выбрали статус лайнера (Таксономия)
+    if ( !empty($_POST['status']) ) {
+        $args['tax_query'][] =[
+            'taxonomy' => 'airliner-status',
+            'field'    => 'term_id',
+            'terms'    => $_POST['status'], // Массив выбранных ID
+        ];
+    }   
+
+    // Если ввели дальность полёта
+    if ( !empty($_POST['range']) ) {
         $args['meta_query'][] =[
-            'key'     => 'max_speed', // Имя твоего поля скорости в ACF
-            'value'   => (int) $_POST['max_speed'],
-            'compare' => '>=', // Больше или равно
+            'key'     => 'specs_performance_range', // Имя твоего поля скорости в ACF
+            'value'   => (int) $_POST['range'],
+            'compare' => '<=', // Меньше или равно
+            'type'    => 'NUMERIC'
+        ];
+    }
+
+    // Если ввели вместимость
+    if ( !empty($_POST['passengers']) ) {
+        $args['meta_query'][] =[
+            'key'     => 'specs_weight_passengers', // Имя твоего поля скорости в ACF
+            'value'   => (int) $_POST['passengers'],
+            'compare' => '<=', // Меньше или равно
             'type'    => 'NUMERIC'
         ];
     }

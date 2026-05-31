@@ -16,7 +16,6 @@ get_header();
 		</section>
     <?php endwhile; ?>
 
-
     <section class="section page-catalog__content">
         <div class="container">
             <div class="page-catalog__layout">
@@ -30,46 +29,51 @@ get_header();
                             $brands = get_terms( ['taxonomy' => 'manufacturer'] );
                             foreach ( $brands as $brand ) : ?>
                                 <label>
-                                    <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" >
+                                    <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" class="form-checkbox" >
                                     <?php echo $brand->name; ?><br>
                                 </label>
                             <?php endforeach; ?>
                         </div>
 
                         <div class="page-catalog__block">
-                            <h3>Страна</h3>
-                            <?php
-                            $countries = get_terms( ['taxonomy' => 'country'] );
-                            foreach ( $countries as $country ) : ?>
-                                <label>
-                                    <input type="checkbox" name="country[]" value="<?php echo $country->term_id; ?>" >
-                                    <?php echo $country->name; ?><br>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-                    
-                        <div class="page-catalog__block">
                             <h3>Тип фюзеляжа</h3>
                             <?php
                             $types = get_terms( ['taxonomy' => 'body-type'] );
                             foreach ( $types as $type ) : ?>
                                 <label>
-                                    <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" >
+                                    <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" class="form-checkbox" >
                                     <?php echo $type->name; ?><br>
                                 </label>
                             <?php endforeach; ?>
                         </div>
+
+                        <div class="page-catalog__block">
+                            <h3>Статус</h3>
+                            <?php
+                            $statuses = get_terms( ['taxonomy' => 'airliner-status'] );
+                            foreach ( $statuses as $status ) : ?>
+                                <label>
+                                    <input type="checkbox" name="status[]" value="<?php echo $status->term_id; ?>" class="form-checkbox" >
+                                    <?php echo $status->name; ?><br>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>                        
                     
                         <div class="page-catalog__block">
-                            <h3>Скорость</h3>
-                            <input type="number" name="max_speed" placeholder="Например: 800">
+                            <h3>Дальность полёта</h3>
+                            <input type="number" name="range" class="form-input" placeholder="Например: 15 000">
                         </div>
+
+                        <div class="page-catalog__block">
+                            <h3>Вместимость</h3>
+                            <input type="number" name="passengers" class="form-input" placeholder="Например: 1 000">
+                        </div>                       
 
                         <button type="submit" class="btn btn--primary">Применить</button>
                     </form>
                 </aside>
 
-
+                <!-- Контейнер для результатов -->
                 <div class="page-catalog__results" id="catalog-results">
                     <div class="page-catalog__grid">
 

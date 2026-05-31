@@ -1,0 +1,22 @@
+// Стили для элементов формы
+
+.form-input {
+    display: block;
+    width: 100%;
+
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    background-color: #EEE;
+
+    padding: var(--space-2) var(--space-4);
+}
+
+.form-checkbox {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+
+    width: 20px;
+    height: 20px;
+}
