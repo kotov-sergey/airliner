@@ -66,25 +66,21 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		<?php endif; ?>
 		
 		<!-- Характеристики -->
-		<div class="card-aircraft__specs">
-			<?php the_airliner_spec( 'specs_performance', 'max_speed', $spec_mods ); ?>
-			<?php the_airliner_spec( 'specs_weight', 'passengers', $spec_mods ); ?>
-			<?php the_airliner_spec( 'specs_performance', 'range', $spec_mods ); ?>
-		</div>
+		<?php
+			$specs_to_show = [
+				['group' => 'specs_performance', 'field' => 'max_speed'],
+				['group' => 'specs_weight', 'field' => 'passengers'],
+				['group' => 'specs_performance', 'field' => 'range'],
+			];
+
+			the_airliner_specs_wrapper( $specs_to_show, $spec_mods );
+		?>
 
 		<!-- Кнопка Призыв к действию -->
 		<?php if ( $layout === 'vertical' ) : ?>
 
 			<div class="card-aircraft__actions">
 				<span class="btn btn--primary card-aircraft__btn-details">Подробнее</span>
-
-				<button type="button" class="btn btn--outline card-aircraft__btn-compare" aria-label="Добавить к сравнению">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-					<rect x="3" y="14" width="4" height="6" rx="1"/>
-					<rect x="10" y="9" width="4" height="11" rx="1"/>
-					<rect x="17" y="4" width="4" height="16" rx="1"/>
-					</svg>
-				</button>
 			</div>
 
 		<?php else : ?>

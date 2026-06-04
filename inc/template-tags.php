@@ -180,6 +180,29 @@ function the_airliner_spec( $group_key, $field_key, $css_mod='' ) {
     echo '</div>';
 }
 
+// Умная обёртка группы характеристик авиалайнера
+
+function the_airliner_specs_wrapper( $specs_list, $css_mod='' ) {
+    if ( empty( $specs_list) ) return;
+
+    ob_start();
+
+    foreach( $specs_list as $spec ) {
+        the_airliner_spec( $spec['group'], $spec['field'], $css_mod );
+    }
+
+    $html_output = ob_get_clean();
+
+    if ( !empty( $html_output ) ) {
+        echo '<div class="card-aircraft__specs">';
+            echo $html_output;
+        echo '</div>';
+    }
+    else {
+        echo '<br>Нет характеристик.';
+    }
+}
+
 // Генерация классов сетки для элементов галереи
  function get_gallery_grid_classes( $total_count, $index ) {
 
