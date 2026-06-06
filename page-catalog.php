@@ -35,7 +35,7 @@ get_header();
 
                             $catalog_query = new WP_Query([
                                 'post_type'=> 'airliner',
-                                'posts_per_page'=> 6,
+                                'posts_per_page'=> 9,
                                 'paged' => $paged
                             ]);
 

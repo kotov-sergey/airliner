@@ -16,7 +16,7 @@ function ajax_filter_airliners_handler() {
     // БАЗОВЫЕ АРГУМЕНТЫ
     $args =[
         'post_type'      => 'airliner',
-        'posts_per_page' => 6, // Выводим все (или задай лимит 12)
+        'posts_per_page' => 9, // Выводим все (или задай лимит 12)
         'paged' => $paged,
         'tax_query'      => ['relation' => 'AND'],
         'meta_query'     => ['relation' => 'AND']
