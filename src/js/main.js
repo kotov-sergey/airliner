@@ -16,5 +16,8 @@ import './gallery.js';
 // Скрипты для подключения AJAX-фильтров
 import './filter.js';
 
+// Скрипты для аккардеона блоков фильтрации
+import './catalog-filter-accordion.js';
+
 // Твой JS код
 console.log('Vite подключен к WordPress!');
