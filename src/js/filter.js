@@ -2,23 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('airliner-filter');
     const resultsContainer = document.getElementById('catalog-results');
     
-    // Флаг для защиты от двойных кликов
     let isFetching = false;
 
-    // Если формы или контейнера нет на странице — просто выходим
     if (!form || !resultsContainer) return;
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault(); 
-
-        if (isFetching) return; // Блокируем повторную отправку
+    // --- ГЛАВНАЯ ФУНКЦИЯ ОТПРАВКИ ЗАПРОСА ---
+    // Вынесли логику сюда. По умолчанию грузим 1-ю страницу.
+    async function fetchResults( page = 1 ) {
+        if (isFetching) return;
         isFetching = true;
 
-        // 1. Визуальный отклик (UX)
+        // 1. Визуальный отклик
         resultsContainer.style.opacity = '0.5';
-        resultsContainer.style.pointerEvents = 'none'; // Блокируем клики по старым карточкам
+        resultsContainer.style.pointerEvents = 'none';
 
-        // Меняем текст кнопки (ищем кнопку отправки внутри формы)
         const submitBtn = form.querySelector('button[type="submit"]');
         let originalBtnText = '';
         if (submitBtn) {
@@ -26,10 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = 'Загрузка...';
         }
 
-        // 2. Собираем данные
+        // 2. Собираем данные формы
         const formData = new FormData(form);
         formData.append('action', 'filter_airliners'); 
         formData.append('security', airlinerAjax.nonce); 
+        
+        // ДОБАВЛЕНО: Передаем номер страницы на сервер!
+        formData.append('paged', page); 
 
         try {
             // 3. Отправляем запрос
@@ -40,9 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 const html = await response.text(); 
+                resultsContainer.innerHTML = html; // Обновляем сетку и пагинацию
                 
-                // 4. Вставляем новые карточки
-                resultsContainer.innerHTML = html;
+                // Плавно скроллим вверх к результатам (UX улучшение)
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
                 console.error('Ошибка сервера при фильтрации');
                 resultsContainer.innerHTML = '<p class="error-message">Произошла ошибка при загрузке данных. Попробуйте позже.</p>';
@@ -51,13 +52,48 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Ошибка AJAX:', error);
             resultsContainer.innerHTML = '<p class="error-message">Нет связи с сервером. Проверьте интернет-соединение.</p>';
         } finally {
-            // 5. Возвращаем всё в норму
+            // Возвращаем всё в норму
             resultsContainer.style.opacity = '1';
             resultsContainer.style.pointerEvents = 'auto';
             if (submitBtn) {
-                submitBtn.innerHTML = originalBtnText; // Возвращаем старый текст кнопки
+                submitBtn.innerHTML = originalBtnText;
             }
             isFetching = false;
         }
+    }
+
+    // --- СЛУШАТЕЛЬ 1: ОТПРАВКА ФОРМЫ ---
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        // При новом поиске всегда начинаем с 1-й страницы
+        fetchResults(1); 
     });
+
+    // --- СЛУШАТЕЛЬ 2: КЛИК ПО ПАГИНАЦИИ ---
+    // Вешаем слушатель на весь контейнер (Делегирование событий)
+    resultsContainer.addEventListener('click', (e) => {
+        
+        // Проверяем, кликнули ли мы по ссылке (<a>) внутри пагинации
+        const pageLink = e.target.closest('.page-catalog__pagination a.page-numbers');
+        
+        if (pageLink) {
+            e.preventDefault(); // Запрещаем обычный переход по ссылке
+            
+            // Вытаскиваем номер страницы из URL ссылки WordPress (например, /page/2/)
+            // Регулярное выражение ищет цифры после слова 'page'
+            let pageNum = 1;
+            const urlMatch = pageLink.href.match(/page\/(\d+)/); 
+            
+            if (urlMatch && urlMatch[1]) {
+                pageNum = parseInt(urlMatch[1]);
+            } else {
+                // Обработка кнопки "Назад", если она ведет на 1-ю страницу (где нет /page/1/)
+                pageNum = 1; 
+            }
+
+            // Вызываем нашу функцию с нужным номером страницы
+            fetchResults(pageNum);
+        }
+    });
+
 });

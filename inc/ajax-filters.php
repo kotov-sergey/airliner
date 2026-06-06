@@ -10,10 +10,14 @@ function ajax_filter_airliners_handler() {
     // Проверяем nonce (защита от хакеров)
     check_ajax_referer('catalog_filter_nonce', 'security');
 
+    // ПОЛУЧАЕМ НОМЕР СТРАНИЦЫ ИЗ JS
+    $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+    
     // БАЗОВЫЕ АРГУМЕНТЫ
     $args =[
         'post_type'      => 'airliner',
-        'posts_per_page' => -1, // Выводим все (или задай лимит 12)
+        'posts_per_page' => 6, // Выводим все (или задай лимит 12)
+        'paged' => $paged,
         'tax_query'      => ['relation' => 'AND'],
         'meta_query'     => ['relation' => 'AND']
     ];
@@ -52,7 +56,7 @@ function ajax_filter_airliners_handler() {
         $args['meta_query'][] =[
             'key'     => 'specs_performance_range', // Имя твоего поля скорости в ACF
             'value'   => (int) $_POST['range'],
-            'compare' => '<=', // Меньше или равно
+            'compare' => '>=', // Меньше или равно
             'type'    => 'NUMERIC'
         ];
     }
@@ -62,7 +66,7 @@ function ajax_filter_airliners_handler() {
         $args['meta_query'][] =[
             'key'     => 'specs_weight_passengers', // Имя твоего поля скорости в ACF
             'value'   => (int) $_POST['passengers'],
-            'compare' => '<=', // Меньше или равно
+            'compare' => '>=', // Меньше или равно
             'type'    => 'NUMERIC'
         ];
     }
@@ -81,6 +85,20 @@ function ajax_filter_airliners_handler() {
                 ]);
             }
         echo '</div>';
+
+        if ( $query->max_num_pages > 1 ) {
+            
+            $current_page = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+
+            echo '<div class="page-catalog__pagination">';
+            echo paginate_links( array(
+                'total'     => $query->max_num_pages,
+                'current'   => $current_page,
+                'prev_text' => '&larr; Назад',
+                'next_text' => 'Вперёд &rarr;',
+            ) );
+            echo '</div>';
+        }
 
     } else {
         echo '<p class="text-muted">По вашему запросу лайнеров не найдено.</p>';

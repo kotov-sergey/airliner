@@ -2,7 +2,6 @@
 @use '../abstracts/mixins' as *;
 
 .page-catalog {
-    padding-block: var(--space-16);
 
     &__layout {
         display: grid;
@@ -11,31 +10,39 @@
         align-items: start;
     }
 
-    &__block {
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-2xl);
-
-        padding: var(--space-5);
-
-        background-color: var(--color-neutral-000);
-
-        label {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-
-            margin-bottom: var(--space-2);
-        }
-    }
-
-    &__filter {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-5);
+    &__sidebar {
+        position: sticky;
+        top: 20px;
     }
 
     &__grid {
        @include grid-adaptive( 1, 2, 3);
        gap: var(--space-6);
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-3);
+
+        margin-top: var(--space-6);
+
+        .page-numbers {
+            color: var(--color-neutral-000);
+            background-color: var(--color-primary-700);
+
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+
+            transition: background-color var(--duration-base) var(--ease-in-out);
+        }
+
+        .page-numbers:hover {
+            background-color: var(--color-primary-900);
+        }
+
+        .page-numbers.current {
+            background-color: var(--color-primary-900);
+        }
     }
 }

@@ -9,6 +9,7 @@ get_header();
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
+        <!-- Hero-секция -->
 		<section class="page-catalog__hero">
 			<div class="container">
 				<h1 class="page-catalog__title"><?php the_title(); ?></h1>
@@ -20,57 +21,9 @@ get_header();
         <div class="container">
             <div class="page-catalog__layout">
 
+                <!-- Сайдбар (фильтры) -->
                 <aside class="page-catalog__sidebar">
-                    <!-- Форма фильтра -->
-                    <form id="airliner-filter" class="page-catalog__filter">
-                        <div class="page-catalog__block">
-                            <h3>Производитель</h3>
-                            <?php
-                            $brands = get_terms( ['taxonomy' => 'manufacturer'] );
-                            foreach ( $brands as $brand ) : ?>
-                                <label>
-                                    <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" class="form-checkbox" >
-                                    <?php echo $brand->name; ?><br>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <div class="page-catalog__block">
-                            <h3>Тип фюзеляжа</h3>
-                            <?php
-                            $types = get_terms( ['taxonomy' => 'body-type'] );
-                            foreach ( $types as $type ) : ?>
-                                <label>
-                                    <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" class="form-checkbox" >
-                                    <?php echo $type->name; ?><br>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <div class="page-catalog__block">
-                            <h3>Статус</h3>
-                            <?php
-                            $statuses = get_terms( ['taxonomy' => 'airliner-status'] );
-                            foreach ( $statuses as $status ) : ?>
-                                <label>
-                                    <input type="checkbox" name="status[]" value="<?php echo $status->term_id; ?>" class="form-checkbox" >
-                                    <?php echo $status->name; ?><br>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>                        
-                    
-                        <div class="page-catalog__block">
-                            <h3>Дальность полёта</h3>
-                            <input type="number" name="range" class="form-input" placeholder="Например: 15 000">
-                        </div>
-
-                        <div class="page-catalog__block">
-                            <h3>Вместимость</h3>
-                            <input type="number" name="passengers" class="form-input" placeholder="Например: 1 000">
-                        </div>                       
-
-                        <button type="submit" class="btn btn--primary">Применить</button>
-                    </form>
+                    <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
                 </aside>
 
                 <!-- Контейнер для результатов -->
@@ -78,9 +31,12 @@ get_header();
                     <div class="page-catalog__grid">
 
                         <?php
+                            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
                             $catalog_query = new WP_Query([
                                 'post_type'=> 'airliner',
-                                'posts_per_page'=> 12,
+                                'posts_per_page'=> 6,
+                                'paged' => $paged
                             ]);
 
                             if ( $catalog_query->have_posts() ) {
@@ -96,6 +52,20 @@ get_header();
                         ?>
 
                     </div>
+
+                    <?php if ( $catalog_query->max_num_pages > 1 ) : ?>
+                        <div class="page-catalog__pagination">
+                            <?php
+                            echo paginate_links( array( 
+                                'total' => $catalog_query->max_num_pages,
+                                'current' => $paged,
+                                'prev_text' => '&larr; Назад',
+                                'next_text' => 'Вперёд &rarr;',
+                            ) );
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
 
             </div>

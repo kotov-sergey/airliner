@@ -1,4 +1,22 @@
-// Стили для элементов формы
+// Стили для элементов форм
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-2);
+}
+
+.form-checkbox__input {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+
+    width: 20px;
+    height: 20px;
+}
 
 .form-input {
     display: block;
@@ -9,14 +27,4 @@
     background-color: #EEE;
 
     padding: var(--space-2) var(--space-4);
-}
-
-.form-checkbox {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    cursor: pointer;
-
-    width: 20px;
-    height: 20px;
 }
