@@ -3,6 +3,41 @@
 
 .page-catalog {
 
+    &__hero {
+        padding-block: var(--space-12);
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    &__hero-inner {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    &__hero-text {
+        display: flex;
+        flex-direction: column;
+
+        max-width: 512px;
+    }
+
+    &__title {
+        font-size: var(--text-5xl);
+        margin: 0;
+        margin-bottom: var(--space-6);
+    }
+
+    &__description {
+        font-size: var(--text-lg);
+    }
+
+    &__hero-stats {
+        display: flex;
+        gap: var(--space-8);
+    }
+
     &__layout {
         display: grid;
         grid-template-columns: 300px 1fr;

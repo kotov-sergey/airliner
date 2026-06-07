@@ -1,6 +1,20 @@
 <?php
 
 /* Template Name: Каталог авиалайнеров */
+$catalog_title = get_field( 'catalog_title' );
+$catalog_description = get_field( 'catalog_description' );
+
+// Модели
+$airliner_count_obj = wp_count_posts( 'airliner');
+$total_airliners = $airliner_count_obj ? $airliner_count_obj->publish : 0;
+
+// Производители
+$total_brands = wp_count_terms( [ 'taxonomy' => 'manufacturer', 'hide_empty' => false ] );
+if ( is_wp_error( $total_brands ) ) $total_brands = 0;
+
+// Типы фюзеляжа
+$total_body_types = wp_count_terms( [ 'taxonomy' => 'body-type', 'hide_empty' => false ] );
+if ( is_wp_error( $total_body_types ) ) $total_brands = 0;
 
 get_header();  
 ?>
@@ -12,8 +26,47 @@ get_header();
         <!-- Hero-секция -->
 		<section class="page-catalog__hero">
 			<div class="container">
-				<h1 class="page-catalog__title"><?php the_title(); ?></h1>
-			</div>
+
+				<div class="page-catalog__hero-inner">
+					
+                    <!-- Описание -->
+					<div class="page-catalog__hero-text">
+						<?php if ( $catalog_title ) : ?>
+                            <h1 class="page-catalog__title">
+                                <?php echo esc_html( $catalog_title ); ?>
+                            </h1>
+                        <?php endif; ?>
+						
+                        <?php if ( $catalog_description ) : ?>
+                            <p class="page-catalog__description">
+                                <?php echo esc_html( $catalog_description ); ?>
+                            </p>
+                        <?php endif; ?>
+					</div>
+				
+					<div class="page-catalog__hero-stats">
+				
+						<div class="catalog-stat">
+							<!-- Модели -->
+                            <span class="catalog-stat__number"><?php echo esc_html( $total_airliners ); ?></span>
+                            <span class="catalog-stat__label">Моделей</span>
+						</div>
+						
+						<div class="catalog-stat">
+							<!-- Производители -->
+                            <span class="catalog-stat__number"><?php echo esc_html( $total_brands ); ?></span>
+                            <span class="catalog-stat__label">Производителей</span>
+						</div>
+
+						<div class="catalog-stat">
+							<!-- Тип -->
+                            <span class="catalog-stat__number"><?php echo esc_html( $total_body_types ); ?></span>
+                            <span class="catalog-stat__label">Типа фюзеляжа</span>
+						</div>						
+					</div>
+				</div>
+
+            </div>
 		</section>
     <?php endwhile; ?>
 
@@ -53,6 +106,7 @@ get_header();
 
                     </div>
 
+                    <!-- Пагинация -->
                     <?php if ( $catalog_query->max_num_pages > 1 ) : ?>
                         <div class="page-catalog__pagination">
                             <?php
