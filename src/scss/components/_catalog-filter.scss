@@ -46,15 +46,16 @@
     &__content {
         display: grid;
         grid-template-rows: 0fr; 
-        transition: grid-template-rows 0.3s ease-in-out;
+        transition: grid-template-rows 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+        overflow: hidden;
     }
 
     &__inner {
         min-height: 0;
-        overflow: hidden;
     
         display: flex;
         flex-direction: column;
+        gap: var(--space-2);
     }
 
     &__block.is-open &__title::after {
@@ -62,7 +63,9 @@
     }
 
     &__block.is-open &__content {
-        grid-template-rows: 1fr; 
+        grid-template-rows: 1fr;
+        
+        margin-top: var(--space-5); 
     }
 
     &__block.is-open .form-checkbox {
