@@ -1,0 +1,20 @@
+// CTA-блок
+
+.cta-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: var(--space-6);
+
+    background-color: var(--color-neutral-000);
+    border-radius: var(--radius-xl);
+
+    &__content {
+        max-width: 512px;
+    }
+
+    &__title {
+        font-size: var(--text-3xl);
+    }
+}

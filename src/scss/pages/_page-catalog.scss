@@ -38,6 +38,10 @@
         gap: var(--space-8);
     }
 
+    &__content {
+        padding-block: var(--space-12);
+    }
+
     &__layout {
         display: grid;
         grid-template-columns: 300px 1fr;
@@ -79,5 +83,9 @@
         .page-numbers.current {
             background-color: var(--color-primary-900);
         }
+    }
+
+    &__cta {
+        padding-block: var(--space-12);
     }
 }

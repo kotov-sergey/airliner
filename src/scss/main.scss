@@ -51,7 +51,8 @@
 @use 'sections/history';
 @use 'sections/fuselage-types';
 @use 'sections/posts';
-@use 'sections/cta';
+@use 'sections/cta-home';
+@use 'sections/cta-simple';
 
 // Pages (Страницы)
 @use 'pages/single-airliner';

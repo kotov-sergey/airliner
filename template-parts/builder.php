@@ -4,7 +4,7 @@
 */
 
 $section_counter = 0;
-$excluded_layouts = ['hero', 'cta'];
+$excluded_layouts = ['hero', 'cta-home'];
 
 if ( have_rows ( 'content_blocks' ) ) {
 	while ( have_rows ( 'content_blocks' ) ) {

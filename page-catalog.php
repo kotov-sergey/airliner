@@ -24,7 +24,7 @@ get_header();
 	<?php while ( have_posts() ) : the_post(); ?>
 
         <!-- Hero-секция -->
-		<section class="page-catalog__hero">
+		<section class="section page-catalog__hero">
 			<div class="container">
 
 				<div class="page-catalog__hero-inner">
@@ -70,6 +70,7 @@ get_header();
 		</section>
     <?php endwhile; ?>
 
+    <!-- Основной каталог с фильтрами -->
     <section class="section page-catalog__content">
         <div class="container">
             <div class="page-catalog__layout">
@@ -125,6 +126,14 @@ get_header();
             </div>
         </div>
     </section>
+
+    <!-- CTA-секция-->
+    <section class="section page-catalog__cta">
+        <div class="container">
+            <?php get_template_part( 'template-parts/builder' ); ?>
+        </div>
+    </section>
+
 </main>
 
 <?php get_footer(); ?>
