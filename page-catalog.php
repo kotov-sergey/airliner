@@ -14,7 +14,7 @@ if ( is_wp_error( $total_brands ) ) $total_brands = 0;
 
 // Типы фюзеляжа
 $total_body_types = wp_count_terms( [ 'taxonomy' => 'body-type', 'hide_empty' => false ] );
-if ( is_wp_error( $total_body_types ) ) $total_brands = 0;
+if ( is_wp_error( $total_body_types ) ) $total_body_types = 0;
 
 get_header();  
 ?>
@@ -127,12 +127,19 @@ get_header();
         </div>
     </section>
 
-    <!-- CTA-секция-->
-    <section class="section page-catalog__cta">
-        <div class="container">
-            <?php get_template_part( 'template-parts/builder' ); ?>
+    <!-- Вывод кастомных секций -->
+    <?php get_template_part( 'template-parts/builder' ); ?>
+    
+    <!-- SEO-текст каталога -->
+    <div class="page-catalog__seo">
+        <div class="container container--narrow">
+            <div class="entry-content">
+                <?php if ( get_the_content() ) : ?>
+                    <?php the_content(); ?>
+                <?php endif; ?>
+            </div>
         </div>
-    </section>
+    </div>
 
 </main>
 

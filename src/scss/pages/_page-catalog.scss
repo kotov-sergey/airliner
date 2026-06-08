@@ -85,7 +85,9 @@
         }
     }
 
-    &__cta {
-        padding-block: var(--space-12);
+    &__seo {
+        background-color: var(--color-neutral-000);
+        padding-block: var(--space-8);
     }
+
 }

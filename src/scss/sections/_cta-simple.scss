@@ -1,14 +1,19 @@
 // CTA-блок
 
-.cta-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.section-cta-block {
+    padding-block: var(--space-20);
+    background-color: var(--color-neutral-200);
+    
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    padding: var(--space-6);
+        padding: var(--space-12);
 
-    background-color: var(--color-neutral-000);
-    border-radius: var(--radius-xl);
+        background-color: var(--color-neutral-000);
+        border-radius: var(--radius-xl);
+    }
 
     &__content {
         max-width: 512px;

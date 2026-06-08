@@ -459,7 +459,7 @@
                 "layout_6994b4ab015c6": {
                     "key": "layout_6994b4ab015c6",
                     "name": "cta-home",
-                    "label": "Секция призыв к действию (главная)",
+                    "label": "Секция призыв к действию",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -550,75 +550,6 @@
                     ],
                     "min": "",
                     "max": ""
-                },
-                "layout_6a25bd3832b0a": {
-                    "key": "layout_6a25bd3832b0a",
-                    "name": "cta-simple",
-                    "label": "Секция призыв к действию (простая)",
-                    "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_6a25bd4a32b0c",
-                            "label": "Заголовок секции",
-                            "name": "section_title",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
-                        },
-                        {
-                            "key": "field_6a25bd5a32b0d",
-                            "label": "Описание секции",
-                            "name": "section_description",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
-                        },
-                        {
-                            "key": "field_6a25bd6432b0e",
-                            "label": "Кнопка секции",
-                            "name": "section_button",
-                            "aria-label": "",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "allow_in_bindings": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
                 }
             },
             "min": "",
@@ -629,9 +560,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "page",
                 "operator": "==",
-                "value": "page"
+                "value": "46"
             }
         ]
     ],
@@ -644,5 +575,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1780859785
+    "modified": 1780944998
 }
