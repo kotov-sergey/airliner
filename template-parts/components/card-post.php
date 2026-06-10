@@ -4,7 +4,42 @@
 $layout = $args['layout'] ?? 'standard';
 ?>
 
-<?php if ( $layout === 'overlay' ) : ?>
+<?php if ( $layout === 'featured' ) : ?>
+
+	<article class="featured-card">
+
+		<div class="featured-card__grid">
+
+			<div class="featured-card__media">
+				<?php the_post_thumbnail('large', array (
+					'class' => 'featured-card__image',
+					'alt' => $title,
+				)); ?>
+			</div>
+
+			<div class="featured-card__content">
+				<div class="featured-card__meta">
+					<?php get_template_part( 'template-parts/components/post-meta' ); ?>
+				</div>
+
+				<h3 class="featured-card__title">
+					<a href="<?php echo get_the_permalink(); ?>" class="featured-card__link" title="<?php the_title_attribute(); ?>">
+						<?php the_title(); ?>
+					</a>
+				</h3>
+
+				<div class="featured-card__description">
+					<?php echo wp_trim_words( get_the_excerpt(), 35, '...' ); ?>
+				</div>
+
+				<span class="btn btn--primary featured-card__button">Читать статью</span>
+			</div>
+		
+		</div>
+
+	</article>
+
+<?php elseif ( $layout === 'overlay' ) : ?>
 
 	<article class="promo-card">
 
