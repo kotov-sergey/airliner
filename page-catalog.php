@@ -82,7 +82,7 @@ get_header();
 
                 <!-- Контейнер для результатов -->
                 <div class="page-catalog__results" id="catalog-results">
-                    <div class="page-catalog__grid">
+                    <div class="l-grid l-grid--3 page-catalog__grid">
 
                         <?php
                             $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;

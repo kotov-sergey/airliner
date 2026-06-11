@@ -32,7 +32,7 @@
             ?>
 
             <!-- Сетка технических характеристик -->
-            <div class="section-specs__grid">
+            <div class="l-grid l-grid--2">
                 <?php
                 foreach ( $config as $group_key => $group_data ) :
                     $this_group_values = get_field( $group_key );

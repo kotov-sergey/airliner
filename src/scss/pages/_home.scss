@@ -1,8 +1,1 @@
 // Стили для шаблона страницы Блога
-
-@use '../abstracts/mixins' as *;
-
-
-.grid-archive {
-    @include grid-adaptive( 1, 2, 3 );
-}

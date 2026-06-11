@@ -9,7 +9,7 @@ $args = [
 	'category__in' => $category_ids,
 	'post__not_in' => [$post_id],
 	'orderby' => 'rand',
-	'posts_per_page' => 3,
+	'posts_per_page' => 4,
 	'ignore_sticky_posts' => 1,
 ];
 
@@ -33,7 +33,7 @@ if ( $related_query->have_posts() ) :
 
 		<!-- Сетка похожих записей -->
 
-		<div class="post-grid">
+		<div class="l-grid l-grid--4">
 
 			<?php
 				while ( $related_query->have_posts() ) :

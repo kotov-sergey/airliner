@@ -21,7 +21,7 @@ $posts_query = new WP_Query([
 
 	<?php if ( $posts_query && $posts_query->have_posts() ) : ?>
 
-		<div class="posts-grid">
+		<div class="l-bento-grid">
 
 			<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
 

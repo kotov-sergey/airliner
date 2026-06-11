@@ -12,7 +12,7 @@ $fuselage_types = get_sub_field( 'fuselage_type' );
 		
         <?php get_template_part( 'template-parts/components/section-header', null, $section_header ); ?>
 
-        <div class="fuselage-types-grid">
+        <div class="l-grid l-grid--3">
 
             <?php if ( $fuselage_types ) : ?>
                 

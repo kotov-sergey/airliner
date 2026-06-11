@@ -3,9 +3,6 @@
 @use '../../abstracts/mixins' as *;
 
 .section-specs {
-    &__grid {
-        @include grid-adaptive(1, 2, 2);
-    }
 
     .spec-card {
         border: 1px solid var(--border-light);

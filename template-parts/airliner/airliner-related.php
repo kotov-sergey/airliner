@@ -56,7 +56,7 @@ else {
         <!-- Сетка похожих записей -->
         <?php if ( ! empty( $related_posts ) ) : ?>
 
-            <div class="airliners-grid">
+            <div class="l-grid l-grid--4">
 
                 <?php
                     global $post;

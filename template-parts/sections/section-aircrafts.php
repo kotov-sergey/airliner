@@ -29,7 +29,7 @@ $airliners_query = new WP_Query([
 		
 		<?php if ( $airliners_query && $airliners_query->have_posts() ) : ?>
 			
-			<div class="aircrafts-grid">
+			<div class="l-grid l-grid--2">
 				
 				<?php while ( $airliners_query->have_posts() ) : $airliners_query->the_post(); ?>
 				

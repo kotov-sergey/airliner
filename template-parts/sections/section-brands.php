@@ -18,7 +18,7 @@ $section_header = airliner_prepare_header_args( get_sub_field( 'section_header' 
         if ( $brands ) : 
         ?>
 		
-        <ul class="brands-grid">
+        <ul class="l-grid brands-grid">
 			
 			<?php foreach ($brands as $brand) : ?>
 	

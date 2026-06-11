@@ -33,7 +33,7 @@ get_header();
             <section class="section page-blog__fresh">
                 <h2>Свежие материалы</h2>
                 
-                <div class="posts-grid">
+                <div class="l-bento-grid">
                     <?php
                     for ( $i=0; $i<3; $i++ ) {
                         if ( !have_posts() ) break;
@@ -52,7 +52,7 @@ get_header();
             <section class="section page-blog__archive">
                 <h2>Все публикации</h2>
 
-                <div class="grid-archive">
+                <div class="l-grid l-grid--3">
                     <?php 
                     while ( have_posts() ) : the_post();
                         get_template_part( 'template-parts/components/card-post' );

@@ -76,7 +76,7 @@ function ajax_filter_airliners_handler() {
 
     if ( $query->have_posts() ) {
 
-        echo '<div class="page-catalog__grid">';
+        echo '<div class="l-grid l-grid--3 page-catalog__grid">';
             while ( $query->have_posts() ) {
                 $query->the_post();
                 

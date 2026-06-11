@@ -1,5 +1,7 @@
-// Общая сетка сайта
+// Стили макета сайта (лэйаут)
+@use '../abstracts/mixins' as *;
 
+//Контейнер
 .container {
   width: 100%;
   max-width: var(--container-width, 1280px);
@@ -11,6 +13,7 @@
   }
 }
 
+// Секция
 .section {
   padding-block: var(--space-16);
 
@@ -25,5 +28,46 @@
 
   &--gray {
     background-color: var(--bg-surface-alt);
+  }
+}
+
+// Общие стили сеток
+.l-grid {
+  & > * {
+		height: 100%;
+	}
+
+	// Сетка 2 колонки
+	&--2 {
+		@include grid-adaptive( 1, 2, 2 );
+	}
+
+	// Сетка 3 колонки
+	&--3 {
+	    @include grid-adaptive( 1, 2, 3 );
+	}
+
+	// Сетка 4 колонки
+	&--4 {
+		@include grid-adaptive( 1, 2, 4 );
+	}
+
+}
+
+// Bento-сетка
+.l-bento-grid {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1.5fr 1fr;
+    grid-auto-rows: minmax(240px, auto);
+  
+    > *:first-child {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      height: 100%;
+    }
   }
 }

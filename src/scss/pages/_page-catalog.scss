@@ -55,7 +55,6 @@
     }
 
     &__grid {
-       @include grid-adaptive( 1, 2, 3);
        gap: var(--space-6);
     }
 
