@@ -3,11 +3,13 @@
 *	Цикл вывода секций на все страницы сайта
 */
 
-$section_counter = 0;
-$excluded_layouts = ['hero', 'cta-home'];
+$page_id = $args['page_id'] ?? false; 
 
-if ( have_rows ( 'content_blocks' ) ) {
-	while ( have_rows ( 'content_blocks' ) ) {
+$section_counter = 0;
+$excluded_layouts = ['hero', 'cta-home', 'cta-simple'];
+
+if ( have_rows ( 'content_blocks', $page_id ) ) {
+	while ( have_rows ( 'content_blocks', $page_id ) ) {
 
 		the_row();
 		$layout = get_row_layout();
@@ -22,6 +24,7 @@ if ( have_rows ( 'content_blocks' ) ) {
 		
 		$template_args = array(
 			'index' => $formatted_index,
+			'page_id' => $page_id
 		);
 
 		$slug = 'template-parts/sections/section';

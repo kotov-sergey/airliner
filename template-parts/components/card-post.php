@@ -104,15 +104,6 @@ $layout = $args['layout'] ?? 'standard';
 			<div class="post-card__description">
 				<?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
 			</div>
-
-			<div class="post-card__action">
-				<span class="post-card__button">Читать</span>
-
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M5 12h14M12 5l7 7-7 7"/>
-				</svg>
-			</div>
-
 		</div>
 
 	</article>

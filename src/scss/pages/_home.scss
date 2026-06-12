@@ -1,1 +1,17 @@
 // Стили для шаблона страницы Блога
+
+.page-blog {
+
+    .section {
+        padding-block: var(--space-8); 
+        
+        @media (min-width: 1024px) {
+            padding-block: var(--space-16);
+        }
+    }
+
+    &__section-title {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-10);
+    }
+}
