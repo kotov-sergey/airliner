@@ -1,10 +1,19 @@
 <?php
 // Шаблон страницы Блога (home.php)
 
+$blog_page_id = get_option( 'page_for_posts' );
+$blog_title = get_field( 'blog_title', $blog_page_id ) ?: 'Блог';
+
 get_header();
 ?>
 
 <main class="site-main page-blog">
+
+    <section class="page-blog__hero">
+        <div class="container">
+            <h1 class="page-blog__title"><?php echo esc_html( $blog_title ); ?></h1>
+        </div>
+    </section>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
@@ -25,7 +34,7 @@ get_header();
             <?php
             $categories = get_categories();
             foreach ( $categories as $category ) {
-                echo '<a href="' . get_category_link( $category->term_id ) . '">' . $category->name . '</a> ';
+                echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="page-blog__category">' . esc_html( $category->name ) . '</a> ';
             }
             ?>
         </div>
@@ -71,11 +80,9 @@ get_header();
 
     <!-- Секция призыв к действию -->
     <?php
-    $blog_page_id = get_option( 'page_for_posts' );
-
-    get_template_part( 'template-parts/builder', null, [
-        'page_id' => $blog_page_id
-    ] ); 
+        get_template_part( 'template-parts/builder', null, [
+            'page_id' => $blog_page_id
+        ] ); 
     ?>
         
 </main>

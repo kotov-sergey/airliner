@@ -10,8 +10,38 @@
         }
     }
 
+    &__hero {
+        padding-top: var(--space-12);
+    }
+
+    &__title {
+        margin: 0;
+        font-size: var(--text-5xl);
+    }
+
     &__section-title {
         font-size: var(--text-3xl);
         margin-bottom: var(--space-10);
+    }
+
+    &__categories {
+
+    border-top: 1px solid var(--color-neutral-300);
+    border-bottom: 1px solid var(--color-neutral-300);
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--space-3);
+            
+            padding: var(--space-4) 0px;
+        }
+    }
+
+    &__category {
+        padding: var(--space-3) var(--space-5);
+        background-color: var(--color-neutral-200);
+        color: var(--text-main);
+        border-radius: var(--radius-full);
     }
 }
