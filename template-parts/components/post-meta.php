@@ -7,9 +7,15 @@ $date = get_the_date('j M, Y');
 $datetime = get_the_date('c');
 $read_time = airliner_get_reading_time();
 
+$modifier = $args['modifier'] ?? '';
+
+$classes = 'post-meta';
+if ( $modifier ) {
+    $classes .= ' ' . $modifier;
+}
 ?>
 
-<div class="post-meta">
+<div class="<?php echo esc_attr( $classes ); ?>">
 
     <?php if ( $category_name ) : ?>
         <span class="post-meta__category">

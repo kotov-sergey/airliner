@@ -53,7 +53,9 @@ $layout = $args['layout'] ?? 'standard';
 		<div class="promo-card__content">
 
 			<div class="promo-card__meta">
-				<?php get_template_part( 'template-parts/components/post-meta' ); ?>
+				<?php get_template_part( 'template-parts/components/post-meta', null, [
+					'modifier' => 'post-meta--overlay'
+				] ); ?>
 			</div>
 
 			<h3 class="promo-card__title">
