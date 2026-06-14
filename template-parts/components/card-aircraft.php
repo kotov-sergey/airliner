@@ -82,21 +82,6 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 			<div class="card-aircraft__actions">
 				<span class="btn btn--primary card-aircraft__btn-details">Подробнее</span>
 			</div>
-
-		<?php else : ?>
-
-			<div class="card-aircraft__actions">
-				<span class="card-aircraft__link-text">
-					Подробнее
-
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-						<path d="M3 12H19" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-						
-						<path d="M12 5L19 12L12 19" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</span>
-			</div>
-
 		<?php endif; ?>
 	
 </article>
