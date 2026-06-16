@@ -1,0 +1,32 @@
+// Стили для шаблона страницы таксономий
+
+.page-taxonomy {
+
+}
+
+.taxonomy-hero {
+
+    &__wrapper {
+        max-width: 768px;
+    }
+
+    &__media {
+        display: flex;
+        gap: var(--space-6);
+        align-items: center;
+
+        margin-bottom: var(--space-6);
+    }
+
+    &__image {
+        width: 250px;
+        padding: var(--space-4);
+        background-color: var(--color-neutral-000);
+        border-radius: var(--radius-xl);
+    }
+
+    &__title {
+        margin: 0;
+        font-size: var(--text-5xl);
+    }
+}
