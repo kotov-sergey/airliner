@@ -1,16 +1,7 @@
-// Стили для шаблона страницы Блога
+// Стили для шаблона страницы Блога (home.php)
 
-.page-blog {
-
-    .section {
-        padding-block: var(--space-8); 
-        
-        @media (min-width: 1024px) {
-            padding-block: var(--space-16);
-        }
-    }
-
-    &__hero {
+.blog-hero {
+    &__container {
         padding-top: var(--space-12);
     }
 
@@ -18,31 +9,34 @@
         margin: 0;
         font-size: var(--text-5xl);
     }
+}
 
-    &__section-title {
-        font-size: var(--text-3xl);
-        margin-bottom: var(--space-10);
-    }
-
-    &__categories {
-
+.blog-categories {
     border-top: 1px solid var(--color-neutral-300);
     border-bottom: 1px solid var(--color-neutral-300);
 
     padding: var(--space-4) 0px;
 
-        .container {
-            display: flex;
-            justify-content: space-between;
-            gap: var(--space-3);
-        }
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-3);
     }
 
-    &__category {
+    &__item {
         font-size: var(--text-sm);
-        padding: var(--space-3) var(--space-5);
-        background-color: var(--color-neutral-200);
         color: var(--text-main);
+        
+        background-color: var(--color-neutral-200);
         border-radius: var(--radius-full);
+        
+        padding: var(--space-3) var(--space-5);
     }
+}
+
+// Стили заголовков Свежих материалов и Всех публикаций
+.blog-fresh__title,
+.blog-archive__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-10);
 }

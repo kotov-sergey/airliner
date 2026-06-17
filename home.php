@@ -9,16 +9,17 @@ get_header();
 
 <main class="site-main page-blog">
 
-    <section class="page-blog__hero">
-        <div class="container">
-            <h1 class="page-blog__title"><?php echo esc_html( $blog_title ); ?></h1>
+    <!-- Hero-секция Блога -->
+    <section class="blog-hero">
+        <div class="container blog-hero__container">
+            <h1 class="blog-hero__title"><?php echo esc_html( $blog_title ); ?></h1>
         </div>
     </section>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
         <!-- Секция первого featured поста -->
-        <section class="section page-blog__featured">
+        <section class="section blog-featured">
             <div class="container">
                 <?php get_template_part( 'template-parts/components/card-post', null, [
                     'layout' => 'featured'
@@ -29,12 +30,12 @@ get_header();
     <?php endif; ?>
 
     <!-- Секция категорий блога -->
-    <section class="page-blog__categories">
-        <div class="container">
+    <section class="blog-categories">
+        <div class="container blog-categories__container">
             <?php
             $categories = get_categories();
             foreach ( $categories as $category ) {
-                echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="page-blog__category">' . esc_html( $category->name ) . '</a> ';
+                echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="blog-categories__item">' . esc_html( $category->name ) . '</a> ';
             }
             ?>
         </div>
@@ -42,9 +43,9 @@ get_header();
 
     <!-- Секция свежих материалов -->
     <?php if ( have_posts() ) : ?>
-        <section class="section page-blog__fresh">
+        <section class="section blog-fresh">
             <div class="container">
-                <h2 class="page-blog__section-title">Свежие материалы</h2>
+                <h2 class="blog-fresh__title">Свежие материалы</h2>
                 
                 <div class="l-bento-grid">
                     <?php
@@ -63,9 +64,9 @@ get_header();
 
     <!-- Секция все публикации-->
     <?php if ( have_posts() ) : ?>
-        <section class="section page-blog__archive">
+        <section class="section blog-archive">
             <div class="container">
-                <h2 class="page-blog__section-title">Все публикации</h2>
+                <h2 class="blog-archive__title">Все публикации</h2>
 
                 <div class="l-grid l-grid--3">
                     <?php 
