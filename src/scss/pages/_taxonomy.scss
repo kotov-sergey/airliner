@@ -1,7 +1,9 @@
 // Стили для шаблона страницы таксономий
 
 .page-taxonomy {
-
+    &__content {
+        padding-block: var(--space-12);
+    }
 }
 
 .taxonomy-hero {

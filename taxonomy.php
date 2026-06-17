@@ -32,17 +32,18 @@ get_header();
     </section>
 
     <!--Секция каталог таксономии-->
-    <section class="section catalog-workspace">
+    <section class="section catalog-content page-taxonomy__content">
         <div class="container">
+            <div class="catalog-content__layout">
 
-            <div class="catalog-workspace__layout">
-
-                <aside class="catalog-workspace__sidebar">
+                <!-- Сайдбар (фильтры) -->
+                <aside class="catalog-content__sidebar">
                     <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
                 </aside>
 
-                <div class="catalog-workspace__results" id="catalog-results">
-                    <div class="l-grid l-grid--2 catalog-workspace__grid">
+                <!-- Контейнер для результатов -->
+                <div class="catalog-content__results" id="catalog-results">
+                    <div class="l-grid l-grid--2 catalog-content__grid">
 
                         <?php
                             if ( have_posts() ) {
@@ -52,15 +53,27 @@ get_header();
                                 }
                             }
                             else {
-                                echo '<p>Самолётов не найдено.</p>';
+                                echo '<p>Самолеты не найдены!</p>';
                             }
-
                         ?>
+
                     </div>
+
+                    <!-- Пагинация -->
+                    <?php if ( $wp_query->max_num_pages > 1 ) : ?>
+                        <div class="catalog-content__pagination">
+                            <?php
+                            echo paginate_links( array( 
+                                'prev_text' => '&larr; Назад',
+                                'next_text' => 'Вперёд &rarr;',
+                            ) );
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
 
             </div>
-
         </div>
     </section>
 
