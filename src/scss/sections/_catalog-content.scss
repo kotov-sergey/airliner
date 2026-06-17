@@ -1,0 +1,45 @@
+// Стили основного каталога
+
+.catalog-content {
+    &__layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: var(--space-8);
+        align-items: start;
+    }
+
+    &__sidebar {
+        position: sticky;
+        top: 20px;
+    }
+
+   &__grid {
+       gap: var(--space-6);
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-3);
+
+        margin-top: var(--space-6);
+
+        .page-numbers {
+            color: var(--color-neutral-000);
+            background-color: var(--color-primary-700);
+
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+
+            transition: background-color var(--duration-base) var(--ease-in-out);
+        }
+
+        .page-numbers:hover {
+            background-color: var(--color-primary-900);
+        }
+
+        .page-numbers.current {
+            background-color: var(--color-primary-900);
+        }
+    }
+}

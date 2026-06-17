@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsContainer.addEventListener('click', (e) => {
         
         // Проверяем, кликнули ли мы по ссылке (<a>) внутри пагинации
-        const pageLink = e.target.closest('.page-catalog__pagination a.page-numbers');
+        const pageLink = e.target.closest('.catalog-content__pagination a.page-numbers');
         
         if (pageLink) {
             e.preventDefault(); // Запрещаем обычный переход по ссылке

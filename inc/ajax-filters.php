@@ -76,7 +76,7 @@ function ajax_filter_airliners_handler() {
 
     if ( $query->have_posts() ) {
 
-        echo '<div class="l-grid l-grid--3 page-catalog__grid">';
+        echo '<div class="l-grid l-grid--3 catalog-content__grid">';
             while ( $query->have_posts() ) {
                 $query->the_post();
                 
@@ -90,7 +90,7 @@ function ajax_filter_airliners_handler() {
             
             $current_page = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
 
-            echo '<div class="page-catalog__pagination">';
+            echo '<div class="catalog-content__pagination">';
             echo paginate_links( array(
                 'total'     => $query->max_num_pages,
                 'current'   => $current_page,

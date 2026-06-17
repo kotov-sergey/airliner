@@ -11,7 +11,7 @@
                 foreach ( $brands as $brand ) : ?>
                     <label class="form-checkbox">
                         <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" class="form-checkbox__input" >
-                        <?php echo $brand->name; ?>
+                        <span class="form-checkbox__label"><?php echo $brand->name; ?></span>
                     </label>
                 <?php endforeach; ?>
             </div>
@@ -28,7 +28,7 @@
                 foreach ( $types as $type ) : ?>
                     <label class="form-checkbox">
                         <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" class="form-checkbox__input" >
-                        <?php echo $type->name; ?>
+                        <span class="form-checkbox__label"><?php echo $type->name; ?></span>
                     </label>
                 <?php endforeach; ?>
             </div>
@@ -45,7 +45,7 @@
                 foreach ( $statuses as $status ) : ?>
                     <label class="form-checkbox">
                         <input type="checkbox" name="status[]" value="<?php echo $status->term_id; ?>" class="form-checkbox__input" >
-                        <?php echo $status->name; ?>
+                        <span class="form-checkbox__label"><?php echo $status->name; ?></span>
                     </label>
                 <?php endforeach; ?>
             </div>
