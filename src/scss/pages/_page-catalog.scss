@@ -1,28 +1,24 @@
 // Стили для страницы каталога авиалайнеров
-@use '../abstracts/mixins' as *;
 
-.page-catalog {
+.catalog-hero {
+    padding-block: var(--space-12);
+    border-bottom: 1px solid var(--border-light);
 
-    &__hero {
-        padding-block: var(--space-12);
-        border-bottom: 1px solid var(--border-light);
-    }
-
-    &__hero-inner {
+    &__inner {
         display: flex;
         flex-direction: row;
 
         justify-content: space-between;
-        align-items: flex-end;
+        align-items: flex-end;       
     }
 
-    &__hero-text {
+    &__content {
         display: flex;
         flex-direction: column;
 
-        max-width: 512px;
+        max-width: 512px;       
     }
-
+    
     &__title {
         font-size: var(--text-5xl);
         margin: 0;
@@ -33,60 +29,12 @@
         font-size: var(--text-lg);
     }
 
-    &__hero-stats {
+    &__stats {
         display: flex;
         gap: var(--space-8);
     }
+}
 
-    &__content {
-        padding-block: var(--space-12);
-    }
-
-    &__layout {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        gap: var(--space-8);
-        align-items: start;
-    }
-
-    &__sidebar {
-        position: sticky;
-        top: 20px;
-    }
-
-    &__grid {
-       gap: var(--space-6);
-    }
-
-    &__pagination {
-        display: flex;
-        justify-content: center;
-        gap: var(--space-3);
-
-        margin-top: var(--space-6);
-
-        .page-numbers {
-            color: var(--color-neutral-000);
-            background-color: var(--color-primary-700);
-
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
-
-            transition: background-color var(--duration-base) var(--ease-in-out);
-        }
-
-        .page-numbers:hover {
-            background-color: var(--color-primary-900);
-        }
-
-        .page-numbers.current {
-            background-color: var(--color-primary-900);
-        }
-    }
-
-    &__seo {
-        background-color: var(--color-neutral-000);
-        padding-block: var(--space-8);
-    }
-
+.catalog-seo {
+    background-color: var(--color-neutral-000);
 }

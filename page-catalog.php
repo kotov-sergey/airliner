@@ -24,27 +24,27 @@ get_header();
 	<?php while ( have_posts() ) : the_post(); ?>
 
         <!-- Hero-секция -->
-		<section class="section page-catalog__hero">
+		<section class="section catalog-hero">
 			<div class="container">
 
-				<div class="page-catalog__hero-inner">
+				<div class="catalog-hero__inner">
 					
                     <!-- Описание -->
-					<div class="page-catalog__hero-text">
+					<div class="catalog-hero__content">
 						<?php if ( $catalog_title ) : ?>
-                            <h1 class="page-catalog__title">
+                            <h1 class="catalog-hero__title">
                                 <?php echo esc_html( $catalog_title ); ?>
                             </h1>
                         <?php endif; ?>
 						
                         <?php if ( $catalog_description ) : ?>
-                            <p class="page-catalog__description">
+                            <p class="catalog-hero__description">
                                 <?php echo esc_html( $catalog_description ); ?>
                             </p>
                         <?php endif; ?>
 					</div>
 				
-					<div class="page-catalog__hero-stats">
+					<div class="catalog-hero__stats">
 				
 						<div class="catalog-stat">
 							<!-- Модели -->
@@ -68,78 +68,79 @@ get_header();
 
             </div>
 		</section>
-    <?php endwhile; ?>
 
-    <!-- Основной каталог с фильтрами -->
-    <section class="section page-catalog__content">
-        <div class="container">
-            <div class="page-catalog__layout">
+        <!-- Основной каталог с фильтрами -->
+        <section class="section catalog-content">
+            <div class="container">
+                <div class="catalog-content__layout">
 
-                <!-- Сайдбар (фильтры) -->
-                <aside class="page-catalog__sidebar">
-                    <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
-                </aside>
+                    <!-- Сайдбар (фильтры) -->
+                    <aside class="catalog-content__sidebar">
+                        <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
+                    </aside>
 
-                <!-- Контейнер для результатов -->
-                <div class="page-catalog__results" id="catalog-results">
-                    <div class="l-grid l-grid--3 page-catalog__grid">
+                    <!-- Контейнер для результатов -->
+                    <div class="catalog-content__results" id="catalog-results">
+                        <div class="l-grid l-grid--3 catalog-content__grid">
 
-                        <?php
-                            $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                            <?php
+                                $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
-                            $catalog_query = new WP_Query([
-                                'post_type'=> 'airliner',
-                                'posts_per_page'=> 9,
-                                'paged' => $paged
-                            ]);
+                                $catalog_query = new WP_Query([
+                                    'post_type'=> 'airliner',
+                                    'posts_per_page'=> 9,
+                                    'paged' => $paged
+                                ]);
 
-                            if ( $catalog_query->have_posts() ) {
-                                while ( $catalog_query->have_posts() ) {
-                                    $catalog_query->the_post();
-                                    get_template_part( 'template-parts/components/card-aircraft' );
+                                if ( $catalog_query->have_posts() ) {
+                                    while ( $catalog_query->have_posts() ) {
+                                        $catalog_query->the_post();
+                                        get_template_part( 'template-parts/components/card-aircraft' );
+                                    }
+                                    wp_reset_postdata();
                                 }
-                                wp_reset_postdata();
-                            }
-                            else {
-                                echo '<p>Самолеты не найдены!</p>';
-                            }
-                        ?>
+                                else {
+                                    echo '<p>Самолеты не найдены!</p>';
+                                }
+                            ?>
+
+                        </div>
+
+                        <!-- Пагинация -->
+                        <?php if ( $catalog_query->max_num_pages > 1 ) : ?>
+                            <div class="catalog-content__pagination">
+                                <?php
+                                echo paginate_links( array( 
+                                    'total' => $catalog_query->max_num_pages,
+                                    'current' => $paged,
+                                    'prev_text' => '&larr; Назад',
+                                    'next_text' => 'Вперёд &rarr;',
+                                ) );
+                                ?>
+                            </div>
+                        <?php endif; ?>
 
                     </div>
 
-                    <!-- Пагинация -->
-                    <?php if ( $catalog_query->max_num_pages > 1 ) : ?>
-                        <div class="page-catalog__pagination">
-                            <?php
-                            echo paginate_links( array( 
-                                'total' => $catalog_query->max_num_pages,
-                                'current' => $paged,
-                                'prev_text' => '&larr; Назад',
-                                'next_text' => 'Вперёд &rarr;',
-                            ) );
-                            ?>
-                        </div>
-                    <?php endif; ?>
-
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Вывод кастомных секций -->
-    <?php get_template_part( 'template-parts/builder' ); ?>
+        <!-- Вывод кастомных секций -->
+        <?php get_template_part( 'template-parts/builder' ); ?>
     
-    <!-- SEO-текст каталога -->
-    <div class="page-catalog__seo">
-        <div class="container container--narrow">
-            <div class="entry-content">
-                <?php if ( get_the_content() ) : ?>
-                    <?php the_content(); ?>
-                <?php endif; ?>
+        <!-- SEO-текст каталога -->
+        <section class="section catalog-seo">
+            <div class="container container--narrow">
+                <div class="entry-content">
+                    <?php if ( get_the_content() ) : ?>
+                        <?php the_content(); ?>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+    
+    <?php endwhile; ?>
 
 </main>
 
