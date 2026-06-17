@@ -70,7 +70,7 @@ get_header();
 		</section>
 
         <!-- Основной каталог с фильтрами -->
-        <section class="section catalog-content">
+        <section class="section catalog-content page-catalog__content">
             <div class="container">
                 <div class="catalog-content__layout">
 
