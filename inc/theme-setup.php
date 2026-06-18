@@ -91,3 +91,20 @@ show_admin_bar( false );
 
 // Изменение окончания отрывка [...] на троеточие
 add_filter( 'excerpt_more', fn() => '...' );
+
+/**
+ * Ограничиваем Главный запрос на страницах таксономий только самолетами
+ */
+add_action( 'pre_get_posts', 'airliner_restrict_taxonomy_archives' );
+
+function airliner_restrict_taxonomy_archives( $query ) {
+    
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( $query->is_tax( ['manufacturer', 'body-type', 'airliner-status', 'range', 'engine', 'country'] ) ) {
+        
+        $query->set( 'post_type', 'airliner' );
+    }
+}
