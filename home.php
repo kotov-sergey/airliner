@@ -29,17 +29,21 @@ get_header();
         </section>
     <?php endif; ?>
 
-    <!-- Секция категорий блога -->
-    <section class="blog-categories">
-        <div class="container blog-categories__container">
-            <?php
-            $categories = get_categories();
-            foreach ( $categories as $category ) {
-                echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="blog-categories__item">' . esc_html( $category->name ) . '</a> ';
-            }
-            ?>
+    <!-- Навигация категорий блога -->
+    <nav class="blog-categories">
+        <div class="container">
+            <ul class="blog-categories__list">
+                    <?php
+                        $categories = get_categories();
+                        foreach ( $categories as $category ) {
+                            echo '<li class="blog-categories__item">
+                                    <a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="blog-categories__link">' . esc_html( $category->name ) . '</a>
+                                  </li>';
+                        }
+                    ?>
+            </ul>
         </div>
-    </section>
+    </nav>
 
     <!-- Секция свежих материалов -->
     <?php if ( have_posts() ) : ?>
