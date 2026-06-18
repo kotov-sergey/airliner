@@ -1,39 +1,59 @@
+<?php
+
+$is_taxonomy = is_tax();
+$current_term = $is_taxonomy ? get_queried_object() : null;
+$current_tax = $current_term ? $current_term->taxonomy : '';
+
+$columns = $args['columns'] ?? 3;
+?>
+
 <!-- Форма фильтра -->
-
 <form id="airliner-filter" class="catalog-filter">
-    <div class="catalog-filter__block is-open">
-        <h3 class="catalog-filter__title">Производитель</h3>
-        
-        <div class="catalog-filter__content">
-            <div class="catalog-filter__inner">
-                <?php
-                $brands = get_terms( ['taxonomy' => 'manufacturer'] );
-                foreach ( $brands as $brand ) : ?>
-                    <label class="form-checkbox">
-                        <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" class="form-checkbox__input" >
-                        <span class="form-checkbox__label"><?php echo $brand->name; ?></span>
-                    </label>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
 
-    <div class="catalog-filter__block">
-        <h3 class="catalog-filter__title">Тип фюзеляжа</h3>
-        
-        <div class="catalog-filter__content">
-            <div class="catalog-filter__inner">
-                <?php
-                $types = get_terms( ['taxonomy' => 'body-type'] );
-                foreach ( $types as $type ) : ?>
-                    <label class="form-checkbox">
-                        <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" class="form-checkbox__input" >
-                        <span class="form-checkbox__label"><?php echo $type->name; ?></span>
-                    </label>
-                <?php endforeach; ?>
+    <?php if ( $is_taxonomy ) : ?>
+        <input type="hidden" name="base_taxonomy" value="<?php echo esc_attr( $current_tax ); ?>">
+        <input type="hidden" name="base_term_id" value="<?php echo esc_attr( $current_term->term_id ); ?>">
+    <?php endif; ?>
+
+    <input type="hidden" name="grid_columns" value="<?php echo (int) $columns; ?>">
+
+    <?php if ( $current_tax !== 'manufacturer' ) : ?>
+        <div class="catalog-filter__block is-open">
+            <h3 class="catalog-filter__title">Производитель</h3>
+            
+            <div class="catalog-filter__content">
+                <div class="catalog-filter__inner">
+                    <?php
+                    $brands = get_terms( ['taxonomy' => 'manufacturer'] );
+                    foreach ( $brands as $brand ) : ?>
+                        <label class="form-checkbox">
+                            <input type="checkbox" name="brand[]" value="<?php echo $brand->term_id; ?>" class="form-checkbox__input" >
+                            <span class="form-checkbox__label"><?php echo $brand->name; ?></span>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
+
+    <?php if ( $current_tax !== 'body-type' ) : ?>
+        <div class="catalog-filter__block">
+            <h3 class="catalog-filter__title">Тип фюзеляжа</h3>
+            
+            <div class="catalog-filter__content">
+                <div class="catalog-filter__inner">
+                    <?php
+                    $types = get_terms( ['taxonomy' => 'body-type'] );
+                    foreach ( $types as $type ) : ?>
+                        <label class="form-checkbox">
+                            <input type="checkbox" name="fuselage[]" value="<?php echo $type->term_id; ?>" class="form-checkbox__input" >
+                            <span class="form-checkbox__label"><?php echo $type->name; ?></span>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <div class="catalog-filter__block">
         <h3 class="catalog-filter__title">Статус</h3>

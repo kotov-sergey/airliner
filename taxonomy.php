@@ -38,7 +38,11 @@ get_header();
 
                 <!-- Сайдбар (фильтры) -->
                 <aside class="catalog-content__sidebar">
-                    <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
+                    <?php 
+                        get_template_part( 'template-parts/components/catalog-filter', null, [
+                            'columns' => 2
+                        ] ); 
+                    ?>
                 </aside>
 
                 <!-- Контейнер для результатов -->

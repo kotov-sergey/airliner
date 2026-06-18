@@ -30,7 +30,7 @@ get_header();
     <?php endif; ?>
 
     <!-- Навигация категорий блога -->
-    <nav class="blog-categories">
+    <nav class="blog-categories" aria-label="Категории каталога">
         <div class="container">
             <ul class="blog-categories__list">
                     <?php

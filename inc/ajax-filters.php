@@ -23,6 +23,16 @@ function ajax_filter_airliners_handler() {
     ];
 
     // ЛОВИМ ДАННЫЕ ИЗ ФОРМЫ
+
+
+    // Если пришли со страницы Таксономии
+    if ( !empty( $_POST['base_taxonomy'] ) && !empty( $_POST['base_term_id'] ) ) {
+        $args['tax_query'][] =[
+            'taxonomy' => sanitize_text_field($_POST['base_taxonomy']),
+            'field' => 'term_id',
+            'terms' => (int) $_POST['base_term_id'],
+        ];
+    }
     
     // Если выбрали производителя (Таксономия)
     if ( !empty($_POST['brand']) ) {
@@ -75,14 +85,17 @@ function ajax_filter_airliners_handler() {
     $query = new WP_Query($args);
 
     if ( $query->have_posts() ) {
+        $columns = isset($_POST['grid_columns']) ? (int) $_POST['grid_columns'] : 3;
 
-        echo '<div class="l-grid l-grid--3 catalog-content__grid">';
+        if ( ! in_array( $columns, [2, 3, 4] ) ) {
+            $columns = 3;
+        }
+
+        echo '<div class="l-grid l-grid--' . $columns . ' catalog-content__grid">';
             while ( $query->have_posts() ) {
                 $query->the_post();
                 
-                get_template_part('template-parts/components/card-aircraft', null,[
-                    'layout' => 'vertical'
-                ]);
+                get_template_part( 'template-parts/components/card-aircraft' );
             }
         echo '</div>';
 
