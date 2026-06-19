@@ -4,6 +4,8 @@
 $current_term = get_queried_object();
 
 $brand_image = get_field( 'brand_logo', $current_term );
+
+$hero_image = get_field( 'taxonomy_hero_bg', $current_term );
 $seo_text = get_field( 'seo_text', $current_term );
 
 get_header();
@@ -13,7 +15,16 @@ get_header();
 
     <!--Hero-секция таксономии-->
     <section class="section taxonomy-hero">
-        <div class="container">
+        
+        <div class="taxonomy-hero__background">
+            <?php if ( $hero_image ) : ?>
+                <?php echo wp_get_attachment_image( $hero_image['id'], 'full', false, array( 'class' => 'taxonomy-hero__background-image' ) ); ?>
+            <?php endif; ?>
+
+            <div class="taxonomy-hero__overlay"></div>
+        </div>
+        
+        <div class="container taxonomy-hero__container">
         
             <div class="taxonomy-hero__wrapper">
                 <div class="taxonomy-hero__media">
@@ -90,7 +101,7 @@ get_header();
 
     <!--Секция SEO-текст таксономии-->
     <?php if ( $seo_text ) : ?>
-        <section class="section taxonomy-seo section--white">
+        <section class="section taxonomy-seo">
             <div class="container container--narrow">
                 <div class="entry-content">
                     <?php echo wp_kses_post( $seo_text ); ?>

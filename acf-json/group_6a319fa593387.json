@@ -1,6 +1,6 @@
 {
     "key": "group_6a319fa593387",
-    "title": "SEO контент таксономий",
+    "title": "Общие настройки таксономий",
     "fields": [
         {
             "key": "field_6a319fa6621bb",
@@ -22,6 +22,32 @@
             "rows": "",
             "placeholder": "",
             "new_lines": ""
+        },
+        {
+            "key": "field_6a35b05b73229",
+            "label": "Фоновое изображение",
+            "name": "taxonomy_hero_bg",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -77,5 +103,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1781637095
+    "modified": 1781905017
 }
