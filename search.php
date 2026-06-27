@@ -1,44 +1,130 @@
-<?php get_header(); ?>
-<div class="page-wrapper">
-	<div class="container">
-		<div class="content-layout content-layout--with-sidebar">
-			<div id="content" class="content-layout__main">
-				<main id="primary" class="main-content">
+<?php
+// Шаблон страницы поиска (search.php)
 
-					<?php if ( have_posts() ) : ?>
+get_header();
 
-						<header class="page-header">
-							<h1 class="page-title">
-								<?php
-									printf( esc_html__( 'Результаты поиска для: %s', 'your-theme-textdomain' ), '<span>' . get_search_query() . '</span>' );
-								?>
-							</h1>
-						</header><!-- .page-header -->
+// Получаем глобальный объект запроса
+global $wp_query;
+$total_results = $wp_query->found_posts;
 
-						<?php
-						/* Start the Loop */
-						while ( have_posts() ) : the_post();
+// Сортируем посты по массивам
+global $post;
+$found_airliners = [];
+$found_posts = [];
 
-							/**
-							 * Замените 'content' на название вашего шаблона части записи
-							 * (например, 'content-search', 'content-archive' или 'content')
-							 */
-							get_template_part( 'template-parts/content', 'search' );
+while ( have_posts() ) {
+    the_post();
+    if (get_post_type() === 'airliner' ) { 
+        $found_airliners[] = $post; 
+    }
+    elseif (get_post_type() === 'post' ) { 
+        $found_posts[] = $post; 
+    }
+}
+wp_reset_postdata();
+?>
 
-						endwhile;
+<main class="site-main page-search">
 
-						the_posts_navigation();
+    <!--Hero-секция -->
+    <section class="section search-hero">
 
-					else :
+        <div class="search-hero__background">
+			<img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/404-placeholder.png' ); ?>" alt="Фон hero-секции страницы поиска" class="search-hero__image" />
+        </div>
 
-						get_template_part( 'template-parts/content', 'none' );
+        <div class="container search-hero__inner">
+            <p>Результаты поиска — найдено <?php echo ( $total_results ); ?></p>
+            <h1 class="search-hero__title">Поиск: <?php echo get_search_query(); ?></h1>
+            <input id="search-input" class="search-hero__input" type="search" name="s" placeholder="Введите название самолёта, бренда или темы..." />
+        </div>
 
-					endif; ?>
-				
-				</main>
+    </section>
+
+	<?php if ( $total_results === 0 ) : ?>
+
+		<section class="section search-empty">
+			<div class="container">
+				<p class="text-muted">Извините. По вашему запросу не было найдено результатов.</p>
 			</div>
-				<?php get_sidebar(); ?>
-		</div>
-	</div>
-</div>
+		</section>
+	
+	<?php else : ?>
+
+		<!--Навигационное меню (вкладки)-->
+		<section class="section search-tabs">
+
+			<div class="container search-tabs__inner">
+				<button class="airliner-pill" type="button">Все результаты<?php echo ( $total_results ); ?></button>
+				<button class="airliner-pill" type="button">Авиалайнеры <?php echo count( $found_airliners); ?></button>
+				<button class="airliner-pill" type="button">Журнал <?php echo count( $found_posts ); ?></button>
+			</div>
+
+		</section>
+
+		<!-- Найденные авиалайнеры и посты -->
+		<?php if ( have_posts() ) : ?>
+		<section class="section search-workspace">
+			<div class="container">
+
+				<?php if ( ! empty( $found_airliners ) ) : ?>
+				<div class="search-workspace__header">
+					<h2 class="search-workspace__title">В каталоге лайнеров <?php echo count( $found_airliners); ?></h2>
+				</div>
+
+				<!-- Сетка карточек найденных авиалайнеров -->
+				<div class="search-workspace__airliner-results">
+					<div class="l-grid l-grid--4 search-workspace__grid">
+						<?php
+							foreach ( $found_airliners as $post ) :
+								setup_postdata( $post );
+								get_template_part( 'template-parts/components/card-aircraft' );
+							endforeach;
+							wp_reset_postdata();
+						?>
+					</div>
+				</div>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $found_posts ) ) : ?>
+				<div class="search-workspace__header">
+					<h2 class="search-workspace__title">В бортовом журнале <?php echo count( $found_posts ); ?></h2>
+				</div>
+
+				<!-- Сетка карточек найденных постов -->
+				<div class="search-workspace__posts-results">
+					<div class="l-grid l-grid--3 search-workspace__grid">
+						<?php
+							foreach ( $found_posts as $post ) :
+								setup_postdata( $post );
+								get_template_part( 'template-parts/components/card-post' );
+							endforeach;
+							wp_reset_postdata();
+						?>
+					</div>
+				</div>
+				<?php endif; ?>
+
+			</div>
+		</section>
+		<?php endif; ?>
+
+		<!--Пагинация-->
+		<section class="section search-pagination">
+			<div class="container">
+				<?php the_posts_pagination(['prev_text' => '←', 'next_text' => '→']); ?>
+			</div>
+		</section>
+	
+	<?php endif; ?>
+
+    <!--Секция призыва к действию-->
+    <section class="section search-cta">
+        <div class="container">
+            <?php get_template_part( 'template-parts/sections/section-cta-simple' ); ?>
+        </div>
+    </section>
+
+</main>
+
 <?php get_footer(); ?>
