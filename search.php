@@ -30,7 +30,7 @@ wp_reset_postdata();
     <section class="section search-hero">
 
         <div class="search-hero__background">
-			<img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/404-placeholder.png' ); ?>" alt="Фон hero-секции страницы поиска" class="search-hero__image" />
+			<img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/search-placeholder.webp' ); ?>" alt="Фон hero-секции страницы поиска" class="search-hero__image" />
         </div>
 
         <div class="container search-hero__inner">
@@ -55,9 +55,9 @@ wp_reset_postdata();
 		<section class="search-tabs">
 
 			<div class="container search-tabs__inner">
-				<button class="airliner-pill" type="button">Все результаты<?php echo ( $total_results ); ?></button>
-				<button class="airliner-pill" type="button">Авиалайнеры <?php echo count( $found_airliners); ?></button>
-				<button class="airliner-pill" type="button">Журнал <?php echo count( $found_posts ); ?></button>
+				<button class="airliner-pill" type="button">Все результаты (<?php echo ( $total_results ); ?>)</button>
+				<button class="airliner-pill" type="button">Авиалайнеры (<?php echo count( $found_airliners); ?>)</button>
+				<button class="airliner-pill" type="button">Журнал (<?php echo count( $found_posts ); ?>)</button>
 			</div>
 
 		</section>
@@ -71,7 +71,8 @@ wp_reset_postdata();
 						<?php if ( ! empty( $found_airliners ) ) : ?>
 							<div class="search-workspace__group">
 								<div class="search-workspace__header">
-									<h2 class="search-workspace__title">В каталоге лайнеров: <?php echo count( $found_airliners); ?></h2>
+									<div class="search-workspace__icon"><?php echo airliner_get_svg( 'specs/run-up' ); ?></div>
+									<h2 class="search-workspace__title">В каталоге лайнеров: <?php echo count( $found_airliners); ?> моделей</h2>
 								</div>
 
 								<!-- Сетка карточек найденных авиалайнеров -->
@@ -90,7 +91,8 @@ wp_reset_postdata();
 						<?php if ( ! empty( $found_posts ) ) : ?>
 							<div class="search-workspace__group">
 								<div class="search-workspace__header">
-									<h2 class="search-workspace__title">В бортовом журнале: <?php echo count( $found_posts ); ?></h2>
+									<div class="search-workspace__icon"><?php echo airliner_get_svg( 'specs/thrust' ); ?></div>
+									<h2 class="search-workspace__title">В бортовом журнале: <?php echo count( $found_posts ); ?> статей</h2>
 								</div>
 
 								<!-- Сетка карточек найденных постов -->
