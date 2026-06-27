@@ -1,27 +1,33 @@
 <?php
-/*
- * Общий шаблон страницы.
- * Выводит контент, а также кастомные секции если они есть.
- */
+// Общий шаблон страницы (page.php)
+
 get_header();
 ?>
 
-	<main class="main">
+<main class="site-main page-default">
 
-		<?php if ( have_posts() ) :
-			while ( have_posts() ) : the_post();
-				the_content();
+    <?php while ( have_posts() ) : the_post(); ?>
 
-					// Подключаем комментарии, если нужны
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
+        <!-- Стандартный контент -->
+        <section class="section page-content">
+            <div class="container container--narrow">
+                
+                <h1 class="page-title"><?php the_title(); ?></h1>
 
-			endwhile;
-					else :
-						get_template_part( 'template-parts/builder' );
-			endif; ?>
-				
-	</main>
+                <?php if ( get_the_content() ) : ?>
+                    <div class="entry-content">
+                        <?php the_content(); ?>
+                    </div>
+                <?php endif; ?>
+            
+            </div>
+        </section>
+
+        <!-- Кастомные секции -->
+        <?php get_template_part( 'tempate-parts/builder' ); ?>
+
+  <?php endwhile; ?>
+
+</main>
 
 <?php get_footer(); ?>
