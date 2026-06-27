@@ -51,7 +51,7 @@ get_header();
                 <aside class="catalog-content__sidebar">
                     <?php 
                         get_template_part( 'template-parts/components/catalog-filter', null, [
-                            'columns' => 2
+                            'columns' => 3
                         ] ); 
                     ?>
                 </aside>

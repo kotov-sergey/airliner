@@ -12,7 +12,7 @@ get_header();
             <img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/404-placeholder.png' ); ?>" alt="Страница не найдена" class="hero-404__img" />
 
             <h1 class="hero-404__title">404</h1>
-            <p class="hero-404__subtitle">Мы сбились с курса.</p>
+            <p class="hero-404__subtitle">Мы сбились с курса</p>
             <p class="hero-404__text">Страница, к которой вы пытаетесь получить доступ, не существует или была перемещена. Попробуйте вернуться в наш каталог.</p>
 
             <a href="<?php echo esc_url( home_url( '/catalog/' ) ); ?>" class="btn btn--primary hero-404__btn">Перейти в каталог</a>
