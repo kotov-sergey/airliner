@@ -57,3 +57,39 @@ function airliner_prepare_header_args( $acf_field, $template_args ) {
 
 	return $acf_field;
 }
+
+// Ограничиваем поиск WordPress: ищем ТОЛЬКО по заголовкам (post_title)
+
+function airliner_search_by_title_only( $search, $wp_query ) {
+    global $wpdb;
+
+    // Если это не поиск, или поисковая строка пуста, ничего не меняем
+    if ( empty( $search ) ) {
+        return $search;
+    }
+
+    // Получаем слова из поискового запроса
+    $q = $wp_query->query_vars;
+    $n = ! empty( $q['exact'] ) ? '' : '%';
+    $search = '';
+    $searchand = '';
+
+    // Формируем новый SQL запрос, который смотрит ТОЛЬКО в post_title
+    foreach ( (array) $q['search_terms'] as $term ) {
+        $term = esc_sql( $wpdb->esc_like( $term ) );
+        $search .= "{$searchand}($wpdb->posts.post_title LIKE '{$n}{$term}{$n}')";
+        $searchand = ' AND ';
+    }
+
+    if ( ! empty( $search ) ) {
+        $search = " AND ({$search}) ";
+        // Убираем из поиска посты с паролем (стандартная защита WP)
+        if ( ! is_user_logged_in() ) {
+            $search .= " AND ($wpdb->posts.post_password = '') ";
+        }
+    }
+
+    return $search;
+}
+// Добавляем фильтр (Приоритет 500 гарантирует, что мы перебьем стандартные фильтры WP)
+add_filter( 'posts_search', 'airliner_search_by_title_only', 500, 2 );

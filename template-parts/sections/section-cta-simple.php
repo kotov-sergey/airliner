@@ -1,9 +1,9 @@
 <?php
 // CTA-блок
 
-$title = get_sub_field( 'section_title' );
-$description = get_sub_field( 'section_description' );
-$button = get_sub_field( 'section_button' );
+$title = $args['section_title'] ?? get_sub_field( 'section_title' );
+$description = $args['section_description'] ?? get_sub_field( 'section_description' );
+$button = $args['section_button'] ?? get_sub_field( 'section_button' );
 ?>
 
 <section class="section section-cta-block">
