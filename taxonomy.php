@@ -58,7 +58,7 @@ get_header();
 
                 <!-- Контейнер для результатов -->
                 <div class="catalog-content__results" id="catalog-results">
-                    <div class="l-grid l-grid--2 catalog-content__grid">
+                    <div class="l-grid l-grid--3 catalog-content__grid">
 
                         <?php
                             if ( have_posts() ) {
