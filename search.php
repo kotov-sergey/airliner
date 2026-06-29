@@ -43,12 +43,48 @@ wp_reset_postdata();
 
 	<?php if ( $total_results === 0 ) : ?>
 
+		<!-- Секция результат поиска -->
 		<section class="section search-empty">
-			<div class="container">
-				<p class="text-muted">Извините. По вашему запросу не было найдено результатов.</p>
+			<div class="container search-empty__inner">
+				<h2 class="search-empty__title">Ничего не найдено</h2>
+				<p class="text-muted">Проверьте правильность написания или попробуйте более короткий запрос — например, «Boeing 737» вместо «Boeing 737-800 MAX».</p>
 			</div>
 		</section>
-	
+
+		<!-- Секция популярные авиалайнеры -->
+		<section class="section section-fallback">
+			<div class="container">
+				<h2 class="section-fallback__title">Популярные авиалайнеры</h2>
+
+				<div class="l-grid l-grid--4">
+					<?php
+					
+						$fallback_args = [
+							'post_type' => 'airliner',
+							'posts_per_page' => '4',
+							'orderby' => 'comment_count',
+							'ignore_sticky_posts' => 1
+						];
+
+						$fallback_query = new WP_Query( $fallback_args );
+
+						if ( $fallback_query->have_posts() ) {
+							
+							while ( $fallback_query->have_posts() ) {
+								$fallback_query->the_post();
+
+								get_template_part( 'template-parts/components/card-aircraft', null, [
+									'layout' => 'vertical' 
+								] );
+							}
+							wp_reset_postdata();
+						}
+					?>
+				</div>
+			
+			</div>
+		</section>
+
 	<?php else : ?>
 
 		<!--Навигационное меню (вкладки)-->
