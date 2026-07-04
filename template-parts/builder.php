@@ -27,13 +27,12 @@ if ( have_rows ( 'content_blocks', $page_id ) ) {
 			'page_id' => $page_id
 		);
 
-		$slug = 'template-parts/sections/section';
-		$name = $layout;
+		$path = 'template-parts/sections/' . $layout;
 
-		$file_exists = locate_template( $slug . '-' . $name . '.php' );
+		$file_exists = locate_template( $path . '.php' );
 
 		if ( $file_exists ) {
-			get_template_part( $slug, $name, $template_args );
+			get_template_part( $path, null, $template_args );
 		}
 		else {
 			if ( current_user_can( 'edit_posts' ) ) {
@@ -44,7 +43,7 @@ if ( have_rows ( 'content_blocks', $page_id ) ) {
 				
 					<p style="text-align: center;"><strong>⚠️ Ошибка администратора</strong></p>
 					<p>Секция с лейаутом <code style="color: blue;"><?php echo esc_html( $layout ); ?></code> существует в админке, но файл шаблона не найден.</p>
-					<p>Ожидаемый файл: <code style="color: blue;"><?php echo esc_html( $slug . '-' . $name . '.php' ); ?></code></p>
+					<p>Ожидаемый файл: <code style="color: blue;"><?php echo esc_html( $path . '.php' ); ?></code></p>
 					<p>Пожалуйста, проверьте, корректно ли введено название файла шаблона.</p>
 
 					</div>
