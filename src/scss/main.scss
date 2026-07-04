@@ -55,6 +55,8 @@
 @use 'sections/cta-home';
 @use 'sections/cta-simple';
 @use 'sections/catalog-content';
+@use 'sections/image-text';
+@use 'sections/advantages-showcase';
 
 // Pages (Страницы)
 @use 'pages/single-airliner';
@@ -64,6 +66,7 @@
 @use 'pages/taxonomy';
 @use 'pages/page-404';
 @use 'pages/search';
+@use 'pages/page-landing';
 
 // Utilities (Утилитарные классы)
 @use 'base/utilities';
