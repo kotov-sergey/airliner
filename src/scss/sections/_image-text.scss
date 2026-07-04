@@ -1,0 +1,55 @@
+// Стили секции: Изображение + Текст
+
+.image-text {
+
+    &__grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-10);
+
+
+        @media ( min-width: 768px ) {
+
+            align-items: center;
+
+            &--image-left {
+                flex-direction: row;
+            }
+
+            &--image-right {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
+    &__media,
+    &__content {
+        width: 100%;
+
+        @media ( min-width: 768px ) {
+            flex: 1;
+            width: auto;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        object-fit: cover;
+
+        border-radius: var(--radius-xl);
+
+        @media ( min-width: 768px ) {
+            aspect-ratio: 4 / 3;
+            height: 100%;
+        }
+    }
+
+    &__title {
+        font-size: var(--text-4xl);
+    }
+
+    &__description {
+        font-size: var(--text-base);
+    }
+
+}
