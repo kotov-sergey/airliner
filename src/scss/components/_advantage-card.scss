@@ -1,6 +1,7 @@
 // Стили карточки преимуществ
 
 .advantage-card {
+
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -34,10 +35,34 @@
     }
 
     &__title {
-        // Стили для заголовка
+        font-size: var(--text-2xl);
     }
 
     &__description {
-        // Стили для описания
+        font-size: var(--text-base);
+    }
+
+    &--compact {
+        flex-direction: row;
+        padding: var(--space-6);
+
+        .advantage-card__title {
+            font-size: var(--text-base);
+            margin-bottom: var(--space-2);
+        }
+
+        .advantage-card__description {
+            font-size: var(--text-sm);
+        }
+
+        .advantage-card__media {
+            width: 44px;
+            height: 44px;
+
+            svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
     }
 }

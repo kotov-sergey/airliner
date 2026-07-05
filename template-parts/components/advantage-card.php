@@ -4,9 +4,11 @@
 $card_icon = $args['card_icon'] ?? '';
 $card_title = $args['card_title'] ?? 'Заголовок карточки';
 $card_description = $args['card_description'] ?? 'Описание карточки';
+
+$card_layout = $args['card_layout'] ?? 'default';
 ?>
 
-<article class="advantage-card">
+<article class="advantage-card advantage-card--<?php echo esc_attr( $card_layout ); ?>">
 
     <?php if ( $card_icon ) : ?>
         <div class="advantage-card__media">
