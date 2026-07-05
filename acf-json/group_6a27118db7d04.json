@@ -241,7 +241,7 @@
                         {
                             "key": "field_6a49427c27108",
                             "label": "Карточки преимуществ",
-                            "name": "section_repeater",
+                            "name": "section_cards",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
@@ -262,7 +262,7 @@
                                 {
                                     "key": "field_6a4942a227109",
                                     "label": "Иконка карточки",
-                                    "name": "repeater_icon",
+                                    "name": "card_icon",
                                     "aria-label": "",
                                     "type": "select",
                                     "instructions": "",
@@ -291,7 +291,7 @@
                                 {
                                     "key": "field_6a4942c42710a",
                                     "label": "Заголовок карточки",
-                                    "name": "repeater_title",
+                                    "name": "card_title",
                                     "aria-label": "",
                                     "type": "text",
                                     "instructions": "",
@@ -313,7 +313,7 @@
                                 {
                                     "key": "field_6a4942d72710b",
                                     "label": "Описание карточки",
-                                    "name": "repeater_description",
+                                    "name": "card_description",
                                     "aria-label": "",
                                     "type": "textarea",
                                     "instructions": "",
@@ -367,5 +367,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783250681
+    "modified": 1783254071
 }

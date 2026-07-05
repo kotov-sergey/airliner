@@ -21,37 +21,24 @@ $section_subtitle = get_sub_field( 'section_subtitle' );
         <?php endif; ?>
 
         
-        <?php if ( have_rows( 'section_repeater' ) ) : ?>
+        <?php if ( have_rows( 'section_cards' ) ) : ?>
 
             <div class="l-grid l-grid--3">
 
-                <?php while ( have_rows( 'section_repeater' ) ) : the_row();
+                <?php while ( have_rows( 'section_cards' ) ) : the_row();
 
-                    $repeater_icon = get_sub_field( 'repeater_icon' );
-                    $repeater_title = get_sub_field( 'repeater_title' );
-                    $repeater_description = get_sub_field( 'repeater_description' );
+                    $card_icon = get_sub_field( 'card_icon' );
+                    $card_title = get_sub_field( 'card_title' );
+                    $card_description = get_sub_field( 'card_description' );
                 ?>
-
-                <article class="advantage-card">
-
-                    <?php if ( $repeater_icon ) : ?>
-                        <div class="advantage-card__media">
-                            <?php echo airliner_get_svg( 'advantages/' . $repeater_icon ); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="advantage-card__content">
-                        <?php if ( $repeater_title ) : ?>
-                            <h3 class="advantage-card__title"><?php echo esc_html( $repeater_title ); ?></h3>
-                        <?php endif; ?>
-
-                        <?php if ( $repeater_description ) : ?>
-                            <p class="advantage-card__description"><?php echo esc_html( $repeater_description ); ?></p>
-                        <?php endif; ?>
-                    </div>
-
-                </article>
-
+                    <?php 
+                        get_template_part( 'template-parts/components/advantage-card', null, [
+                            'card_icon' => $card_icon,
+                            'card_title' => $card_title,
+                            'card_description' => $card_description
+                        ] );
+                     ?>
+                
                 <?php endwhile; ?>
 
             </div>
