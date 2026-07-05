@@ -5,7 +5,7 @@ $section_title = get_sub_field( 'section_title' );
 $section_subtitle = get_sub_field( 'section_subtitle' );
 ?>
 
-<section class="section advantages-showcase section--white">
+<section class="section advantages-showcase">
     <div class="container">
 
         <?php if ( $section_title ) : ?>
@@ -36,7 +36,7 @@ $section_subtitle = get_sub_field( 'section_subtitle' );
 
                     <?php if ( $repeater_icon ) : ?>
                         <div class="advantage-card__media">
-                            <?php echo wp_get_attachment_image( $repeater_icon, 'medium' ); ?>
+                            <?php echo airliner_get_svg( 'advantages/' . $repeater_icon ); ?>
                         </div>
                     <?php endif; ?>
 
