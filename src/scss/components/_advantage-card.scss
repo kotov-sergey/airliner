@@ -1,0 +1,43 @@
+// Стили карточки преимуществ
+
+.advantage-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    background-color: var(--color-neutral-000);
+    
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+
+    padding: var(--space-8);
+
+    &__media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        width: 56px;
+        height: 56px;
+
+        background-color: var(--color-neutral-100);
+        border-radius: var(--radius-xl);
+
+        svg {
+            color: var(--color-primary-700);
+
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        // Стили для заголовка
+    }
+
+    &__description {
+        // Стили для описания
+    }
+}
