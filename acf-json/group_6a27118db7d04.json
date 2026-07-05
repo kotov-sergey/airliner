@@ -264,7 +264,7 @@
                                     "label": "Иконка карточки",
                                     "name": "repeater_icon",
                                     "aria-label": "",
-                                    "type": "image",
+                                    "type": "select",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -273,17 +273,19 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "id",
-                                    "library": "all",
-                                    "min_width": "",
-                                    "min_height": "",
-                                    "min_size": "",
-                                    "max_width": "",
-                                    "max_height": "",
-                                    "max_size": "",
-                                    "mime_types": "",
-                                    "allow_in_bindings": 0,
-                                    "preview_size": "medium",
+                                    "choices": {
+                                        "distance": "Дистанция",
+                                        "engine": "Двигатель",
+                                        "fuel": "Топливо"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "allow_in_bindings": 1,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
                                     "parent_repeater": "field_6a49427c27108"
                                 },
                                 {
@@ -365,5 +367,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783186215
+    "modified": 1783250681
 }
