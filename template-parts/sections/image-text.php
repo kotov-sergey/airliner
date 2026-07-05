@@ -8,10 +8,12 @@ $section_description = get_sub_field( 'section_description' );
 $image_position = get_sub_field( 'image_position' ) ?: 'left';
 $css_class = 'image-text__grid image-text__grid--image-' . $image_position;
 
+$section_bg_class = get_sub_field( 'section_background' ) ?? 'section--gray';
+
 if ( ! $section_image && ! $section_title ) return;
 ?>
 
-<section class="section image-text">
+<section class="section image-text <?php echo esc_attr(  $section_bg_class ); ?>">
     <div class="container">
 
         <div class="<?php echo esc_attr( $css_class ); ?>">

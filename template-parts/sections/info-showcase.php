@@ -3,9 +3,11 @@
 
 $section_title = get_sub_field( 'section_title' );
 $section_description = get_sub_field( 'section_description' );
+
+$section_bg_class = get_sub_field ( 'section_background' ) ?? 'section--gray';
 ?>
 
-<section class="section info-showcase section--white">
+<section class="section info-showcase <?php echo esc_attr( $section_bg_class ); ?>">
     <div class="container">
 
         <div class="info-showcase__grid">
