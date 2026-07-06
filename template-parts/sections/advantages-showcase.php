@@ -4,7 +4,7 @@
 $section_title = get_sub_field( 'section_title' );
 $section_subtitle = get_sub_field( 'section_subtitle' );
 
-$section_bg_class = get_sub_field( 'section_background' ) ?? 'section--gray';
+$section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
 ?>
 
 <section class="section advantages-showcase <?php echo esc_attr( $section_bg_class ); ?>">
@@ -27,19 +27,15 @@ $section_bg_class = get_sub_field( 'section_background' ) ?? 'section--gray';
 
             <div class="l-grid l-grid--3">
 
-                <?php while ( have_rows( 'section_cards' ) ) : the_row();
-
-                    $card_icon = get_sub_field( 'card_icon' );
-                    $card_title = get_sub_field( 'card_title' );
-                    $card_description = get_sub_field( 'card_description' );
-                ?>
+                <?php while ( have_rows( 'section_cards' ) ) : the_row(); ?>
+                   
                     <?php 
                         get_template_part( 'template-parts/components/advantage-card', null, [
-                            'card_icon' => $card_icon,
-                            'card_title' => $card_title,
-                            'card_description' => $card_description
+                            'card_icon' => get_sub_field( 'card_icon' ),
+                            'card_title' => get_sub_field( 'card_title' ),
+                            'card_description' => get_sub_field( 'card_description' )
                         ] );
-                     ?>
+                    ?>
                 
                 <?php endwhile; ?>
 
