@@ -53,11 +53,13 @@
 
   // Outline Button (Прозрачная с обводкой)
     &--outline {
-    background: transparent;
+    background: var(--color-neutral-000);
     border: 2px solid var(--color-neutral-400);
-    color: var(--text-main);
+    border-radius: var(--radius-full);
+    color: var(--color-primary-900);
     
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
+    font-weight: 600;
     letter-spacing: 0.05em;
 
     &:hover {

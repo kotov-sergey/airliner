@@ -563,6 +563,75 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6a4bf1b850fb3": {
+                    "key": "layout_6a4bf1b850fb3",
+                    "name": "cta-block",
+                    "label": "Секция CTA",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6a4bf1cc50fb5",
+                            "label": "Заголовок секции",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6a4bf1d950fb6",
+                            "label": "Описание секции",
+                            "name": "section_description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "rows": "",
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_6a4bf1eb50fb7",
+                            "label": "Кнопка секции",
+                            "name": "section_button",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -593,5 +662,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783271250
+    "modified": 1783362050
 }
