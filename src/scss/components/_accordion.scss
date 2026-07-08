@@ -1,0 +1,65 @@
+// Стили для аккордеона (вопрос-ответ)
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    &__item {
+        font-size: var(--text-base);
+
+        background-color: var(--color-neutral-000);
+
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xl);
+
+        transition: border-color 0.3s ease;
+
+        &[open] {
+            border-color: var(--color-primary-500);
+
+            .accordion__trigger::after {
+                transform: rotate( 45deg );
+            }
+        }
+    }
+
+    &__trigger {
+        font-weight: 600;
+        list-style: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-6);
+
+        cursor: pointer;
+
+        padding: var(--space-6);
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::after {
+            content: '+';
+
+            font-size: var(--text-3xl);
+            color: var(--color-primary-500);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            
+            width: 30px;
+            height: 30px;
+
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &__content {
+         padding: 0 var(--space-6) var(--space-6);
+    }
+}

@@ -45,6 +45,7 @@
 @use 'components/forms';
 @use 'components/catalog-stat';
 @use 'components/advantage-card';
+@use 'components/accordion';
 
 // Sections (Крупные блоки)
 @use 'sections/hero';
@@ -60,6 +61,7 @@
 @use 'sections/advantages-showcase';
 @use 'sections/info-showcase';
 @use 'sections/cta-block';
+@use 'sections/faq-block';
 
 // Pages (Страницы)
 @use 'pages/single-airliner';
