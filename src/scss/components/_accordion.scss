@@ -13,7 +13,7 @@
         border: 1px solid var(--border-light);
         border-radius: var(--radius-xl);
 
-        transition: border-color 0.3s ease;
+        transition: border-color var(--duration-base) var(--ease-in-out);
 
         &[open] {
             border-color: var(--color-primary-500);
@@ -55,7 +55,7 @@
             width: 30px;
             height: 30px;
 
-            transition: transform 0.3s ease;
+            transition: transform var(--duration-base) var(--ease-in-out);
         }
     }
 
