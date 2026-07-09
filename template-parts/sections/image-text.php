@@ -5,6 +5,9 @@ $section_image = get_sub_field( 'section_image' );
 $section_title = get_sub_field( 'section_title' );
 $section_description = get_sub_field( 'section_description' );
 
+$button_primary = get_sub_field( 'button_primary' );
+$button_secondary = get_sub_field( 'button_secondary' );
+
 $image_position = get_sub_field( 'image_position' ) ?: 'left';
 $css_class = 'image-text__grid image-text__grid--image-' . $image_position;
 
@@ -36,6 +39,34 @@ if ( ! $section_image && ! $section_title ) return;
                         <?php echo wp_kses_post( wpautop( $section_description ) ); ?>
                     </div>
                 <?php endif; ?>
+
+                <?php if ( $button_primary || $button_secondary ) : ?>
+                    <!-- Блок с кнопками -->
+                    <div class="image-text__actions">
+
+                        <?php if ( $button_primary ) : 
+                            $primary_target = ! empty ($button_primary['target']) ? $button_primary['target'] : '_self';
+                        ?>
+                            <a class="btn btn--primary image-text__btn"
+                                href="<?php echo esc_url( $button_primary['url']); ?>" 
+                                target="<?php echo esc_attr(  $primary_target ); ?>">
+                                    <?php echo esc_html( $button_primary['title'] ); ?>
+                            </a>
+                        <?php endif; ?>
+                    
+                        <?php if ( $button_secondary ) :
+                            $secondary_target = ! empty ($button_secondary['target']) ? $button_secondary['target'] : '_self';
+                        ?>
+                            <a class="btn btn--outline image-text__btn"
+                                href="<?php echo esc_url( $button_secondary['url']); ?>" 
+                                target="<?php echo esc_attr( $secondary_target ); ?>">
+                                    <?php echo esc_html( $button_secondary['title'] ); ?>
+                            </a>
+                        <?php endif; ?>
+
+                    </div>
+                <?php endif; ?>
+
             </div>
 
         </div>

@@ -187,6 +187,40 @@
                             "save_other_choice": 0
                         },
                         {
+                            "key": "field_6a4fe3ba16ebc",
+                            "label": "Основная кнопка",
+                            "name": "button_primary",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_6a4fe3d616ebd",
+                            "label": "Дополнительная кнопка",
+                            "name": "button_secondary",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
                             "key": "field_6a4a8defb6f25",
                             "label": "Фон секции",
                             "name": "section_background",
@@ -807,5 +841,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783532173
+    "modified": 1783620594
 }
