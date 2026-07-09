@@ -33,13 +33,14 @@
     }
 
     &__image {
+        aspect-ratio: 4 / 3;
+
         width: 100%;
         object-fit: cover;
 
         border-radius: var(--radius-xl);
 
         @media ( min-width: 768px ) {
-            aspect-ratio: 4 / 3;
             height: 100%;
         }
     }
@@ -54,6 +55,7 @@
 
     &__actions {
         display: flex;
+        flex-wrap: wrap;
         gap: var(--space-4);
 
         margin-top: var(--space-8);
