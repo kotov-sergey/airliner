@@ -1,31 +1,46 @@
 <?php
-
-// Верстка заголовка секций на главной
+// Верстка компонента заголовка (для секций)
 
 $section_index = $args['index'] ?? ''; 
 
-$label = $args['section_label'] ?? '';
-$title = $args['section_title'] ?? '';
-$description = $args['section_description'] ?? '';
+$section_label = $args['section_label'] ?? '';
+$section_title = $args['section_title'] ?? '';
+$section_description = $args['section_description'] ?? '';
 
-$section_alignment = $args['section_alignment'] ?? 'row';
+$has_meta = ( $section_index || $section_label);
 
-$section_modifier = 'section-header--' . $section_alignment;
+$layout_mode = $has_meta ? 'row' : 'column';
+$section_modifier = 'section-header--' . $layout_mode;
 
-if ( ! $title ) return;
+if ( ! $section_title ) return;
 ?>
 
 <div class="section-header <?php echo esc_attr( $section_modifier ); ?>">
-	<div class="section-header__group">
+
+	<!-- Блок с мета-данными -->
+	<?php if ( $has_meta ) : ?>
 		<div class="section-header__meta">
-			<span class="section-header__number"><?php echo esc_html( $section_index ); ?></span>
-			<span class="section-header__divider"></span>
-			<span class="section-header__label"><?php echo esc_html( $label ); ?></span>
+			
+			<?php if ( $section_index ) : ?>
+				<span class="section-header__number"><?php echo esc_html( $section_index ); ?></span>
+			<?php endif; ?>
+
+			<?php if ( $section_label ) : ?>
+				<span class="section-header__label"><?php echo esc_html( $section_label ); ?></span>
+			<?php endif; ?>
+
 		</div>
+	<?php endif; ?>
 
-		<h2 class="section-header__title"><?php echo esc_html( $title ); ?></h2>
+	<!-- Заголовок + Описание -->
+	<div class="section-header__content">
+
+		<h2 class="section-header__title"><?php echo esc_html( $section_title ); ?></h2>
+
+		<?php if ( $section_description ) : ?>
+			<p class="section-header__description"><?php echo esc_html( $section_description ); ?></p>
+		<?php endif; ?>
+	
 	</div>
-
-	<p class="section-header__description"><?php echo esc_html ( $description ); ?></p>
 
 </div>
