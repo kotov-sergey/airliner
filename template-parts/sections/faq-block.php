@@ -14,17 +14,12 @@ if ( ! $section_title && ! $accordion ) return;
     <div class="container">
 
         <!-- Блок заголовка секции -->
-        <div class="faq-block__header">
-
-            <?php if ( $section_title ) : ?>
-                <h2 class="faq-block__title"><?php echo esc_html( $section_title ); ?></h2>
-            <?php endif; ?>
-
-            <?php if ( $section_subtitle ) : ?>
-                <p class="faq-block__subtitle"><?php echo esc_html( $section_subtitle ); ?></p>
-            <?php endif; ?>
-        
-        </div>
+        <?php 
+            get_template_part( 'template-parts/components/section-header', null, [
+                'section_title' => $section_title,
+                'section_description' => $section_subtitle
+            ]);
+        ?>
 
         <!-- Блок вопрос-ответ секции -->
         <?php if ( have_rows( 'accordion' ) ) : ?>
