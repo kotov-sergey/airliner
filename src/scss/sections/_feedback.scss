@@ -1,0 +1,16 @@
+// Стили секции обратной связи
+
+.feedback {
+
+    &__wrapper {
+        max-width: 672px;
+        margin-inline: auto;
+
+        background-color: var(--color-neutral-000);
+
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xl);
+
+        padding: var(--space-10);
+    }
+}
