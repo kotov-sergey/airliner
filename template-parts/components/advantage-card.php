@@ -22,7 +22,7 @@ $card_layout = $args['card_layout'] ?? 'default';
         <?php endif; ?>
 
         <?php if ( $card_description ) : ?>
-            <p class="advantage-card__description"><?php echo esc_html( $card_description ); ?></p>
+            <div class="advantage-card__description"><?php echo wp_kses_post( wpautop( $card_description ) ); ?></div>
         <?php endif; ?>
     </div>
 
