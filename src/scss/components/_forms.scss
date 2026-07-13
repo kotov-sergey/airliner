@@ -1,19 +1,18 @@
-// Стили для элементов форм
+// Стили элементов формы
 
 .form-checkbox {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--space-3);
-}
 
-.form-checkbox__input {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: var(--space-3);
     cursor: pointer;
+    user-select: none;
 
-    width: 20px;
-    height: 20px;
+    &__input {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
 }
 
 .form-input {
@@ -22,36 +21,94 @@
 
     border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
-    background-color: #EEE;
+    background-color: var(--color-neutral-200);
 
     padding: var(--space-2) var(--space-4);
-}
 
-
-// Стили для контактной формы components/_forms.scss
-    
-input[type="text"],
-input[type="email"],
-textarea {
     font-family: inherit;
+    font-size: var(--text-base);
+    color: var(--text-main);
+    outline: none;
 
-    border: 1px solid blue;
-    border-radius: 16px;
-
-    padding: 24px;
-
+    transition: border-color var(--duration-fast) var(--ease-in-out);
+    
     &:focus {
-        border-color: red;
+        border-color: var(--color-primary-700);
     }
 }
 
-button[type="submit"] {
-    font-size: 18px;
+// Стили контактной формы
+
+%input-base-styles {
     font-family: inherit;
-    color: white;
+    font-size: var(--text-sm);
+    color: var(--color-neutral-500);
 
-    background-color: blue;
-    border-radius : 50%;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
 
-    padding: 16px 24px;
+    padding: var(--space-3) var(--space-4);
+
+    &:focus {
+        border-color: var(--color-primary-700);
+    }
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    @extend %input-base-styles;
+}
+
+.custom-form-wrapper {
+
+    .fluentform .ff-el-form-control {
+        @extend %input-base-styles;
+    }
+
+    .fluentform .ff-el-input--label {
+        font-size: var(--text-sm);
+        color: var(--color-neutral-700);
+
+        &.ff-el-is-required label::after {
+            color: var(--color-primary-700);
+        }
+    }
+
+    .fluentform select.ff-el-form-control {
+        cursor: pointer;
+     }
+
+    .fluentform textarea.ff-el-form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .fluentform .ff-el-form-check .ff-el-form-check-label { 
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3);
+
+        .ff-el-form-check-input {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+    }
+
+    .fluentform .ff-btn-submit {
+        font-size: var(--text-base);
+        font-family: inherit;
+        color: var(--color-neutral-000);
+
+        background-color: var(--color-primary-700);
+        border-radius : var(--radius-full);
+
+        padding: var(--space-4) var(--space-8);
+    }
+
+    .ff_submit_btn_wrapper {
+        margin-bottom: 0;
+    }
 }
