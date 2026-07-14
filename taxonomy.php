@@ -26,17 +26,10 @@ get_header();
         
         <div class="container taxonomy-hero__container">
         
-            <div class="taxonomy-hero__wrapper">
-                <div class="taxonomy-hero__media">
-                    <?php if ( $brand_image ) : ?>
-                        <?php 
-                            echo wp_get_attachment_image( $brand_image['id'], 'medium', false, array( 'class' => 'taxonomy-hero__image' ) ); 
-                        ?>
-                    <?php endif; ?>
-                    <h1 class="taxonomy-hero__title"><?php echo esc_html( $current_term->name ); ?></h1>
-                </div>
-
-                <div class="taxonomy-hero__description"><?php echo wp_kses_post( wpautop( $current_term->description ) ); ?></div>
+            <div class="taxonomy-hero__content">
+                <h1 class="taxonomy-hero__title"><?php echo esc_html( $current_term->name ); ?></h1>
+    
+                <div class="taxonomy-hero__description"><?php echo wp_kses_post( $current_term->description ); ?></div>
             </div>
 
         </div>
