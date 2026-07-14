@@ -27,7 +27,6 @@ if ( $related_query->have_posts() ) :
 				'section_label' => 'Похожие записи',
 				'section_title' => 'Смотрите также',
 				'section_description' => 'Изучите другие статьи на похожую тему.',
-				'section_alignment' => 'row',
 			]);
 		?>
 
