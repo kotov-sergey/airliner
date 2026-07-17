@@ -44,7 +44,7 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		
 		<!-- Верхняя строка: Бренд и Тип фюзеляжа -->
 		<div class="card-aircraft__meta">
-			<?php the_airliner_badges( ['manufacturer', 'body-type'], 'card' ); ?>
+			<?php the_airliner_badges( ['manufacturer', 'body-type'], '', 'pill--text-only' ); ?>
 		</div>
 
 		<!-- Название авиалайнера -->
@@ -55,7 +55,7 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		</a>
 
 		<?php if ( $layout === 'horizontal' ) : ?>
-		
+					
 			<p class="card-aircraft__description">
 				<?php
 					$excerpt = get_the_excerpt();

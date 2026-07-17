@@ -27,7 +27,7 @@ $examples = get_field( 'examples', $term );
         <?php endif; ?>
 
         <?php if ( $label ) : ?>
-            <span class="card-fuselage__badge"><?php echo esc_html( $label ); ?></span>
+            <span class="pill pill--sm pill--subtle card-fuselage__badge"><?php echo esc_html( $label ); ?></span>
         <?php endif; ?>
 
     </div>

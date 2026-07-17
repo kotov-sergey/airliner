@@ -37,9 +37,9 @@
     }
 
     &__meta {
-        margin-bottom: var(--space-2);
+        margin-bottom: var(--space-3);
         
-        .badge {
+        .airliner-badges {
             position: relative;
             z-index: 2;
         }
@@ -100,7 +100,7 @@
 
         font-size: var(--text-xs);
 
-        margin-top: var(--space-6);
+        margin-top: var(--space-4);
 
         padding-bottom: var(--space-5);
         margin-bottom: var(--space-5);

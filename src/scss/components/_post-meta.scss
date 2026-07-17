@@ -7,21 +7,17 @@
 
     font-size: var(--text-xs);
     
-    color: var(--color-neutral-600);
+    color: var(--color-neutral-000);
 	opacity: 0.8;
-
-    &__category {
-        border-radius: var(--radius-full);
-        background-color: var(--color-neutral-200);
-
-        padding: var(--space-1) var(--space-2);
-    }
 
     &--overlay {
         color: var(--color-neutral-000);
 
         .post-meta__category {
-            background-color: var(--color-neutral-400);
+            background-color: var(--color-neutral-700);
+            backdrop-filter: blur(4px);
+            color: var(--color-neutral-000);
+            border: 1px solid var(--border-light);
         }
     }
 }

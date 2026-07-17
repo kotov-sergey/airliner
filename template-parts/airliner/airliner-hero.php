@@ -16,7 +16,7 @@
 						<div class="info-card">
 
 							<div class="info-card__meta">
-								<?php the_airliner_badges( ['manufacturer', 'body-type', 'airliner-status'], 'detail' ); ?>
+								<?php the_airliner_badges( ['manufacturer', 'body-type', 'airliner-status'], '', 'pill--solid' ); ?>
 							</div>
 
 							<h1 class="info-card__title">

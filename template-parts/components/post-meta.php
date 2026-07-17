@@ -18,7 +18,7 @@ if ( $modifier ) {
 <div class="<?php echo esc_attr( $classes ); ?>">
 
     <?php if ( $category_name ) : ?>
-        <span class="post-meta__category">
+        <span class="pill pill--subtle post-meta__category">
             <?php echo esc_html( $category_name ); ?>
         </span>
     <?php endif; ?>

@@ -46,7 +46,7 @@ $section_bg = get_sub_field( 'section_image' );
 							<div class="timeline__content">
 
 							<?php if ( $timeline_item['year'] ) : ?>
-								<div class="timeline__date">
+								<div class="pill pill--solid timeline__date">
 									<?php echo esc_html( $timeline_item['year'] ); ?>
 								</div>
 							<?php endif; ?>

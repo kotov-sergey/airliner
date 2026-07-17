@@ -98,14 +98,18 @@ function the_airliner_all_taxonomies( $post_id = null ) {
 }
 
 // Функция вывода мета-бейджиков у авиалайнеров
-function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airliner-status' ], $container_class = null ) {
+function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airliner-status' ], $wrapper_mod = '', $pill_mods = '' ) {
+    if ( empty( $taxonomies ) ) return;
+    
     $post_id = get_the_ID();
 
-    $container_class = 'airliner-badges airliner-badges--' . $container_class;
+    $container_class = 'airliner-badges';
 
-    if ( empty( $taxonomies ) ) return;
+    if ( $wrapper_mod ) {
+        $container_class .= ' airliner-badges--' . $wrapper_mod;
+    }
 
-    echo '<div class="' . $container_class . '">';
+    echo '<div class="' . esc_attr( $container_class ) . '">';
 
     foreach ( $taxonomies as $tax_slug ) {
         $terms = get_the_terms( $post_id, $tax_slug );
@@ -120,9 +124,13 @@ function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airl
 
             $name = $term->name;
 
-            $css_class = 'badge badge--' . $tax_slug;
+            $item_class = 'pill pill--tax-' . $tax_slug;
 
-            echo '<a href="' . esc_url( $link ) . '" class="' . esc_attr( $css_class ) . '">';
+            if ( $pill_mods ) {
+                $item_class .= ' ' . $pill_mods;
+            }
+
+            echo '<a href="' . esc_url( $link ) . '" class="' . esc_attr( $item_class ) . '">';
                 echo esc_html( $name );
             echo '</a>';
         }

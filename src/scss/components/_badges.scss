@@ -1,27 +1,16 @@
+// Стили для контейнера кнопок-пилюль
 .airliner-badges {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     flex-wrap: wrap;
     
     gap: var(--space-3);
 
-    align-items: center;
-
-    &--card {
-        .badge {
-            font-size: var(--text-xs);
-        }    
+    &--compact{
+        gap: var(--space-2);
     }
 
-    &--detail {
-        .badge {
-            font-size: var(--text-xs);
-
-            padding: var(--space-2) var(--space-4);
-            background-color: var(--color-neutral-000);
-            
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
-        }
+    &--spacious {
+        gap: var(--space-4);
     }
 }

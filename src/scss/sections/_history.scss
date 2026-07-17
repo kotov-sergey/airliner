@@ -111,10 +111,7 @@
 
     &__date {
         display: inline-block;
-
-        color: var(--color-neutral-000);
-        background-color: var(--color-primary-700);
-        border-radius: var(--radius-full);
+        font-size: var(--text-base);
 
         padding: var(--space-1) var(--space-4);
         margin-bottom: var(--space-4);

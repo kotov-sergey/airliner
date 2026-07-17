@@ -1,0 +1,86 @@
+// Стили для кнопок-пилюль
+.pill {
+    
+    // Общие стили
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: 400;
+
+    transition: all var(--duration-base) var(--ease-in-out);
+
+    // Базовый размер
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+
+    /* ===========================
+        Модификаторы размера
+       =========================== */
+
+    &--sm {
+        padding: var(--space-1) var(--space-3);
+        font-size: var(--text-xs);
+    }
+
+    &--lg {
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--text-base);
+    }
+
+    /* ===========================
+        Модификаторы стиля
+       =========================== */
+
+    // Вариант 1: Обводка (Для облака тегов)
+    &--outline {
+        background-color: var();
+        border: var();
+        color: var();
+
+        &:hover {
+            background-color: var();
+            color: var();
+        }
+    }
+
+    // Вариант 2: Заливка цветом (Для детальной самолета)
+    &--solid {
+        background-color: var(--color-primary-700);
+        color: var(--color-neutral-000);
+
+        &:hover {
+            background-color: var(--color-primary-900);
+            color: var(--color-neutral-000);
+        }
+    }
+
+    // Вариант 3: Мягкий фон (Для карточек статей)
+    &--subtle{
+        background-color: var(--color-neutral-200);
+        color: var(--color-neutral-800);
+        
+        &:hover {
+            background-color: var();
+            color: var();
+        }
+    }
+
+    // Вариант 4: Просто текст (Для горизонтальной карточки лайнера)
+    &--text-only{
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+
+        color: var(--color-neutral-400);
+        font-size: var(--text-xs);
+
+        &:hover {
+            background-color: transparent;
+            color: var(--color-primary-900);
+        }
+    }    
+}
