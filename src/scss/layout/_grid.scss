@@ -15,10 +15,10 @@
 
 // Секция
 .section {
-  padding-block: var(--space-16);
+  padding-block: var(--space-10);
 
   @media (min-width: 1024px) {
-    padding-block: var(--space-24);
+    padding-block: var(--space-16);
   }
 
   // Модификаторы секции
