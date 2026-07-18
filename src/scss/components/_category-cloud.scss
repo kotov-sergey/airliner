@@ -1,0 +1,11 @@
+// Стили для компонента навигации по блогу
+.category-cloud {
+
+    &__list {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        gap: var(--space-3);
+    }
+}
