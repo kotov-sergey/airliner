@@ -63,8 +63,8 @@
         color: var(--color-neutral-800);
         
         &:hover {
-            background-color: var();
-            color: var();
+            background-color: var(--color-neutral-200);
+            color: var(--color-primary-500);
         }
     }
 

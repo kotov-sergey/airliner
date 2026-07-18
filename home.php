@@ -30,20 +30,11 @@ get_header();
     <?php endif; ?>
 
     <!-- Навигация категорий блога -->
-    <nav class="blog-categories" aria-label="Категории каталога">
+    <div class="blog-categories">
         <div class="container">
-            <ul class="blog-categories__list">
-                    <?php
-                        $categories = get_categories();
-                        foreach ( $categories as $category ) {
-                            echo '<li class="blog-categories__item">
-                                    <a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="blog-categories__link">' . esc_html( $category->name ) . '</a>
-                                  </li>';
-                        }
-                    ?>
-            </ul>
+            <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
         </div>
-    </nav>
+    </div>
 
     <!-- Секция свежих материалов -->
     <?php if ( have_posts() ) : ?>
