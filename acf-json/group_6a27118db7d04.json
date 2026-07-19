@@ -929,6 +929,13 @@
                 "operator": "!=",
                 "value": "46"
             }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "category"
+            }
         ]
     ],
     "menu_order": 0,
@@ -940,5 +947,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1783963992
+    "modified": 1784489516
 }
