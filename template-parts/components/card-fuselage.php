@@ -80,12 +80,12 @@ $examples = get_field( 'examples', $term );
                         <?php if ( $plane_link && !is_wp_error( $plane_link ) ) : ?>
 
                             <a href="<?php echo esc_url( $plane_link ); ?>">
-                                <span class="card-fuselage__tag"><?php echo esc_html( $plane_title ); ?></span>
+                                <span class="pill pill--sm pill--subtle card-fuselage__tag"><?php echo esc_html( $plane_title ); ?></span>
                             </a>
 
                         <?php else : ?>
                             
-                            <span class="card-fuselage__tag"><?php echo esc_html( $plane_title ); ?></span>
+                            <span class="pill pill--sm pill--subtle card-fuselage__tag"><?php echo esc_html( $plane_title ); ?></span>
 
                         <?php endif; ?>
                     
