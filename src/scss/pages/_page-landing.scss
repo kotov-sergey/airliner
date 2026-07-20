@@ -43,8 +43,10 @@
     }
 
     &__title {
-        margin: 0;
+        font-size: var(--text-5xl);
         color: var(--color-neutral-000);
+
+        margin: 0;
     }
 
     &__description {
