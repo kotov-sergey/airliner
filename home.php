@@ -30,11 +30,11 @@ get_header();
     <?php endif; ?>
 
     <!-- Навигация категорий блога -->
-    <div class="blog-categories">
-        <div class="container">
-            <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
-        </div>
-    </div>
+    <?php 
+        get_template_part( 'template-parts/components/category-cloud', null, [
+            'wrapper_class' => 'page-blog__categories'
+        ] );
+     ?>
 
     <!-- Секция свежих материалов -->
     <?php if ( have_posts() ) : ?>

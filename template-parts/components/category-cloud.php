@@ -34,18 +34,30 @@ if ( $parent_id !== '' && $parent_id !== false ) {
 $categories = get_terms( $query_args );
 
 if ( empty ( $categories ) || is_wp_error( $categories ) ) return;
+
+$wrapper_class = $args['wrapper_class'] ?? '';
 ?>
 
-<nav class="category-cloud" aria-label="Навигация">
-    <ul class="category-cloud__list">
+<?php if ( $wrapper_class ) : ?>
+    <div class="<?php echo esc_attr( $wrapper_class ); ?>">
+        <div class="container">
+<?php endif; ?>
 
-        <?php foreach ( $categories as $category ) : ?>
+    <nav class="category-cloud" aria-label="Навигация">
+        <ul class="category-cloud__list">
 
-            <li class="category-cloud__item">
-                <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>" class="pill pill--subtle category-cloud__link"><?php echo esc_html( $category->name ); ?></a>
-            </li>
-        
-        <?php endforeach; ?>
+            <?php foreach ( $categories as $category ) : ?>
 
-    </ul>
-</nav>
+                <li class="category-cloud__item">
+                    <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>" class="pill pill--subtle category-cloud__link"><?php echo esc_html( $category->name ); ?></a>
+                </li>
+            
+            <?php endforeach; ?>
+
+        </ul>
+    </nav>
+
+<?php if ( $wrapper_class ) : ?>
+    </div>
+</div>
+<?php endif; ?>

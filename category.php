@@ -5,6 +5,8 @@ get_header();
 
 $category = get_queried_object();
 $category_description = category_description();
+
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 ?>
 
 <main class="site-main page-category">
@@ -26,7 +28,7 @@ $category_description = category_description();
                 </div>
 
                 <div class="catalog-stat">
-                    <span class="catalog-stat__number"><?php $category->count; ?>5</span>
+                    <span class="catalog-stat__number"><?php echo esc_html( $category->count ); ?></span>
                     <span class="catalog-stat__label">Статей в рубрике</span>
                 </div>
         
@@ -36,7 +38,7 @@ $category_description = category_description();
     </section>
 
     <!-- Секция избранная статья -->
-    <?php if ( have_posts() ) : the_post(); ?>
+    <?php if ( $paged === 1 && have_posts() ) : the_post(); ?>
         <section class="section category-featured">
             <div class="container">
 
@@ -53,11 +55,11 @@ $category_description = category_description();
     <?php endif; ?>
 
     <!-- Навигация подкатегорий основной категории -->
-    <div class="category-tags">
-        <div class="container">
-                <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
-        </div>
-    </div>
+    <?php 
+        get_template_part( 'template-parts/components/category-cloud', null, [
+            'wrapper_class' => 'page-category__tags'
+        ] );
+     ?>
 
     <!-- Секция все статьи рубрики -->
     <?php if ( have_posts() ) : ?>
@@ -74,8 +76,23 @@ $category_description = category_description();
                     ?>
                 </div>
 
+                <!-- Пагинация архива статей -->
+                <div class="page-category__pagination">
+                    <?php the_posts_pagination(['prev_text' => '←', 'next_text' => '→']); ?>
+                </div>
+
             </div>
         </section>
+
+    <?php else : ?>
+
+        <!-- Если в категории нет постов -->
+        <section class="section category-empty">
+            <div class="container">
+                <p class="text-muted">В этой рубрике пока нет записей.</p>
+            </div>
+        </section>
+
     <?php endif; ?>
 
     <!-- Секция CTA категории -->

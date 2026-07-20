@@ -1,26 +1,28 @@
 // Стили для шаблона страницы Блога (home.php)
+.page-blog {
 
-.blog-hero {
-    &__container {
-        padding-top: var(--space-12);
+    &__categories {
+        border-top: 1px solid var(--color-neutral-300);
+        border-bottom: 1px solid var(--color-neutral-300);
+
+        padding: var(--space-4) 0;        
     }
 
-    &__title {
-        margin: 0;
-        font-size: var(--text-5xl);
+    .blog-hero {
+        &__container {
+            padding-top: var(--space-12);
+        }
+
+        &__title {
+            margin: 0;
+            font-size: var(--text-5xl);
+        }
     }
-}
 
-.blog-categories {
-    border-top: 1px solid var(--color-neutral-300);
-    border-bottom: 1px solid var(--color-neutral-300);
-
-    padding: var(--space-4) 0;
-}
-
-// Стили заголовков Свежих материалов и Всех публикаций
-.blog-fresh__title,
-.blog-archive__title {
-    font-size: var(--text-3xl);
-    margin-bottom: var(--space-10);
+    // Стили заголовков Свежих материалов и Всех публикаций
+    .blog-fresh__title,
+    .blog-archive__title {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-10);
+    }
 }
