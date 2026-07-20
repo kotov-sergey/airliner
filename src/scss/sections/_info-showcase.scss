@@ -19,9 +19,15 @@
         }
     }
 
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
     &__title {
-        font-size: var(--text-4xl);
-        margin-bottom: var(--space-6);
+        font-size: var(--text-3xl);
+        margin: 0;
     }
 
     &__content,

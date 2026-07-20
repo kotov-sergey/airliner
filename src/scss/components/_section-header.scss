@@ -59,6 +59,7 @@
             }
 
             .section-header__title {
+                font-size: var(--text-5xl);
                 max-width: 50%;
 				width: min-content;
             }
@@ -79,7 +80,7 @@
         }
 
 		.section-header__title {
-			font-size: var(--text-4xl);
+			font-size: var(--text-3xl);
 			font-weight: 700;
 		}
 

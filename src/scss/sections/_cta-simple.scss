@@ -6,6 +6,7 @@
     
     &__wrapper {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
 
@@ -16,10 +17,15 @@
     }
 
     &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+
         max-width: 512px;
     }
 
     &__title {
         font-size: var(--text-3xl);
+        margin: 0;
     }
 }

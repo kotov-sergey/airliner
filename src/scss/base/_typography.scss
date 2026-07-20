@@ -20,34 +20,41 @@ h1 {
   letter-spacing: var(--tracking-tight);
 
   @media (min-width: 1024px) {
-    font-size: var(--text-6xl);
+    font-size: var(--text-5xl);
   }
 }
 
 h2 {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
 
   @media (min-width: 1024px) {
-    font-size: var(--text-5xl);
+    font-size: var(--text-3xl);
   }
- }
+}
  
 h3 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
+
+  @media (min-width: 1024px) {
+    font-size: var(--text-2xl);
+  }
 }
 
 h4 {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   line-height: var(--leading-snug);
 }
 
 h5 {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
+  font-weight: 700;
   line-height: var(--leading-normal);
 }
 
 h6 {
   font-size: var(--text-base);
+  font-weight: 600;
+  text-transform: uppercase;
   line-height: var(--leading-normal);
 }
 

@@ -10,11 +10,11 @@ get_header();
 <main class="site-main page-blog">
 
     <!-- Hero-секция Блога -->
-    <section class="blog-hero">
-        <div class="container blog-hero__container">
+    <div class="blog-hero">
+        <div class="container">
             <h1 class="blog-hero__title"><?php echo esc_html( $blog_title ); ?></h1>
         </div>
-    </section>
+    </div>
 
     <?php if ( have_posts() ) : the_post(); ?>
 

@@ -41,18 +41,17 @@
     }
 
     &__header-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
-    &__meta {
-        margin-bottom: var(--space-4);
-    }
-
     &__title {
-        font-size: var(--text-5xl);
         color: var(--color-neutral-100);
         margin: 0;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--space-4);
 
         max-width: 1024px;
         text-wrap: balance;
