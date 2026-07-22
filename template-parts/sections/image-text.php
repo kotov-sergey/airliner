@@ -35,7 +35,7 @@ if ( ! $section_image && ! $section_title ) return;
                 <?php endif; ?>
 
                 <?php if ( $section_description ) : ?>
-                    <div class="image-text__description">
+                    <div class="image-text__description entry-content">
                         <?php echo wp_kses_post( wpautop( $section_description ) ); ?>
                     </div>
                 <?php endif; ?>

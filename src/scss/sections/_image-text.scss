@@ -53,14 +53,6 @@
 
     &__description {
         font-size: var(--text-base);
-
-        p {
-            margin-bottom: var(--space-4);
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
     }
 
     &__actions {
