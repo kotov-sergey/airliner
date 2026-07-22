@@ -3,7 +3,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: var(--space-4);
 
 	margin-bottom: var(--space-10);
 
@@ -38,8 +38,7 @@
     }
 
     &__title {
-        font-weight: 400;
-		margin-bottom: 0;
+        font-weight: 700;
     }
 
     &__description {
@@ -59,9 +58,7 @@
             }
 
             .section-header__title {
-                font-size: var(--text-5xl);
-                max-width: 50%;
-				width: min-content;
+                font-size: var(--text-3xl);
             }
 
             .section-header__description {
@@ -81,7 +78,6 @@
 
 		.section-header__title {
 			font-size: var(--text-3xl);
-			font-weight: 700;
 		}
 
         .section-header__description {

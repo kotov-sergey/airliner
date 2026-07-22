@@ -51,13 +51,16 @@
         }
     }
 
-    &__title {
-        font-size: var(--text-3xl);
-        margin: 0;
-    }
-
     &__description {
         font-size: var(--text-base);
+
+        p {
+            margin-bottom: var(--space-4);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 
     &__actions {

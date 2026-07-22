@@ -47,6 +47,8 @@
 		flex-direction: column;
 		justify-content: flex-end;
 
+		gap: var(--space-3);
+
 		padding: var(--space-6);
 	}
 
@@ -56,12 +58,8 @@
 
 		inset: 0;
 		z-index: 1;
-	}	
-
-	&__meta {
-		margin-bottom: var(--space-3);
 	}
-
+	
 	&__title {
 		font-size: var(--text-xl);
         line-height: var(--leading-snug);

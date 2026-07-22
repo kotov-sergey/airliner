@@ -46,21 +46,19 @@
         gap: var(--space-4);
 
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+
+        max-width: 768px;
     }
 
     &__title {
-        font-size: var(--text-5xl);
         color: var(--color-neutral-100);
-        margin: 0;
-        margin-bottom: var(--space-4);
-
-        max-width: 1024px;
         text-wrap: balance;
+
+        margin-bottom: var(--space-4);
     }
 
     &__description {
         color: var(--color-neutral-100);
-        max-width: 768px;
     }
 
 

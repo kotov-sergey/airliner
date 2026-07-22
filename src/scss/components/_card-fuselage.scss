@@ -49,6 +49,10 @@
     }
 
     &__body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+
         padding: var(--space-6);
     }
 
@@ -79,7 +83,6 @@
 
     &__specs {
         font-size: var(--text-sm);
-        margin-bottom: var(--space-6);
     }
 
     &__spec-row {
@@ -95,7 +98,7 @@
 
     &__examples {
 
-        padding-top: var(--space-6);
+        padding-top: var(--space-4);
 
         border-top: 1px solid var(--border-light);
     }
