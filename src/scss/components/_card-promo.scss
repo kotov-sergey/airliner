@@ -94,8 +94,6 @@
 
 		opacity: 0;
 		transition: all var(--duration-base) var(--ease-in-out);
-
-		margin-top: var(--space-4);
 	}
 
 	&:hover &__action {
