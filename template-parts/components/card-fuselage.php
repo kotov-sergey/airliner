@@ -1,29 +1,26 @@
 <?php
 // Верстка карточки тип фюзеляжа
 
-$term = $args['current_type'] ?? null;
+$fuselage_type = $args['current_type'] ?? null;
+if ( ! $fuselage_type ) return;
 
-if ( !$term ) return;
 
-$name = $term->name;
-$description = $term->description;
-$link = get_term_link( $term );
+$fuselage_type_link = get_term_link( $fuselage_type );
+if ( is_wp_error( $fuselage_type_link ) ) return;
 
-$image_id = get_field( 'image', $term );
-$label = get_field( 'label', $term );
+$label = get_field( 'label', $fuselage_type);
+$image = get_field( 'image', $fuselage_type);
 
-$capacity = get_field( 'capacity', $term );
-$range = get_field( 'range', $term );
-
-$examples = get_field( 'examples', $term );
+$planes = get_field( 'examples', $fuselage_type );
+$capacity = get_field( 'capacity', $fuselage_type );
+$range = get_field( 'range', $fuselage_type );
 ?>
 
 <div class="card-fuselage">
-
     <div class="card-fuselage__picture">
 
-        <?php if ( $image_id ) : ?>
-            <?php echo wp_get_attachment_image( $image_id, 'large', false, ['class' => 'card-fuselage__image'] ); ?>
+        <?php if ( $image ) : ?>
+            <?php echo wp_get_attachment_image( $image, 'large', false, ['class' => 'card-fuselage__image'] ); ?>
         <?php endif; ?>
 
         <?php if ( $label ) : ?>
@@ -33,15 +30,14 @@ $examples = get_field( 'examples', $term );
     </div>
 
     <div class="card-fuselage__body">
-
-        <a href="<?php echo esc_url( $link ); ?>" class="card-fuselage__link" aria-label="Перейти на категорию: <?php echo esc_html( $name ); ?>">
+        <a href="<?php echo esc_url( $fuselage_type_link ); ?>" class="card-fuselage__link" aria-label="Перейти на категорию: <?php echo esc_attr( $fuselage_type->name ); ?>">
             <h3 class="card-fuselage__title">
-                <?php echo esc_html( $name ); ?>
+                <?php echo esc_html( $fuselage_type->name ); ?>
             </h3>
         </a>
 
         <p class="card-fuselage__description">
-            <?php echo esc_html( $description ); ?>
+            <?php echo wp_kses_post( $fuselage_type->description ); ?>
         </p>
 
         <dl class="card-fuselage__specs">
@@ -62,22 +58,19 @@ $examples = get_field( 'examples', $term );
 
         </dl>
 
-        <?php if ( $examples ) : ?>
+        <?php if ( $planes ) : ?>
             <div class="card-fuselage__examples">
 
                 <span class="card-fuselage__examples-title">Примеры</span>
 
-
                 <div class="card-fuselage__tags">
                     
-                    <?php foreach ( $examples as $plane ) :
-                        
+                    <?php foreach ( $planes as $plane ) :
                         $plane_title = get_the_title( $plane );
                         $plane_link = get_permalink( $plane );
-                    
                     ?>
 
-                        <?php if ( $plane_link && !is_wp_error( $plane_link ) ) : ?>
+                        <?php if ( $plane_link && ! is_wp_error( $plane_link ) ) : ?>
 
                             <a href="<?php echo esc_url( $plane_link ); ?>">
                                 <span class="pill pill--sm pill--subtle card-fuselage__tag"><?php echo esc_html( $plane_title ); ?></span>
@@ -88,15 +81,13 @@ $examples = get_field( 'examples', $term );
                             <span class="pill pill--sm pill--subtle card-fuselage__tag"><?php echo esc_html( $plane_title ); ?></span>
 
                         <?php endif; ?>
-                    
+
                     <?php endforeach; ?>
 
                 </div>
-                
             </div>
             
         <?php endif; ?>
 
     </div>
-
 </div>
