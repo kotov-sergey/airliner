@@ -18,7 +18,11 @@ if ( empty( $brands ) ) return;
 			
 			<?php foreach ($brands as $brand) : ?>
 				<li class="brands-grid__item">
-					<?php get_template_part( 'template-parts/components/card-brand', null, array( 'current_brand' => $brand ) ); ?>
+					<?php 
+						get_template_part( 'template-parts/components/card-brand', null, [
+							'current_brand' => $brand
+						] );
+					?>
 				</li>
 			<?php endforeach; ?>
 		
