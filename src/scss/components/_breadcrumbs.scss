@@ -1,0 +1,42 @@
+// Стили цепочки навигации (хлебные крошки)
+.airliner-breadcrumbs {
+    padding-block: var(--space-6);
+    background-color: var(--bg-surface);
+}
+
+.rank-math-breadcrumb {
+    color: var(--text-muted);
+
+    p {
+        font-size: var(--text-sm);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color var(--duration-base) var(--ease-in-out);
+
+        &:hover {
+            color: var(--color-primary-700);
+        }
+    }
+    
+    .separator {
+        color: var(--border-light);
+        margin-inline: 2px;
+    }
+
+    .last {
+        color: var(--text-main);
+        font-weight: 700;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 250px; 
+    }
+}

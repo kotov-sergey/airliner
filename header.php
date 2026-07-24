@@ -29,12 +29,16 @@ $header_class .= " {$block_name}--solid";
 <body class="page">
 	<header class="<?php echo esc_attr( $header_class ); ?>">
 		<div class="container">
+
+			<!-- Логотип сайта -->
 			<?php the_custom_logo(); ?>
 			
+			<!-- Бургер-меню -->
 			<button class="burger__btn" aria-label="Открыть меню">
 			  <span class="burger__icon"></span>
 			</button>
 			
+			<!-- Меню навигации сайта -->
 			<nav id="navMenu" class="header__nav" aria-label="Меню в шапке">
 				<?php wp_nav_menu(array(
 					'theme_location' => 'primary',
@@ -45,3 +49,12 @@ $header_class .= " {$block_name}--solid";
 			</nav>
 		</div>
 	</header>
+
+	<!-- Цепочка навигации (хлебные крошки) -->
+	<?php if ( ! is_front_page() ) : ?>
+		<div class="airliner-breadcrumbs">
+			<div class="container">
+				<?php if (function_exists("rank_math_the_breadcrumbs")) rank_math_the_breadcrumbs(); ?>
+			</div>
+		</div>
+	<?php endif; ?>
