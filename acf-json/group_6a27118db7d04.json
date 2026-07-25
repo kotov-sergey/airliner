@@ -144,7 +144,7 @@
                             "label": "Описание секции",
                             "name": "section_description",
                             "aria-label": "",
-                            "type": "textarea",
+                            "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -154,11 +154,11 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "rows": "",
-                            "placeholder": "",
-                            "new_lines": ""
+                            "allow_in_bindings": 1,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
                         },
                         {
                             "key": "field_6a493d7be4523",
@@ -605,6 +605,32 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_6a650c0211d15",
+                            "label": "Изображение секции",
+                            "name": "section_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
                             "key": "field_6a4bf1cc50fb5",
                             "label": "Заголовок секции",
                             "name": "section_title",
@@ -947,5 +973,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1784489516
+    "modified": 1785007557
 }

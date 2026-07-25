@@ -43,10 +43,14 @@
     }
 
     &__title {
+        font-size: var(--text-6xl);
         color: var(--color-neutral-000);
     }
 
     &__description {
-        color: var(--color-neutral-200);
+        p {
+            font-size: var(--text-lg);
+            color: var(--color-neutral-200);
+        }
     }
 }

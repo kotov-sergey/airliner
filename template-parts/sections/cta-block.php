@@ -1,6 +1,6 @@
 <?php
 // Секция: CTA-блок
-
+$section_image = get_sub_field( 'section_image' );
 $section_title = get_sub_field( 'section_title' );
 $section_description = get_sub_field( 'section_description' );
 $section_button = get_sub_field( 'section_button' );
@@ -11,7 +11,7 @@ if ( ! $section_title && ! $section_button ) return;
 <section class="section cta-block">
     <div class="container">
 
-        <div class="cta-block__inner">
+        <div class="cta-block__content">
 
             <!-- Заголовок CTA-блока -->
             <?php if ( $section_title ) : ?>
@@ -40,4 +40,12 @@ if ( ! $section_title && ! $section_button ) return;
         </div>
 
     </div>
+
+    <!-- Изображение секции -->
+    <?php if ( $section_image ) : ?>
+        <div class="cta-block__media">
+            <?php echo wp_get_attachment_image( $section_image, 'full', false, ['class' => 'cta-block__image'] ); ?>
+        </div>
+    <?php endif; ?>
+
 </section>

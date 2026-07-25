@@ -31,7 +31,7 @@ get_header();
                         <h1 class="landing-hero__title"><?php echo esc_html( $hero_title ); ?></h1>
 
                         <?php if ( $hero_description ) : ?>
-                            <p class="landing-hero__description"><?php echo esc_html( $hero_description ); ?></p>
+                            <div class="landing-hero__description"><?php echo wp_kses_post( wpautop( $hero_description ) ); ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
