@@ -1,8 +1,9 @@
 <?php
 
 // Верстка секции история авиалайнеров
+$section_index = $args['index'] ?? '';
+$section_header = get_sub_field( 'section_header' );
 
-$section_header = airliner_prepare_header_args( get_sub_field( 'section_header' ), $args );
 $timeline = get_sub_field( 'timeline' );
 $section_bg = get_sub_field( 'section_image' );
 ?>
@@ -26,7 +27,12 @@ $section_bg = get_sub_field( 'section_image' );
 
 		<div class="container">
 			
-			<?php get_template_part( 'template-parts/components/section-header', null, $section_header ); ?>
+			<?php 
+				get_template_part( 'template-parts/components/section-header', null, [
+					'data' => $section_header,
+					'number' => $section_index
+				]);
+			?>
 			
 			<?php if ( $timeline ): ?>
 

@@ -1,7 +1,9 @@
 <?php
 // Секция: Информация + Инфографика
 
-$section_title = get_sub_field( 'section_title' );
+$section_index = $args['index'] ?? '';
+$section_header = get_sub_field( 'section_header' );
+
 $section_description = get_sub_field( 'section_description' );
 
 $section_bg_class = get_sub_field ( 'section_background' ) ?: 'section--gray';
@@ -12,13 +14,18 @@ $section_bg_class = get_sub_field ( 'section_background' ) ?: 'section--gray';
 
         <div class="info-showcase__grid">
 
-            <?php if ( $section_title || $section_description ) : ?>
+            <?php if ( $section_header || $section_description ) : ?>
                 <div class="info-showcase__content">
-                    <?php if ( $section_title ) : ?>
-                        <h2 class="info-showcase__title"><?php echo esc_html( $section_title ); ?></h2>
-                    <?php endif; ?>
 
-                    <div class="info-showcase__description"><?php echo wp_kses_post( wpautop( $section_description ) ); ?></div>
+                    <?php
+                        get_template_part( 'template-parts/components/section-header', null, [
+                            'data' => $section_header,
+                            'number' => $section_index
+                        ] );
+                    ?>
+
+                    <div class="info-showcase__description entry-content"><?php echo wp_kses_post( wpautop( $section_description ) ); ?></div>
+
                 </div>
             <?php endif; ?>
 

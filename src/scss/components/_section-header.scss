@@ -5,14 +5,14 @@
     flex-direction: column;
     gap: var(--space-4);
 
-	margin-bottom: var(--space-10);
-
     &__meta {
 		display: flex;
 		align-items: center;
 		gap: var(--space-3);
 
 		font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
 
         .section-header__number + .section-header__label::before {
             display: inline-block;
@@ -23,13 +23,14 @@
 
 			content: '';
             margin-right: var(--space-3);
-            background-color: var(--text-muted);
+            background-color: var(--border-light);
         }
     }
 
-	&__label {
-		text-transform: uppercase;
-	}
+    &__number {
+        color: var(--color-primary-500);
+        font-weight: 600;
+    }
 
     &__content {
         display: flex;
@@ -46,8 +47,7 @@
     }
 
     // Модификатор: в строку, если есть мета
-    &--row {
-        align-items: stretch;
+    &--left {
 
         @media ( min-width: 768px ) {
             
@@ -68,9 +68,11 @@
     }
 
     // Модификатор: в столбец, если нет меты
-    &--column {
+    &--center{
         align-items: center;
         text-align: center;
+
+        gap: var(--space-2);
 
         .section-header__content{
             align-items: center;

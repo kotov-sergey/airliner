@@ -1,13 +1,14 @@
 <?php
 // Секция: Часто задаваемые вопросы (FAQ)
 
-$section_title = get_sub_field( 'section_title' );
-$section_subtitle = get_sub_field( 'section_subtitle' );
+$section_index = $args['index'] ?? '';
+$section_header = get_sub_field( 'section_header' );
+
 $section_background = get_sub_field( 'section_background' ) ?: 'section--gray';
 
 $accordion = get_sub_field( 'accordion' );
 
-if ( ! $section_title && ! $accordion ) return;
+if ( ! $section_header && ! $accordion ) return;
 ?>
 
 <section class="section faq-block <?php echo esc_attr( $section_background ); ?>">
@@ -16,8 +17,8 @@ if ( ! $section_title && ! $accordion ) return;
         <!-- Блок заголовка секции -->
         <?php 
             get_template_part( 'template-parts/components/section-header', null, [
-                'section_title' => $section_title,
-                'section_description' => $section_subtitle
+                'data' => $section_header,
+                'number' => $section_index
             ]);
         ?>
 

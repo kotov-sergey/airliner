@@ -47,7 +47,6 @@
     &__title {
         font-size: var(--text-3xl);
         color: var(--color-neutral-000);
-        margin: 0;
 
         @media ( min-width: 768px ) {
             font-size: var(--text-4xl);
@@ -57,7 +56,6 @@
     &__description {
         font-size: var(--text-xl);
         color: var(--color-neutral-000);
-        margin-bottom: 0;
     }
 
     &__button {

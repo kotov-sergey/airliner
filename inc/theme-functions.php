@@ -44,20 +44,6 @@ function airliner_get_svg( $filename ) {
 	return '';
 }
 
-// Функция объединения данных заголовка и переданных аргументов (индекс)
-
-function airliner_prepare_header_args( $acf_field, $template_args ) {
-	if ( empty( $acf_field) && !is_array( $acf_field ) ) {
-		$acf_field = array();
-	}
-
-	$index = $template_args['index'];
-
-	$acf_field['index'] = $index;
-
-	return $acf_field;
-}
-
 // Ограничиваем поиск WordPress: ищем ТОЛЬКО по заголовкам (post_title)
 
 function airliner_search_by_title_only( $search, $wp_query ) {

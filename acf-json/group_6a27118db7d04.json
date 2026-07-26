@@ -93,6 +93,28 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_6a661821e2043",
+                            "label": "Заголовок секции",
+                            "name": "section_header",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_69510d97bdaaa"
+                            ],
+                            "display": "group",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
                             "key": "field_6a4936105e303",
                             "label": "Изображение секции",
                             "name": "section_image",
@@ -117,27 +139,6 @@
                             "mime_types": "",
                             "allow_in_bindings": 0,
                             "preview_size": "medium"
-                        },
-                        {
-                            "key": "field_6a49362b5e304",
-                            "label": "Заголовок секции",
-                            "name": "section_title",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
                         },
                         {
                             "key": "field_6a4936375e305",
@@ -257,11 +258,11 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_6a49424027106",
+                            "key": "field_6a661f53a907e",
                             "label": "Заголовок секции",
-                            "name": "section_title",
+                            "name": "section_header",
                             "aria-label": "",
-                            "type": "text",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -270,12 +271,13 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
+                            "clone": [
+                                "group_69510d97bdaaa"
+                            ],
+                            "display": "group",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
                         },
                         {
                             "key": "field_6a49424f27107",
@@ -431,11 +433,11 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_6a4a6c6a9873f",
+                            "key": "field_6a6620e2b69d2",
                             "label": "Заголовок секции",
-                            "name": "section_title",
+                            "name": "section_header",
                             "aria-label": "",
-                            "type": "text",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -444,19 +446,20 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
+                            "clone": [
+                                "group_69510d97bdaaa"
+                            ],
+                            "display": "group",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
                         },
                         {
                             "key": "field_6a4a6c7698740",
                             "label": "Описание секции",
                             "name": "section_description",
                             "aria-label": "",
-                            "type": "textarea",
+                            "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -466,11 +469,11 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "rows": "",
-                            "placeholder": "",
-                            "new_lines": ""
+                            "allow_in_bindings": 1,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
                         },
                         {
                             "key": "field_6a4a6c8798741",
@@ -700,11 +703,11 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_6a4e8970b36f4",
+                            "key": "field_6a662fa63382b",
                             "label": "Заголовок секции",
-                            "name": "section_title",
+                            "name": "section_header",
                             "aria-label": "",
-                            "type": "text",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -713,12 +716,13 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
+                            "clone": [
+                                "group_69510d97bdaaa"
+                            ],
+                            "display": "group",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
                         },
                         {
                             "key": "field_6a4e898eb36f5",
@@ -845,11 +849,11 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_6a53d45db25d1",
+                            "key": "field_6a662f19fd94a",
                             "label": "Заголовок секции",
-                            "name": "section_title",
+                            "name": "section_header",
                             "aria-label": "",
-                            "type": "text",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -858,12 +862,13 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "maxlength": "",
-                            "allow_in_bindings": 0,
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
+                            "clone": [
+                                "group_69510d97bdaaa"
+                            ],
+                            "display": "group",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
                         },
                         {
                             "key": "field_6a53d46ab25d2",
@@ -973,5 +978,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1785007557
+    "modified": 1785081793
 }

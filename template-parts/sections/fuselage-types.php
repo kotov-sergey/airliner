@@ -3,7 +3,8 @@
 
 $fuselage_types = get_sub_field( 'fuselage_type' );
 
-$section_header = airliner_prepare_header_args( get_sub_field( 'section_header' ), $args );
+$section_index = $args['index'] ?? '';
+$section_header = get_sub_field( 'section_header' );
 
 if ( empty( $fuselage_types ) ) return;
 ?>
@@ -12,7 +13,12 @@ if ( empty( $fuselage_types ) ) return;
 <section class="section section-fuselage-types">
     <div class="container">
 		
-        <?php get_template_part( 'template-parts/components/section-header', null, $section_header ); ?>
+        <?php 
+            get_template_part( 'template-parts/components/section-header', null, [
+                'data' => $section_header,
+                'number' => $section_index
+            ]);
+        ?>
 
         <div class="l-grid l-grid--3">
 

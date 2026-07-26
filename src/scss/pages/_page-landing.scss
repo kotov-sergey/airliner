@@ -50,7 +50,7 @@
     &__description {
         max-width: 512px;
         
-        p {
+        p, ul, ol {
             font-size: var(--text-lg);
             color: var(--color-neutral-200);
         }

@@ -1,8 +1,10 @@
 <?php
 // Секция: Изображение + Текст
 
+$section_index = $args['index'] ?? '';
+$section_header = get_sub_field( 'section_header' );
+
 $section_image = get_sub_field( 'section_image' );
-$section_title = get_sub_field( 'section_title' );
 $section_description = get_sub_field( 'section_description' );
 
 $button_primary = get_sub_field( 'button_primary' );
@@ -13,7 +15,7 @@ $css_class = 'image-text__grid image-text__grid--image-' . $image_position;
 
 $section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
 
-if ( ! $section_image && ! $section_title ) return;
+if ( ! $section_image && ! $section_header ) return;
 ?>
 
 <section class="section image-text <?php echo esc_attr(  $section_bg_class ); ?>">
@@ -30,10 +32,16 @@ if ( ! $section_image && ! $section_title ) return;
 
             <!-- Блок с контентом -->
             <div class="image-text__content">
-                <?php if ( $section_title ) : ?>
-                    <h2 class="image-text__title"><?php echo esc_html( $section_title ); ?></h2>
-                <?php endif; ?>
+                
+                <!-- Заголовок секции -->
+                <?php
+                    get_template_part( 'template-parts/components/section-header', null, [
+                        'data' => $section_header,
+                        'number' => $section_index
+                    ] );
+                ?>
 
+                <!-- Описание секции -->
                 <?php if ( $section_description ) : ?>
                     <div class="image-text__description entry-content">
                         <?php echo wp_kses_post( wpautop( $section_description ) ); ?>

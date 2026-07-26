@@ -1,8 +1,8 @@
 <?php
 // Секция обратной связи
 
-$section_title = get_sub_field( 'section_title' );
-$section_subtitle = get_sub_field( 'section_subtitle' );
+$section_index = $args['index'] ?? '';
+$section_header = get_sub_field( 'section_header' );
 
 $shortcode = get_sub_field( 'shortcode' );
 
@@ -15,8 +15,8 @@ $section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
         <!-- Блок заголовка секции -->
         <?php 
             get_template_part( 'template-parts/components/section-header', null, [
-                'section_title' => $section_title,
-                'section_description' => $section_subtitle
+                'data' => $section_header,
+                'number' => $section_index
             ]);
         ?>
 
