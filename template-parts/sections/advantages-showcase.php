@@ -22,7 +22,7 @@ $section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
         <?php if ( have_rows( 'section_cards' ) ) : ?>
 
             <!-- Сетка карточек преимуществ -->
-            <div class="l-grid advantages-showcase__grid">
+            <div class="l-grid l-grid--auto">
 
                 <?php while ( have_rows( 'section_cards' ) ) : the_row(); ?>
                    

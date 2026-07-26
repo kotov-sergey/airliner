@@ -16,9 +16,7 @@
 }
 
 // Адаптивная сетка grid
-@mixin grid-adaptive( $mobile: 1, $tablet: null, $desktop: null, $gap: var(--space-8) ) {
-    display: grid;
-    gap: $gap;
+@mixin grid-adaptive( $mobile: 1, $tablet: null, $desktop: null ) {
     grid-template-columns: repeat( $mobile, 1fr );
 
     @if $tablet {
@@ -33,4 +31,3 @@
         }
     }
 }
-

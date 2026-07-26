@@ -3,71 +3,83 @@
 
 //Контейнер
 .container {
-  width: 100%;
-  max-width: var(--container-width, 1280px);
-  margin-inline: auto;
-  padding-inline: var(--container-padding);
+    width: 100%;
+    max-width: var(--container-width, 1280px);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
 
-  &--narrow {
-    max-width: calc( 800px + ( var(--container-padding) * 2 ) );
-  }
+    &--narrow {
+        max-width: calc( 800px + ( var(--container-padding) * 2 ) );
+    }
 }
 
 // Секция
 .section {
-  padding-block: var(--space-10);
+    padding-block: var(--space-10);
 
-  @media (min-width: 1024px) {
-    padding-block: var(--space-16);
-  }
+    @media (min-width: 1024px) {
+        padding-block: var(--space-16);
+    }
 
-  // Модификаторы секции
-  &--white {
-    background-color: var(--bg-surface);
-  }
+    // Модификаторы секции
+    &--white {
+        background-color: var(--bg-surface);
+    }
 
-  &--gray {
-    background-color: var(--bg-surface-alt);
-  }
+    &--gray {
+        background-color: var(--bg-surface-alt);
+    }
 }
 
 // Общие стили сеток
 .l-grid {
-  & > * {
-		height: 100%;
-	}
+    display: grid;
+    gap: var(--space-8);
 
-	// Сетка 2 колонки
-	&--2 {
-		@include grid-adaptive( 1, 2, 2 );
-	}
+    & > * {
+	    height: 100%;
+    }
 
-	// Сетка 3 колонки
-	&--3 {
+    // Сетка 2 колонки
+    &--2 {
+	    @include grid-adaptive( 1, 2, 2 );
+    }
+
+    // Сетка 3 колонки
+    &--3 {
 	    @include grid-adaptive( 1, 2, 3 );
-	}
+    }
 
-	// Сетка 4 колонки
-	&--4 {
-		@include grid-adaptive( 1, 2, 4 );
-	}
+    // Сетка 4 колонки
+    &--4 {
+	    @include grid-adaptive( 1, 2, 4 );
+    }
 
+    // Автоматическа сетка ( мин. ширина 200px ) 
+    &--auto {
+        grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+    }
+
+    // Автоматическа сетка ( мин. ширина 300px ) 
+    &--auto-lg {
+        grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
+    }
 }
 
 // Bento-сетка
 .l-bento-grid {
-  display: grid;
-  gap: var(--space-8);
-  grid-template-columns: 1fr;
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: 1fr;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1.5fr 1fr;
-    grid-auto-rows: minmax(240px, auto);
+    @media (min-width: 768px) {
+        grid-template-columns: 1.5fr 1fr;
+        grid-auto-rows: minmax(240px, auto);
   
-    > *:first-child {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-      height: 100%;
+        > *:first-child {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            height: 100%;
+        }
     }
-  }
 }
