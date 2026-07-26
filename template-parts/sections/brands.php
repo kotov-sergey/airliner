@@ -20,7 +20,7 @@ if ( empty( $brands ) ) return;
 			] ); 
 		?>
 
-		<ul class="l-grid brands-grid">
+		<ul class="l-grid l-grid--4">
 			
 			<?php foreach ($brands as $brand) : ?>
 				<li class="brands-grid__item">

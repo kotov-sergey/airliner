@@ -5,6 +5,8 @@
     flex-direction: column;
     gap: var(--space-4);
 
+    margin-bottom: var(--space-8);
+
     &__meta {
 		display: flex;
 		align-items: center;
@@ -39,6 +41,7 @@
     }
 
     &__title {
+        font-size: var(--text-3xl);
         font-weight: 700;
     }
 
@@ -77,10 +80,6 @@
         .section-header__content{
             align-items: center;
         }
-
-		.section-header__title {
-			font-size: var(--text-3xl);
-		}
 
         .section-header__description {
             max-width: 768px;
