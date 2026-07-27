@@ -1,9 +1,11 @@
 // Стили для секции: Часто задаваемые вопросы (FAQ)
+@use '../abstracts/mixins' as *;
 
 .faq-block {
     
-    .accordion {
-        max-width: 768px;
-        margin-inline: auto;   
+    &__accordion {
+        display: grid;
+        @include grid-adaptive(1, 2, 2);
+        align-items: start;
     }
 }

@@ -24,7 +24,7 @@ if ( ! $section_header && ! $accordion ) return;
 
         <!-- Блок вопрос-ответ секции -->
         <?php if ( have_rows( 'accordion' ) ) : ?>
-            <div class="accordion">
+            <div class="accordion faq-block__accordion">
 
                 <?php while ( have_rows( 'accordion' ) ) : the_row(); 
                 
