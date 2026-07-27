@@ -1,4 +1,6 @@
 <?php 
+// Верстка секции контента страницы авиалайнера
+
 $content = get_the_content();
     if ( ! empty( trim( $content ) ) ) :
 ?>
@@ -8,13 +10,14 @@ $content = get_the_content();
   
             <!-- Заголовок секции -->
             <?php
-            get_template_part( 'template-parts/components/section-header', null, [
-                'index' => 4,
-                'section_label' => 'История',
-                'section_title' => 'История самолета',
-                'section_description' => 'Познакомьтесь с конструктивными особенностями, инновациями в аэродинамике и уровнем комфорта, которые делают этот лайнер уникальным.',
-                'section_alignment' => 'column',
-            ]);
+                get_template_part( 'template-parts/components/section-header', null, [
+                    'number' => '04',
+                    'data' => [
+                        'header_label' => 'История',
+                        'header_title' => 'История самолета',
+                        'header_description' => 'Познакомьтесь с конструктивными особенностями, инновациями в аэродинамике и уровнем комфорта, которые делают этот лайнер уникальным.',                    
+                    ]
+                ]);
             ?>
 
             <!-- Контент записи -->

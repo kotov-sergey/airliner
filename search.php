@@ -65,7 +65,15 @@ wp_reset_postdata();
 				<div class="search-fallback__layout">
 					
 					<div class="search-fallback__group">
-						<h2 class="search-fallback__title">Популярные авиалайнеры</h2>
+
+						<!-- Заголовок секции Популярные авиалайнеры -->
+						<?php
+							get_template_part( 'template-parts/components/section-header', null, [
+								'data' => [
+									'header_title' => 'Популярные авиалайнеры'
+								]
+							] );
+						?>						
 
 						<div class="l-grid l-grid--4">
 							<?php
@@ -95,7 +103,15 @@ wp_reset_postdata();
 					</div>
 
 					<div class="search-fallback__group">
-						<h2 class="search-fallback__title">Популярные рубрики</h2>
+
+						<!-- Заголовок секции Популярные рубрики -->
+						<?php
+							get_template_part( 'template-parts/components/section-header', null, [
+								'data' => [
+									'header_title' => 'Популярные рубрики'
+								]
+							] );
+						?>							
 
 						<div class="search-fallback__actions">
 							<?php get_template_part( 'template-parts/components/category-cloud', null, [

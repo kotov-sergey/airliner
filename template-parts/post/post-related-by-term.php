@@ -23,8 +23,17 @@ $related_query = new WP_Query( $query_args );
 <?php if ( $related_query->have_posts() ) : ?>
     <section class="section section-related-posts">
         <div class="container">
-            <h2 class="section-related-posts__title">Статьи о <?php echo esc_html( $term->name ); ?></h2>
+            
+            <!-- Заголовок секции -->
+            <?php
+                get_template_part( 'template-parts/components/section-header', null, [
+                    'data' => [
+                        'header_title' => 'Статьи о ' . $term->name
+                    ]
+                ] );
+            ?>
 
+            <!-- Сетка записей -->
             <div class="l-grid l-grid--3">
 
                 <?php

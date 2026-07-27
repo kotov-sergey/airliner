@@ -42,8 +42,16 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         <section class="section category-featured">
             <div class="container">
 
-                <h2 class="category-featured__title">Выбор редакции</h2>
+                <!-- Заголовок секции Выбор редакции -->
+                <?php
+                    get_template_part( 'template-parts/components/section-header', null, [
+                        'data' => [
+                            'header_title' => 'Выбор редакции'
+                        ]
+                    ] );
+                ?>
 
+                <!-- Главный пост секции -->
                 <?php 
                     get_template_part( 'template-parts/components/card-post', null, [
                         'layout' => 'featured'
@@ -66,8 +74,16 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         <section class="section category-archive">
             <div class="container">
 
-                <h2 class="category-archive__title">Все статьи рубрики</h2>
+                <!-- Заголовок секции Все статьи и рубрики -->
+                <?php
+                    get_template_part( 'template-parts/components/section-header', null, [
+                        'data' => [
+                            'header_title' => 'Все статьи рубрики'
+                        ]
+                    ] );
+                ?>               
 
+                <!-- Сетка записей -->
                 <div class="l-grid l-grid--3">
                     <?php 
                         while ( have_posts() ) : the_post();

@@ -39,7 +39,6 @@
     gap: var(--space-6);
 
     &__specs {
-        @include grid-adaptive( 2, 2, 2);
         gap: var(--space-4);
     }
 }

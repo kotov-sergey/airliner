@@ -1,4 +1,6 @@
 <?php
+// Верстка галереи секции страницы лайнера
+
 $gallery = get_field( 'airliner_gallery' );
 
 if ( $gallery && is_array( $gallery ) ) :
@@ -14,13 +16,14 @@ $total_images = count( $gallery );
 
             <!-- Заголовок секции -->
             <?php
-            get_template_part( 'template-parts/components/section-header', null, [
-                'index' => 2,
-                'section_label' => 'Медиа',
-                'section_title' => 'Галерея самолета',
-                'section_description' => 'Подборка лучших фотографий в высоком разрешении. От аэродинамики фюзеляжа до компоновки кресел.',
-                'section_alignment' => 'row',
-            ]);
+                get_template_part( 'template-parts/components/section-header', null, [
+                    'number' => '02',
+                    'data' => [
+                        'header_label' => 'Медиа',
+                        'header_title' => 'Галерея самолета',
+                        'header_description' => 'Подборка лучших фотографий в высоком разрешении. От аэродинамики фюзеляжа до компоновки кресел.',
+                    ]
+                ]);
             ?>
 
             <!-- Сетка галереи (изображений) -->

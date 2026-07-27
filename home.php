@@ -40,8 +40,17 @@ get_header();
     <?php if ( have_posts() ) : ?>
         <section class="section blog-fresh">
             <div class="container">
-                <h2 class="blog-fresh__title">Свежие материалы</h2>
+
+                <!-- Заголовок секции Свежие материалы -->
+                <?php
+                    get_template_part( 'template-parts/components/section-header', null, [
+                        'data' => [
+                            'header_title' => 'Свежие материалы'
+                        ]
+                    ] );
+                ?>
                 
+                <!-- Bento-сетка записей -->
                 <div class="l-bento-grid">
                     <?php
                     for ( $i=0; $i<3; $i++ ) {
@@ -61,8 +70,17 @@ get_header();
     <?php if ( have_posts() ) : ?>
         <section class="section blog-archive">
             <div class="container">
-                <h2 class="blog-archive__title">Все публикации</h2>
 
+                <!-- Заголовок секции Все публикации -->
+                <?php
+                    get_template_part( 'template-parts/components/section-header', null, [
+                        'data' => [
+                            'header_title' => 'Все публикации'
+                        ]
+                    ] );
+                ?>
+
+                <!-- Сетка записей -->
                 <div class="l-grid l-grid--3">
                     <?php 
                     while ( have_posts() ) : the_post();

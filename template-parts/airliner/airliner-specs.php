@@ -1,18 +1,20 @@
 <?php
-    $config = get_airliner_specs_config();
+//Верстка секции характеристик страницы лайнера
 
-    $has_specs_data = false;
+$config = get_airliner_specs_config();
 
-    foreach ( $config as $group_key => $group_data ) {
-        $acf_group_values = get_field( $group_key );
+$has_specs_data = false;
 
-        if ( $acf_group_values && is_array( $acf_group_values ) ) {
-            if ( ! empty( array_filter( $acf_group_values ) ) ) {
-                $has_specs_data = true;
-                break;
-            }
+foreach ( $config as $group_key => $group_data ) {
+    $acf_group_values = get_field( $group_key );
+
+    if ( $acf_group_values && is_array( $acf_group_values ) ) {
+        if ( ! empty( array_filter( $acf_group_values ) ) ) {
+            $has_specs_data = true;
+            break;
         }
     }
+}
 ?>
 
 <!-- Верстка секции Технические характеристики -->
@@ -22,13 +24,14 @@
     
             <!-- Заголовок секции -->
             <?php
-            get_template_part( 'template-parts/components/section-header', null, [
-                'index' => 3,
-                'section_label' => 'Характеристики',
-                'section_title' => 'Технические характеристики',
-                'section_description' => 'Полный список характеристик Boeing 787-8 Dreamliner с данными от производителя.',
-                'section_alignment' => 'row',
-            ]);
+                get_template_part( 'template-parts/components/section-header', null, [
+                    'number' => '03',
+                    'data' => [
+                        'header_label' => 'Характеристики',
+                        'header_title' => 'Технические характеристики',
+                        'header' => 'Полный список характеристик Boeing 787-8 Dreamliner с данными от производителя.'
+                    ]
+                ]);
             ?>
 
             <!-- Сетка технических характеристик -->

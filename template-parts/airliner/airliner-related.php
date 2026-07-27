@@ -1,5 +1,6 @@
 <?php
 // Секция похожие авиалайнеры
+
 $post_id = get_the_ID(); // Получаем ID текущего поста
 $related_posts = []; // Массив для хранения похожих постов
 
@@ -44,13 +45,14 @@ else {
 
         <!-- Заголовок секции -->
         <?php
-        get_template_part( 'template-parts/components/section-header', null, [
-            'index' => 5,
-            'section_label' => 'Похожие модели',
-            'section_title' => 'Смотрите также',
-            'section_description' => 'Изучите другие модели этого же класса. Сравните характеристики, вместимость и дальность полета с главными конкурентами.',
-            'section_alignment' => 'row',
-        ]);
+            get_template_part( 'template-parts/components/section-header', null, [
+                'number' => '05',
+                'data' => [
+                    'header_label' => 'Похожие модели',
+                    'header_title' => 'Смотрите также',
+                    'header_description' => 'Изучите другие модели этого же класса. Сравните характеристики, вместимость и дальность полета с главными конкурентами.'                    
+                ]
+            ]);
         ?>
 
         <!-- Сетка похожих записей -->

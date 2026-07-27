@@ -1,4 +1,4 @@
-<!-- Верстка Hero-секции -->
+<!-- Верстка Hero-секции страницы лайнера -->
 		<section class="section airliner-hero">
 			<div class="container">
 				<div class="airliner-hero__grid">
@@ -28,7 +28,7 @@
 								<?php echo $excerpt; ?>
 							</p>
 
-							<div class="info-card__specs">
+							<div class="l-grid l-grid--2 info-card__specs">
 								<?php the_airliner_spec('specs_weight', 'passengers', 'vertical'); ?>
 								<?php the_airliner_spec('specs_performance', 'range', 'vertical'); ?>
 								<?php the_airliner_spec('specs_performance', 'max_speed', 'vertical'); ?>
