@@ -23,17 +23,19 @@ if ( ! $section_title ) return;
 <div class="section-header <?php echo esc_attr( $section_modifier ); ?>">
 
 	<!-- Блок с мета-данными -->
-	<div class="section-header__meta">
-		
-		<?php if ( $section_number ) : ?>
-			<span class="section-header__number"><?php echo esc_html( $section_number ); ?></span>
-		<?php endif; ?>
+	<?php if ( $section_number || $section_label ) : ?>
+		<div class="section-header__meta">
+			
+			<?php if ( $section_number ) : ?>
+				<span class="section-header__number"><?php echo esc_html( $section_number ); ?></span>
+			<?php endif; ?>
 
-		<?php if ( $section_label ) : ?>
-			<span class="section-header__label"><?php echo esc_html( $section_label ); ?></span>
-		<?php endif; ?>
+			<?php if ( $section_label ) : ?>
+				<span class="section-header__label"><?php echo esc_html( $section_label ); ?></span>
+			<?php endif; ?>
 
-	</div>
+		</div>
+	<?php endif; ?>
 
 	<!-- Заголовок + Описание -->
 	<div class="section-header__content">
