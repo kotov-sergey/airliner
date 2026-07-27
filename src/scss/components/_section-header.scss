@@ -50,7 +50,7 @@
     }
 
     // Модификатор: в строку, если есть мета
-    &--left {
+    &--row {
 
         @media ( min-width: 768px ) {
             
@@ -67,7 +67,7 @@
     }
 
     // Модификатор: в столбец, если нет меты
-    &--center{
+    &--column {
         align-items: center;
         text-align: center;
 

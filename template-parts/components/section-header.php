@@ -12,7 +12,7 @@ $section_label = $header_data['header_label'] ?? '';
 $section_title = $header_data['header_title'];
 $section_description = $header_data['header_description'] ?? '';
 
-$section_alignment = $header_data['header_alignment'] ?: 'left';
+$section_alignment = $header_data['header_alignment'] ?: 'row';
 $section_tag = $header_data['header_tag'] ?: 'h2';
 
 $section_modifier = 'section-header--' . $section_alignment;

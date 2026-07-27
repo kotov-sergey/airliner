@@ -80,8 +80,8 @@
                 "id": ""
             },
             "choices": {
-                "left": "Лево",
-                "center": "Центр"
+                "row": "Строка",
+                "column": "Столбец"
             },
             "default_value": "",
             "return_format": "value",
@@ -146,5 +146,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1785080994
+    "modified": 1785174149
 }
