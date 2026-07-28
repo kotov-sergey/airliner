@@ -30,7 +30,7 @@ if ( ! $section_title && ! $section_button ) return;
             
                 $btn_target = ! empty ($section_button['target']) ? $section_button['target'] : '_self';
             ?>
-                <a class="btn btn--outline cta-block__btn"
+                <a class="btn btn--primary cta-block__btn"
                     href="<?php echo esc_url( $section_button['url']); ?>" 
                     target="<?php echo esc_attr( $btn_target ); ?>">
                         <?php echo esc_html( $section_button['title'] ); ?>
