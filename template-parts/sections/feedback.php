@@ -24,7 +24,7 @@ $section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
         <div class="feedback__layout">
             
             <!-- Обёртка контактной формы-->
-            <div class="feedback__wrapper custom-form-wrapper">
+            <div class="feedback__form custom-form-wrapper">
                 <?php
                     if ( $shortcode ) {
                         echo do_shortcode( $shortcode );
@@ -36,13 +36,21 @@ $section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
             </div>
 
             <!-- Изображение контактной формы -->
-            <?php if ( $section_image ) : ?>
-                <div class="feedback__media">
+            <div class="feedback__media">
+                <?php if ( $section_image ) : ?>
+
                     <?php echo wp_get_attachment_image( $section_image, 'full', false, ['class' => 'feedback__image'] ); ?>
-                </div>
-            <?php endif; ?>
+                
+                <?php else : ?>
+
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/placeholder-image.svg' ); ?>" 
+                        class="feedback__image" 
+                        loading="lazy" 
+                    />
+                    
+                <?php endif; ?>     
+            </div>
 
         </div>
-
     </div>
 </section>

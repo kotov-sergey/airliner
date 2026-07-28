@@ -67,6 +67,10 @@ select {
         @extend %input-base-styles;
     }
 
+    .fluentform .ff-custom_html h3 {
+        text-align: center;
+    }
+
     .fluentform .ff-el-input--label {
         font-size: var(--text-sm);
         color: var(--color-neutral-700);
