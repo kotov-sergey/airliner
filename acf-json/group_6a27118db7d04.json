@@ -397,6 +397,34 @@
                             ]
                         },
                         {
+                            "key": "field_6a6a597710587",
+                            "label": "Стиль карточки",
+                            "name": "card_style",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Обычная",
+                                "compact": "Компактная",
+                                "horizontal": "Горизонтальная"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
                             "key": "field_6a4a8f148fa48",
                             "label": "Фон секции",
                             "name": "section_background",
@@ -1004,5 +1032,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1785260725
+    "modified": 1785356441
 }

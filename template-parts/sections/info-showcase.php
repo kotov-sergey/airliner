@@ -38,7 +38,7 @@ $section_bg_class = get_sub_field ( 'section_background' ) ?: 'section--gray';
                                 'card_icon' => get_sub_field( 'card_icon' ),
                                 'card_title' => get_sub_field( 'card_title' ),
                                 'card_description' => get_sub_field( 'card_description' ),
-                                'card_layout' => 'compact'
+                                'modifier' => 'advantage-card--horizontal'
                             ]);
                         ?>
             

@@ -5,10 +5,15 @@ $card_icon = $args['card_icon'] ?? '';
 $card_title = $args['card_title'] ?? 'Заголовок карточки';
 $card_description = $args['card_description'] ?? 'Описание карточки';
 
-$card_layout = $args['card_layout'] ?? 'default';
+$modifier = $args['modifier'] ?? '';
+$classes = 'advantage-card';
+
+if ( $modifier ) {
+    $classes .= ' ' . $modifier;
+}
 ?>
 
-<article class="advantage-card advantage-card--<?php echo esc_attr( $card_layout ); ?>">
+<article class="<?php echo esc_attr( $classes ); ?>">
 
     <?php if ( $card_icon ) : ?>
         <div class="advantage-card__media">
