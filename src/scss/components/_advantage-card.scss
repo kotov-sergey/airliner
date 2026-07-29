@@ -52,6 +52,7 @@
         }
     }
 
+    // Маленькая карточка
     &--compact {
 
         .advantage-card__title {
@@ -70,6 +71,7 @@
         }        
     }
 
+    // Горизонтальная карточка
     &--horizontal {
         flex-direction: row;
         padding: var(--space-6);
