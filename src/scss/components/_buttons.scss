@@ -7,7 +7,7 @@
 
     padding: var(--space-3) var(--space-6);
     
-    border: 1px solid transparent;
+    border: none;
     border-radius: var(--radius-full);
 
     font-weight: 400;
@@ -20,12 +20,14 @@
   
     // Сплошная кнопка (solid)
     &--primary {
-        background-color: var(--color-primary-700);
+        background-image: linear-gradient( to right, var(--color-primary-900), var(--color-primary-500));
+        background-position: left center;
+        background-size: 150% auto;
         color: var(--color-neutral-000);
         font-weight: 500;
 
         &:hover {
-            background-color: var(--color-primary-900);
+            background-position: right center;
             color: var(--color-neutral-000); 
         }
     }
