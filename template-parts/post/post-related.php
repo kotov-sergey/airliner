@@ -24,9 +24,11 @@ if ( $related_query->have_posts() ) :
 		<!-- Заголовок секции -->
 		<?php
 			get_template_part( 'template-parts/components/section-header', null, [
-				'section_label' => 'Похожие записи',
-				'section_title' => 'Смотрите также',
-				'section_description' => 'Изучите другие статьи на похожую тему.',
+				'data' => [
+					'header_label' => 'Похожие записи',
+					'header_title' => 'Смотрите также',
+					'header_description' => 'Изучите другие статьи на похожую тему.'			
+				]
 			]);
 		?>
 

@@ -3,7 +3,6 @@
 
 
 // Функция получения массива производителей (брендов)
-
 function airliner_get_all_brands( $limit = 0 ) {
 	$brands = [];
 	
@@ -41,7 +40,6 @@ function airliner_get_all_brands( $limit = 0 ) {
 }
 
 //Получение списка всех терминов для мета-данных карточки
-
 function airliner_get_meta_terms( $post_id, $taxonomies = array() ) {
 	$meta_values = array();
 
@@ -63,7 +61,6 @@ function airliner_get_meta_terms( $post_id, $taxonomies = array() ) {
 }
 
 // Функция получения имени и логотипа производителя
-
 function airliner_get_brand_data( $post_id ) {
 	$brands = get_the_terms( $post_id, 'manufacturer' );
 
@@ -86,7 +83,6 @@ function airliner_get_brand_data( $post_id ) {
 }
 
 // Функция получения и обработки характеристик авиалайнера
-
 function get_airliner_specs_config() {
 	return [
 
