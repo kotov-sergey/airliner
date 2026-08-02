@@ -16,45 +16,45 @@
     text-decoration: none;
     cursor: pointer;
 
-    transition: all var(--duration-base) var(--ease-in-out);
+    transition: all var(--duration-fast) var(--ease-in-out);
   
     // Сплошная кнопка (solid)
     &--primary {
-        background-color: var(--color-primary-700);
-        color: var(--color-neutral-000);
+        background-color: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
         font-weight: 500;
 
         &:hover {
-            background-color: var(--color-primary-900);
-            color: var(--color-neutral-000); 
+            background-color: var(--btn-primary-hover);
+            color: var(--btn-primary-text-hover); 
         }
     }
 
     // Кнопка с обводкой (outline)
     &--outline {
-        background-color: transparent;
-        border: 1px solid var(--color-primary-700);
-        color: var(--color-primary-700);
+        background-color: var(--btn-secondary-bg);
+        border: 1px solid var(--btn-secondary-border);
+        color: var(--btn-secondary-text);
 
         &:hover {
-            background-color: var(--color-primary-700);
-            color: var(--color-neutral-000);
+            background-color: var(--btn-secondary-bg-hover);
+            color: var(--btn-secondary-text-hover);
         }
     }
 
     // Текстовая кнопка (text)
     &--text {
-        background-color: transparent;
-        border-color: transparent;
+        background-color: var(--btn-text-background);
+        border-color: var(--btn-text-border);
         
         font-weight: 600;
-        color: var(--color-primary-700);
+        color: var(--btn-text-color);
 
         padding-inline: var(--space-2);
 
         &:hover {
-            background-color: var(--color-primary-100);
-            color: var(--color-primary-900);
+            background-color: var(--btn-text-bg-hover);
+            color: var(--btn-text-color-hover);
         }
     }
 

@@ -28,7 +28,7 @@
 		inset: 0;
 		z-index: 1;
 		pointer-events: none;
-		background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+		background: var(--bg-overlay-fade-right);
 	}
 
 	&__content {
@@ -40,8 +40,8 @@
 		align-items: flex-start;
 		gap: var(--space-6);
 		
-		color: var(--color-neutral-000);
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+		color: var(--text-inverse);
+		text-shadow: var(--shadow-md);
 
 		width: 100%;
 		max-width: 100%;
@@ -98,15 +98,6 @@
 		height: 48px;
 
 		border-radius: var(--radius-full);
-		background-color: var(--color-primary-700);
-		color: var(--color-neutral-000);
-
-		&:hover {
-			background-color: var(--text-inverse);
-			color: var(--color-primary-700);
-		}
-
-		transition: all var(--duration-base);
 
 		svg {
 			width: 24px;
@@ -123,6 +114,5 @@
 				transform: translateY(5px);
 			}
 		}
-
 	}
 }

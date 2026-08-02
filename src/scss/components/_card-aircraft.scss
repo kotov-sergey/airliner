@@ -61,13 +61,14 @@
 
     &__title {
         font-size: var(--text-base);
+        color: var(--text-main);
         text-align: left;
 
         transition: color var(--duration-base) var(--ease-in-out);
     }
 
     &:hover &__title {
-        color: var(--color-primary-500);
+        color: var(--text-brand);
     }
     
     &__link::after {
@@ -80,6 +81,7 @@
 
     &__description {
         font-size: var(--text-sm);
+        color: var(--text-secondary);
 
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -118,11 +120,6 @@
         flex-grow: 1;
 
         transition: all var(--duration-base) var(--ease-in-out);
-    }
-
-    &:hover &__btn-details {
-      background-color: var(--color-primary-900);
-      color: var(--color-neutral-000); 
     }
 
     &__btn-compare {
@@ -165,7 +162,6 @@
         transform: translateX( 6px );
     }
     
-
     &--horizontal {
 
         .card-aircraft__title {

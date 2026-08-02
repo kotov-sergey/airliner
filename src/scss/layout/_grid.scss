@@ -22,11 +22,7 @@
     }
 
     // Модификаторы секции
-    &--white {
-        background-color: var(--bg-surface);
-    }
-
-    &--gray {
+    &--alt {
         background-color: var(--bg-surface-alt);
     }
 }

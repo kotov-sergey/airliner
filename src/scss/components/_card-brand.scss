@@ -43,17 +43,22 @@
 		opacity: 1;
 	}
 
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
 	&__title {
 		font-size: var(--text-lg);
 		color: var(--text-main);
-		margin-bottom: var(--space-1);
 		text-align: left;
 
 		transition: color var(--duration-base) var(--ease-in-out);
 	}
 
 	&:hover &__title {
-    	color: var(--color-primary-500);
+    	color: var(--text-brand);
     }
 
 	&__meta {
