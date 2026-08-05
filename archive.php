@@ -1,45 +1,49 @@
-<?php get_header(); ?>
+<?php
+// Универсальный шаблон для всех типов архивов (Рубрики, Теги, Даты)
 
-<div class="page-wrapper">
-	<div class="container">
-		<div class="content-layout content-layout--with-sidebar">
-			<div id="content" class="content-layout__main">
-				<main id="primary" class="main-content">
+get_header();
+?>
 
-					<div class="archive-wrapper">
+<main class="site-main page-archive">
+    <div class="container">
 
-						<header class="archive-header">
-							<h1 class="archive-title">
-								<?php the_archive_title(); ?>
-							</h1>
-						</header>
+        <!-- Заголовок архива -->
+        <h1 class="page-archive__title"><?php the_archive_title(); ?></h1>
 
-						<?php if ( have_posts() ) : ?>
+        <?php if ( have_posts() ) : ?>
 
-							<?php while ( have_posts() ) : the_post(); ?>
-								<?php get_template_part( 'template-parts/content' ); ?>
-							<?php endwhile; ?>
+            <!-- Сетка записей -->
+            <div class="l-grid l-grid--3">
 
-							<div class="archive-pagination">
-								<?php
-								the_posts_pagination( array(
-									'mid_size'  => 2,
-									'prev_text' => __( '« Назад', 'mytheme' ),
-									'next_text' => __( 'Вперёд »', 'mytheme' ),
-								) );
-								?>
-							</div>
+                <?php while ( have_posts() ) : the_post(); ?>
+                    <?php get_template_part( 'template-parts/components/card-post' ); ?>
+                <?php endwhile; ?>
 
-						<?php else : ?>
-							<?php get_template_part( 'template-parts/content', 'none' ); ?>
-						<?php endif; ?>
+            </div>
 
-					</div>
-				</main>
-			</div>
-				<?php get_sidebar(); ?>
-		</div>
-	</div>
-</div>
+            <!-- Пагинация архива -->
+            <div class="page-archive__pagination">
+
+                <?php
+                    the_posts_pagination( array(
+                        'prev_text' => '← Назад',
+                        'next_text' => 'Вперед →',
+                        'class' => 'pagination'
+                    ) );
+                ?>
+            
+            </div>
+        
+        <?php else : ?>
+
+            <!-- Сообщение для пустого архива -->
+            <div class="page-archive__empty">
+                <p class="text-muted">В этом разделе пока нет опубликованных статей.</p>
+            </div>
+
+        <?php endif; ?>
+        
+    </div>
+</main>
 
 <?php get_footer(); ?>
