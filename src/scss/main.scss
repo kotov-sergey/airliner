@@ -49,9 +49,9 @@
 @use 'components/pill';
 @use 'components/category-cloud';
 @use 'components/breadcrumbs';
+@use 'components/hero';
 
 // Sections (Крупные блоки)
-@use 'sections/hero';
 @use 'sections/aircrafts';
 @use 'sections/history';
 @use 'sections/fuselage-types';
