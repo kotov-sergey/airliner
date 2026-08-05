@@ -65,7 +65,7 @@ if ( ! $section_image && ! $section_header ) return;
                         <?php if ( $button_secondary ) :
                             $secondary_target = ! empty ($button_secondary['target']) ? $button_secondary['target'] : '_self';
                         ?>
-                            <a class="btn btn--outline image-text__btn"
+                            <a class="btn btn--secondary image-text__btn"
                                 href="<?php echo esc_url( $button_secondary['url']); ?>" 
                                 target="<?php echo esc_attr( $secondary_target ); ?>">
                                     <?php echo esc_html( $button_secondary['title'] ); ?>

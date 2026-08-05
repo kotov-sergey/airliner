@@ -15,28 +15,16 @@ get_header();
     ?>
 
         <!-- Hero-секция -->
-        <?php if ( $hero_title && $hero_description ) : ?>
-            <section class="landing-hero">
+        <?php if ( $hero_title ) : ?>
 
-                <div class="landing-hero__background">
-                    <?php if ( $hero_background ) : ?>
-                        <?php echo wp_get_attachment_image( $hero_background, 'full', false, ['class' => 'landing-hero__image'] ); ?>
-                    <?php endif; ?>
+            <?php
+                get_template_part( 'template-parts/components/hero', null, [
+                    'title' => $hero_title,
+                    'description' => $hero_description,
+                    'background_image' => $hero_background
+                ] );
+            ?>
 
-                    <div class="landing-hero__overlay"></div>
-                </div>
-
-                <div class="container landing-hero__container">
-                    <div class="landing-hero__content">
-                        <h1 class="landing-hero__title"><?php echo esc_html( $hero_title ); ?></h1>
-
-                        <?php if ( $hero_description ) : ?>
-                            <div class="landing-hero__description"><?php echo wp_kses_post( wpautop( $hero_description ) ); ?></div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-            </section>
         <?php endif; ?>
 
         <!-- Вывод кастомных блоков -->

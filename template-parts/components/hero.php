@@ -3,7 +3,7 @@
 
 $title = $args['title'] ?? get_the_title(); // Заголовок секции
 $description = $args['description'] ?? ''; // Описание секции
-$bg_image = $args['bg_image'] ?? ''; // ID вложения изображения
+$bg_image = $args['background_image'] ?? ''; // ID вложения изображения
 
 $modifier = $args['modifier'] ?? 'hero--default'; // Модификатор секции
 $scroll_target = $args['scroll_target'] ?? '';

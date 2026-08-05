@@ -80,7 +80,7 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 		<?php if ( $layout === 'vertical' ) : ?>
 
 			<div class="card-aircraft__actions">
-				<span class="btn btn--primary card-aircraft__btn-details">Подробнее</span>
+				<span class="btn btn--secondary card-aircraft__btn-details">Подробнее</span>
 			</div>
 		<?php endif; ?>
 	

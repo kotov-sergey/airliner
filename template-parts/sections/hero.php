@@ -9,9 +9,9 @@ $modifier = get_sub_field( 'hero_modifier' ); // Модификатор секц
 $scroll_target = get_sub_field ( 'hero_target' ); // Кнопка-якорь секции
 
 get_template_part( 'template-parts/components/hero', null, [
-    'title'       => $hero_title ? $hero_title : get_the_title(),
+    'title' => $hero_title ? $hero_title : get_the_title(),
     'description' => $hero_description,
-    'bg_image'    => $hero_background,
-    'modifier'    => $modifier ? $modifier : 'hero--default',
+    'background_image' => $hero_background,
+    'modifier' => $modifier ? $modifier : 'hero--default',
     'scroll_target' => $scroll_target ? $scroll_target : (is_front_page() ? '#brands' : '')
 ] );

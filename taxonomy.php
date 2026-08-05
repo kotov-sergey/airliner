@@ -5,7 +5,10 @@ $current_term = get_queried_object();
 
 $brand_image = get_field( 'brand_logo', $current_term );
 
-$hero_image = get_field( 'taxonomy_hero_bg', $current_term );
+$hero_background = get_field( 'taxonomy_hero_bg', $current_term );
+$hero_title = $current_term->name;
+$hero_description = $current_term->description;
+
 $seo_text = get_field( 'seo_text', $current_term );
 
 get_header();
@@ -14,26 +17,13 @@ get_header();
 <main class="site-main page-taxonomy">
 
     <!--Hero-секция таксономии-->
-    <section class="section taxonomy-hero">
-        
-        <div class="taxonomy-hero__background">
-            <?php if ( $hero_image ) : ?>
-                <?php echo wp_get_attachment_image( $hero_image['id'], 'full', false, array( 'class' => 'taxonomy-hero__background-image' ) ); ?>
-            <?php endif; ?>
-
-            <div class="taxonomy-hero__overlay"></div>
-        </div>
-        
-        <div class="container taxonomy-hero__container">
-        
-            <div class="taxonomy-hero__content">
-                <h1 class="taxonomy-hero__title"><?php echo esc_html( $current_term->name ); ?></h1>
-    
-                <div class="taxonomy-hero__description"><?php echo wp_kses_post( $current_term->description ); ?></div>
-            </div>
-
-        </div>
-    </section>
+    <?php
+        get_template_part( 'template-parts/components/hero', null, [
+            'title' => $hero_title ? $hero_title : get_the_title(),
+            'description' => $hero_description,
+            'background_image' => $hero_background
+        ] );
+    ?>
 
     <!--Секция каталог таксономии-->
     <section class="section catalog-content page-taxonomy__content">
