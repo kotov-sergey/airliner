@@ -8,53 +8,22 @@
 
 	<?php while( have_posts() ) : the_post();
 		
-		// Обрезаем короткое описание
-		$description = wp_trim_words( get_the_excerpt(), 20, '...' );
-	
+		// Данные для Hero-секции
+		$hero_background = get_post_thumbnail_id();
+		$hero_title = get_the_title();
+		$hero_description = wp_trim_words( get_the_excerpt(), 12, '...' );
 	?>
 
 		<article class="single-post">
 			
 			<!-- Hero-секция -->
-			<header class="single-post__header">
-
-				<!-- Фоновое изображение -->
-				<?php if( has_post_thumbnail() ) : ?>
-					<div class="single-post__thumbnail">
-						<?php 
-							the_post_thumbnail( 'full', array(
-								'class' => 'single-post__image',
-								'loading' => 'eager',
-							) ); 
-						?>
-					</div>
-				<?php endif; ?>
-
-				<!-- Затемнение фона -->
-				<div class="single-post__overlay"></div>
-
-				<div class="container">
-					<div class="single-post__header-content">
-
-						<!-- Мета-данные -->
-						<div class="single-post__meta">
-							<?php get_template_part( 'template-parts/components/post-meta' ); ?>
-						</div>
-					
-						<!-- Заголовок -->
-						<h1 class="single-post__title">
-							<?php the_title(); ?>
-						</h1>
-
-						<!-- Короткое описание -->
-						<div class="single-post__description">
-							<?php echo wp_kses_post( $description ); ?>
-						</div>
-
-					</div>
-				</div>
-			
-			</header>
+			<?php
+				get_template_part( 'template-parts/components/hero', null, [
+					'title' => $hero_title ? $hero_title : get_the_title(),
+					'description' => $hero_description,
+					'background_image' => $hero_background
+				] );
+			?>
 
 			<!-- Основное содержимое -->
 			<div class="container container--narrow">
