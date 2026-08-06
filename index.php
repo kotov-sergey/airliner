@@ -1,46 +1,64 @@
 <?php
-/*
- * Главный шаблон-заглушка.
- * Обрабатывает Поиск, Архивы, Теги, если для них нет своих файлов.
- */
+// Главный резервный шаблон темы (index.php)
+
 get_header();
 ?>
 
-<main class="main">
+<main class="site-main page-index">
     <div class="container">
 
-        <header class="page-header">
-            <h1 class="page-title">
+        <!-- Заголовок страницы -->
+        <header class="page-index__header">
+            <h1 class="page-index__title">
+                
                 <?php
-                	if ( is_search() ) {
-                		printf( 'Результаты поиска: %s', get_search_query() );
-                	} elseif ( is_archive() ) {
-                		the_archive_title();
-                	} else {
-                		_e( 'Блог', 'avialiner' );
-                	}
+                    if ( is_home() && ! is_front_page() ) {
+                        single_post_title();
+                    }
+                    elseif ( is_archive() ) {
+                        the_archive_title();
+                    }
+                    else {
+                        echo esc_html( 'Блог и публикации' );
+                    }
                 ?>
+                
             </h1>
         </header>
 
-        <!-- Сетка постов -->
         <?php if ( have_posts() ) : ?>
-        	<div class="posts-grid">
-            	<?php while ( have_posts() ) : the_post(); ?>
 
-            	<!-- Карточка новости -->
-            	<?php get_template_part( 'template-parts/card', 'post' ); ?>
+            <!-- Сетка записей -->
+            <div class="l-grid l-grid--3">
 
-            	<?php endwhile; ?>
-        	</div>
+                <?php while ( have_posts() ) : the_post(); ?>
+                    <?php get_template_part( 'template-parts/components/card-post' ); ?>
+                <?php endwhile; ?>
 
-        	<!-- Пагинация -->
-        	<?php the_posts_pagination(); ?>
+            </div>
 
+            <!-- Пагинация (Номера страниц) -->
+            <div class="page-index__pagination">
+
+                <?php
+                    the_posts_pagination( array(
+                        'prev_text' => '← Назад',
+                        'next_text' => 'Вперед →',
+                        'class' => 'pagination'
+                    ) );
+                ?>
+            
+            </div>
+        
         <?php else : ?>
-        	<p>Ничего не найдено.</p>
-        <?php endif; ?>
 
+            <!-- Сообщение (Если нет записей) -->
+            <div class="page-index__empty">
+                <p class="text-muted">Извините, на данный момент публикаций не найдено.</p>
+            </div>
+
+        <?php endif; ?>
+        
     </div>
 </main>
 
