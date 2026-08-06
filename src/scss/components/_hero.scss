@@ -133,6 +133,46 @@
 		}
 	}
 
+    &__search-results {
+        font-size: var(--text-sm);
+        color: var(--text-inverse);
+        background-color: var(--color-neutral-000);
+        
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-full);
+
+        padding: var(--space-2) var(--space-4);
+    }
+
+    &__search-form {
+        width: 100%;
+        max-width: 512px;
+        margin-top: var(--space-2);
+    }
+
+    &__search-input {
+        width: 100%;
+        padding: var(--space-3) var(--space-5);
+        border: 1px solid var(--border-light);
+        border-radius: var( --radius-2xl);
+    }
+
+    // Модификатор для текста по центру
+    &--center {
+
+        .hero__content {
+            text-align: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero__description {
+            margin-left: auto;
+            margin-right: auto;           
+        }
+    }
+
     // Секция на всю высоту
     &--full {
 

@@ -6,7 +6,9 @@ $description = $args['description'] ?? ''; // Описание секции
 $bg_image = $args['background_image'] ?? ''; // ID вложения изображения
 
 $modifier = $args['modifier'] ?? 'hero--default'; // Модификатор секции
-$scroll_target = $args['scroll_target'] ?? '';
+$scroll_target = $args['scroll_target'] ?? ''; // Кнопка-якорь секции
+
+$show_meta = $args['show_meta'] ?? false; // Мета-данные секции (для записей)
 ?>
 
 <!-- Hero-секция -->
@@ -42,7 +44,14 @@ $scroll_target = $args['scroll_target'] ?? '';
 
 	<div class="container hero__container">
 		<div class="hero__content">	
-			
+
+            <!-- Мета-данные секции (для записей) -->
+            <?php if ( $show_meta ) : ?>
+                <div class="hero__meta">
+                    <?php get_template_part( 'template-parts/components/post-meta' ); ?>
+                </div>
+            <?php endif; ?>
+
             <!-- Заголовок секции -->
 			<?php if ( $title ): ?>
 				<h1 class="hero__title"><?php echo esc_html( $title ); ?></h1>

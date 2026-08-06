@@ -27,16 +27,45 @@ wp_reset_postdata();
 <main class="site-main page-search">
 
     <!--Hero-секция -->
-    <section class="section search-hero">
+    <section class="hero hero--default hero--center">
 
-        <div class="search-hero__background">
-			<img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/search-placeholder.webp' ); ?>" alt="Фон hero-секции страницы поиска" class="search-hero__image" />
+        <!-- Фоновое изображение секции -->
+        <div class="hero__background">
+
+			<img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/search-placeholder.webp' ); ?>" 
+                alt="Фон Hero-секции страницы поиска" 
+                class="hero__image" 
+                loading="eager" 
+                fetchpriority="high" 
+            />
+            
+            <!-- Затемнение фона секции -->
+            <div class="hero__overlay"></div>
+
         </div>
 
-        <div class="container search-hero__inner">
-            <p class="search-hero__results">Результаты поиска – найдено <?php echo ( $total_results ); ?></p>
-			<h1 class="search-hero__title">Поиск: «<?php echo get_search_query(); ?>»</h1>
-            <input id="search-input" class="search-hero__input" type="search" name="s" placeholder="Введите название самолёта, бренда или темы..." />
+        <div class="container hero__container">
+            <div class="hero__content">
+
+                <!-- Результат поиска -->
+                <p class="hero__search-results">Результаты поиска – найдено <?php echo esc_html( $total_results ); ?></p>
+
+                <!-- Заголовок секции -->
+                <h1 class="hero__title">Поиск: «<?php echo get_search_query(); ?>»</h1>
+
+                <!-- Форма поиска секции -->
+                <form role="search" method="get" class="hero__search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <input 
+                        id="search-input" 
+                        class="hero__search-input" 
+                        type="search" 
+                        name="s" 
+                        placeholder="Введите название самолёта, бренда или темы..." 
+                        value="<?php echo esc_attr( get_search_query() ); ?>"
+                    />
+                </form>
+
+            </div>
         </div>
 
     </section>

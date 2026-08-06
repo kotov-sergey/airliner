@@ -21,7 +21,8 @@
 				get_template_part( 'template-parts/components/hero', null, [
 					'title' => $hero_title ? $hero_title : get_the_title(),
 					'description' => $hero_description,
-					'background_image' => $hero_background
+					'background_image' => $hero_background,
+					'show_meta' => true
 				] );
 			?>
 
