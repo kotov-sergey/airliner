@@ -23,7 +23,7 @@
 		inset: 0;
 		z-index: 0;
 
-		background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+		background: var(--bg-overlay-dark);
 	}
 
 	&__image {
@@ -63,7 +63,7 @@
 	&__title {
 		font-size: var(--text-xl);
         line-height: var(--leading-snug);
-        color: var(--color-neutral-000);
+        color: var(--text-inverse);
 
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
@@ -74,8 +74,8 @@
 
 	&__description {
 		font-size: var(--text-sm);
-        color: var(--color-neutral-100);
-		opacity: 0.9;
+        color: var(--text-inverse);
+		opacity: 0.8;
 
 		 display: -webkit-box;
 		-webkit-line-clamp: 2;
@@ -90,7 +90,7 @@
 		align-items: center;
 
 		font-size: var(--text-sm);
-		color: var(--color-neutral-000);
+		color: var(--text-inverse);
 
 		opacity: 0;
 		transition: all var(--duration-base) var(--ease-in-out);
@@ -99,5 +99,4 @@
 	&:hover &__action {
 		opacity: 1;
 	}
-
 }
