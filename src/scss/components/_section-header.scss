@@ -1,6 +1,10 @@
 // Стили компонента заголовка (для секций)
 .section-header {
 
+    --sh-number-color: var(--color-blue-500);
+    --sh-line-color: var(--color-blue-500);
+    --sh-label-color: var(--text-muted);
+
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -20,17 +24,21 @@
             display: inline-block;
 			vertical-align: middle;
 
-			width: 36px;
+			width: 48px;
 			height: 1px;
 
 			content: '';
             margin-right: var(--space-3);
-            background-color: var(--border-light);
+            background-color: var(--sh-line-color);
         }
     }
 
+    &__label {
+        color: var(--sh-label-color);
+    }
+
     &__number {
-        color: var(--color-primary-500);
+        color: var(--sh-number-color);
         font-weight: 600;
     }
 
@@ -46,6 +54,7 @@
     }
 
     &__description {
+        color: var(--text-secondary);
         text-wrap: pretty;
     }
 
