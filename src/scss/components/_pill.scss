@@ -1,5 +1,19 @@
 // Стили для кнопок-пилюль
 .pill {
+
+    // Для Solid
+    --pill-solid-bg:       var(--color-blue-500);
+    --pill-solid-bg-hover: var(--color-blue-800);
+    --pill-solid-text:     var(--color-white);
+
+    // Для Subtle
+    --pill-subtle-bg:       var(--color-blue-100);
+    --pill-subtle-bg-hover: var(--color-blue-200);
+    --pill-subtle-text:     var(--color-neutral-900);
+
+    // Для Outline
+    --pill-outline-border:  var(--color-blue-500);
+    --pill-outline-text:    var(--color-neutral-600);
     
     // Общие стили
     display: inline-flex;
@@ -43,50 +57,50 @@
     // Вариант 1: Обводка (Для облака тегов)
     &--outline {
         background-color: transparent;
-        border: 1px solid var(--color-primary-700);
-        color: var(--color-neutral-500);
+        border: 1px solid var(--pill-outline-border);
+        color: var(--pill-outline-text);
 
         &:hover {
             background-color: transparent;
-            color: var(--color-neutral-800);
+            color: var(--text-brand);
         }
     }
 
     // Вариант 2: Заливка цветом (Для детальной самолета)
     &--solid {
-        background-color: var(--color-primary-700);
-        color: var(--color-neutral-000);
+        background-color: var(--pill-solid-bg);
+        color: var(--pill-solid-text);
 
         &:hover {
-            background-color: var(--color-primary-900);
-            color: var(--color-neutral-000);
+            background-color: var(--pill-solid-bg-hover);
+            color: var(--color-white);
         }
     }
 
     // Вариант 3: Мягкий фон (Для карточек статей)
-    &--subtle{
-        background-color: var(--color-neutral-200);
-        color: var(--color-neutral-800);
+    &--subtle {
+        background-color: var(--pill-subtle-bg);
+        color: var(-text-main);
         
         &:hover {
-            background-color: var(--color-neutral-200);
-            color: var(--color-primary-500);
+            background-color: var(--pill-subtle-bg-hover);
+            color: var(--text-brand);
         }
     }
 
     // Вариант 4: Просто текст (Для горизонтальной карточки лайнера)
-    &--text-only{
+    &--text-only {
         background-color: transparent;
         border: 0;
         border-radius: 0;
         padding: 0;
 
-        color: var(--color-neutral-400);
+        color: var(--text-muted);
         font-size: var(--text-xs);
 
         &:hover {
             background-color: transparent;
-            color: var(--color-primary-900);
+            color: var(--text-brand);
         }
     }    
 }
