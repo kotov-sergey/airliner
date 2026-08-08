@@ -3,6 +3,14 @@
 
 $fuselage_types = get_sub_field( 'fuselage_type' );
 
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section section-fuselage-types ' . $section_background );
+
 $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 
@@ -10,7 +18,7 @@ if ( empty( $fuselage_types ) ) return;
 ?>
 
 <!-- Секция тип фюзеляжа -->
-<section class="section section-fuselage-types">
+<section class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 		
         <?php 

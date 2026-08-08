@@ -21,9 +21,14 @@
         padding-block: var(--space-16);
     }
 
-    // Модификаторы секции
+    // Чередующиеся секции
     &--alt {
         background-color: var(--bg-surface-alt);
+    }
+
+    // CTA-секции
+    &--dark {
+        background-color: var(--bg-inverse);
     }
 }
 

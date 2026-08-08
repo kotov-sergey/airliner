@@ -195,6 +195,34 @@
                             "bidirectional": 0,
                             "multiple": 0,
                             "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_6a7742fd50d02",
+                            "label": "Фон секции",
+                            "name": "section_background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "По умолчанию",
+                                "section--alt": "Белый",
+                                "section--dark": "Тёмно-синий"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -261,6 +289,34 @@
                             "elements": "",
                             "bidirectional": 0,
                             "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_6a77461bdc4f7",
+                            "label": "Фон секции",
+                            "name": "section_background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "По умолчанию",
+                                "section--alt": "Белый",
+                                "section--dark": "Тёмно-синий"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -296,7 +352,7 @@
                         },
                         {
                             "key": "field_6987ac4c4bc46",
-                            "label": "Фон секции",
+                            "label": "Изображение секции",
                             "name": "section_image",
                             "aria-label": "",
                             "type": "image",
@@ -408,6 +464,34 @@
                                     "parent_repeater": "field_6987386b6a7f3"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_6a77471e3db5e",
+                            "label": "Фон секции",
+                            "name": "section_background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "По умолчанию",
+                                "section--alt": "Белый",
+                                "section--dark": "Тёмно-синий"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -466,6 +550,34 @@
                             "bidirectional": 0,
                             "multiple": 0,
                             "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_6a7747faabb3d",
+                            "label": "Фон секции",
+                            "name": "section_background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "По умолчанию",
+                                "section--alt": "Белый",
+                                "section--dark": "Тёмно-синий"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -498,6 +610,34 @@
                             "layout": "block",
                             "prefix_label": 0,
                             "prefix_name": 0
+                        },
+                        {
+                            "key": "field_6a7748a4a0dcd",
+                            "label": "Фон секции",
+                            "name": "section_background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "По умолчанию",
+                                "section--alt": "Белый",
+                                "section--dark": "Тёмно-синий"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -622,5 +762,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1785952094
+    "modified": 1786202318
 }

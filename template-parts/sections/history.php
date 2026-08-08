@@ -5,17 +5,25 @@ $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 
 $timeline = get_sub_field( 'timeline' );
-$section_bg = get_sub_field( 'section_image' );
+$section_image = get_sub_field( 'section_image' );
+
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section section-history ' . $section_background );
 ?>
 
 <!-- Секция эволюция гражданской авиации -->
-<section class="section section-history section--white">
+<section class="<?php echo esc_attr( $classes ); ?>">
     
-	<?php if ( $section_bg ) : ?>
+	<?php if ( $section_image ) : ?>
 		<div class="section-history__bg">
 
         	<?php 
-            echo wp_get_attachment_image( $section_bg['id'], 'full', false, array(
+            echo wp_get_attachment_image( $section_image['id'], 'full', false, array(
                 'class' => 'section-history__bg-image',
                 'alt'   => '',
                 'aria-hidden' => 'true'

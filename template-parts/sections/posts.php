@@ -5,6 +5,14 @@
 $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section section-recent-posts ' . $section_background );
+
 $posts_query = new WP_Query([
 	'post_type' => 'post',
 	'posts_per_page' => 3,
@@ -15,7 +23,7 @@ $posts_query = new WP_Query([
 ?>
 
 <!-- Секция последние статьи -->
-<section class="section section-recent-posts section--white">
+<section class="<?php echo esc_attr( $classes ); ?>">
   <div class="container">
 
     <?php 

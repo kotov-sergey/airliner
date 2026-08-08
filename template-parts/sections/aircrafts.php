@@ -5,6 +5,14 @@
 $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section section-aircrafts ' . $section_background );
+
 $ids = get_sub_field( 'related_aircrafts' );
 
 $specs_to_show = array( 'range', 'speed', 'seats' );
@@ -23,7 +31,7 @@ if ( !empty( $ids ) ) {
 ?>
 
 <!-- Секция популярные авиалайнеры -->
-<section class="section section-aircrafts">
+<section class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 		
 		<?php 

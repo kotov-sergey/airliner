@@ -39,8 +39,10 @@
     /* --- ФОНЫ (Backgrounds) --- */
     --bg-page:        var(--color-blue-50);    // Основной фон сайта
     --bg-surface:     var(--color-white);      // Белый фон (карточки, модалки)
-    --bg-surface-alt: var(--color-blue-100);   // Чередующиеся секции
+    --bg-surface-alt: var(--color-white);   // Чередующиеся секции
     --bg-inverse:     var(--color-blue-900);   // Темные секции (CTA, Footer)
+    --bg-header:      var(--color-blue-900);   // Фон для шапки
+    --bg-footer:      var(--color-blue-900);   // Фон для подвала
 
     /* Оверлеи и Градиенты (Затемнение картинок) */
     --bg-overlay-fade-right: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); // Для Hero-секций (затемнение слева направо)
