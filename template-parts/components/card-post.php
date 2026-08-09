@@ -54,7 +54,7 @@ $layout = $args['layout'] ?? 'standard';
 
 			<div class="promo-card__meta">
 				<?php get_template_part( 'template-parts/components/post-meta', null, [
-					'modifier' => 'post-meta--overlay'
+					'modifier' => 'post-meta--inverse'
 				] ); ?>
 			</div>
 

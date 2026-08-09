@@ -7,17 +7,10 @@
 
     font-size: var(--text-xs);
     
-    color: var(--color-neutral-600);
+    color: var(--text-secondary);
 	opacity: 0.8;
 
-    &--overlay {
-        color: var(--color-neutral-000);
-
-        .post-meta__category {
-            background-color: var(--color-neutral-700);
-            backdrop-filter: blur(4px);
-            color: var(--color-neutral-000);
-            border: 1px solid var(--border-light);
-        }
+    &--inverse {
+        color: var(--text-inverse);
     }
 }

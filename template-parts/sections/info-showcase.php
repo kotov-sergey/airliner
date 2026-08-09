@@ -6,10 +6,16 @@ $section_header = get_sub_field( 'section_header' );
 
 $section_description = get_sub_field( 'section_description' );
 
-$section_bg_class = get_sub_field ( 'section_background' ) ?: 'section--gray';
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section info-showcase ' . $section_background );
 ?>
 
-<section class="section info-showcase <?php echo esc_attr( $section_bg_class ); ?>">
+<section class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <div class="info-showcase__grid">

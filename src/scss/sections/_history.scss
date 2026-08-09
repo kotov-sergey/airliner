@@ -1,6 +1,9 @@
 // Эволюция гражданской авиации
 
 .section-history {
+    --history-dot-bg: var(--color-blue-500);
+    --history-timeline-bg: var(--color-blue-500);
+
     position: relative;
 
     @media ( min-width: 768px ) {
@@ -60,7 +63,7 @@
 
             height: calc(100% + var(--space-16)); 
 
-            background-color: var(--color-primary-500);
+            background-color: var(--history-timeline-bg);
         }
         
         &:last-child {
@@ -130,7 +133,7 @@
         width: 12px;
         height: 12px;
 
-        background-color: var(--color-primary-700);
+        background-color: var(--history-dot-bg);
         border-radius: var(--radius-full);
 
         margin-top: var(--space-2);

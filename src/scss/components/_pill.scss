@@ -80,7 +80,7 @@
     // Вариант 3: Мягкий фон (Для карточек статей)
     &--subtle {
         background-color: var(--pill-subtle-bg);
-        color: var(-text-main);
+        color: var(--text-main);
         
         &:hover {
             background-color: var(--pill-subtle-bg-hover);

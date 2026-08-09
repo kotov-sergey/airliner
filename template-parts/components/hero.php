@@ -48,7 +48,11 @@ $show_meta = $args['show_meta'] ?? false; // Мета-данные секции 
             <!-- Мета-данные секции (для записей) -->
             <?php if ( $show_meta ) : ?>
                 <div class="hero__meta">
-                    <?php get_template_part( 'template-parts/components/post-meta' ); ?>
+                    <?php 
+                        get_template_part( 'template-parts/components/post-meta', null, [
+                            'modifier' => 'post-meta--inverse'
+                        ] ); 
+                    ?>
                 </div>
             <?php endif; ?>
 

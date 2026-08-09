@@ -4,14 +4,20 @@
 $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 
-$section_background = get_sub_field( 'section_background' ) ?: 'section--gray';
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section faq-block ' . $section_background );
 
 $accordion = get_sub_field( 'accordion' );
 
 if ( ! $section_header && ! $accordion ) return;
 ?>
 
-<section class="section faq-block <?php echo esc_attr( $section_background ); ?>">
+<section class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <!-- Блок заголовка секции -->

@@ -5,7 +5,14 @@ $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 
 $card_style = get_sub_field( 'card_style' ) ?: 'default';
-$section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
+
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section advantages-showcase ' . $section_background );
 
 $grid_class    = 'l-grid l-grid--auto'; 
 $card_modifier = ''; 
@@ -24,7 +31,7 @@ elseif ( $card_style === 'horizontal' ) {
 }
 ?>
 
-<section class="section advantages-showcase <?php echo esc_attr( $section_bg_class ); ?>">
+<section class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <!-- Блок заголовка секции -->

@@ -4,7 +4,7 @@
     position: relative;
     overflow: hidden;
 
-    background-color: var(--color-primary-900);
+    background-color: var(--bg-inverse);
 
     &__content {
         position: relative;
@@ -21,11 +21,12 @@
 
     &__title {
         font-size: var(--text-3xl);
-        color: var(--color-neutral-000);
+        color: var(--text-inverse);
     }
 
     &__description p {
-        color: var(--color-neutral-200);
+        color: var(--text-inverse);
+        opacity: 0.8;
     }
 
     &__media {
@@ -36,10 +37,10 @@
         right: 0;
         left: 50%;
 
-        background-color: #000000; 
+        background-color: var(--color-black); 
 
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%);
-        mask-image: linear-gradient(to right, transparent 0%, black 20%);
+        -webkit-mask-image: var(--bg-overlay-dark-right);
+        mask-image: var(--bg-overlay-dark-right);
     }
 
     &__image {

@@ -47,7 +47,8 @@
     /* Оверлеи и Градиенты (Затемнение картинок) */
     --bg-overlay-fade-right: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); // Для Hero-секций (затемнение слева направо)
     --bg-overlay-fade-top: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); // Для Карточек (затемнение снизу вверх)
-    --bg-overlay-dark: rgba(0, 0, 0, 0.5); // Равномерное затемнение (для CTA, 404 или модалок)  
+    --bg-overlay-dark: rgba(0, 0, 0, 0.5); // Равномерное затемнение (для CTA, 404 или модалок)
+    --bg-overlay-dark-right: linear-gradient(to right, transparent 0%, black 20%); // Равномерное затемнение (для CTA)
 
     /* --- ТЕКСТ (Typography) --- */
     --text-main:      var(--color-neutral-900); // Основной текст для чтения

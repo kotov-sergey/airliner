@@ -2,7 +2,7 @@
 .entry-content {
 
     // Стили для всего контента
-    color: var(--text-secondary);
+    color: var(--text-main);
     line-height: var(--leading-normal);
 
     // Абзацы
@@ -17,7 +17,7 @@
 
     // Заголовки
     h2, h3, h4, h5, h6 {
-        color: var(--text-main);
+        color: var(--text-brand);
 
         margin-top: var(--space-10);
         margin-bottom: var(--space-4);
@@ -36,11 +36,11 @@
 
     // Ссылки
     a {
-        color: var(--text-link);
+        color: var(--link-color);
         text-decoration: underline;
         
         &:hover {
-            color: var(--text-link-hover);
+            color: var(--link-color-hover);
             text-decoration: none;
         }
     }

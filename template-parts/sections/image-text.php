@@ -13,12 +13,18 @@ $button_secondary = get_sub_field( 'button_secondary' );
 $image_position = get_sub_field( 'image_position' ) ?: 'left';
 $css_class = 'image-text__grid image-text__grid--image-' . $image_position;
 
-$section_bg_class = get_sub_field( 'section_background' ) ?: 'section--gray';
+$section_background = get_sub_field( 'section_background' );
+
+if ( $section_background === 'default' || ! $section_background ) {
+	$section_background = '';
+}
+
+$classes = trim( 'section image-text ' . $section_background );
 
 if ( ! $section_image && ! $section_header ) return;
 ?>
 
-<section class="section image-text <?php echo esc_attr(  $section_bg_class ); ?>">
+<section class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <div class="<?php echo esc_attr( $css_class ); ?>">

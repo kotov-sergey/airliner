@@ -44,15 +44,15 @@ $range = get_field( 'range', $fuselage_type );
             
             <?php if ( $capacity ) : ?>
                 <div class="card-fuselage__spec-row">
-                    <dt>Вместимость</dt>
-                    <dd><?php echo esc_html( $capacity ); ?></dd>
+                    <dt class="card-fuselage__spec-row-label">Вместимость</dt>
+                    <dd class="card-fuselage__spec-row-value"><?php echo esc_html( $capacity ); ?></dd>
                 </div>
             <?php endif; ?>
 
              <?php if ( $range ) : ?>
                 <div class="card-fuselage__spec-row">
-                    <dt>Дальность</dt>
-                    <dd><?php echo esc_html( $range ); ?></dd>
+                    <dt class="card-fuselage__spec-row-label">Дальность</dt>
+                    <dd class="card-fuselage__spec-row-value"><?php echo esc_html( $range ); ?></dd>
                 </div>
             <?php endif; ?>           
 
