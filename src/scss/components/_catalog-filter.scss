@@ -11,7 +11,7 @@
 
         padding: var(--space-5);
 
-        background-color: var(--color-neutral-000);
+        background-color: var(--bg-surface);
     }
 
     &__title {
@@ -36,7 +36,7 @@
         
         transform: translateY(-50%) rotate(45deg); 
         
-        border: solid black;
+        border: solid var(--color-black);
         border-width: 0 2px 2px 0; 
         display: inline-block;
         padding: 4px; 
@@ -46,7 +46,7 @@
     &__content {
         display: grid;
         grid-template-rows: 0fr; 
-        transition: grid-template-rows 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+        transition: grid-template-rows var(--duration-base) var(--ease-in-out), margin-top var(--duration-base) var(--ease-in-out);
         overflow: hidden;
     }
 

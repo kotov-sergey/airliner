@@ -71,6 +71,6 @@ a {
     transition: color var(--duration-fast) var(--ease-in-out);
   
     &:hover {
-        color: var(--link-color); 
+        color: var(--link-color-hover); 
     }
 }

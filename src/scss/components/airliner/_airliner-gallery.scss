@@ -1,25 +1,8 @@
 // Стили для детальной страницы авиалайнера Галерея
 .section-gallery {
-    background-color: var(--color-neutral-900);
+    --gallery-bg: var(--color-blue-800);
 
-    .section-header {
-        &__title {
-            color: var(--color-neutral-300);
-        }
-
-        &__description {
-            color: var(--color-neutral-300);  
-        }
-
-        &__label,
-        &__number {
-            color: var(--color-neutral-300);
-        }
-
-        &__divider {
-            background-color: var(--color-neutral-300);
-        }
-    }
+    background-color: var(--gallery-bg);
 }
 
 .gallery-grid {
@@ -33,13 +16,10 @@
 .gallery-card {
 	display: block;
 	position: relative;
-
     aspect-ratio: 4 / 3;
-	
 	border-radius: var(--radius-xl);
 	
 	overflow: hidden;
-
 
     img {
         position: absolute;
@@ -62,11 +42,11 @@
         z-index: 2;
 
         padding: var(--space-2);
-        background-color: var(--color-neutral-000);
+        background-color: var(--color-white);
 
         border-top-left-radius: var(--radius-xl);
 
-        color: var(--color-primary-700);
+        color: var(--icon-main);
 
         bottom: 0;
         right:0;
@@ -111,7 +91,6 @@
 }
 
 // Генерация css-классов
-
 $columns: 12;
 $rows: 6;
 
@@ -146,6 +125,5 @@ $rows: 6;
         .gallery-card__lg--row-start-#{$i} {
             grid-row-start: #{$i};
         }
-
     }
 }

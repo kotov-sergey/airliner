@@ -2,7 +2,6 @@
 
 .section-cta-block {
     padding-block: var(--space-20);
-    background-color: var(--color-neutral-200);
     
     &__wrapper {
         display: flex;
@@ -12,7 +11,7 @@
 
         padding: var(--space-12);
 
-        background-color: var(--color-neutral-000);
+        background-color: var(--bg-surface);
         border-radius: var(--radius-xl);
     }
 

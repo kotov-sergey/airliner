@@ -1,10 +1,20 @@
 // Стили для секции: CTA-блок
 
 .cta-block {
-    position: relative;
-    overflow: hidden;
 
-    background-color: var(--bg-inverse);
+    &__inner {
+        position: relative;
+        overflow: hidden;
+
+        background-color: var(--bg-inverse);
+        border-radius: var(--radius-xl);
+
+        padding: var(--space-8) var(--space-6);
+
+        @media ( min-width: 768px ) {
+            padding: var(--space-16) var(--space-12);
+        }
+    }
 
     &__content {
         position: relative;
@@ -16,12 +26,20 @@
 
         gap: var(--space-6);
 
-        max-width: 50%;
+        max-width: 100%;
+
+        @media ( min-width: 768px ) {
+            max-width: 50%;
+        }
     }
 
     &__title {
-        font-size: var(--text-3xl);
+        font-size: var(--text-2xl);
         color: var(--text-inverse);
+
+        @media ( min-width: 768px ) {
+            font-size: var(--text-3xl);
+        }
     }
 
     &__description p {
@@ -32,10 +50,15 @@
     &__media {
 		position: absolute;
 		z-index: 0;
+
 		top: 0;
         bottom: 0;
         right: 0;
-        left: 50%;
+        left: 0;
+
+        @media ( min-width: 768px ) {
+            left: 50%;
+        }
 
         background-color: var(--color-black); 
 
@@ -49,6 +72,10 @@
 		object-fit: cover;
 		object-position: center;
 
-        opacity: 0.7;
+        opacity: 0.2;
+
+        @media (min-width: 768px ) {
+            opacity: 0.6;
+        }
     }
 }

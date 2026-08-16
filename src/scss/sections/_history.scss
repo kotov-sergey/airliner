@@ -40,7 +40,6 @@
     position: relative;
     z-index: 2;
 
-
     &__row {
         position: relative;
         display: flex;
@@ -97,9 +96,7 @@
                 .timeline__content {
                     padding-right: var(--space-16);
                 } 
-            }
-            
-            
+            } 
         }
     }
 

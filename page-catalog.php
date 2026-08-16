@@ -108,14 +108,14 @@ get_header();
 
                         <!-- Пагинация -->
                         <?php if ( $catalog_query->max_num_pages > 1 ) : ?>
-                            <div class="catalog-content__pagination">
+                            <div class="pagination catalog-content__pagination">
                                 <?php
-                                echo paginate_links( array( 
-                                    'total' => $catalog_query->max_num_pages,
-                                    'current' => $paged,
-                                    'prev_text' => '&larr; Назад',
-                                    'next_text' => 'Вперёд &rarr;',
-                                ) );
+                                    echo paginate_links( array( 
+                                        'total' => $catalog_query->max_num_pages,
+                                        'current' => $paged,
+                                        'prev_text' => '&larr; Назад',
+                                        'next_text' => 'Вперёд &rarr;',
+                                    ) );
                                 ?>
                             </div>
                         <?php endif; ?>

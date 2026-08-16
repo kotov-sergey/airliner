@@ -21,7 +21,7 @@
 
     border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
-    background-color: var(--color-neutral-200);
+    background-color: var(--bg-surface-alt);
 
     padding: var(--space-2) var(--space-4);
 
@@ -33,7 +33,7 @@
     transition: border-color var(--duration-fast) var(--ease-in-out);
     
     &:focus {
-        border-color: var(--color-primary-700);
+        border-color: var(--border-focus);
     }
 }
 
@@ -42,7 +42,7 @@
 %input-base-styles {
     font-family: inherit;
     font-size: var(--text-sm);
-    color: var(--color-neutral-500);
+    color: var(--text-secondary);
 
     border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
@@ -50,12 +50,13 @@
     padding: var(--space-3) var(--space-4);
 
     &:focus {
-        border-color: var(--color-primary-700);
+        border-color: var(--border-focus);
     }
 }
 
 input[type="text"],
 input[type="email"],
+input[type="checkbox"],
 textarea,
 select {
     @extend %input-base-styles;
@@ -73,10 +74,10 @@ select {
 
     .fluentform .ff-el-input--label {
         font-size: var(--text-sm);
-        color: var(--color-neutral-700);
+        color: var(--text-main);
 
         &.ff-el-is-required label::after {
-            color: var(--color-primary-700);
+            color: var(--text-accent);
         }
     }
 
@@ -98,6 +99,10 @@ select {
             width: 18px;
             height: 18px;
             flex-shrink: 0;
+        }
+
+        span {
+          font-size: var(--text-sm);  
         }
     }
 

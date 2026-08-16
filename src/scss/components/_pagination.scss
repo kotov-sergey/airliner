@@ -1,0 +1,31 @@
+// Стили пагинации
+
+.pagination {
+    --pagination-text: var(--color-white); // Цвет текста
+    --pagination-bg: var(--color-blue-500); // Базовый фон
+
+    --pagination-bg-hover: var(--color-blue-800); // Фон при наведении
+    --pagination-bg-current: var(--color-blue-800); // Фон текущей страницы
+
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+
+    .page-numbers {
+        color: var(--pagination-text);
+        background-color: var(--pagination-bg);
+
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-full);
+
+        transition: background-color var(--duration-base) var(--ease-in-out);
+    }
+
+    .page-numbers:hover {
+        background-color: var(--pagination-bg-hover);
+    }
+
+    .page-numbers.current {
+        background-color: var(--pagination-bg-current);
+    }
+}

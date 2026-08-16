@@ -26,6 +26,7 @@
     --color-orange-600: #d62828; // Темный акцент (Hover)
 
     /* Нейтральные (Серые оттенки) */
+    --color-neutral-400: #E5E5E5; // Светло-серый
     --color-neutral-500: #A9A9A9; // Серый
     --color-neutral-600: #5c6b73; // Серый сланец
     --color-neutral-900: #1a2530; // Угольный сине-черный
@@ -63,6 +64,13 @@
     --border-hover:   var(--color-blue-500);    // Наведение, карточки
     --border-focus:   var(--color-blue-500);    // Обводка инпутов
     --border-inverse: rgba(255, 255, 255, 0.1); // Линии на темном фоне
+
+    /* --- ИКОНКИ (Icons) --- */
+    --icon-main:      var(--color-blue-500);    // Основные интерфейсные иконки (стрелки, пункты меню)
+    --icon-secondary: var(--color-neutral-600); // Второстепенные, более приглушенные иконки
+    --icon-inverse:   var(--color-white);       // Иконки на темном фоне (в шапке/подвале)
+    --icon-accent:    var(--color-orange-500);  // Акцентные иконки (например, маркеры преимуществ)
+    --icon-bg:        var(--color-neutral-400); // Фон для иконки
 
     /* --- ССЫЛКИ И КНОПКИ (Actions) --- */
     --link-color:       var(--color-blue-500);

@@ -11,18 +11,18 @@
     }
 
     &__img {
-        max-width: 350px;
+        max-width: 348px;
     }
 
     &__title {
-        font-size: var(--text-8xl);
-        color: var(--color-primary-900);
+        font-size: var(--text-7xl);
+        color: var(--text-brand);
         line-height: 1;
     }
 
     &__subtitle {
         font-size: var(--text-4xl);
-        color: var(--color-primary-900);
+        color: var(--text-brand);
         font-weight: 600;
     }
 

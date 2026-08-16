@@ -53,6 +53,10 @@
         
         li {
             margin-bottom: var(--space-2);
+
+            &::marker {
+                color: var(--text-accent);
+            }
         }
     }
 
@@ -70,7 +74,7 @@
 
         figcaption {
             margin: 0;
-            background-color: var(--color-neutral-100);
+            background-color: var(--bg-surface-alt);
             border-radius: 0 0 var(--radius-xl) var(--radius-xl);
             padding: var(--space-4) var(--space-5);
             font-weight: 500;

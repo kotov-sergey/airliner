@@ -8,7 +8,7 @@
     &__item {
         font-size: var(--text-base);
 
-        background-color: var(--color-neutral-000);
+        background-color: var(--bg-surface);
 
         border: 1px solid var(--border-light);
         border-radius: var(--radius-xl);
@@ -16,7 +16,7 @@
         transition: border-color var(--duration-base) var(--ease-in-out);
 
         &[open] {
-            border-color: var(--color-primary-500);
+            border-color: var(--border-hover);
 
             .accordion__trigger::after {
                 transform: rotate( 45deg );
@@ -45,7 +45,7 @@
             content: '+';
 
             font-size: var(--text-3xl);
-            color: var(--color-primary-500);
+            color: var(--icon-main);
 
             display: flex;
             align-items: center;
@@ -61,10 +61,15 @@
 
     &__title {
         font-size: var(--text-base);
+        color: var(--text-brand);
     }
 
     &__content {
-        font-size: var(--text-base);
         padding: 0 var(--space-6) var(--space-6);
+        
+        p {
+            font-size: var(--text-base);
+            color: var(--text-secondary);            
+        }
     }
 }
