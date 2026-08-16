@@ -142,13 +142,17 @@ wp_reset_postdata();
 							] );
 						?>							
 
+						<!-- Навигация по основным популярным категориям -->
 						<div class="search-fallback__actions">
-							<?php get_template_part( 'template-parts/components/category-cloud', null, [
-								'orderby' => 'count',
-								'order' => 'DESC',
-								'limit' => 6
-							] ); ?>
+							<?php 
+								get_template_part( 'template-parts/components/category-cloud', null, [
+									'orderby' => 'count',
+									'order' => 'DESC',
+									'limit' => 6
+								] ); 
+							?>
 						</div>
+						
 					</div>
 
 				</div>

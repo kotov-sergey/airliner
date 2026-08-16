@@ -63,11 +63,11 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     <?php endif; ?>
 
     <!-- Навигация подкатегорий основной категории -->
-    <?php 
-        get_template_part( 'template-parts/components/category-cloud', null, [
-            'wrapper_class' => 'page-category__tags'
-        ] );
-     ?>
+    <div class="page-category__tags">
+        <div class="container">
+            <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
+        </div>
+    </div>
 
     <!-- Секция все статьи рубрики -->
     <?php if ( have_posts() ) : ?>
