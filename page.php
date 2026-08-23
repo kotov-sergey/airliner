@@ -10,8 +10,16 @@ get_header();
 
         <!-- Стандартный контент -->
         <section class="section page-content">
-            <div class="container container--narrow">
+            <div class="container">
+
+                <!-- Хлебные крошки -->
+                <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+                    <div class="breadcrumbs blog-hero__breadcrumbs">
+                        <?php rank_math_the_breadcrumbs(); ?>
+                    </div>
+                <?php endif; ?>   
                 
+                <!-- Заголовок страницы -->
                 <h1 class="page-title"><?php the_title(); ?></h1>
 
                 <?php if ( get_the_content() ) : ?>
