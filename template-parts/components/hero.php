@@ -9,6 +9,7 @@ $modifier = $args['modifier'] ?? 'hero--default'; // Модификатор се
 $scroll_target = $args['scroll_target'] ?? ''; // Кнопка-якорь секции
 
 $show_meta = $args['show_meta'] ?? false; // Мета-данные секции (для записей)
+$show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные крошки
 ?>
 
 <!-- Hero-секция -->
@@ -44,6 +45,13 @@ $show_meta = $args['show_meta'] ?? false; // Мета-данные секции 
 
 	<div class="container hero__container">
 		<div class="hero__content">	
+
+            <!-- Хлебные крошки -->
+            <?php if ( $show_breadcrumbs && function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+                <div class="breadcrumbs breadcrumbs--inverse hero__breadcrumbs">
+                    <?php rank_math_the_breadcrumbs(); ?>
+                </div>
+            <?php endif; ?>           
 
             <!-- Мета-данные секции (для записей) -->
             <?php if ( $show_meta ) : ?>

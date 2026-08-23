@@ -1,6 +1,15 @@
 <!-- Верстка Hero-секции страницы лайнера -->
 		<section class="section airliner-hero">
 			<div class="container">
+
+				<!-- Хлебные крошки -->
+				<?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+					<div class="breadcrumbs airliner-hero__breadcrumbs">
+						<?php rank_math_the_breadcrumbs(); ?>
+					</div>
+				<?php endif; ?>
+
+				<!-- Главная карточка с названием и описанием -->
 				<div class="airliner-hero__grid">
 					
 					<div class="airliner-hero__picture">

@@ -22,7 +22,8 @@
 					'title' => $hero_title ? $hero_title : get_the_title(),
 					'description' => $hero_description,
 					'background_image' => $hero_background,
-					'show_meta' => true
+					'show_meta' => true,
+					'show_breadcrumbs' => true
 				] );
 			?>
 

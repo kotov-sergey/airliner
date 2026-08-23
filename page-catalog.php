@@ -27,8 +27,15 @@ get_header();
 		<section class="section catalog-hero">
 			<div class="container">
 
+                <!-- Хлебные крошки -->
+                <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+                    <div class="breadcrumbs catalog-hero__breadcrumbs">
+                        <?php rank_math_the_breadcrumbs(); ?>
+                    </div>
+                <?php endif; ?>
+
 				<div class="catalog-hero__inner">
-					
+
                     <!-- Описание -->
 					<div class="catalog-hero__content">
 						<?php if ( $catalog_title ) : ?>

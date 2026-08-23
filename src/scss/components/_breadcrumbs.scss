@@ -1,42 +1,55 @@
 // Стили цепочки навигации (хлебные крошки)
-.airliner-breadcrumbs {
-    padding-block: var(--space-6);
-    background-color: var(--bg-surface);
-}
+.breadcrumbs {
+    --bc-text: var(--text-muted);
+    --bc-link: var(--link-color);
+    --bc-link-hover: var(--link-color-hover);
+    --bc-current: var(--text-main);
+    --bc-separator: var(--border-light);
 
-.rank-math-breadcrumb {
-    color: var(--text-muted);
-
-    p {
+    .rank-math-breadcrumb {
         font-size: var(--text-sm);
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: var(--space-2);
-    }
+        color: var(--bc-text);
 
-    a {
-        color: var(--link-color);
-        text-decoration: none;
-        transition: color var(--duration-base) var(--ease-in-out);
+        p {
+            font-size: var(--text-sm);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-2);
+        }
 
-        &:hover {
-            color: var(--link-color-hover);
+        a {
+            color: var(--bc-link);
+            text-decoration: none;
+            transition: color var(--duration-base) var(--ease-in-out);
+
+            &:hover {
+                color: var(--bc-link-hover);
+            }
+        }
+        
+        .separator {
+            color: var(--bc-separator);
+            margin-inline: 2px;
+        }
+
+        .last {
+            color: var(--bc-current);
+            font-weight: 700;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 450px; 
         }
     }
-    
-    .separator {
-        color: var(--border-light);
-        margin-inline: 2px;
-    }
 
-    .last {
-        color: var(--text-main);
-        font-weight: 700;
-
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 450px; 
+    // Модификатор для hero-секций
+    &--inverse {
+        --bc-text: rgba(255, 255, 255, 0.6);
+        --bc-link: rgba(255, 255, 255, 0.8);
+        --bc-link-hover: var(--color-white);
+        --bc-current: var(--color-white);
+        --bc-separator: rgba(255, 255, 255, 0.3);
     }
 }

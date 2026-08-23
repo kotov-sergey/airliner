@@ -15,6 +15,13 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     <section class="section category-hero">
         <div class="container">
 
+            <!-- Хлебные крошки -->
+            <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+                <div class="breadrcrumbs blog-hero__breadcrumbs">
+                    <?php rank_math_the_breadcrumbs(); ?>
+                </div>
+            <?php endif; ?>   
+
             <div class="category-hero__layout">
             
                 <div class="category-hero__content">

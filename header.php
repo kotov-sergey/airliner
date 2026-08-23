@@ -49,12 +49,3 @@ $header_class .= " {$block_name}--solid";
 			</nav>
 		</div>
 	</header>
-
-	<!-- Цепочка навигации (хлебные крошки) -->
-	<?php if ( ! is_front_page() ) : ?>
-		<div class="airliner-breadcrumbs">
-			<div class="container">
-				<?php if (function_exists("rank_math_the_breadcrumbs")) rank_math_the_breadcrumbs(); ?>
-			</div>
-		</div>
-	<?php endif; ?>

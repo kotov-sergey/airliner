@@ -5,7 +5,7 @@ $content = get_the_content();
     if ( ! empty( trim( $content ) ) ) :
 ?>
     <!-- Верстка секции Контента -->
-    <section class="section section-content section--white">
+    <section class="section section-content section--alt">
         <div class="container container--narrow">
   
             <!-- Заголовок секции -->

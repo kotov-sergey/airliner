@@ -11,7 +11,7 @@ if ( $gallery && is_array( $gallery ) ) :
 $total_images = count( $gallery );
 ?>
     <!-- Верстка секции Галерея -->
-    <section class="section section-gallery section--white">
+    <section class="section section-gallery">
         <div class="container">
 
             <!-- Заголовок секции -->

@@ -12,6 +12,15 @@ get_header();
     <!-- Hero-секция Блога -->
     <div class="blog-hero">
         <div class="container">
+            
+            <!-- Хлебные крошки -->
+            <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+                <div class="breadcrumbs blog-hero__breadcrumbs">
+                    <?php rank_math_the_breadcrumbs(); ?>
+                </div>
+            <?php endif; ?>    
+
+            <!-- Заголовок страницы Блога -->
             <h1 class="blog-hero__title"><?php echo esc_html( $blog_title ); ?></h1>
         </div>
     </div>
