@@ -11,29 +11,34 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 <main class="site-main page-category">
 
-    <!-- Hero-секция категории -->
-    <section class="section category-hero">
+    <!-- Шапка страницы -->
+    <header class="page-header category-hero">
         <div class="container">
 
             <!-- Хлебные крошки -->
             <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                <div class="breadrcrumbs blog-hero__breadcrumbs">
+                <div class="breadcrumbs">
                     <?php rank_math_the_breadcrumbs(); ?>
                 </div>
-            <?php endif; ?>   
+            <?php endif; ?>
 
             <div class="category-hero__layout">
-            
-                <div class="category-hero__content">
-                    <h1 class="category-hero__title"><?php single_cat_title(); ?></h1>
 
+                <div class="category-hero__content">
+
+                    <!-- Заголовок страницы -->
+                    <h1 class="page-header__title category-hero__title"><?php single_cat_title(); ?></h1>
+
+                    <!-- Описание страницы -->
                     <?php if ( $category_description ) : ?>
                         <div class="category-hero__description">
                             <?php echo wp_kses_post( wpautop( $category_description ) ); ?>
                         </div>
                     <?php endif; ?>
+                    
                 </div>
 
+                <!-- Кол-во статей в рубрике -->
                 <div class="catalog-stat">
                     <span class="catalog-stat__number"><?php echo esc_html( $category->count ); ?></span>
                     <span class="catalog-stat__label">Статей в рубрике</span>
@@ -42,7 +47,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
             </div>
 
         </div>
-    </section>
+    </header>
 
     <!-- Секция избранная статья -->
     <?php if ( $paged === 1 && have_posts() ) : the_post(); ?>

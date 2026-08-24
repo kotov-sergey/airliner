@@ -1,5 +1,5 @@
 <?php
-// Универсальный шаблон для всех типов архивов (Рубрики, Теги, Даты)
+// Универсальный шаблон для всех типов архивов (Рубрики, Теги, Даты, Авторы)
 
 get_header();
 ?>
@@ -7,8 +7,22 @@ get_header();
 <main class="site-main page-archive">
     <div class="container">
 
-        <!-- Заголовок архива -->
-        <h1 class="page-archive__title"><?php the_archive_title(); ?></h1>
+        <!-- Шапка страницы -->
+        <header class="page-header">
+            <div class="container">
+
+                <!-- Хлебные крошки -->
+                <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+                    <div class="breadcrumbs">
+                        <?php rank_math_the_breadcrumbs(); ?>
+                    </div>
+                <?php endif; ?>
+                
+                <!-- Заголовок страницы -->
+                <h1 class="page-header__title"><?php the_archive_title(); ?></h1>
+
+            </div>
+        </header>
 
         <?php if ( have_posts() ) : ?>
 

@@ -6,6 +6,12 @@
     --bc-current: var(--text-main);
     --bc-separator: var(--border-light);
 
+    margin-bottom: var(--space-2);
+
+        @media (min-width: 1024px) {
+            margin-bottom: var(--space-3);
+        }
+
     .rank-math-breadcrumb {
         font-size: var(--text-sm);
         color: var(--bc-text);
@@ -40,7 +46,14 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 450px; 
+
+            @media (min-width: 768px) {
+                max-width: 320px;
+            }
+        
+            @media (min-width: 1024px) {
+                max-width: 450px;
+            }
         }
     }
 
@@ -48,8 +61,10 @@
     &--inverse {
         --bc-text: rgba(255, 255, 255, 0.6);
         --bc-link: rgba(255, 255, 255, 0.8);
-        --bc-link-hover: var(--color-white);
-        --bc-current: var(--color-white);
+        --bc-link-hover: var(--text-inverse);
+        --bc-current: var(--text-inverse);
         --bc-separator: rgba(255, 255, 255, 0.3);
+
+        margin-bottom: 0;
     }
 }

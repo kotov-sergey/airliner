@@ -8,20 +8,28 @@ get_header();
 
     <?php while ( have_posts() ) : the_post(); ?>
 
-        <!-- Стандартный контент -->
-        <section class="section page-content">
+        <!-- Шапка страницы -->
+        <header class="page-header">
             <div class="container">
 
                 <!-- Хлебные крошки -->
                 <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                    <div class="breadcrumbs blog-hero__breadcrumbs">
+                    <div class="breadcrumbs">
                         <?php rank_math_the_breadcrumbs(); ?>
                     </div>
-                <?php endif; ?>   
-                
-                <!-- Заголовок страницы -->
-                <h1 class="page-title"><?php the_title(); ?></h1>
+                <?php endif; ?>
 
+                <!-- Заголовок страницы -->
+                <h1 class="page-header__title"><?php the_title(); ?>
+
+            </div>
+        </header>
+
+        <!-- Стандартный контент -->
+        <section class="section page-content">
+            <div class="container">
+
+                <!-- Контент страницы -->
                 <?php if ( get_the_content() ) : ?>
                     <div class="entry-content">
                         <?php the_content(); ?>

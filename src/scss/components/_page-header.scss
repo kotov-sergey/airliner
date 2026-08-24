@@ -1,0 +1,17 @@
+// Компонент основного заголовка страницы
+
+.page-header {
+
+    padding: var(--header-padding) 0;
+
+    &__title {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        line-height: var(--leading-tight);
+        color: var(--text-brand);
+
+        @media ( min-width: 768px ) {
+            font-size: var(--text-3xl);
+        }
+    }
+}

@@ -9,30 +9,32 @@ get_header();
 
 <main class="site-main page-blog">
 
-    <!-- Hero-секция Блога -->
-    <div class="blog-hero">
+    <!-- Шапка страницы -->
+    <header class="page-header">
         <div class="container">
             
             <!-- Хлебные крошки -->
             <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                <div class="breadcrumbs blog-hero__breadcrumbs">
+                <div class="breadcrumbs">
                     <?php rank_math_the_breadcrumbs(); ?>
                 </div>
-            <?php endif; ?>    
+            <?php endif; ?>
 
-            <!-- Заголовок страницы Блога -->
-            <h1 class="blog-hero__title"><?php echo esc_html( $blog_title ); ?></h1>
+            <!-- Заголовок страницы -->
+            <h1 class="page-header__title"><?php echo esc_html( $blog_title ); ?></h1>
+
         </div>
-    </div>
+    </header>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
         <!-- Секция первого featured поста -->
         <section class="section blog-featured">
             <div class="container">
-                <?php get_template_part( 'template-parts/components/card-post', null, [
-                    'layout' => 'featured'
-                ] );
+                <?php 
+                    get_template_part( 'template-parts/components/card-post', null, [
+                        'layout' => 'featured'
+                    ] );
                 ?>
             </div>
         </section>
@@ -41,8 +43,7 @@ get_header();
     <!-- Навигация категорий блога -->
     <div class="page-blog__categories">
         <div class="container">
-            <?php 
-                get_template_part( 'template-parts/components/category-cloud' ); ?>
+            <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
         </div>
     </div>
 

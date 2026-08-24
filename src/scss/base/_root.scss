@@ -147,6 +147,13 @@
         --container-padding: 32px;
     }
 
+    /* Контейнер */
+    --header-padding: var(--space-8);
+
+    @media (min-width: 1024px) {
+        --header-padding: var(--space-12);
+    }
+
     /* Шкала отступов (Step: 4px) */
     --space-1:  0.25rem;  // 4px
     --space-2:  0.5rem;   // 8px

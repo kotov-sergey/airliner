@@ -13,7 +13,7 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
 ?>
 
 <!-- Hero-секция -->
-<section class="hero <?php echo esc_attr( $modifier ); ?>">
+<header class="hero <?php echo esc_attr( $modifier ); ?>">
 	<div class="hero__background">
 		
         <!-- Фоновое изображение секции-->
@@ -48,7 +48,7 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
 
             <!-- Хлебные крошки -->
             <?php if ( $show_breadcrumbs && function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                <div class="breadcrumbs breadcrumbs--inverse hero__breadcrumbs">
+                <div class="breadcrumbs breadcrumbs--inverse">
                     <?php rank_math_the_breadcrumbs(); ?>
                 </div>
             <?php endif; ?>           
@@ -86,4 +86,4 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
         </button>
     <?php endif; ?>
 
-</section>
+</header>
