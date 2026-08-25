@@ -24,8 +24,8 @@ get_header();
 	<?php while ( have_posts() ) : the_post(); ?>
 
         <!-- Шапка страницы -->
-		<header class="page-header catalog-hero">
-			<div class="container">
+        <header class="page-header">
+            <div class="container">
 
                 <!-- Хлебные крошки -->
                 <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
@@ -34,46 +34,55 @@ get_header();
                     </div>
                 <?php endif; ?>
 
-				<div class="catalog-hero__inner">
+                <div class="page-header__layout">
 
-					<div class="catalog-hero__content">
+                    <!-- Макет: Левая колонка с описанием -->
+                    <div class="page-header__content">
 
                         <!-- Заголовок страницы -->
-						<?php if ( $catalog_title ) : ?>
-                            <h1 class="page-header__title catalog-hero__title">
+                        <?php if ( $catalog_title ) : ?>
+                            <h1 class="page-header__title">
                                 <?php echo esc_html( $catalog_title ); ?>
                             </h1>
                         <?php endif; ?>
-						
+                        
                         <!-- Описание страницы -->
                         <?php if ( $catalog_description ) : ?>
-                            <p class="catalog-hero__description">
+                            <p class="page-header__description">
                                 <?php echo esc_html( $catalog_description ); ?>
                             </p>
                         <?php endif; ?>
-					</div>
-				
-					<div class="catalog-hero__stats">
-				
-                        <!-- Кол-во моделей -->
-						<div class="catalog-stat">
-                            <span class="catalog-stat__number"><?php echo esc_html( $total_airliners ); ?></span>
-                            <span class="catalog-stat__label">Моделей</span>
-						</div>
-						
-                        <!-- Кол-во производителей -->
-						<div class="catalog-stat">
-                            <span class="catalog-stat__number"><?php echo esc_html( $total_brands ); ?></span>
-                            <span class="catalog-stat__label">Производителей</span>
-						</div>
 
-                        <!-- Кол-во типов фюзеляжа -->
-						<div class="catalog-stat">
-                            <span class="catalog-stat__number"><?php echo esc_html( $total_body_types ); ?></span>
-                            <span class="catalog-stat__label">Типа фюзеляжа</span>
-						</div>						
-					</div>
-				</div>
+                    </div>
+                
+                    <!-- Макет: Правая колонка с инфографикой -->
+                    <div class="page-header__side">
+                        
+                        <div class="stats-group">
+
+                            <!-- Кол-во моделей -->
+                            <div class="catalog-stat">
+                                <span class="catalog-stat__number"><?php echo esc_html( $total_airliners ); ?></span>
+                                <span class="catalog-stat__label">Моделей</span>
+                            </div>
+                            
+                            <!-- Кол-во производителей -->
+                            <div class="catalog-stat">
+                                <span class="catalog-stat__number"><?php echo esc_html( $total_brands ); ?></span>
+                                <span class="catalog-stat__label">Производителей</span>
+                            </div>
+
+                            <!-- Кол-во типов фюзеляжа -->
+                            <div class="catalog-stat">
+                                <span class="catalog-stat__number"><?php echo esc_html( $total_body_types ); ?></span>
+                                <span class="catalog-stat__label">Типа фюзеляжа</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                
+                </div>
 
             </div>
         </header>
@@ -139,7 +148,7 @@ get_header();
         <?php get_template_part( 'template-parts/builder' ); ?>
     
         <!-- SEO-текст каталога -->
-        <section class="section catalog-seo">
+        <section class="section section--alt catalog-seo">
             <div class="container container--narrow">
                 <div class="entry-content">
                     <?php if ( get_the_content() ) : ?>

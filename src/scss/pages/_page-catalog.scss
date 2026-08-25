@@ -1,41 +1,35 @@
 // Стили для страницы каталога авиалайнеров
 
 .page-catalog {
-    &__content {
-        padding-block: var(--space-12);
+
+    .catalog-content {
+
+        &__layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-8);
+            align-items: start;
+
+            @media ( min-width: 768px ) {
+                grid-template-columns: 300px 1fr;
+                gap: var(--space-10);
+            }
+        }
+
+        &__sidebar {
+
+            @media ( min-width: 768px ) {
+                position: sticky;
+                top: var(--space-6);
+            }
+        }
+
+        &__grid {
+            gap: var(--space-6);
+        }
+
+        &__pagination {
+            margin-top: var(--space-8);
+        }
     }
-}
-
-.catalog-hero {
-    padding-block: var(--space-12);
-    border-bottom: 1px solid var(--border-light);
-
-    &__inner {
-        display: flex;
-        flex-direction: row;
-
-        justify-content: space-between;
-        align-items: flex-end;       
-    }
-
-    &__content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-6);
-
-        max-width: 512px;       
-    }
-    
-    &__description {
-        font-size: var(--text-lg);
-    }
-
-    &__stats {
-        display: flex;
-        gap: var(--space-8);
-    }
-}
-
-.catalog-seo {
-    background-color: var(--color-white);
 }

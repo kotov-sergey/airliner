@@ -1,5 +1,17 @@
-// Стили для красивых цифр
+// Стили для блока и карточки с инфографикой
 
+// Блок (группа) с инфографикой
+.stats-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    @media ( min-width: 768px ) {
+        gap: var(--space-8);
+    }
+}
+
+// Карточка инфографики
 .catalog-stat {
     display: flex;
     flex-direction: column;

@@ -12,7 +12,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 <main class="site-main page-category">
 
     <!-- Шапка страницы -->
-    <header class="page-header category-hero">
+    <header class="page-header">
         <div class="container">
 
             <!-- Хлебные крошки -->
@@ -22,26 +22,32 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                 </div>
             <?php endif; ?>
 
-            <div class="category-hero__layout">
+            <div class="page-header__layout">
 
-                <div class="category-hero__content">
+                <!-- Макет: Левая колонка с описанием -->
+                <div class="page-header__content">
 
                     <!-- Заголовок страницы -->
-                    <h1 class="page-header__title category-hero__title"><?php single_cat_title(); ?></h1>
+                    <h1 class="page-header__title"><?php single_cat_title(); ?></h1>
 
                     <!-- Описание страницы -->
                     <?php if ( $category_description ) : ?>
-                        <div class="category-hero__description">
+                        <div class="page-header__description">
                             <?php echo wp_kses_post( wpautop( $category_description ) ); ?>
                         </div>
                     <?php endif; ?>
                     
                 </div>
 
-                <!-- Кол-во статей в рубрике -->
-                <div class="catalog-stat">
-                    <span class="catalog-stat__number"><?php echo esc_html( $category->count ); ?></span>
-                    <span class="catalog-stat__label">Статей в рубрике</span>
+                <!-- Макет: Правая колонка с инфографикой-->
+                <div class="page-header__side">
+
+                    <!-- Кол-во статей в рубрике -->
+                    <div class="catalog-stat">
+                        <span class="catalog-stat__number"><?php echo esc_html( $category->count ); ?></span>
+                        <span class="catalog-stat__label">Статей в рубрике</span>
+                    </div>
+
                 </div>
         
             </div>

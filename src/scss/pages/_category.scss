@@ -12,23 +12,4 @@
     &__pagination {
         margin-top: var(--space-8);
     }
-
-    .category-hero {
-        border-bottom: 1px solid var(--border-light);
-
-        &__layout {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        &__content {
-            display: flex;
-            flex-direction: column;
-
-            gap: var(--space-6);
-
-            max-width: 768px;
-        }
-    }
 }
