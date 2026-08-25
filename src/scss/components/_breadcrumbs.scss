@@ -9,9 +9,9 @@
 
     margin-bottom: var(--space-2);
 
-        @media (min-width: 1024px) {
-            margin-bottom: var(--space-4);
-        }
+    @media (min-width: 1024px) {
+        margin-bottom: var(--space-4);
+    }
 
     .rank-math-breadcrumb {
         font-size: var(--text-sm);
