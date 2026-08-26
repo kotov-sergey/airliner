@@ -1,9 +1,6 @@
 // Импорт стилей (Vite сам выделит их в отдельный CSS файл при билде)
 import '../scss/main.scss';
 
-// Стили бургер-меню
-import '../scss/burger-menu.scss';
-
 // Скрипты бургер-меню
 import './burger.js';
 

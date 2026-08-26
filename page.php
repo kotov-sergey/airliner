@@ -20,7 +20,7 @@ get_header();
                 <?php endif; ?>
 
                 <!-- Заголовок страницы -->
-                <h1 class="page-header__title"><?php the_title(); ?>
+                <h1 class="page-header__title"><?php the_title(); ?></h1>
 
             </div>
         </header>
@@ -40,7 +40,7 @@ get_header();
         </section>
 
         <!-- Кастомные секции -->
-        <?php get_template_part( 'tempate-parts/builder' ); ?>
+        <?php get_template_part( 'template-parts/builder' ); ?>
 
   <?php endwhile; ?>
 

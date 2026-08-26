@@ -7,6 +7,9 @@ if ( ! function_exists( 'airliner_setup' ) ) {
 	
 	function airliner_setup() {
 		
+        // Включаем автоматический вывод тега <title>
+        add_theme_support( 'title-tag' );
+
 		// Поддержка миниатюр (Post Thumbnails)
 		add_theme_support( 'post-thumbnails' );
 
