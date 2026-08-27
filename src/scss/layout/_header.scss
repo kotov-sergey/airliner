@@ -1,8 +1,6 @@
 // Стили для шапки сайта
 
 .header {
-    // Цвет ссылки при наведении и активная ссылка
-    --link-current-color: var(--color-orange-500);
 
     width: 100%;
     transition: background-color var(--duration-base), color var(--duration-base);
@@ -49,7 +47,7 @@
         z-index: 100;
 
         border-bottom: 0 solid var(--border-light);
-        transition: max-height var(--duration-base) var(--ease-in-out), border-width var(--duration-base);
+        transition: max-height var(--duration-base) var(--ease-in-out);
 
         &.active {
             max-height: 320px;
@@ -78,11 +76,11 @@
     }
 
     &__list a:hover {
-        color: var(--link-current-color);
+        color: var(--text-accent);
     }
 
     &__list .current-menu-item a {
-        color: var(--link-current-color);
+        color: var(--text-accent);
         font-weight: 700;
     }
 
