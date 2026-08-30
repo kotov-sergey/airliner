@@ -1,11 +1,13 @@
 // Стили для секции: Часто задаваемые вопросы (FAQ)
-@use '../abstracts/mixins' as *;
 
 .faq-block {
     
     &__accordion {
-        display: grid;
-        @include grid-adaptive(1, 2, 2);
         align-items: start;
+        gap: var(--space-4);
+
+        & > * {
+            height: auto;
+        }
     }
 }

@@ -1,9 +1,6 @@
 // Стили для аккордеона (вопрос-ответ)
 
 .accordion {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
 
     &__item {
         font-size: var(--text-base);
