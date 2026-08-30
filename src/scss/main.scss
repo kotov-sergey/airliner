@@ -54,10 +54,7 @@
 @use 'components/page-header';
 
 // Sections (Крупные блоки)
-@use 'sections/aircrafts';
 @use 'sections/history';
-@use 'sections/fuselage-types';
-@use 'sections/posts';
 @use 'sections/cta-home';
 @use 'sections/cta-simple';
 @use 'sections/image-text';
@@ -67,10 +64,8 @@
 @use 'sections/feedback';
 
 // Pages (Страницы)
-@use 'pages/single-airliner';
 @use 'pages/single';
 @use 'pages/page-catalog';
-@use 'pages/home';
 @use 'pages/page-404';
 @use 'pages/search';
 @use 'pages/category';

@@ -81,7 +81,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     <?php endif; ?>
 
     <!-- Навигация подкатегорий основной категории -->
-    <div class="page-category__tags">
+    <div class="page-category__tags l-bordered-section">
         <div class="container">
             <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
         </div>

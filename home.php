@@ -41,9 +41,10 @@ get_header();
     <?php endif; ?>
 
     <!-- Навигация категорий блога -->
-    <div class="page-blog__categories">
+    <div class="page-blog__categories l-bordered-section">
         <div class="container">
-            <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
+            <?php 
+                get_template_part( 'template-parts/components/category-cloud' ); ?>
         </div>
     </div>
 

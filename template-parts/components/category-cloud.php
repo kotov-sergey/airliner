@@ -6,8 +6,6 @@ $order = $args['order'] ?? 'ASC'; // Сортировка по алфавиту
 $limit = $args['limit'] ?? 0; // Лимит вывода
 $taxonomy = $args['taxonomy'] ?? 'category'; // Сортировка по таксономии
 
-$modifier = $args['modifier'] ?? ''; // Модификатор компонента
-
 if ( isset( $args['parent'] ) ) {
     $parent_id = $args['parent'];
 }
