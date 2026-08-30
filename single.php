@@ -11,7 +11,6 @@
 		// Данные для Hero-секции
 		$hero_background = get_post_thumbnail_id();
 		$hero_title = get_the_title();
-		$hero_description = wp_trim_words( get_the_excerpt(), 14, '...' );
 	?>
 
 		<article class="single-post">
@@ -20,7 +19,6 @@
 			<?php
 				get_template_part( 'template-parts/components/hero', null, [
 					'title' => $hero_title ? $hero_title : get_the_title(),
-					'description' => $hero_description,
 					'background_image' => $hero_background,
 					'show_meta' => true,
 					'show_breadcrumbs' => true
