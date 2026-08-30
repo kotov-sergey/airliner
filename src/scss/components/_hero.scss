@@ -67,7 +67,6 @@
     }
 
     &__description {
-        max-width: 512px;
         
         p, ul, ol {
             font-size: var(--text-base);
@@ -194,7 +193,6 @@
         }
 
         .hero__description {
-            max-width: 768px;
 
             p {
                 @media ( min-width: 1024px ) {

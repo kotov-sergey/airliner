@@ -11,7 +11,7 @@
 		// Данные для Hero-секции
 		$hero_background = get_post_thumbnail_id();
 		$hero_title = get_the_title();
-		$hero_description = wp_trim_words( get_the_excerpt(), 12, '...' );
+		$hero_description = wp_trim_words( get_the_excerpt(), 14, '...' );
 	?>
 
 		<article class="single-post">
