@@ -28,9 +28,11 @@
 			?>
 
 			<!-- Основное содержимое -->
-			<div class="container container--narrow">
-				<div class="single-post__content entry-content">
-					<?php the_content(); ?>
+			<div class="section single-post__content">
+				<div class="container container--narrow">
+					<div class="entry-content">
+						<?php the_content(); ?>
+					</div>
 				</div>
 			</div>
 

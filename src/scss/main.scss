@@ -39,8 +39,6 @@
 
 @use 'components/post-meta';
 
-@use 'components/post/post-related';
-@use 'components/post/post-related-by-term';
 @use 'components/catalog-filter';
 @use 'components/forms';
 @use 'components/catalog-stat';
@@ -64,7 +62,6 @@
 @use 'sections/feedback';
 
 // Pages (Страницы)
-@use 'pages/single';
 @use 'pages/page-catalog';
 @use 'pages/page-404';
 @use 'pages/search';

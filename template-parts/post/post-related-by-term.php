@@ -21,7 +21,7 @@ $related_query = new WP_Query( $query_args );
 ?>
 
 <?php if ( $related_query->have_posts() ) : ?>
-    <section class="section section-related-posts">
+    <section class="section section-related-posts-by-term section--alt">
         <div class="container">
             
             <!-- Заголовок секции -->
