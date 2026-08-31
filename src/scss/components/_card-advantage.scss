@@ -1,6 +1,6 @@
 // Стили карточки преимуществ
 
-.advantage-card {
+.card-advantage {
 
     display: flex;
     flex-direction: column;
@@ -13,7 +13,11 @@
     border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
 
-    padding: var(--space-6);
+    padding: var(--space-4);
+
+    @media ( min-width: 768px ) {
+        padding: var(--space-6);
+    }
 
     &__media {
         display: flex;
@@ -33,6 +37,7 @@
             width: 24px;
             height: 24px;
             object-fit: contain;
+            stroke: currentColor;
         }
     }
 
@@ -47,49 +52,42 @@
         color: var(--text-brand);
     }
 
-    &__description {
-        p {
-            font-size: var(--text-base);
-            color: var(--text-secondary);
-        }
+    &__description p {
+        font-size: var(--text-base);
+        color: var(--text-secondary);
     }
 
     // Маленькая карточка
     &--compact {
 
-        .advantage-card__title {
+        .card-advantage__title {
             font-size: var(--text-base);
         }
 
-        .advantage-card__description {
-            p {
-                font-size: var(--text-sm);
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                line-clamp: 3;
-                -webkit-box-orient: vertical;  
-                overflow: hidden;
-            }
+        .card-advantage__description p {
+            font-size: var(--text-sm);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }        
     }
 
     // Горизонтальная карточка
     &--horizontal {
-        flex-direction: row;
-        padding: var(--space-6);
 
-        .advantage-card__content {
-            gap: var(--space-2);
+        @media ( min-width: 768px ) {
+            flex-direction: row;
+            align-items: flex-start;
         }
 
-        .advantage-card__title {
+        .card-advantage__title {
             font-size: var(--text-base);
         }
 
-        .advantage-card__description {
-            p {
-                font-size: var(--text-sm);
-            }
+        .card-advantage__description p {
+            font-size: var(--text-sm);
         }
     }
 }

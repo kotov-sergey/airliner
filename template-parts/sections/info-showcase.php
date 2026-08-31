@@ -40,11 +40,11 @@ $classes = trim( 'section info-showcase ' . $section_background );
                     <?php while ( have_rows( 'section_cards') ) : the_row(); ?>
 
                         <?php 
-                            get_template_part( 'template-parts/components/advantage-card', null, [
+                            get_template_part( 'template-parts/components/card-advantage', null, [
                                 'card_icon' => get_sub_field( 'card_icon' ),
                                 'card_title' => get_sub_field( 'card_title' ),
                                 'card_description' => get_sub_field( 'card_description' ),
-                                'modifier' => 'advantage-card--horizontal'
+                                'modifier' => 'card-advantage--horizontal'
                             ]);
                         ?>
             

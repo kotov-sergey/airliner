@@ -23,11 +23,11 @@ if ( $card_style === 'default' ) {
 }
 elseif ( $card_style === 'compact' ) {
     $grid_class = 'l-grid l-grid--auto';
-    $card_modifier = 'advantage-card--compact';
+    $card_modifier = 'card-advantage--compact';
 }
 elseif ( $card_style === 'horizontal' ) {
     $grid_class = 'l-grid l-grid--2';
-    $card_modifier = 'advantage-card--horizontal';
+    $card_modifier = 'card-advantage--horizontal';
 }
 ?>
 
@@ -50,7 +50,7 @@ elseif ( $card_style === 'horizontal' ) {
                 <?php while ( have_rows( 'section_cards' ) ) : the_row(); ?>
                    
                     <?php 
-                        get_template_part( 'template-parts/components/advantage-card', null, [
+                        get_template_part( 'template-parts/components/card-advantage', null, [
                             'card_icon' => get_sub_field( 'card_icon' ),
                             'card_title' => get_sub_field( 'card_title' ),
                             'card_description' => get_sub_field( 'card_description' ),
