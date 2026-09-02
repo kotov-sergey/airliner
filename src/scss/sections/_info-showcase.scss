@@ -7,10 +7,10 @@
     &__grid {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: var(--space-10);
 
-        padding: var(--space-10);
+        gap: var(--space-8);
+        padding: var(--space-6);
+
         background-color: var(--info-showcase-bg);
         
         border: 1px solid var(--border-light);
@@ -18,6 +18,10 @@
 
         @media ( min-width: 768px ) {
             flex-direction: row;
+            align-items: center;
+
+            gap: var(--space-12);
+            padding: var(--space-10);
         }
     }
 
