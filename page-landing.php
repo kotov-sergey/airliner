@@ -18,11 +18,9 @@ get_header();
         <?php if ( $hero_title ) : ?>
 
             <?php
-                get_template_part( 'template-parts/components/hero', null, [
+                get_template_part( 'template-parts/components/page-header', null, [
                     'title' => $hero_title,
                     'description' => $hero_description,
-                    'background_image' => $hero_background,
-                    'show_breadcrumbs' => true
                 ] );
             ?>
 

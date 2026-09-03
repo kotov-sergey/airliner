@@ -24,68 +24,26 @@ get_header();
 	<?php while ( have_posts() ) : the_post(); ?>
 
         <!-- Шапка страницы -->
-        <header class="page-header">
-            <div class="container">
-
-                <!-- Хлебные крошки -->
-                <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                    <div class="breadcrumbs">
-                        <?php rank_math_the_breadcrumbs(); ?>
-                    </div>
-                <?php endif; ?>
-
-                <div class="page-header__layout">
-
-                    <!-- Макет: Левая колонка с описанием -->
-                    <div class="page-header__content">
-
-                        <!-- Заголовок страницы -->
-                        <?php if ( $catalog_title ) : ?>
-                            <h1 class="page-header__title">
-                                <?php echo esc_html( $catalog_title ); ?>
-                            </h1>
-                        <?php endif; ?>
-                        
-                        <!-- Описание страницы -->
-                        <?php if ( $catalog_description ) : ?>
-                            <p class="page-header__description">
-                                <?php echo esc_html( $catalog_description ); ?>
-                            </p>
-                        <?php endif; ?>
-
-                    </div>
-                
-                    <!-- Макет: Правая колонка с инфографикой -->
-                    <div class="page-header__side">
-                        
-                        <div class="stats-group">
-
-                            <!-- Кол-во моделей -->
-                            <div class="catalog-stat">
-                                <span class="catalog-stat__number"><?php echo esc_html( $total_airliners ); ?></span>
-                                <span class="catalog-stat__label">Моделей</span>
-                            </div>
-                            
-                            <!-- Кол-во производителей -->
-                            <div class="catalog-stat">
-                                <span class="catalog-stat__number"><?php echo esc_html( $total_brands ); ?></span>
-                                <span class="catalog-stat__label">Производителей</span>
-                            </div>
-
-                            <!-- Кол-во типов фюзеляжа -->
-                            <div class="catalog-stat">
-                                <span class="catalog-stat__number"><?php echo esc_html( $total_body_types ); ?></span>
-                                <span class="catalog-stat__label">Типа фюзеляжа</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-                
-                </div>
-
-            </div>
-        </header>
+        <?php
+            get_template_part( 'template-parts/components/page-header', null, [
+                'title' => $catalog_title,
+                'description' => $catalog_description,
+                'stats' => [
+                    [
+                        'number' => $total_airliners,
+                        'label' => 'Моделей' 
+                    ],
+                    [
+                        'number' => $total_brands,
+                        'label' => 'Производителей'                     
+                    ],
+                    [
+                        'number' => $total_body_types,
+                        'label' => 'Фюзеляжей'                         
+                    ]
+                ]
+            ] );
+        ?>
 
         <!-- Основной каталог с фильтрами -->
         <section class="section catalog-content page-catalog__content">

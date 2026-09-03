@@ -2,7 +2,9 @@
 // Шаблон страницы Блога (home.php)
 
 $blog_page_id = get_option( 'page_for_posts' );
+
 $blog_title = get_field( 'blog_title', $blog_page_id ) ?: 'Блог';
+$blog_description = get_field( 'blog_description', $blog_page_id ) ?? '';
 
 get_header();
 ?>
@@ -10,27 +12,29 @@ get_header();
 <main class="site-main page-blog">
 
     <!-- Шапка страницы -->
-    <header class="page-header">
-        <div class="container">
-            
-            <!-- Хлебные крошки -->
-            <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                <div class="breadcrumbs">
-                    <?php rank_math_the_breadcrumbs(); ?>
-                </div>
-            <?php endif; ?>
-
-            <!-- Заголовок страницы -->
-            <h1 class="page-header__title"><?php echo esc_html( $blog_title ); ?></h1>
-
-        </div>
-    </header>
+    <?php 
+        get_template_part( 'template-parts/components/page-header', null, [
+            'title' => $blog_title,
+            'description' => $blog_description
+        ] );
+    ?>
 
     <?php if ( have_posts() ) : the_post(); ?>
 
-        <!-- Секция первого featured поста -->
-        <section class="section blog-featured">
+        <!-- Секция первого Featured-поста -->
+        <section class="section blog-featured section--alt">
             <div class="container">
+
+                <!-- Заголовок секции Featured-поста -->
+                <?php
+                    get_template_part( 'template-parts/components/section-header', null, [
+                        'data' => [
+                            'header_title' => 'Выбор редакции'
+                        ]
+                    ] );
+                ?>
+
+                <!-- Карточка Featured-поста -->
                 <?php 
                     get_template_part( 'template-parts/components/card-post', null, [
                         'layout' => 'featured'
@@ -80,7 +84,7 @@ get_header();
 
     <!-- Секция все публикации-->
     <?php if ( have_posts() ) : ?>
-        <section class="section blog-archive">
+        <section class="section blog-archive section--alt">
             <div class="container">
 
                 <!-- Заголовок секции Все публикации -->

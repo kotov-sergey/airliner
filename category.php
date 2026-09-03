@@ -4,7 +4,10 @@
 get_header();
 
 $category = get_queried_object();
+
+$category_title = $category->name;
 $category_description = category_description();
+$category_count = $category->count;
 
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 ?>
@@ -12,48 +15,18 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 <main class="site-main page-category">
 
     <!-- Шапка страницы -->
-    <header class="page-header">
-        <div class="container">
-
-            <!-- Хлебные крошки -->
-            <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                <div class="breadcrumbs">
-                    <?php rank_math_the_breadcrumbs(); ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="page-header__layout">
-
-                <!-- Макет: Левая колонка с описанием -->
-                <div class="page-header__content">
-
-                    <!-- Заголовок страницы -->
-                    <h1 class="page-header__title"><?php single_cat_title(); ?></h1>
-
-                    <!-- Описание страницы -->
-                    <?php if ( $category_description ) : ?>
-                        <div class="page-header__description">
-                            <?php echo wp_kses_post( wpautop( $category_description ) ); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                </div>
-
-                <!-- Макет: Правая колонка с инфографикой-->
-                <div class="page-header__side">
-
-                    <!-- Кол-во статей в рубрике -->
-                    <div class="catalog-stat">
-                        <span class="catalog-stat__number"><?php echo esc_html( $category->count ); ?></span>
-                        <span class="catalog-stat__label">Статей в рубрике</span>
-                    </div>
-
-                </div>
-        
-            </div>
-
-        </div>
-    </header>
+    <?php 
+        get_template_part( 'template-parts/components/page-header', null, [
+            'title' => $category_title,
+            'description' => $category_description,
+            'stats' => [
+                [
+                    'number' => $category_count,
+                    'label' => 'Статей в рубрике'
+                ]
+            ]
+        ] );
+    ?>
 
     <!-- Секция избранная статья -->
     <?php if ( $paged === 1 && have_posts() ) : the_post(); ?>
@@ -89,7 +62,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
     <!-- Секция все статьи рубрики -->
     <?php if ( have_posts() ) : ?>
-        <section class="section category-archive">
+        <section class="section category-archive section--alt">
             <div class="container">
 
                 <!-- Заголовок секции Все статьи и рубрики -->

@@ -2,38 +2,100 @@
 
 .page-header {
 
-    padding: var(--header-padding) 0;
-    border-bottom: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
 
-    &__layout {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-6);
+    min-height: 60dvh;
 
-        @media ( min-width: 768px ) {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: var(--space-8);
-        }
+    display: flex;
+    align-items: center;
+
+    background-color: var(--bg-inverse);
+    color: var(--text-inverse);
+
+    &::before {
+        position: absolute;
+        content: '';
+        inset: 0;
+        z-index: 0;
+
+        background-image: url('/src/images/header-pattern.png');
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        opacity: 0.15;
+
+        pointer-events: none;
+    }
+
+    &__container {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
     }
 
     &__content {
-        width: 100%;
-        max-width: 768px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-8);
+
+        @media ( min-width: 1024px ) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: var(--space-12);
+        } 
     }
 
-    &__description {
-        margin-top: var(--space-2);
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
 
-        p {
-            color: var(--text-secondary);
+        max-width: 768px;
+        text-align: left;
+
+        @media ( min-width: 1024px ) {
+            gap: var(--space-6);
         }
     }
 
-    &__side {
+    &__title {
+        font-size: var(--text-3xl);
+        color: var(--text-inverse);
+        line-height: var(--leading-tight);
+        text-wrap: balance;
+
+        @media ( min-width: 1024px ) {
+            font-size: var(--text-5xl);
+        }
+    }
+
+    &__description {
+        
+        p, ul, ol {
+            font-size: var(--text-base);
+            color: var(--text-inverse);
+            line-height: var(--leading-normal);
+            text-wrap: pretty;
+            opacity: 0.8;
+
+            @media ( min-width: 1024px ) {
+                font-size: var(--text-lg);
+            }
+        }
+    }
+
+    &__stats {
         display: flex;
-        align-items: center;
-        flex-shrink: 0;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+
+        @media ( min-width: 1024px ) {
+            gap: var(--space-6);
+        }
     }
 }
