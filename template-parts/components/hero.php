@@ -48,7 +48,7 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
 
             <!-- Хлебные крошки -->
             <?php if ( $show_breadcrumbs && function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                <div class="breadcrumbs breadcrumbs--inverse">
+                <div class="breadcrumbs breadcrumbs--inverse hero__breadcrumbs">
                     <?php rank_math_the_breadcrumbs(); ?>
                 </div>
             <?php endif; ?>           

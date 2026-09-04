@@ -19,13 +19,13 @@
         inset: 0;
         z-index: 0;
 
-        background-image: url('/src/images/header-pattern.png');
+        background-image: var(--bg-pattern);
 
-        background-size: cover;
-        background-position: center center;
+        opacity: 0.35;
+
+        background-size: contain;
+        background-position: center;
         background-repeat: no-repeat;
-
-        opacity: 0.15;
 
         pointer-events: none;
     }
@@ -59,6 +59,7 @@
         text-align: left;
 
         @media ( min-width: 1024px ) {
+            max-width: 600px;
             gap: var(--space-6);
         }
     }
@@ -94,8 +95,11 @@
         gap: var(--space-4);
         flex-wrap: wrap;
 
+        justify-content: flex-start;
+
         @media ( min-width: 1024px ) {
             gap: var(--space-6);
+            flex-wrap: nowrap;
         }
     }
 }

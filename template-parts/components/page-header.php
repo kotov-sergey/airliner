@@ -6,7 +6,7 @@ $description = $args['description'] ?? ''; // Описание
 $stats = $args['stats'] ?? []; // Массив с инфографикой
 ?>
 
-<header class="page-header">
+<header class="page-header" style="--bg-pattern: url('<?php echo esc_url( get_template_directory_uri() . '/public/images/header-pattern.png' ); ?>');">
     <div class="container page-header__container">
         
         <!-- Контент секции -->

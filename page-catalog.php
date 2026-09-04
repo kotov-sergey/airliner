@@ -35,7 +35,7 @@ get_header();
                     ],
                     [
                         'number' => $total_brands,
-                        'label' => 'Производителей'                     
+                        'label' => 'Брендов'                     
                     ],
                     [
                         'number' => $total_body_types,

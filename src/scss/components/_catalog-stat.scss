@@ -1,33 +1,31 @@
-// Стили для блока и карточки с инфографикой
-
-// Блок (группа) с инфографикой
-.stats-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-
-    @media ( min-width: 768px ) {
-        gap: var(--space-8);
-    }
-}
-
 // Карточка инфографики
+
 .catalog-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+
     gap: var(--space-1);
+    padding: var(--space-4);
 
     background-color: var(--bg-surface);
     border-radius: var(--radius-xl);
 
-    padding: var(--space-6);
+    @media ( min-width: 1024px ) {
+        gap: var(--space-2);
+        padding: var(--space-6);
+    }
 
     &__number {
-        font-size: var(--text-3xl);
+        font-size: var(--text-2xl);
         font-weight: 700;
         color: var(--text-brand);
         line-height: 1;
+
+        @media ( min-width: 1024px ) {
+            font-size: var(--text-4xl);
+        }
     }
 
     &__label {

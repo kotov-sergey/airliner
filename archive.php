@@ -1,28 +1,20 @@
 <?php
 // Универсальный шаблон для всех типов архивов (Рубрики, Теги, Даты, Авторы)
 
+$archive_title = the_archive_title();
+
 get_header();
 ?>
 
 <main class="site-main page-archive">
     <div class="container">
 
-        <!-- Шапка страницы -->
-        <header class="page-header">
-            <div class="container">
-
-                <!-- Хлебные крошки -->
-                <?php if ( function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
-                    <div class="breadcrumbs">
-                        <?php rank_math_the_breadcrumbs(); ?>
-                    </div>
-                <?php endif; ?>
-                
-                <!-- Заголовок страницы -->
-                <h1 class="page-header__title"><?php the_archive_title(); ?></h1>
-
-            </div>
-        </header>
+        <!-- Шапка страницы архива -->
+        <?php
+            get_template_part( 'template-parts/components/page-header', null, [
+                'title' => $archive_title
+            ] );
+        ?>
 
         <?php if ( have_posts() ) : ?>
 
