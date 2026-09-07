@@ -1,50 +1,79 @@
 <?php 
-// Верстка секции призыва к действию
+// Секция призыва CTA на главной
 
-$image_data = get_sub_field( 'section_background' );
+$section_image = get_sub_field( 'section_background' ); // Фоновое изображение секции
 
-$title = get_sub_field( 'section_title' );
-$description = get_sub_field( 'section_description' );
+$section_title = get_sub_field( 'section_title' ); // Заголовок секции
+$section_description = get_sub_field( 'section_description' ); // Описание секции
 
-$button_data = get_sub_field( 'section_button' );
+$section_button = get_sub_field( 'section_button' ); // Кнопка секции
+
+if ( ! $section_title && ! $section_description ) return;
 ?>
 
 <!-- Секция призыва к действию -->
-<section class="section section-cta">
+<section class="section cta-home">
 
-    <div class="section-cta__background">
-        <?php
-            if ( $image_data ) {
-                echo wp_get_attachment_image( $image_data['id'], 'large', false, array(
-                    'class' => 'section-cta__image',
+    <div class="cta-home__background">
+
+        <?php if ( $section_image ) : ?>
+
+            <!-- Фоновое изображение секции -->
+            <?php
+                echo wp_get_attachment_image( $section_image['id'], 'full', false, array(
+                    'class' => 'cta-home__image',
                     'loading' => 'lazy',
                 ) );
-            }
-        ?>
+            ?>
+
+            <?php else : ?>
+
+            <!-- Фоновое изображение-заглушка -->
+            <img 
+                src="<?php echo esc_url( get_template_directory_uri() . '/public/images/cta-home-bg.webp' ); ?>" 
+                class="cta-home__image" 
+                alt="Фон призыва к действию"
+                loading="lazy" 
+            />
+
+        <?php endif; ?>
+
+        <!-- Затемнение фонового изображения секции -->
+        <div class="cta-home__overlay"></div>
+
     </div>
 
-    <div class="container">
-        <div class="section-cta__content">
-            <?php if ( $title ) : ?>
-                <h3 class="section-cta__title"><?php echo esc_html( $title ); ?></h3>
+    <div class="container cta-home__inner">
+
+        <!-- Общий контент секции -->
+        <div class="cta-home__content">
+
+            <!-- Заголовок секции -->
+            <?php if ( $section_title ) : ?>
+                <h2 class="cta-home__title"><?php echo esc_html( $section_title ); ?></h2>
             <?php endif; ?>
 
-            <?php if ( $description ) : ?>
-                <p class="section-cta__description"><?php echo esc_html( $description ); ?></p>
+            <!-- Описание секции -->
+            <?php if ( $section_description ) : ?>
+                <div class="cta-home__description">
+                    <?php echo wp_kses_post( wpautop( $section_description ) ); ?>
+                </div>
             <?php endif; ?>
 
-            <?php if ( $button_data ) :
-                $button_title = $button_data['title'];
-                $button_url = $button_data['url'];
-                $button_target = $button_data['target'] ? $button_data['target'] : '_self';
+            <!-- Кнопка секции -->
+            <?php if ( $section_button && is_array( $section_button ) ) : 
+            
+                $btn_target = ! empty ($section_button['target']) ? $section_button['target'] : '_self';
             ?>
-                <a href="<?php echo esc_url( $button_url ); ?>"
-                class="btn btn--primary section-cta__button"
-                target="<?php echo esc_attr( $button_target ); ?>">
-                    <?php echo esc_html( $button_title ); ?>
+                <a class="btn btn--primary cta-home__btn"
+                    href="<?php echo esc_url( $section_button['url']); ?>" 
+                    target="<?php echo esc_attr( $btn_target ); ?>">
+                        <?php echo esc_html( $section_button['title'] ); ?>
                 </a>
             <?php endif; ?>
+
         </div>
+
     </div>
 
 </section>

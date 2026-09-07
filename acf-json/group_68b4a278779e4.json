@@ -701,7 +701,7 @@
                             "label": "Описание секции",
                             "name": "section_description",
                             "aria-label": "",
-                            "type": "text",
+                            "type": "textarea",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -713,9 +713,9 @@
                             "default_value": "",
                             "maxlength": "",
                             "allow_in_bindings": 1,
+                            "rows": "",
                             "placeholder": "",
-                            "prepend": "",
-                            "append": ""
+                            "new_lines": ""
                         },
                         {
                             "key": "field_6994b52a015cc",
@@ -762,5 +762,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1786202318
+    "modified": 1788798146
 }
