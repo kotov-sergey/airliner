@@ -1,5 +1,6 @@
 <?php 
 // Верстка секции призыва к действию
+
 $image_data = get_sub_field( 'section_background' );
 
 $title = get_sub_field( 'section_title' );

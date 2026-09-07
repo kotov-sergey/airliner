@@ -40,14 +40,15 @@
 		<?php get_template_part( 'template-parts/post/post', 'related' ); ?>
 
 		<!-- CTA-секция -->
-		<?php get_template_part( 'template-parts/sections/cta-simple', null, [
+		<?php get_template_part( 'template-parts/sections/cta-block', null, [
 				'section_title' => 'Подпишитесь на нашу рассылку',
 				'section_description' => 'Получайте свежие статьи о мире авиации, обзоры новых самолетов и эксклюзивные материалы прямо на вашу почту.',
 				'section_button' => [
 					'title' => 'Перейти в каталог',
-					'url' => home_url( '/catalog/' ),
+					'url' => home_url( '/airliners/' ),
 					'target' => '_self'
-				]
+				],
+				'section_image' => get_template_directory_uri() . '/public/images/cta-bg.webp',
 			] );
 		?>
 

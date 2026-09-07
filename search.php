@@ -234,16 +234,18 @@ wp_reset_postdata();
 	
 	<?php endif; ?>
 
-    <!--Секция призыва к действию-->
+    <!-- Секция призыва к действию -->
 	<?php 
-		get_template_part( 'template-parts/sections/cta-simple', null, [
+		get_template_part( 'template-parts/sections/cta-block', null, [
 			'section_title' => 'Не нашли нужный самолёт?',
 			'section_description' => 'Откройте полный каталог авиалайнеров с умными фильтрами.',
 			'section_button' => [
 				'title' => 'Перейти в каталог',
-				'url' => home_url( '/catalog/' ),
+				'url' => home_url( '/airliners/' ),
 				'target' => '_self'
-			]
+			],
+			'section_image' => get_template_directory_uri() . '/public/images/cta-bg.webp',
+			'section_modifier' => 'section--alt'
 		] ); 
 	?>
 
