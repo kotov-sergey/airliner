@@ -1,6 +1,8 @@
-// Карточка бренда
+// Карточка производителя (бренда)
 
 .card-brand {
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -8,6 +10,19 @@
 	color: inherit;
 	cursor: pointer;
 	text-decoration: none;
+
+	&__link {
+		text-decoration: none;
+		color: inherit;
+
+		&::after {
+			content: '';
+			position: absolute;
+
+			inset: 0;
+			z-index: 1;
+		}
+	}
 
 	&__picture {
 		display: flex;

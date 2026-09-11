@@ -1,5 +1,5 @@
 <!-- Верстка Hero-секции страницы лайнера -->
-<header class="page-header airliner-hero">
+<section class="section airliner-hero">
 	<div class="container">
 
 		<!-- Хлебные крошки -->
@@ -49,4 +49,4 @@
 		
 		</div>
 	</div>
-</header>
+</section>

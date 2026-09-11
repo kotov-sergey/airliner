@@ -13,7 +13,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_6952c91eb3092",
+                        "field": "field_69a4276416825",
                         "operator": "==",
                         "value": "logo"
                     }
@@ -24,7 +24,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
+            "return_format": "id",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -81,5 +81,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1772366292
+    "modified": 1789139469
 }
