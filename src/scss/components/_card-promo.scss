@@ -2,6 +2,7 @@
 
 @use '../abstracts/mixins' as *;
 
+// Карточка статьи для Bento-сетки ( с затемнением )
 .promo-card {
 	@include card-shell;
 
@@ -14,16 +15,17 @@
 		position: absolute;
 		inset: 0;
 
-		z-index: -1;
+		z-index: 0;
 	}
 
 	&__background::after {
 		content: '';
 		position: absolute;
 		inset: 0;
-		z-index: 0;
+		z-index: 1;
 
 		background: var(--bg-overlay-dark);
+		pointer-events: none;
 	}
 
 	&__image {
@@ -40,29 +42,48 @@
 		transform: scale(1.1);
 	}
 
+	&__link {
+		text-decoration: none;
+		color: inherit;
+
+		&::after {
+			content: '';
+			position: absolute;
+
+			inset: 0;
+			z-index: 2;
+		}
+	}
+
 	&__content {
-		height: 100%;
+		position: relative;
+		z-index: 3;
 
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
+		height: 100%;
+		pointer-events: none;
 
 		gap: var(--space-3);
 
-		padding: var(--space-6);
+		padding: var(--space-5);
+
+		@media ( min-width: 768px ) {
+			padding: var(--space-6);
+		}
 	}
 
-	&__link::after {
-		content: '';
-		position: absolute;
+    &__action,
+    .post-meta {
+		position: relative;
+		z-index: 4;
+        pointer-events: auto;
+    }
 
-		inset: 0;
-		z-index: 1;
-	}
-	
 	&__title {
-		font-size: var(--text-xl);
-        line-height: var(--leading-snug);
+		font-size: var(--text-lg);
+        line-height: var(--leading-tight);
         color: var(--text-inverse);
 
 		display: -webkit-box;
@@ -70,6 +91,17 @@
 		line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+		pointer-events: auto;
+
+		transition: color var(--duration-base) var(--ease-in-out);
+
+		@media ( min-width: 768px ) {
+			font-size: var(--text-xl);
+		}
+	}
+
+	&:hover &__link {
+		color: var(--link-color);
 	}
 
 	&__description {
@@ -93,10 +125,12 @@
 		color: var(--text-inverse);
 
 		opacity: 0;
+		transform: translateY(10px);
 		transition: all var(--duration-base) var(--ease-in-out);
 	}
 
 	&:hover &__action {
 		opacity: 1;
+		transform: translateY(0);
 	}
 }

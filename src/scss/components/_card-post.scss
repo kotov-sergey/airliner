@@ -2,6 +2,7 @@
 
 @use '../abstracts/mixins' as *;
 
+// Обычная карточка записи
 .post-card {
 	display: flex;
 	flex-direction: column;
@@ -46,16 +47,26 @@
 		gap: var(--space-3);
 	}
 
-	&__link::after {
-		content: '';
-		position: absolute;
+	&__link {
+		text-decoration: none;
+		color: inherit;
 
-		inset: 0;
-		z-index: 1;
-	}	
+		&::after {
+			content: '';
+			position: absolute;
+
+			inset: 0;
+			z-index: 1;
+		}
+	}
+
+	.post-meta {
+		position: relative;
+		z-index: 2;
+	}
 
 	&__title {
-		font-size: var(--text-xl);
+		font-size: var(--text-lg);
 		color: var(--text-brand);
         line-height: var(--leading-snug);
 
@@ -64,13 +75,23 @@
 		line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+
+		transition: color var(--duration-base) var(--ease-in-out);
+
+		@media ( min-width: 768px ) {
+			font-size: var(--text-xl);
+		}
+	}
+
+	&:hover &__link {
+		color: var(--link-color);
 	}
 
 	&__description {
 		font-size: var(--text-sm);
 		color: var(--text-secondary);
 
-		 display: -webkit-box;
+		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		line-clamp: 2;
 		-webkit-box-orient: vertical;
@@ -78,20 +99,37 @@
 	}
 }
 
+// Карточка избранной статьи Featured
 .featured-card {
+	position: relative;
+	isolation: isolate;
 
 	&__grid {
 		display: grid;
-		grid-template-columns: 1.5fr 1fr;
-		gap: var(--space-8);
+		gap: var(--space-6);
+		grid-template-columns: 1fr;
+
+		@media ( min-width: 768px ) {
+			grid-template-columns: 1fr 1fr;
+			gap: var(--space-8);
+			align-items: center;
+		}
+
+		@media ( min-width: 1024px ) {
+			grid-template-columns: 1.5fr 1fr;
+		}
 	}
 
 	&__media {
-		aspect-ratio: 4 / 3;
+		aspect-ratio: 16 / 9;
 		position: relative;
 
 		overflow: hidden;
 		border-radius: var(--radius-xl);
+
+		@media ( min-width: 768px ) {
+			aspect-ratio: 4 / 3;
+		}
 	}
 
 	&__image {
@@ -106,7 +144,7 @@
         transform: scale( 1 );
         will-change: transform;
         
-        transition: transform var(--duration-base) var(--ease-in-out); 
+        transition: transform var(--duration-base) var(--ease-in-out);
 	}
 
 	&:hover &__image {
@@ -119,16 +157,51 @@
 		justify-content: center;
 		align-items: flex-start;
 
-		gap: var(--space-5);
+		gap: var(--space-4);
+
+		@media ( min-width: 1024px ) {
+			gap: var(--space-6);
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+		color: inherit;
+
+		&::after {
+			content: '';
+			position: absolute;
+
+			inset: 0;
+			z-index: 1;
+		}
+	}
+
+	.post-meta,
+	&__button {
+		position: relative;
+		z-index: 2;
 	}
 
 	&__title {
-		font-size: var(--text-4xl);
+		font-size: var(--text-2xl);
 		color: var(--text-brand);
+		line-height: var(--leading-tight);
+
+		transition: color var(--duration-base) var(--ease-in-out);
+
+		@media ( min-width: 768px ) {
+			font-size: var(--text-4xl);
+		}
 	}
 
+    &:hover &__link {
+        color: var(--link-color);
+    }	
+
 	&__description {
-		font-size: var(--space-4);
+		font-size: var(--text-base);
 		color: var(--text-secondary);
+		line-height: var(--leading-normal);
 	}
 }

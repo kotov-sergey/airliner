@@ -82,6 +82,7 @@ get_header();
         </section>
     <?php endif; ?>
 
+
     <!-- Секция все публикации-->
     <?php if ( have_posts() ) : ?>
         <section class="section blog-archive section--alt">
@@ -89,6 +90,7 @@ get_header();
 
                 <!-- Заголовок секции Все публикации -->
                 <?php
+                    
                     get_template_part( 'template-parts/components/section-header', null, [
                         'data' => [
                             'header_title' => 'Все публикации'
@@ -98,12 +100,12 @@ get_header();
 
                 <!-- Сетка записей -->
                 <div class="l-grid l-grid--3">
-                    <?php 
-                    while ( have_posts() ) : the_post();
+                    <?php while ( have_posts() ) : the_post();
                         get_template_part( 'template-parts/components/card-post' );
-                    endwhile;
+                        endwhile;
                     ?>
                 </div>
+
             </div>
         </section>
     <?php endif; ?>
