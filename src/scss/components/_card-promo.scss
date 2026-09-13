@@ -43,8 +43,6 @@
 	}
 
 	&__link {
-		text-decoration: none;
-		color: inherit;
 		transition: color var(--duration-base) var(--ease-in-out);
 
 		&::after {
