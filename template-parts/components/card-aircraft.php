@@ -1,61 +1,57 @@
 <?php
+// Карточка авиалайнера
 
-// Верстка одной карточки авиалайнера
-
+// Получение ID текущей карточки
 $post_id = get_the_ID();
 
+// Раскладка карточки авиалайнера
 $layout = $args['layout'] ?? 'vertical';
 $card_class = 'card-aircraft card-aircraft--' . $layout;
 
-$spec_mods = 'clean-icon'; // По умолчанию иконка без фона
+// Модификаторы для характеристик авиалайнера
+$spec_mods = 'clean-icon';
 if ( $layout === 'horizontal' ) {
-	$spec_mods .= ' no-label'; // Горизонтальная карточка без лейбла
+	$spec_mods .= ' no-label';
 }
 
 // Alt для изображения
 $alt_text = 'Самолет ' . get_the_title() . ' на взлетной полосе';
+
+// Путь к картинке-заглушке
+$placeholder = get_template_directory_uri() . '/public/images/placeholder-image.svg';
 ?>
 
 <article class="<?php echo esc_attr( $card_class ); ?>">
 	
+	<!-- Изображение авиалайнера -->
 	<div class="card-aircraft__picture">
 		
-		<!-- Изображение авиалайнера -->
-		<?php 
-			if ( has_post_thumbnail() ) :
-				the_post_thumbnail( 'large', array(
-				'class'   => 'card-aircraft__image',
-				'alt' => $alt_text,
-				'loading' => 'lazy'              
-			) );
-			else : 
-		?>
-			<img 
-				src="<?php echo esc_url( get_template_directory_uri() . '/public/images/placeholder-image.svg' ); ?>" 
-				class="card-aircraft__image" 
-				alt="<?php echo esc_attr( $alt_text ); ?>"
-				loading="lazy" 
-			/>
+		<?php if ( has_post_thumbnail() ) : ?>
+			<?php the_post_thumbnail( 'large', [ 'class' => 'card-aircraft__image', 'alt' => $alt_text, 'loading' => 'lazy' ] ); ?>
+		<?php else : ?> 
+			<img src="<?php echo esc_url( $placeholder); ?>" class="card-aircraft__image" alt="<?php echo esc_attr( $alt_text ); ?>" loading="lazy" />
 		<?php endif; ?>
 
 	</div>
 
 	<div class="card-aircraft__body">
 		
-		<!-- Верхняя строка: Бренд и Тип фюзеляжа -->
+		<!-- Мета-данные авиалайнера -->
 		<div class="card-aircraft__meta">
 			<?php the_airliner_badges( ['manufacturer', 'body-type'], '', 'pill--text-only' ); ?>
 		</div>
 
 		<!-- Название авиалайнера -->
-		<a href="<?php the_permalink(); ?>" class="card-aircraft__link">
-			<h3 class="card-aircraft__title">
+		<h3 class="card-aircraft__title">
+			<a href="<?php the_permalink(); ?>" class="card-aircraft__link">
 				<?php the_title(); ?>
-			</h3>
-		</a>
+			</a>
+		</h3>
 
+		<!-- Если карточка Горизонтальная -->
 		<?php if ( $layout === 'horizontal' ) : ?>
-					
+			
+			<!-- Описание карточки -->
 			<p class="card-aircraft__description">
 				<?php
 					$excerpt = get_the_excerpt();
@@ -65,7 +61,7 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 
 		<?php endif; ?>
 		
-		<!-- Характеристики -->
+		<!-- Характеристики лайнера -->
 		<?php
 			$specs_to_show = [
 				['group' => 'specs_performance', 'field' => 'max_speed'],
@@ -76,12 +72,15 @@ $alt_text = 'Самолет ' . get_the_title() . ' на взлетной пол
 			the_airliner_specs_wrapper( $specs_to_show, $spec_mods );
 		?>
 
-		<!-- Кнопка Призыв к действию -->
+		<!-- Если карточка Вертикальная -->
 		<?php if ( $layout === 'vertical' ) : ?>
 
+			<!-- Кнопка карточки -->
 			<div class="card-aircraft__actions">
-				<span class="btn btn--secondary card-aircraft__btn-details">Подробнее</span>
+				<span class="btn btn--secondary card-aircraft__btn">Подробнее</span>
 			</div>
 		<?php endif; ?>
+
+	</div>
 	
 </article>

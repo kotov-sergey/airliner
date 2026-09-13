@@ -15,6 +15,8 @@
         position: relative;
 
         overflow: hidden;
+
+        transform: translateZ(0); 
     }
 
     &__image {
@@ -30,19 +32,26 @@
         will-change: transform;
         
         transition: transform var(--duration-base) var(--ease-in-out);        
-    }
+    }    
 
     &:hover &__image {
         transform: scale( 1.1 );
     }
 
-    &__meta {
-        margin-bottom: var(--space-3);
-        
-        .airliner-badges {
-            position: relative;
-            z-index: 2;
+    &__link {
+        transition: color var(--duration-base) var(--ease-in-out);
+
+        &::after {
+            content: '';
+            position: absolute;
+            
+            inset: 0;
+            z-index: 1;
         }
+    }
+    
+    &:hover &__link {
+        color: var(--link-color);
     }
 
     &__body {
@@ -52,36 +61,39 @@
 
         width: 100%;
 
-        padding: var(--space-6);
+        padding: var(--space-4);
+
+        @media ( min-width: 768px ) {
+            padding: var(--space-6);
+        }
     }
 
-    &__brand {
-        flex-shrink: 0;
-    }
+    &__meta,
+    &__specs {
+        position: relative;
+        z-index: 2; 
+        pointer-events: auto;
+    }    
+
+    &__meta {
+        margin-bottom: var(--space-3);
+    }    
 
     &__title {
-        font-size: var(--text-base);
+        font-size: var(--text-sm);
         color: var(--text-main);
         text-align: left;
+        line-height: var(--leading-tight);
 
-        transition: color var(--duration-base) var(--ease-in-out);
+        @media ( min-width: 768px ) {
+           font-size: var(--text-base); 
+        }
     }
-
-    &:hover &__title {
-        color: var(--text-brand);
-    }
-    
-    &__link::after {
-        content: '';
-        position: absolute;
-        
-        inset: 0;
-        z-index: 1;
-    }    
 
     &__description {
         font-size: var(--text-sm);
         color: var(--text-secondary);
+        line-height: var(--leading-normal);
 
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -100,24 +112,29 @@
         font-size: var(--text-xs);
 
         margin-top: var(--space-4);
-
-        padding-bottom: var(--space-5);
+        padding-bottom: var(--space-4);
         margin-bottom: var(--space-5);
-
-        .spec-row__data {
-            font-weight: 400;
-        }
     }
 
     &__actions {
+        position: relative;
+        z-index: 2;
+        pointer-events: none; 
+
         display: flex;
         gap: var(--space-2);
 
         margin-top: auto;
     }
 
-    &__btn-details {
+    &__btn {
         flex-grow: 1;
+        transition: all var(--duration-base) var(--ease-in-out);
+    }
+
+    &:hover &__btn {
+        background-color: var(--btn-secondary-bg-hover);
+        color: var(--btn-secondary-text-hover);
     }
     
     &--horizontal {
@@ -155,6 +172,7 @@
 
             .card-aircraft__body {
                 width: 60%;
+                justify-content: center;
             }
         }
     }
