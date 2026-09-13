@@ -6,12 +6,6 @@
 
     position: relative;
 
-    @media ( min-width: 768px ) {
-        .section-header {
-            max-width: 45%;
-        }
-    }
-
     &__bg {
         position: absolute;
         z-index: 0;
