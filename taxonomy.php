@@ -16,7 +16,7 @@ get_header();
 
 <main class="site-main page-taxonomy">
 
-    <!--Hero-секция таксономии-->
+    <!-- Hero-секция таксономии -->
     <?php
         get_template_part( 'template-parts/components/hero', null, [
             'title' => $hero_title ? $hero_title : get_the_title(),
@@ -26,64 +26,24 @@ get_header();
         ] );
     ?>
 
-    <!--Секция каталог таксономии-->
+    <!-- Секция каталог таксономии -->
     <section class="section catalog-content page-taxonomy__content">
         <div class="container">
-            <div class="catalog-content__layout">
 
-                <!-- Сайдбар (фильтры) -->
-                <aside class="catalog-content__sidebar">
-                    <?php 
-                        get_template_part( 'template-parts/components/catalog-filter', null, [
-                            'columns' => 3
-                        ] ); 
-                    ?>
-                </aside>
+            <!-- Компонент каталога авиалайнеров -->
+            <?php get_template_part( 'template-parts/sections/catalog-layout'); ?>
 
-                <!-- Контейнер для результатов -->
-                <div class="catalog-content__results" id="catalog-results">
-                    <div class="l-grid l-grid--3 catalog-content__grid">
-
-                        <?php
-                            if ( have_posts() ) {
-                                while ( have_posts() ) {
-                                    the_post();
-                                    get_template_part( 'template-parts/components/card-aircraft' );
-                                }
-                            }
-                            else {
-                                echo '<p>Самолеты не найдены!</p>';
-                            }
-                        ?>
-
-                    </div>
-
-                    <!-- Пагинация -->
-                    <?php if ( $wp_query->max_num_pages > 1 ) : ?>
-                        <div class="catalog-content__pagination">
-                            <?php
-                            echo paginate_links( array( 
-                                'prev_text' => '&larr; Назад',
-                                'next_text' => 'Вперёд &rarr;',
-                            ) );
-                            ?>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-
-            </div>
         </div>
     </section>
 
-    <!--Секция связанные статьи таксономии-->
+    <!-- Секция связанные статьи таксономии -->
     <?php 
         get_template_part( 'template-parts/post/post-related-by-term', null, [
             'term' =>$current_term
         ] );
     ?>
 
-    <!--Секция SEO-текст таксономии-->
+    <!-- Секция SEO-текст таксономии -->
     <?php if ( $seo_text ) : ?>
         <section class="section taxonomy-seo">
             <div class="container container--narrow">

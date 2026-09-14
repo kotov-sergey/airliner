@@ -1,5 +1,5 @@
 <?php
-// Верстка карточки тип фюзеляжа
+// Карточка типа фюзеляжа
 
 $fuselage_type = $args['current_type'] ?? null;
 if ( ! $fuselage_type ) return;

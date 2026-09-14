@@ -59,9 +59,9 @@
 @use 'sections/cta-block';
 @use 'sections/faq-block';
 @use 'sections/feedback';
+@use 'sections/catalog-layout';
 
 // Pages (Страницы)
-@use 'pages/page-catalog';
 @use 'pages/page-404';
 @use 'pages/search';
 @use 'pages/category';
