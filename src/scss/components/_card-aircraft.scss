@@ -80,13 +80,13 @@
     }    
 
     &__title {
-        font-size: var(--text-sm);
+        font-size: var(--text-base);
         color: var(--text-main);
         text-align: left;
         line-height: var(--leading-tight);
 
         @media ( min-width: 768px ) {
-           font-size: var(--text-base); 
+           font-size: var(--text-lg); 
         }
     }
 

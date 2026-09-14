@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { 
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     letter-spacing: var(--tracking-tight);
 
     @media (min-width: 1024px) {
@@ -41,8 +41,12 @@ h3 {
 }
 
 h4 {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     line-height: var(--leading-snug);
+
+    @media (min-width: 1024px) {
+        font-size: var(--text-lg);
+    }
 }
 
 h5 {

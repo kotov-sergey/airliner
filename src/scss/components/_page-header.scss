@@ -65,14 +65,9 @@
     }
 
     &__title {
-        font-size: var(--text-3xl);
         color: var(--text-inverse);
         line-height: var(--leading-tight);
         text-wrap: balance;
-
-        @media ( min-width: 1024px ) {
-            font-size: var(--text-5xl);
-        }
     }
 
     &__description {
