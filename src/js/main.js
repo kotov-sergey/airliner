@@ -6,3 +6,9 @@ import './modules/scroll.js'; // Скрипты кнопки hero-секции
 import './modules/gallery.js'; // Скрипты подключения галереи Glightbox
 import './modules/filter.js'; // Скрипты для подключения AJAX-фильтров
 import './modules/catalog-filter-accordion.js'; // Скрипты для аккардеона блоков фильтрации
+
+import { initCompare } from './modules/compare.js'; // Скрипт обработки и вывода выбранных авиалайнеров
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCompare();
+});
