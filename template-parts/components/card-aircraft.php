@@ -23,14 +23,27 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
 <article class="<?php echo esc_attr( $card_class ); ?>">
 	
-	<!-- Изображение авиалайнера -->
+	<!-- Блок для изображения авиалайнера -->
 	<div class="card-aircraft__picture">
 		
+		<!-- Изображение авиалайнера -->
 		<?php if ( has_post_thumbnail() ) : ?>
 			<?php the_post_thumbnail( 'large', [ 'class' => 'card-aircraft__image', 'alt' => $alt_text, 'loading' => 'lazy' ] ); ?>
 		<?php else : ?> 
 			<img src="<?php echo esc_url( $placeholder); ?>" class="card-aircraft__image" alt="<?php echo esc_attr( $alt_text ); ?>" loading="lazy" />
 		<?php endif; ?>
+
+		<!-- Кнопка сравнения авиалайнера -->
+		<button 
+			type="button"
+			data-id="<?php echo get_the_id(); ?>" 
+			class="card-aircraft__compare js-compare-btn"
+			aria-label="Добавить к сравнению">
+
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 12H3M16 6H3M16 18H3M18 9v6M21 12h-6"></path>
+			</svg>
+		</button>
 
 	</div>
 

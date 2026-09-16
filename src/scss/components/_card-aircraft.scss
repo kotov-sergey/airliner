@@ -11,8 +11,11 @@
     position: relative;
 
     &__picture {
+
         aspect-ratio: 16 / 9;
         position: relative;
+        z-index: 2;
+        pointer-events: none;
 
         overflow: hidden;
 
@@ -37,6 +40,52 @@
     &:hover &__image {
         transform: scale( 1.1 );
     }
+
+    &__compare {
+        position: absolute;
+        z-index: 3;
+        pointer-events: auto;
+
+        top: var(--space-4);
+        right: var(--space-4);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 36px;
+        height: 36px;
+        padding: 0;
+
+        background-color: var(--bg-surface);
+        border: none;
+        border-radius: var(--radius-full);
+        color: var(--text-muted);
+
+        transition: all var(--duration-base) var(--ease-in-out);
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        &:hover {
+            color: var(--color-white);
+            background-color: var(--text-accent);
+        }
+
+        &.is-active {
+            color: var(--color-white);
+            background-color: var(--text-accent);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+    }
+
+    @keyframes popIn {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+}
 
     &__link {
         transition: color var(--duration-base) var(--ease-in-out);
