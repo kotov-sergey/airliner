@@ -68,16 +68,14 @@ export function updateCompareUI() {
 
     // А. Подсвечиваем активные кнопки на карточках
     const allButtons = document.querySelectorAll('.js-compare-btn');
+    
     allButtons.forEach(btn => {
         const btnId = Number(btn.dataset.id);
-        const textSpan = btn.querySelector('.js-compare-btn-text');
 
         if (list.includes(btnId)) {
             btn.classList.add('is-active');
-            if (textSpan) textSpan.textContent = 'В сравнении';
         } else {
             btn.classList.remove('is-active');
-            if (textSpan) textSpan.textContent = 'Сравнить';
         }
     });
 

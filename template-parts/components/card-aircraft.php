@@ -33,7 +33,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 			<img src="<?php echo esc_url( $placeholder); ?>" class="card-aircraft__image" alt="<?php echo esc_attr( $alt_text ); ?>" loading="lazy" />
 		<?php endif; ?>
 
-		<!-- Кнопка сравнения авиалайнера -->
+		<!-- Кнопка добавления к сравнению -->
 		<button 
 			type="button"
 			data-id="<?php echo get_the_id(); ?>" 

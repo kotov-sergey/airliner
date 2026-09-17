@@ -37,12 +37,12 @@ $plane_ids = array_slice($plane_ids, 0, 4);
             <!-- Проверяем, что в базе действительно нашлось как минимум 2 самолета -->
             <?php if ( $compare_query->have_posts() && $compare_query->found_posts >= 2 ) : ?>
                 
-                <!-- Сравнительная таблица -->
-                <div class="compare-table-wrapper">
-                    <table class="compare-table">
-                        <!-- Данные авиалайнеров -->
-                    </table>
-                </div>
+                <!-- Таблица сравнения авиалайнеров -->
+                <?php 
+                    get_template_part( 'template-parts/components/compare-table', null, [
+                        'query' => $compare_query
+                    ] );
+                ?>
 
                 <?php wp_reset_postdata(); ?>
 
