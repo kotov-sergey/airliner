@@ -58,6 +58,20 @@
         }
     }
 
+    // Кнопка с обводкой для тёмных фонов (inverse)
+    &--inverse {
+        background-color: transparent;
+        border: 1px solid var(--color-white);
+        color: var(--color-white);  
+
+        &:hover {
+            background-color: transparent;
+            border: 1px solid var(--color-white);
+            color: var(--color-white);  
+        }
+    }
+
+
     // Модификаторы размера
 
     // Маленькая кнопка (Для карточек, фильтров)

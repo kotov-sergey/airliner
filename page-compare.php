@@ -20,53 +20,64 @@ $plane_ids = array_slice($plane_ids, 0, 4);
         ] );
     ?>
 
-    <div class="container">
+    <section class="section page-compare__content">
+        <div class="container">
 
-        <?php if( count($plane_ids) >=2 ) : ?>
+            <?php if( count($plane_ids) >=2 ) : ?>
 
-            <!-- Запрос данных авиалайнеров -->
-            <?php 
-            $compare_query = new WP_Query( [
-                'post_type' => 'airliner',
-                'post__in' => $plane_ids,
-                'orderby' => 'post__in',
-                'posts_per_page' => 4
-            ] );
-            ?>
-
-            <!-- Проверяем, что в базе действительно нашлось как минимум 2 самолета -->
-            <?php if ( $compare_query->have_posts() && $compare_query->found_posts >= 2 ) : ?>
-                
-                <!-- Таблица сравнения авиалайнеров -->
+                <!-- Запрос данных авиалайнеров -->
                 <?php 
-                    get_template_part( 'template-parts/components/compare-table', null, [
-                        'query' => $compare_query
-                    ] );
+                $compare_query = new WP_Query( [
+                    'post_type' => 'airliner',
+                    'post__in' => $plane_ids,
+                    'orderby' => 'post__in',
+                    'posts_per_page' => 4
+                ] );
                 ?>
 
-                <?php wp_reset_postdata(); ?>
+                <!-- Проверяем, что в базе действительно нашлось как минимум 2 самолета -->
+                <?php if ( $compare_query->have_posts() && $compare_query->found_posts >= 2 ) : ?>
+
+                    <!-- Заголовок секции -->
+                    <?php 
+                        get_template_part( 'template-parts/components/section-header', null, [
+                            'data' => [
+                                'header_title' => 'Таблица сравнения авиалайнеров'
+                            ]
+                        ] );
+                    ?>                    
+                    
+                    <!-- Таблица сравнения авиалайнеров -->
+                    <?php 
+                        get_template_part( 'template-parts/components/compare-table', null, [
+                            'query' => $compare_query
+                        ] );
+                    ?>
+
+                    <?php wp_reset_postdata(); ?>
+
+                <?php else : ?>
+
+                    <!-- Заглушка, если по переданным ID самолеты не найдены в базе -->
+                    <div class="compare-empty text-center">
+                        <p class="text-secondary mb-4">Выбранные самолеты не найдены в базе данных.</p>
+                        <a href="<?php echo esc_url( home_url( '/airliners/' ) ); ?>" class="btn btn--primary">Перейти в каталог</a>
+                    </div>
+                
+                <?php endif; ?>
 
             <?php else : ?>
 
-                <!-- Заглушка, если по переданным ID самолеты не найдены в базе -->
-                <div class="compare-empty text-center">
-                    <p class="text-secondary mb-4">Выбранные самолеты не найдены в базе данных.</p>
+                <!-- Заглушка, если выбрано меньше 2 самолетов -->
+                <div class="compare-empty">
+                    <p class="text-secondary">Для сравнения выберите как минимум 2 самолета из каталога.</p>
                     <a href="<?php echo esc_url( home_url( '/airliners/' ) ); ?>" class="btn btn--primary">Перейти в каталог</a>
                 </div>
-            
+
             <?php endif; ?>
 
-        <?php else : ?>
-
-            <!-- Заглушка, если выбрано меньше 2 самолетов -->
-            <div class="compare-empty">
-                <p class="text-secondary">Для сравнения выберите как минимум 2 самолета из каталога.</p>
-                <a href="<?php echo esc_url( home_url( '/airliners/' ) ); ?>" class="btn btn--primary">Перейти в каталог</a>
-            </div>
-
-        <?php endif; ?>
-
-    </div>
+        </div>
+    </section>
 
 </main>
 

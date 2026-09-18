@@ -14,7 +14,7 @@
     <div class="compare-bar__actions">
         <a href="#" class="btn btn--primary js-compare-submit-link">Сравнить</a>
         
-        <button type="button" class="btn btn--secondary js-compare-clear">Очистить</button>
+        <button type="button" class="btn btn--inverse js-compare-clear">Очистить</button>
     </div>
 
     </div>

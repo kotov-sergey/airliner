@@ -44,6 +44,7 @@
     --bg-inverse:     var(--color-blue-900);   // Темные секции (CTA, Footer)
     --bg-header:      var(--color-blue-900);   // Фон для шапки
     --bg-footer:      var(--color-blue-900);   // Фон для подвала
+    --bg-accent:      var(--color-orange-500); // Фон акцентный
 
     /* Оверлеи и Градиенты (Затемнение картинок) */
     --bg-overlay-fade-right: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); // Для Hero-секций (затемнение слева направо)
