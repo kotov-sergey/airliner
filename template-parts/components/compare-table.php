@@ -45,7 +45,7 @@ wp_reset_postdata();
                         
                         <!-- Кнопка удаления из сравнения -->
                         <button type="button"
-                            class="compare-table__remove js-compare-btn"
+                            class="compare-table__remove js-compare-remove"
                             data-id="<?php echo esc_attr( $plane['id']); ?>"
                             title="Удалить из сравнения"
                             aria-label="Удалить <?php echo esc_attr( $plane['title']); ?> из сравнения">
