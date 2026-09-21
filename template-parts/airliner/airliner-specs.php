@@ -1,5 +1,5 @@
 <?php
-//Верстка секции характеристик страницы лайнера
+// Верстка секции характеристик авиалайнера
 
 $config = get_airliner_specs_config();
 
@@ -29,7 +29,7 @@ foreach ( $config as $group_key => $group_data ) {
                     'data' => [
                         'header_label' => 'Характеристики',
                         'header_title' => 'Технические характеристики',
-                        'header' => 'Полный список характеристик Boeing 787-8 Dreamliner с данными от производителя.'
+                        'header_description' => 'Полный список характеристик ' . get_the_title() .  ' с данными от производителя.'
                     ]
                 ]);
             ?>
@@ -42,9 +42,9 @@ foreach ( $config as $group_key => $group_data ) {
                     if ( ! $this_group_values || empty( array_filter( $this_group_values ) ) ) continue;
                 ?>
                     <div class="spec-card">
-                        <div class="spec-card__title">
+                        <h3 class="spec-card__title">
                             <?php echo esc_html( $group_data['label'] ); ?>
-                        </div>
+                        </h3>
 
                         <div class="spec-card__list">
                             <?php

@@ -23,7 +23,7 @@ $plane_ids = array_slice($plane_ids, 0, 4);
     <section class="section page-compare__content">
         <div class="container">
 
-            <?php if( count($plane_ids) >=2 ) : ?>
+            <?php if( count( $plane_ids ) >=2 ) : ?>
 
                 <!-- Запрос данных авиалайнеров -->
                 <?php 

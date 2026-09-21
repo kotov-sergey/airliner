@@ -140,52 +140,36 @@ function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airl
 }
 
 // Вывод одной характеристики из массива данных авиалайнера
-function the_airliner_spec( $group_key, $field_key, $css_mod='' ) {
+function the_airliner_spec( $group_key, $field_key, $css_mod = '', $post_id = false ) {
     $config = get_airliner_specs_config();
 
     if ( ! isset( $config[$group_key]['fields'][$field_key] ) ) return;
 
     $field_config = $config[$group_key]['fields'][$field_key];
 
-    $group_data = get_field( $group_key );
+    $group_data = get_field( $group_key, $post_id );
 
     if ( empty( $group_data ) || empty( $group_data[$field_key] ) ) return;
 
     $value = $group_data[$field_key];
 
     if ( is_numeric( $value ) ) {
-        $value = number_format( $value, 0, '.', ' ' );
-    }
-
-    $icon = airliner_get_svg( $field_config['icon'] );
-    $label = $field_config['label'];
-    $unit = $field_config['unit'];
-
-    $classes = 'spec-row';
-
-    if ( ! empty( $css_mod ) ) {
-        $mods_array = explode( ' ', $css_mod );
-        foreach ( $mods_array as $mod ) {
-            $mod = trim( $mod );
-            if ( ! empty( $mod ) ) {
-                $classes .= ' spec-row--' . $mod;
-            }
+        if ( floor( $value ) == $value ) {
+            $value = number_format( $value, 0, '.', ' ' );
+        } 
+        else {
         }
     }
 
-    echo '<div class="' . esc_attr( $classes ) . '" title="' . esc_attr( $label ) . '">';
+    $data_to_pass = [
+        'icon' => airliner_get_svg( $field_config['icon'] ),
+        'label' => $field_config['label'],
+        'unit' => $field_config['unit'],
+        'value' => $value,
+        'css_mod' => $css_mod
+    ];
 
-        echo '<div class="spec-row__name">';
-            echo '<div class="spec-row__icon">' . $icon . '</div>';
-            echo '<span class="spec-row__label">' . esc_html( $label ) . '</span>';
-        echo '</div>';
-
-        echo '<div class="spec-row__data">';
-            echo '<span class="spec-row__value">' . esc_html( $value ) . '</span>';
-            echo '<span class="spec-row__unit">' . esc_html( $unit ) . '</span>';
-        echo '</div>';
-    
-    echo '</div>';
+    get_template_part( 'template-parts/components/spec-row', null, $data_to_pass );
 }
 
 // Умная обёртка группы характеристик авиалайнера

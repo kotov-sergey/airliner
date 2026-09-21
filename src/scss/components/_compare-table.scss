@@ -1,84 +1,71 @@
-// Сравнительная таблица авиалайнеров
+// Сетка сравнения
+@use '../abstracts/mixins' as *;
 
-.compare-table-wrapper {
-    width: 100%;
-    overflow-x: auto; // Включаем плавную горизонтальную прокрутку на смартфонах
-    -webkit-overflow-scrolling: touch;
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-xl);
-    background-color: var(--bg-surface);
-    box-shadow: var(--shadow-sm);
+.compare-grid {
+    display: flex;
+    gap: var(--space-6);
+    
+    // АДАПТИВ (Mobile First): Разрешаем горизонтальный скролл
+    overflow-x: auto;
+    padding-bottom: var(--space-4); // Место для скроллбара
+    
+    // Эффект "прилипания" карточек при свайпе (как в каруселях)
+    scroll-snap-type: x mandatory; 
+    
+    // Стилизуем скроллбар (опционально)
+    &::-webkit-scrollbar { height: 6px; }
+    &::-webkit-scrollbar-thumb { 
+        background: var(--border-light); 
+        border-radius: 10px; 
+    }
 }
 
-.compare-table {
-    width: 100%;
-    min-width: 680px; // Минимальная ширина, чтобы колонки не сплющивались
-    border-collapse: collapse;
-    text-align: left;
+// Карточка сравнения
+.compare-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    // ВАЖНО: Карточка не может сжаться меньше 280px.
+    // Если экран телефона 320px, влезет 1 карточка + кусочек второй (намек на свайп)
+    min-width: 280px; 
+    flex: 1 1 0; // На десктопе карточки разделят место поровну
+    
+    scroll-snap-align: start; // Прилипание к началу экрана при скролле
 
-    // Стили первой колонки с названиями характеристик
-    &__label {
-        width: 220px;
-        min-width: 180px;
-        padding: var(--space-4) var(--space-6);
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--text-muted);
-        background-color: var(--bg-surface-alt); // мягкая подложка
-        border-bottom: 1px solid var(--border-light);
-        border-right: 1px solid var(--border-light);
-
-        // Фиксация первой колонки при скролле
-        position: sticky;
-        left: 0;
-        z-index: 2;
+    &__header {
+        padding: var(--space-6);
+        text-align: left;
     }
 
-    &__row {
-        &:last-child .compare-table__label,
-        &:last-child .compare-table__cell {
-            border-bottom: none;
-        }
-
-        &--header {
-            .compare-table__label {
-                background-color: var(--bg-surface);
-            }
-        }
-    }
-
-    // Стили ячеек со значениями самолетов
-    &__cell {
-        padding: var(--space-4) var(--space-6);
-        border-bottom: 1px solid var(--border-light);
-        border-right: 1px solid var(--border-light);
-        vertical-align: middle;
-        min-width: 200px;
-
-        &:last-child {
-            border-right: none;
-        }
-
-        &--val {
-            font-size: var(--text-base);
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        &--plane {
-            position: relative;
-            vertical-align: top;
-            padding-top: var(--space-6);
+    &__remove {
+        position: absolute;
+        top: var(--space-3);
+        right: var(--space-3);
+        z-index: 10;
+        
+        // Стилизуем крестик как кнопку (можно применить стили от твоих иконок)
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--bg-surface-alt);
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s;
+        
+        &:hover {
+            background: var(--color-danger, red); // Или твой акцентный цвет
+            color: white;
         }
     }
 
-    // Картинка самолета в шапке таблицы
-    &__preview {
+    &__media {
         aspect-ratio: 16 / 9;
+        margin-bottom: var(--space-4);
         overflow: hidden;
-        border-radius: var(--radius-lg);
-        margin-bottom: var(--space-3);
-        background-color: var(--bg-surface-alt);
+
+        border-radius: var(--radius-xl);
+        margin-bottom: var(--space-4);
     }
 
     &__image {
@@ -87,45 +74,40 @@
         object-fit: cover;
     }
 
-    &__plane-title {
-        font-size: var(--text-lg);
-        font-weight: 700;
-        line-height: var(--leading-snug);
-        margin-bottom: var(--space-2);
-
-        a {
-            color: var(--text-brand);
-            text-decoration: none;
-
-            &:hover {
-                color: var(--color-orange-500);
-            }
-        }
+    &__meta {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin-bottom: var(--space-4);
     }
 
-    // Кнопка удаления самолета (крестик) прямо из таблицы
-    &__remove {
-        position: absolute;
-        top: var(--space-2);
-        right: var(--space-2);
-        width: 28px;
-        height: 28px;
-        border-radius: var(--radius-full);
-        border: 1px solid var(--border-light);
-        background-color: var(--bg-surface);
-        color: var(--text-muted);
-        font-size: 18px;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all var(--duration-fast);
+    &__title {
+        font-size: var(--text-lg);
+        margin: 0;
+        a { color: var(--text-brand); text-decoration: none; }
+    }
 
-        &:hover {
-            background-color: var(--color-orange-500);
-            border-color: var(--color-orange-500);
-            color: var(--color-white);
-        }
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        flex-grow: 1;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        background: var(--bg-surface-alt); // Можно сделать фон характеристик серым для контраста
+
+        padding: var(--space-6);
+        border-radius: var(--radius-xl);
+    }
+
+    &__footer {
+        padding: var(--space-6);
+        text-align: left;
+        margin-top: auto;
     }
 }
