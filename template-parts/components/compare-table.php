@@ -15,6 +15,11 @@ while ( $compare_query->have_posts() ) {
     $brands = wp_get_post_terms( $plane_id, 'manufacturer' );
     $body_types = wp_get_post_terms( $plane_id, 'body-type' );
 
+    $dimensions_group = get_field( 'specs_dimensions', $plane_id ) ?: [];
+    $performance_group = get_field( 'specs_performance', $plane_id ) ?: [];
+    $weight_group = get_field( 'specs_weight', $plane_id ) ?: [];
+    $power_group = get_field( 'specs_power', $plane_id ) ?: [];
+
     $planes[] = [
         'id' => $plane_id,
         'title' => get_the_title(),
@@ -22,10 +27,10 @@ while ( $compare_query->have_posts() ) {
         'thumbnail' => get_the_post_thumbnail_url( $plane_id, 'large' ) ?: get_template_directory_uri() . '/public/images/placeholder-image.svg',
         'brand' => ! empty( $brands ) ? $brands[0]->name : '—',
         'body_type' => ! empty( $body_types ) ? $body_types[0]->name : '—',
-        'passengers' => get_field( 'passengers', $plane_id ) ?: '—',
-        'range' => get_field( 'range', $plane_id ) ?: '—',
-        'speed' => get_field( 'speed', $plane_id ) ?: '—',
-        'mtow' => get_field( 'mtow', $plane_id ) ?: '—',
+        'passengers' => ! empty( $weight_group['passengers'] ) ? $weight_group['passengers'] . ' чел.' : '—',
+        'range' => ! empty( $performance_group['range'] ) ? $performance_group['range'] . ' км' : '—',
+        'speed' => ! empty( $performance_group['max_speed'] ) ? $performance_group['max_speed'] . ' Mach' : '—',
+        'mtow' => ! empty( $weight_group['mtow'] ) ? $weight_group['mtow'] . ' кг' : '—',
     ];
 }
 wp_reset_postdata();
@@ -76,7 +81,7 @@ wp_reset_postdata();
 
                 <?php foreach ( $planes as $plane ) : ?>
                     <td class="compare-table__cell">
-                        <span class="badge badge--brand"><?php echo esc_html( $plane['brand'] ); ?></span>
+                        <span class="pill pill--subtle"><?php echo esc_html( $plane['brand'] ); ?></span>
                     </td>
                 <?php endforeach; ?>
             </tr>
@@ -87,7 +92,7 @@ wp_reset_postdata();
 
                 <?php foreach ( $planes as $plane ) : ?>
                     <td class="compare-table__cell">
-                        <span class="badge badge--body"><?php echo esc_html( $plane['body_type'] ); ?></span>
+                        <span class="pill pill--subtle"><?php echo esc_html( $plane['body_type'] ); ?></span>
                     </td>
                 <?php endforeach; ?>
             </tr>

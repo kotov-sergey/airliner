@@ -16,7 +16,7 @@
     text-decoration: none;
     cursor: pointer;
 
-    transition: all var(--duration-fast) var(--ease-in-out);
+    transition: all var(--duration-base) var(--ease-in-out);
   
     // Сплошная кнопка (solid)
     &--primary {
@@ -62,12 +62,14 @@
     &--inverse {
         background-color: transparent;
         border: 1px solid var(--color-white);
-        color: var(--color-white);  
+        color: var(--color-white);
+        opacity: 0.8;
 
         &:hover {
             background-color: transparent;
             border: 1px solid var(--color-white);
-            color: var(--color-white);  
+            color: var(--color-white);
+            opacity: 1;
         }
     }
 

@@ -52,15 +52,15 @@ $plane_ids = array_slice($plane_ids, 0, 4);
                         get_template_part( 'template-parts/components/compare-table', null, [
                             'query' => $compare_query
                         ] );
-                    ?>
+                    ?>   
 
                     <?php wp_reset_postdata(); ?>
 
                 <?php else : ?>
 
                     <!-- Заглушка, если по переданным ID самолеты не найдены в базе -->
-                    <div class="compare-empty text-center">
-                        <p class="text-secondary mb-4">Выбранные самолеты не найдены в базе данных.</p>
+                    <div class="empty-state">
+                        <p class="empty-state__text">Выбранные самолеты не найдены в базе данных.</p>
                         <a href="<?php echo esc_url( home_url( '/airliners/' ) ); ?>" class="btn btn--primary">Перейти в каталог</a>
                     </div>
                 
@@ -69,8 +69,8 @@ $plane_ids = array_slice($plane_ids, 0, 4);
             <?php else : ?>
 
                 <!-- Заглушка, если выбрано меньше 2 самолетов -->
-                <div class="compare-empty">
-                    <p class="text-secondary">Для сравнения выберите как минимум 2 самолета из каталога.</p>
+                <div class="empty-state">
+                    <p class="empty-state__text">Для сравнения выберите как минимум 2 самолета из каталога.</p>
                     <a href="<?php echo esc_url( home_url( '/airliners/' ) ); ?>" class="btn btn--primary">Перейти в каталог</a>
                 </div>
 

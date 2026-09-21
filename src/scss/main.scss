@@ -52,6 +52,7 @@
 @use 'components/page-header';
 @use 'components/compare-bar';
 @use 'components/compare-table';
+@use 'components/empty-state';
 
 // Sections (Крупные блоки)
 @use 'sections/history';

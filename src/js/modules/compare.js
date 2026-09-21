@@ -1,36 +1,21 @@
-// Скрипт обработки и вывода выбранных авиалайнеров
 const STORAGE_KEY = 'airliner_compare_ids';
 const MAX_ITEMS = 4;
-const COMPARE_PAGE_URL = '/compare/'; // ярлык вашей страницы сравнения
+const COMPARE_PAGE_URL = '/compare/';
 
-/**
- * 1. Получить текущий массив ID из LocalStorage
- */
 export function getCompareList() {
     try {
         const data = localStorage.getItem(STORAGE_KEY);
         return data ? JSON.parse(data) : [];
-    } catch (e) {
-        console.error('Ошибка чтения LocalStorage:', e);
+    } catch {
         return [];
     }
 }
 
-/**
- * 2. Сохранить массив ID в LocalStorage
- */
 function saveCompareList(ids) {
-    try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
-        window.dispatchEvent(new Event('compareUpdated'));
-    } catch (e) {
-        console.error('Ошибка записи в LocalStorage:', e);
-    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+    window.dispatchEvent(new Event('compareUpdated'));
 }
 
-/**
- * 3. Добавить или удалить ID из списка
- */
 export function toggleCompare(id) {
     const numericId = Number(id);
     let list = getCompareList();
@@ -39,7 +24,7 @@ export function toggleCompare(id) {
         list = list.filter(item => item !== numericId);
     } else {
         if (list.length >= MAX_ITEMS) {
-            alert(`Можно сравнить не более ${MAX_ITEMS} лайнеров одновременно.`);
+            alert(`Можно сравнить не более ${MAX_ITEMS} лайнеров.`);
             return false;
         }
         list.push(numericId);
@@ -49,30 +34,22 @@ export function toggleCompare(id) {
     return true;
 }
 
-/**
- * 4. Очистить весь список
- */
 export function clearCompare() {
     saveCompareList([]);
 }
 
-/**
- * 5. Обновить состояние интерфейса
- */
+// Обновление интерфейса (только кнопки и нижняя плашка!)
 export function updateCompareUI() {
     const list = getCompareList();
     const count = list.length;
 
-    // А. Подсвечиваем активные кнопки на карточках
-    const allButtons = document.querySelectorAll('.js-compare-btn');
-    allButtons.forEach(btn => {
+    // 1. Подсветка кнопок на карточках в каталоге
+    document.querySelectorAll('.js-compare-btn').forEach(btn => {
         const btnId = Number(btn.dataset.id);
-        
-        // Короткая и современная запись toggle для классов
         btn.classList.toggle('is-active', list.includes(btnId));
     });
 
-    // Б. Обновляем плавающий нижний бар
+    // 2. Нижняя плашка
     const bar = document.querySelector('.js-compare-bar');
     const countEl = document.querySelector('.js-compare-count');
     const submitLink = document.querySelector('.js-compare-submit-link');
@@ -85,21 +62,20 @@ export function updateCompareUI() {
             bar.classList.add('is-visible');
             bar.setAttribute('aria-hidden', 'false');
 
-            // --- НОВАЯ ЛОГИКА ДЛЯ КНОПКИ СРАВНИТЬ ---
             if (count === 1) {
                 // Если лайнер только 1: отключаем кнопку
                 submitLink.href = 'javascript:void(0)';
-                submitLink.classList.add('is-disabled'); // Для стилей
-                submitLink.style.pointerEvents = 'none'; // Запрещаем клик
-                submitLink.style.opacity = '0.5'; // Визуально глушим
-                submitLink.textContent = 'Выберите еще один'; // Опционально: можно менять текст
+                submitLink.classList.add('is-disabled');
+                submitLink.style.pointerEvents = 'none';
+                submitLink.style.opacity = '0.5';
+                submitLink.textContent = 'Выберите еще один';
             } else {
                 // Если 2 и более: активируем кнопку
                 submitLink.href = `${COMPARE_PAGE_URL}?ids=${list.join(',')}`;
                 submitLink.classList.remove('is-disabled');
-                submitLink.style.pointerEvents = 'auto'; // Разрешаем клик
+                submitLink.style.pointerEvents = 'auto';
                 submitLink.style.opacity = '1';
-                submitLink.textContent = 'Сравнить'; // Возвращаем текст
+                submitLink.textContent = 'Сравнить';
             }
 
         } else {
@@ -109,22 +85,19 @@ export function updateCompareUI() {
     }
 }
 
-/**
- * 6. Инициализация слушателей событий
- */
+// Простые и понятные клики
 export function initCompare() {
     document.addEventListener('click', (e) => {
         
-        // Клик по кнопке "Добавить" на карточке
+        // 1. Клик по кнопке на карточке самолета
         const btn = e.target.closest('.js-compare-btn');
         if (btn) {
             e.preventDefault();
-            const id = btn.dataset.id;
-            if (id) toggleCompare(id);
+            toggleCompare(btn.dataset.id);
             return;
         }
 
-        // Клик по кнопке "Очистить" в баре
+        // 2. Клик "Очистить" в нижнем баре
         const clearBtn = e.target.closest('.js-compare-clear');
         if (clearBtn) {
             e.preventDefault();
@@ -132,61 +105,24 @@ export function initCompare() {
             return;
         }
 
-        // --- НОВАЯ ЛОГИКА: КЛИК ПО КРЕСТИКУ НА СТРАНИЦЕ СРАВНЕНИЯ ---
+        // 3. Клик по крестику в таблице сравнения (БЕЗ КОСТЫЛЕЙ)
         const removeBtn = e.target.closest('.js-compare-remove');
         if (removeBtn) {
             e.preventDefault();
-            const id = removeBtn.dataset.id;
+            const id = Number(removeBtn.dataset.id);
             
-            if (id) {
-                // 1. Удаляем из LocalStorage
-                toggleCompare(id);
-                const currentList = getCompareList();
+            // Просто удаляем ID из памяти
+            let list = getCompareList().filter(item => item !== id);
+            saveCompareList(list);
 
-                // 2. ПРОВЕРКА НА КОЛИЧЕСТВО (Меньше 2)
-                if (currentList.length < 2) {
-                    // Находим обертку таблицы
-                    const tableWrapper = document.querySelector('.compare-table-wrapper');
-                    
-                    if (tableWrapper) {
-                        // Меняем HTML таблицы на твою заглушку!
-                        // (Убедись, что ссылка ведет на твой актуальный каталог)
-                        tableWrapper.outerHTML = `
-                            <div class="compare-empty" style="padding: var(--space-12) 0;">
-                                <p class="text-secondary" style="font-size: var(--text-lg); margin-bottom: var(--space-6);">
-                                    Для сравнения выберите как минимум 2 самолета из каталога.
-                                </p>
-                                <a href="/airliners/" class="btn btn--primary">Перейти в каталог</a>
-                            </div>
-                        `;
-                    }
-
-                    // Обновляем URL (оставляем 1 ID или очищаем, но без перезагрузки)
-                    const newUrl = currentList.length === 1 
-                        ? `${COMPARE_PAGE_URL}?ids=${currentList[0]}` 
-                        : COMPARE_PAGE_URL;
-                    window.history.replaceState({}, '', newUrl);
-
-                } else {
-                    // 3. ЕСЛИ САМОЛЕТОВ 2 ИЛИ БОЛЬШЕ (Обычное удаление колонки)
-                    const cell = removeBtn.closest('td, th');
-                    if (cell) {
-                        const colIndex = cell.cellIndex;
-                        const table = cell.closest('table');
-                        const rows = table.querySelectorAll('tr');
-                        rows.forEach(row => {
-                            if (row.children[colIndex]) {
-                                row.children[colIndex].remove();
-                            }
-                        });
-                    }
-
-                    // Обновляем URL
-                    const newUrl = `${COMPARE_PAGE_URL}?ids=${currentList.join(',')}`;
-                    window.history.replaceState({}, '', newUrl);
-                }
+            // И просто обновляем страницу с новым списком параметров!
+            // PHP сам всё перерисует без единой строчки JS-грязи:
+            if (list.length >= 2) {
+                window.location.href = `${COMPARE_PAGE_URL}?ids=${list.join(',')}`;
+            } else {
+                // Если остался 1 или 0 — переходим на пустую страницу сравнения (сработает заглушка в PHP)
+                window.location.href = COMPARE_PAGE_URL;
             }
-            return;
         }
     });
 
