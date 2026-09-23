@@ -34,8 +34,7 @@
     scroll-snap-align: start; // Прилипание к началу экрана при скролле
 
     &__header {
-        padding: var(--space-6);
-        text-align: left;
+       margin-bottom: var(--space-4);
     }
 
     &__remove {
@@ -61,7 +60,6 @@
 
     &__media {
         aspect-ratio: 16 / 9;
-        margin-bottom: var(--space-4);
         overflow: hidden;
 
         border-radius: var(--radius-xl);
@@ -95,19 +93,7 @@
         flex-grow: 1;
     }
 
-    &__group {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-        background: var(--bg-surface-alt); // Можно сделать фон характеристик серым для контраста
-
-        padding: var(--space-6);
-        border-radius: var(--radius-xl);
-    }
-
     &__footer {
-        padding: var(--space-6);
-        text-align: left;
         margin-top: auto;
     }
 }

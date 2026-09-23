@@ -139,15 +139,13 @@ function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airl
     echo '</div>';
 }
 
-// Вывод одной характеристики из массива данных авиалайнера
-function the_airliner_spec( $group_key, $field_key, $css_mod = '', $post_id = false ) {
+function the_airliner_spec( $group_key, $field_key, $group_data, $css_mod='') {
+
     $config = get_airliner_specs_config();
 
     if ( ! isset( $config[$group_key]['fields'][$field_key] ) ) return;
 
     $field_config = $config[$group_key]['fields'][$field_key];
-
-    $group_data = get_field( $group_key, $post_id );
 
     if ( empty( $group_data ) || empty( $group_data[$field_key] ) ) return;
 
@@ -158,6 +156,7 @@ function the_airliner_spec( $group_key, $field_key, $css_mod = '', $post_id = fa
             $value = number_format( $value, 0, '.', ' ' );
         } 
         else {
+            $value = number_format( $value, 1, '.', ' ' );
         }
     }
 
@@ -170,29 +169,6 @@ function the_airliner_spec( $group_key, $field_key, $css_mod = '', $post_id = fa
     ];
 
     get_template_part( 'template-parts/components/spec-row', null, $data_to_pass );
-}
-
-// Умная обёртка группы характеристик авиалайнера
-
-function the_airliner_specs_wrapper( $specs_list, $css_mod='' ) {
-    if ( empty( $specs_list) ) return;
-
-    ob_start();
-
-    foreach( $specs_list as $spec ) {
-        the_airliner_spec( $spec['group'], $spec['field'], $css_mod );
-    }
-
-    $html_output = ob_get_clean();
-
-    if ( !empty( $html_output ) ) {
-        echo '<div class="card-aircraft__specs">';
-            echo $html_output;
-        echo '</div>';
-    }
-    else {
-        echo '<br>Нет характеристик.';
-    }
 }
 
 // Генерация классов сетки для элементов галереи

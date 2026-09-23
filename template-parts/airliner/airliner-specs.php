@@ -36,27 +36,9 @@ foreach ( $config as $group_key => $group_data ) {
 
             <!-- Сетка технических характеристик -->
             <div class="l-grid l-grid--2">
-                <?php
-                foreach ( $config as $group_key => $group_data ) :
-                    $this_group_values = get_field( $group_key );
-                    if ( ! $this_group_values || empty( array_filter( $this_group_values ) ) ) continue;
-                ?>
-                    <div class="spec-card">
-                        <h3 class="spec-card__title">
-                            <?php echo esc_html( $group_data['label'] ); ?>
-                        </h3>
 
-                        <div class="spec-card__list">
-                            <?php
-                            foreach ( $group_data['fields'] as $field_key => $field_data ) :
-                                the_airliner_spec( $group_key, $field_key );
-                            endforeach;
-                            ?>
-                        </div>
-
-                    </div>
-
-                <?php endforeach; ?>
+                <!-- Компонент группы характеристик авиалайнера -->
+                <?php get_template_part( 'template-parts/components/specs-group' ); ?>
 
             </div>
         

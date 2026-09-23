@@ -2,7 +2,7 @@
 // Карточка авиалайнера
 
 // Получение ID текущей карточки
-$post_id = get_the_ID();
+$plane_id = get_the_ID();
 
 // Раскладка карточки авиалайнера
 $layout = $args['layout'] ?? 'vertical';
@@ -74,16 +74,15 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
 		<?php endif; ?>
 		
-		<!-- Характеристики лайнера -->
-		<?php
-			$specs_to_show = [
-				['group' => 'specs_performance', 'field' => 'max_speed'],
-				['group' => 'specs_weight', 'field' => 'passengers'],
-				['group' => 'specs_performance', 'field' => 'range'],
-			];
-
-			the_airliner_specs_wrapper( $specs_to_show, $spec_mods );
-		?>
+		<!-- Характеристики авиалайнера -->
+		<div class="card-aircraft__specs">
+			<?php
+				get_template_part( 'template-parts/components/specs-key', null, [
+					'plane_id' => $plane_id,
+					'css_mod' => 'clean-icon'
+				] );
+			?>
+		</div>
 
 		<!-- Если карточка Вертикальная -->
 		<?php if ( $layout === 'vertical' ) : ?>

@@ -102,8 +102,8 @@ function get_airliner_specs_config() {
 			'label' => 'Производительность',
 			'fields' => [
 				'cruise_speed' => ['label' => 'Крейсерская скорость', 'unit' => 'Mach', 'icon' => 'specs/speed'],
-				'max_speed' => ['label' => 'Макс. скорость', 'unit' => 'Mach', 'icon' => 'specs/speed-max'],
-				'range' => ['label' => 'Дальность полёта', 'unit' => 'км', 'icon' => 'specs/distance'],
+				'max_speed' => ['label' => 'Макс. скорость', 'unit' => 'Mach', 'icon' => 'specs/speed-max', 'is_key' => true],
+				'range' => ['label' => 'Дальность полёта', 'unit' => 'км', 'icon' => 'specs/distance', 'is_key' => true],
 				'ceiling' => ['label' => 'Практический потолок', 'unit' => 'м', 'icon' => 'specs/altitude'],
 			]
 		],
@@ -115,7 +115,7 @@ function get_airliner_specs_config() {
 				'mtow' => ['label' => 'Макс. взлётная масса', 'unit' => 'кг', 'icon' => 'specs/weight'],
 				'empty' => ['label' => 'Масса пустого', 'unit' => 'кг', 'icon' => 'specs/weight-light'],
 				'fuel' => ['label' => 'Ёмкость топлива', 'unit' => 'л', 'icon' => 'specs/fuel'],
-				'passengers' => ['label' => 'Вместимость', 'unit' => 'чел.', 'icon' => 'specs/seats'],
+				'passengers' => ['label' => 'Вместимость', 'unit' => 'чел.', 'icon' => 'specs/seats', 'is_key' => true],
 			]
 		],
 		
@@ -125,7 +125,7 @@ function get_airliner_specs_config() {
 			'fields' => [
 				'engine' => ['label' => 'Двигатели', 'unit' => '', 'icon' => 'specs/engine'],
 				'thrust' => ['label' => 'Тяга (на двигатель)', 'unit' => 'кН', 'icon' => 'specs/thrust'],
-				'fuel_consumption' => ['label' => 'Расход топлива', 'unit' => 'л/пкм', 'icon' => 'specs/fuel-consumption'],
+				'fuel_consumption' => ['label' => 'Расход топлива', 'unit' => 'л/пкм', 'icon' => 'specs/fuel-consumption', 'is_key' => true],
 				'run-up' => ['label' => 'Длина разбега', 'unit' => 'м', 'icon' => 'specs/run-up'],
 			]
 		],			

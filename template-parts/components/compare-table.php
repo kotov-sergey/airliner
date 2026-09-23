@@ -1,22 +1,21 @@
 <?php
-// Сравнительная таблица авиалайнеров (Архитектура карточек)
+// Сравнительная таблица авиалайнеров
 
 $compare_query = $args['query'] ?? null;
 if ( ! $compare_query || ! $compare_query->have_posts() ) return;
 
-// 1. Создаем "Список покупок" (Какие характеристики сравниваем)
-// Ключи должны в точности совпадать с твоим конфигом get_airliner_specs_config()
+// Получение конфигурации характеристик
 $compare_specs = get_airliner_specs_config();
 ?>
 
-<!-- Сетка сравнения (Горизонтальный скролл на мобилках) -->
+<!-- Сетка сравнения -->
 <div class="compare-grid">
 
     <?php while ( $compare_query->have_posts() ) : $compare_query->the_post(); 
         
         $plane_id = get_the_ID();
         
-        // Получаем таксономии
+        // Получение таксономий
         $brands = wp_get_post_terms( $plane_id, 'manufacturer' );
         $body_types = wp_get_post_terms( $plane_id, 'body-type' );
 
@@ -24,38 +23,44 @@ $compare_specs = get_airliner_specs_config();
         $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.svg';
     ?>
 
-        <!-- ВАЖНО: Класс js-compare-item нужен для удаления через JS -->
+        <!-- Класс js-compare-item нужен для удаления через JS -->
         <article class="compare-card js-compare-item">
             
-            <!-- КНОПКА УДАЛЕНИЯ -->
+            <!-- Кнопка удаления из сравнения -->
             <button type="button"
                 class="compare-card__remove js-compare-remove"
                 data-id="<?php echo esc_attr( $plane_id ); ?>"
                 title="Удалить из сравнения"
                 aria-label="Удалить <?php echo esc_attr( get_the_title() ); ?>">
-                <!-- Красивый крестик (можно заменить на SVG) -->
                 &times; 
             </button>
 
-            <!-- ШАПКА КАРТОЧКИ -->
+            <!-- Шапка карточки -->
             <header class="compare-card__header">
                 
                 <div class="compare-card__media">
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <?php the_post_thumbnail( 'medium', ['class' => 'compare-card__image', 'loading' => 'lazy'] ); ?>
+                        <?php the_post_thumbnail( 'medium', [
+                            'class' => 'compare-card__image',
+                            'loading' => 'lazy'
+                            ] ); 
+                        ?>
                     <?php else : ?>
-                        <img src="<?php echo esc_url( $placeholder ); ?>" class="compare-card__image" loading="lazy" />
+                        <img src="<?php echo esc_url( $placeholder ); ?>"
+                            alt="<?php echo esc_attr( get_the_title() ); ?>"
+                            class="compare-card__image" 
+                            loading="lazy" />
                     <?php endif; ?>
                 </div>
 
                 <!-- Мета (Пилюли) -->
                 <div class="compare-card__meta">
-                    <?php if ( !empty($brands) ) : ?>
-                        <span class="pill pill--solid"><?php echo esc_html($brands[0]->name); ?></span>
+                    <?php if ( ! empty( $brands ) && ! is_wp_error( $brands ) ) : ?>
+                        <span class="pill pill--solid"><?php echo esc_html( $brands[0]->name ); ?></span>
                     <?php endif; ?>
                     
-                    <?php if ( !empty($body_types) ) : ?>
-                        <span class="pill pill--solid"><?php echo esc_html($body_types[0]->name); ?></span>
+                    <?php if ( ! empty( $body_types ) && ! is_wp_error( $body_types ) ) : ?>
+                        <span class="pill pill--solid"><?php echo esc_html( $body_types[0]->name ); ?></span>
                     <?php endif; ?>
                 </div>
 
@@ -65,34 +70,20 @@ $compare_specs = get_airliner_specs_config();
 
             </header>
 
-            <!-- ТЕЛО КАРТОЧКИ (ХАРАКТЕРИСТИКИ) -->
+            <!-- Тело карточки (характеристики) -->
             <div class="compare-card__body">
-                <?php 
-                    foreach ( $compare_specs as $group_key => $group_data ) :
-                        $this_group_values = get_field( $group_key );
-                        if ( ! $this_group_values || empty( array_filter( $this_group_values ) ) ) continue;
+
+                <!-- Компонент группы характеристик авиалайнера -->  
+                <?php
+                    get_template_part( 'template-parts/components/specs-group', null, [
+                        'plane_id' => $plane_id,
+                        'css_mod' => 'clean-icon'
+                    ] );
                 ?>
-                    <div class="compare-card__group">
-
-                        <h4 class="compare-card__label">
-                            <?php echo esc_html( $group_data['label'] ); ?>
-                        </h4>
-
-                        <div class="compare-card__list">
-                            <?php
-                                foreach ( $group_data['fields'] as $field_key => $field_data ) :
-                                    the_airliner_spec( $group_key, $field_key, 'clean-icon', $plane_id );
-                                endforeach;
-                            ?>
-                        </div>
-
-                    </div>
-
-                <?php endforeach; ?>
 
             </div>
 
-            <!-- ПОДВАЛ КАРТОЧКИ -->
+            <!-- Подвал карточки -->
             <div class="compare-card__footer">
                 <a href="<?php the_permalink(); ?>" class="btn btn--primary">
                     Страница модели
@@ -102,5 +93,7 @@ $compare_specs = get_airliner_specs_config();
         </article>
 
     <?php endwhile; ?>
+
+    <?php wp_reset_postdata(); ?>
     
 </div>

@@ -1,4 +1,12 @@
-<!-- Верстка Hero-секции страницы лайнера -->
+<?php
+// Верстка Hero-секции страницы лайнера
+
+$plane_id = get_the_ID();
+
+$weight_data = get_field( 'specs_weight', $plane_id );
+$performance_data = get_field( 'specs_performance', $plane_id );
+?>
+
 <section class="section airliner-hero">
 	<div class="container">
 
@@ -38,10 +46,15 @@
 					</p>
 
 					<div class="l-grid l-grid--2 info-card__specs">
-						<?php the_airliner_spec('specs_weight', 'passengers', 'vertical'); ?>
-						<?php the_airliner_spec('specs_performance', 'range', 'vertical'); ?>
-						<?php the_airliner_spec('specs_performance', 'max_speed', 'vertical'); ?>
-						<?php the_airliner_spec('specs_weight', 'mtow', 'vertical'); ?>
+
+						<!-- Вывод ключевых характеристик авиалайнера -->
+						<?php
+							get_template_part( 'template-parts/components/specs-key', null, [
+								'plane_id' => $plane_id,
+								'css_mod' => 'vertical'
+							] );
+						?>
+
 					</div>
 
 				</div>
