@@ -1,7 +1,12 @@
+// src/js/modules/compare.js
+
 const STORAGE_KEY = 'airliner_compare_ids';
 const MAX_ITEMS = 4;
 const COMPARE_PAGE_URL = '/compare/';
 
+/**
+ * 1. Получить текущий массив ID из LocalStorage
+ */
 export function getCompareList() {
     try {
         const data = localStorage.getItem(STORAGE_KEY);
@@ -11,13 +16,21 @@ export function getCompareList() {
     }
 }
 
+/**
+ * 2. Сохранить массив ID в LocalStorage и уведомить приложение
+ */
 function saveCompareList(ids) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
     window.dispatchEvent(new Event('compareUpdated'));
 }
 
+/**
+ * 3. Переключатель: добавить или удалить ID из списка
+ */
 export function toggleCompare(id) {
     const numericId = Number(id);
+    if (!numericId) return false;
+
     let list = getCompareList();
 
     if (list.includes(numericId)) {
@@ -34,62 +47,67 @@ export function toggleCompare(id) {
     return true;
 }
 
+/**
+ * 4. Полная очистка списка
+ */
 export function clearCompare() {
     saveCompareList([]);
 }
 
-// Обновление интерфейса (только кнопки и нижняя плашка!)
+/**
+ * 5. Обновление интерфейса (Кнопки карточек и нижний бар)
+ */
 export function updateCompareUI() {
     const list = getCompareList();
     const count = list.length;
 
-    // 1. Подсветка кнопок на карточках в каталоге
+    // А. Подсветка кнопок в каталоге
     document.querySelectorAll('.js-compare-btn').forEach(btn => {
         const btnId = Number(btn.dataset.id);
-        btn.classList.toggle('is-active', list.includes(btnId));
+        const isActive = list.includes(btnId);
+
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+
+        // Если в кнопке есть текст — меняем его
+        const label = btn.querySelector('.js-compare-btn-text');
+        if (label) {
+            label.textContent = isActive ? 'В сравнении' : 'Сравнить';
+        }
     });
 
-    // 2. Нижняя плашка
+    // Б. Обновление плавающей панели внизу
     const bar = document.querySelector('.js-compare-bar');
     const countEl = document.querySelector('.js-compare-count');
     const submitLink = document.querySelector('.js-compare-submit-link');
 
-    if (bar && countEl && submitLink) {
-        countEl.textContent = count;
+    if (!bar || !countEl || !submitLink) return;
 
-        if (count > 0) {
-            // Показываем панель, если есть хотя бы 1 лайнер
-            bar.classList.add('is-visible');
-            bar.setAttribute('aria-hidden', 'false');
+    countEl.textContent = count;
+    bar.classList.toggle('is-visible', count > 0);
+    bar.setAttribute('aria-hidden', String(count === 0));
 
-            if (count === 1) {
-                // Если лайнер только 1: отключаем кнопку
-                submitLink.href = 'javascript:void(0)';
-                submitLink.classList.add('is-disabled');
-                submitLink.style.pointerEvents = 'none';
-                submitLink.style.opacity = '0.5';
-                submitLink.textContent = 'Выберите еще один';
-            } else {
-                // Если 2 и более: активируем кнопку
-                submitLink.href = `${COMPARE_PAGE_URL}?ids=${list.join(',')}`;
-                submitLink.classList.remove('is-disabled');
-                submitLink.style.pointerEvents = 'auto';
-                submitLink.style.opacity = '1';
-                submitLink.textContent = 'Сравнить';
-            }
-
-        } else {
-            bar.classList.remove('is-visible');
-            bar.setAttribute('aria-hidden', 'true');
-        }
+    // Логика состояний кнопки перехода
+    if (count >= 2) {
+        submitLink.href = `${COMPARE_PAGE_URL}?ids=${list.join(',')}`;
+        submitLink.classList.remove('btn--disabled');
+        submitLink.removeAttribute('aria-disabled');
+        submitLink.textContent = 'Сравнение';
+    } else {
+        submitLink.href = 'javascript:void(0);';
+        submitLink.classList.add('btn--disabled');
+        submitLink.setAttribute('aria-disabled', 'true');
+        submitLink.textContent = 'Выберите еще один';
     }
 }
 
-// Простые и понятные клики
+/**
+ * 6. Слушатели кликов
+ */
 export function initCompare() {
     document.addEventListener('click', (e) => {
         
-        // 1. Клик по кнопке на карточке самолета
+        // 1. Клик "Сравнить" на карточке самолета
         const btn = e.target.closest('.js-compare-btn');
         if (btn) {
             e.preventDefault();
@@ -105,27 +123,25 @@ export function initCompare() {
             return;
         }
 
-        // 3. Клик по крестику в таблице сравнения (БЕЗ КОСТЫЛЕЙ)
+        // 3. Клик по крестику удаления (на странице сравнения)
         const removeBtn = e.target.closest('.js-compare-remove');
         if (removeBtn) {
             e.preventDefault();
-            const id = Number(removeBtn.dataset.id);
             
-            // Просто удаляем ID из памяти
-            let list = getCompareList().filter(item => item !== id);
-            saveCompareList(list);
+            // Удаляем ID через общий метод
+            toggleCompare(removeBtn.dataset.id);
 
-            // И просто обновляем страницу с новым списком параметров!
-            // PHP сам всё перерисует без единой строчки JS-грязи:
-            if (list.length >= 2) {
-                window.location.href = `${COMPARE_PAGE_URL}?ids=${list.join(',')}`;
-            } else {
-                // Если остался 1 или 0 — переходим на пустую страницу сравнения (сработает заглушка в PHP)
-                window.location.href = COMPARE_PAGE_URL;
-            }
+            // Перезагружаем страницу с актуальными параметрами (чистый SSR)
+            const list = getCompareList();
+            window.location.href = list.length >= 2 
+                ? `${COMPARE_PAGE_URL}?ids=${list.join(',')}` 
+                : COMPARE_PAGE_URL;
         }
     });
 
+    // Реакция на обновление данных
     window.addEventListener('compareUpdated', updateCompareUI);
+    
+    // Запуск при инициализации
     updateCompareUI();
 }

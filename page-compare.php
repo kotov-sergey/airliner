@@ -6,6 +6,9 @@ get_header();
 $ids_param = isset($_GET['ids']) ? sanitize_text_field($_GET['ids']) : '';
 $plane_ids = !empty($ids_param) ? array_map('intval', explode(',', $ids_param)) : [];
 
+// Данные лучших характеристик авиалайнеров
+$winners = get_airliner_compare_winners( $plane_ids );
+
 // Ограничение максимального кол-ва авиалайнеров
 $plane_ids = array_slice($plane_ids, 0, 4);
 ?>
@@ -42,7 +45,7 @@ $plane_ids = array_slice($plane_ids, 0, 4);
                     <?php 
                         get_template_part( 'template-parts/components/section-header', null, [
                             'data' => [
-                                'header_title' => 'Таблица сравнения авиалайнеров'
+                                'header_title' => 'Сравнение авиалайнеров'
                             ]
                         ] );
                     ?>                    
@@ -50,7 +53,8 @@ $plane_ids = array_slice($plane_ids, 0, 4);
                     <!-- Таблица сравнения авиалайнеров -->
                     <?php 
                         get_template_part( 'template-parts/components/compare-table', null, [
-                            'query' => $compare_query
+                            'query' => $compare_query,
+                            'winners' => $winners
                         ] );
                     ?>   
 

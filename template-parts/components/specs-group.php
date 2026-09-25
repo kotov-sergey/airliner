@@ -3,6 +3,8 @@
 
 $plane_id = $args['plane_id'] ?? get_the_ID();
 $specs = get_airliner_specs_config();
+$winners = $args['winners'] ?? [];
+
 $css_mod = $args['css_mod'] ?? '';
 
 foreach ( $specs as $group_key => $group_data ) :
@@ -17,7 +19,7 @@ foreach ( $specs as $group_key => $group_data ) :
 
         <div class="spec-card__list">
             <?php foreach ( $group_data['fields'] as $field_key => $field_data ) : ?>
-                <?php the_airliner_spec( $group_key, $field_key, $group_values, $css_mod ); ?>
+                <?php the_airliner_spec( $group_key, $field_key, $group_values, $css_mod, $winners ); ?>
             <?php endforeach; ?>
         </div>
 

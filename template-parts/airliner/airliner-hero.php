@@ -2,9 +2,6 @@
 // Верстка Hero-секции страницы лайнера
 
 $plane_id = get_the_ID();
-
-$weight_data = get_field( 'specs_weight', $plane_id );
-$performance_data = get_field( 'specs_performance', $plane_id );
 ?>
 
 <section class="section airliner-hero">

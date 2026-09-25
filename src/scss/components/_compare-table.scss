@@ -1,69 +1,117 @@
-// Сетка сравнения
-@use '../abstracts/mixins' as *;
+// scss/components/_compare-table.scss (или _compare-grid.scss)
 
+/* ==========================================================================
+   1. Сетка / Лента сравнения (Контейнер)
+   ========================================================================== */
 .compare-grid {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-4);
     
-    // АДАПТИВ (Mobile First): Разрешаем горизонтальный скролл
+    // Адаптивный скролл на мобильных устройствах (Mobile First)
     overflow-x: auto;
     padding-bottom: var(--space-4); // Место для скроллбара
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     
-    // Эффект "прилипания" карточек при свайпе (как в каруселях)
-    scroll-snap-type: x mandatory; 
-    
-    // Стилизуем скроллбар (опционально)
-    &::-webkit-scrollbar { height: 6px; }
+    // Учитываем отступы сайта при "прилипании" карточки
+    scroll-padding: 0 var(--container-padding, 16px);
+
+    @media (min-width: 768px) {
+        gap: var(--space-6);
+    }
+
+    // На больших экранах (от 1024px) отключаем скролл и выравниваем по левому краю
+    @media (min-width: 1024px) {
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding-bottom: 0;
+        justify-content: flex-start;
+    }
+
+    // Стилизация полосы прокрутки через дизайн-токены
+    &::-webkit-scrollbar { 
+        height: 6px; 
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
     &::-webkit-scrollbar-thumb { 
         background: var(--border-light); 
-        border-radius: 10px; 
+        border-radius: var(--radius-full);
+
+        &:hover {
+            background: var(--color-blue-500);
+        }
     }
 }
 
-// Карточка сравнения
+/* ==========================================================================
+   2. Карточка сравнения
+   ========================================================================== */
 .compare-card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative;
     
-    // ВАЖНО: Карточка не может сжаться меньше 280px.
-    // Если экран телефона 320px, влезет 1 карточка + кусочек второй (намек на свайп)
-    min-width: 280px; 
-    flex: 1 1 0; // На десктопе карточки разделят место поровну
-    
-    scroll-snap-align: start; // Прилипание к началу экрана при скролле
+    // Фиксированная ширина на смартфонах для эффекта "карусели"
+    flex: 0 0 280px; 
+    max-width: 280px;
+    scroll-snap-align: start;
 
-    &__header {
-       margin-bottom: var(--space-4);
+    @media (min-width: 768px) {
+        flex: 0 0 320px;
+        max-width: 320px;
     }
 
+    // На десктопе делят место поровну, но не раздуваются шире 360px при 2 самолетах
+    @media (min-width: 1024px) {
+        flex: 1 1 0;
+        max-width: 360px;
+    }
+
+    // Кнопка удаления (крестик)
     &__remove {
         position: absolute;
         top: var(--space-3);
         right: var(--space-3);
         z-index: 10;
         
-        // Стилизуем крестик как кнопку (можно применить стили от твоих иконок)
         width: 32px;
         height: 32px;
-        border-radius: 50%;
-        background: var(--bg-surface-alt);
+        border-radius: var(--radius-full);
+        background-color: var(--bg-surface-alt);
         border: none;
+        color: var(--text-muted);
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        line-height: 1;
         cursor: pointer;
-        transition: background 0.2s;
+        
+        transition: all var(--duration-base) var(--ease-in-out);
         
         &:hover {
-            background: var(--color-danger, red); // Или твой акцентный цвет
-            color: white;
+            background-color: var(--bg-accent);
+            color: var(--color-white);
         }
+    }
+
+    // Шапка карточки
+    &__header {
+        text-align: left;
+        margin-bottom: var(--space-4);
     }
 
     &__media {
         aspect-ratio: 16 / 9;
         overflow: hidden;
-
-        border-radius: var(--radius-xl);
-        margin-bottom: var(--space-4);
+        border-radius: var(--radius-lg);
+        margin-bottom: var(--space-6);
+        background-color: var(--bg-surface-alt);
     }
 
     &__image {
@@ -74,26 +122,54 @@
 
     &__meta {
         display: flex;
-        justify-content: flex-start;
         flex-wrap: wrap;
         gap: var(--space-2);
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-3);
     }
 
     &__title {
-        font-size: var(--text-lg);
+        font-size: var(--text-base);
+        font-weight: 700;
+        line-height: var(--leading-snug);
         margin: 0;
-        a { color: var(--text-brand); text-decoration: none; }
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        @media ( min-width: 768px ) {
+            font-size: var(--text-lg);
+        }
+
+        a { 
+            color: var(--text-brand); 
+            text-decoration: none;
+            transition: color var(--duration-fast) var(--ease-in-out);
+
+            &:hover {
+                color: var(--color-orange-500);
+            }
+        }
     }
 
+    // Тело карточки (список групп характеристик)
     &__body {
         display: flex;
         flex-direction: column;
         gap: var(--space-4);
         flex-grow: 1;
+        margin-bottom: var(--space-6);
     }
 
+    // Подвал карточки с кнопкой
     &__footer {
         margin-top: auto;
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 }

@@ -1,6 +1,7 @@
 // Стили для строки характеристик
 
 .spec-row {
+    position: relative;
     display: flex;
 
     align-items: center;
@@ -49,6 +50,10 @@
         white-space: nowrap;
     }
 
+    &.is-best {
+        background-color: var(--badge-success-bg);
+    }
+
     &--vertical {
         flex-direction: column;
         align-items: flex-start;
@@ -90,6 +95,17 @@
 
         .spec-row__name {
             gap: 0;
+        }
+    }
+
+    &--compact {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: var(--space-1);
+
+        .spec-row__icon {
+            display: none;
         }
     }
 }

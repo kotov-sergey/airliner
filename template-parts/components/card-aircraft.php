@@ -36,7 +36,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 		<!-- Кнопка добавления к сравнению -->
 		<button 
 			type="button"
-			data-id="<?php echo get_the_id(); ?>" 
+			data-id="<?php echo esc_attr( $plane_id ); ?>" 
 			class="card-aircraft__compare js-compare-btn"
 			aria-label="Добавить к сравнению">
 
@@ -68,7 +68,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 			<p class="card-aircraft__description">
 				<?php
 					$excerpt = get_the_excerpt();
-					echo wp_trim_words( $excerpt, 10, '&hellip;');
+					echo esc_html( wp_trim_words( $excerpt, 10, '&hellip;') );
 				?>
 			</p>
 
@@ -79,7 +79,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 			<?php
 				get_template_part( 'template-parts/components/specs-key', null, [
 					'plane_id' => $plane_id,
-					'css_mod' => 'clean-icon'
+					'css_mod' => $spec_mods
 				] );
 			?>
 		</div>

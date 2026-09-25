@@ -139,7 +139,8 @@ function the_airliner_badges( $taxonomies = [ 'manufacturer', 'body-type', 'airl
     echo '</div>';
 }
 
-function the_airliner_spec( $group_key, $field_key, $group_data, $css_mod='') {
+// Выводит характеристику авиалайнера с правильным форматированием (иконка, ед.измерения, подпись)
+function the_airliner_spec( $group_key, $field_key, $group_data, $css_mod ='', $winners = [] ) {
 
     $config = get_airliner_specs_config();
 
@@ -149,15 +150,19 @@ function the_airliner_spec( $group_key, $field_key, $group_data, $css_mod='') {
 
     if ( empty( $group_data ) || empty( $group_data[$field_key] ) ) return;
 
-    $value = $group_data[$field_key];
+    $raw_value = $group_data[$field_key];
+
+    $value = $raw_value;
 
     if ( is_numeric( $value ) ) {
         if ( floor( $value ) == $value ) {
             $value = number_format( $value, 0, '.', ' ' );
         } 
-        else {
-            $value = number_format( $value, 1, '.', ' ' );
-        }
+    }
+
+    $is_winner = false;
+        if ( isset( $winners[$field_key] ) && (float)$raw_value === (float)$winners[$field_key] ) {
+            $is_winner = true;
     }
 
     $data_to_pass = [
@@ -165,10 +170,46 @@ function the_airliner_spec( $group_key, $field_key, $group_data, $css_mod='') {
         'label' => $field_config['label'],
         'unit' => $field_config['unit'],
         'value' => $value,
-        'css_mod' => $css_mod
+        'css_mod' => $css_mod,
+        'is_winner' => $is_winner
     ];
 
     get_template_part( 'template-parts/components/spec-row', null, $data_to_pass );
+}
+
+// Вычисляет лучшие (рекордные) значения характеристик среди сравниваемых самолетов
+function get_airliner_compare_winners( $plane_ids ) {
+    if ( count( $plane_ids) < 2 ) return [];
+
+    $config = get_airliner_specs_config();
+    $winners = [];
+
+    foreach ( $config as $group_key => $group_data ) {
+
+        foreach ( $group_data['fields'] as $field_key => $field_data ) {
+            $rule = $field_data['better'] ?? null;
+            if ( ! $rule ) continue;
+
+            $values = [];
+
+            foreach ( $plane_ids as $id ) {
+                $group = get_field( $group_key, $id );
+                $value = $group[$field_key] ?? null;
+
+                if ( $value !== null && $value !== '' &&  is_numeric( $value ) ) {
+                    $values[$id] = (float)$value;
+                }
+            }
+
+            if ( count( $values ) < 2 ) continue;
+
+            if ( count( array_unique( $values ) ) === 1 ) continue;
+
+            $winners[$field_key] = ( $rule === 'min' ) ? min( $values ) : max( $values );
+        }
+    }
+
+    return $winners;
 }
 
 // Генерация классов сетки для элементов галереи

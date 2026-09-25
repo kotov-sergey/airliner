@@ -4,8 +4,11 @@
 $compare_query = $args['query'] ?? null;
 if ( ! $compare_query || ! $compare_query->have_posts() ) return;
 
-// Получение конфигурации характеристик
-$compare_specs = get_airliner_specs_config();
+// Данные лучших характеристик авиалайнеров
+$winners = $args['winners'] ?? [];
+
+// Заглушка для картинки
+$placeholder = get_template_directory_uri() . '/public/images/placeholder-image.svg';
 ?>
 
 <!-- Сетка сравнения -->
@@ -18,9 +21,6 @@ $compare_specs = get_airliner_specs_config();
         // Получение таксономий
         $brands = wp_get_post_terms( $plane_id, 'manufacturer' );
         $body_types = wp_get_post_terms( $plane_id, 'body-type' );
-
-        // Заглушка для картинки
-        $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.svg';
     ?>
 
         <!-- Класс js-compare-item нужен для удаления через JS -->
@@ -56,11 +56,11 @@ $compare_specs = get_airliner_specs_config();
                 <!-- Мета (Пилюли) -->
                 <div class="compare-card__meta">
                     <?php if ( ! empty( $brands ) && ! is_wp_error( $brands ) ) : ?>
-                        <span class="pill pill--solid"><?php echo esc_html( $brands[0]->name ); ?></span>
+                        <span class="pill pill--solid pill--md"><?php echo esc_html( $brands[0]->name ); ?></span>
                     <?php endif; ?>
                     
                     <?php if ( ! empty( $body_types ) && ! is_wp_error( $body_types ) ) : ?>
-                        <span class="pill pill--solid"><?php echo esc_html( $body_types[0]->name ); ?></span>
+                        <span class="pill pill--solid pill--md"><?php echo esc_html( $body_types[0]->name ); ?></span>
                     <?php endif; ?>
                 </div>
 
@@ -77,7 +77,8 @@ $compare_specs = get_airliner_specs_config();
                 <?php
                     get_template_part( 'template-parts/components/specs-group', null, [
                         'plane_id' => $plane_id,
-                        'css_mod' => 'clean-icon'
+                        'css_mod' => 'compact',
+                        'winners' => $winners
                     ] );
                 ?>
 

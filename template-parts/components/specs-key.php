@@ -1,7 +1,7 @@
 <?php
 // Компонент вывода ключевых характеристик авиалайнера
 
-$plane_id = get_the_ID();
+$plane_id = $args['plane_id'] ?? get_the_ID();
 $specs = get_airliner_specs_config();
 $css_mod = $args['css_mod'] ?? '';
 

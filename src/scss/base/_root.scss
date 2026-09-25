@@ -25,6 +25,11 @@
     --color-orange-500: #f77f00; // Основной акцент
     --color-orange-600: #d62828; // Темный акцент (Hover)
 
+    /* Дополнительный цвет (Green) */
+    --color-green-100:    #dcfce7; // Очень мягкий салатовый фон для плашек
+    --color-green-600:    #16a34a; // Яркий зеленый для галочек и акцентов
+    --color-green-800:    #166534; // Глубокий темно-зеленый (для текста, чтобы идеально читался)
+
     /* Нейтральные (Серые оттенки) */
     --color-neutral-400: #E5E5E5; // Светло-серый
     --color-neutral-500: #A9A9A9; // Серый
@@ -53,6 +58,13 @@
     --bg-overlay-dark: rgba(0, 0, 0, 0.5); // Равномерное затемнение (для CTA, 404 или модалок)
     --bg-overlay-dark-right: linear-gradient(to right, transparent 0%, black 20%); // Равномерное затемнение (для CTA)
 
+
+    /* Фоны для бейджиков и галочек */
+    --badge-success-bg:   var(--color-green-100); // Фон бейджика "Лучший" или "Летает"
+    --badge-success-text: var(--color-green-800); // Текст бейджика
+    --color-success:      var(--color-green-600); // Цвет рекордной цифры
+
+
     /* --- ТЕКСТ (Typography) --- */
     --text-main:      var(--color-neutral-900); // Основной текст для чтения
     --text-secondary: var(--color-neutral-600); // Второстепенный текст
@@ -66,6 +78,7 @@
     --border-hover:   var(--color-blue-500);    // Наведение, карточки
     --border-focus:   var(--color-blue-500);    // Обводка инпутов
     --border-inverse: rgba(255, 255, 255, 0.1); // Линии на темном фоне
+    --border-accent: var(--color-orange-500);
 
     /* --- ИКОНКИ (Icons) --- */
     --icon-main:      var(--color-blue-500);    // Основные интерфейсные иконки (стрелки, пункты меню)
