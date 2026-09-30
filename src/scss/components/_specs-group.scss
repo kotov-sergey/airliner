@@ -5,6 +5,8 @@
     border-radius: var(--radius-xl);
     background-color: var(--bg-surface);
 
+    flex-grow: 1;
+
     padding: var(--space-4);
 
     @media ( min-width: 768px ) {

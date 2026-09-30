@@ -1,5 +1,66 @@
-// Стили элементов формы
+// Стили элементов форм и полей ввода
 
+/* ==========================================================================
+   1. БАЗОВЫЙ ШАБЛОН ПОЛЯ ВВОДА (%input-base-styles)
+   ========================================================================== */
+%input-base-styles {
+    display: block;
+    width: 100%;
+    
+    font-family: inherit;
+    font-size: var(--text-sm); // 14px — комфортный размер для полей
+    color: var(--text-main);
+    
+    background-color: var(--bg-surface); // белый фон
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl); // аккуратные 8px (radius-xl для инпутов слишком круглый)
+    
+    padding: var(--space-3) var(--space-4); // 12px на 16px
+    outline: none;
+    -webkit-appearance: none; // Сброс системных стилей в Safari и iOS!
+
+    transition: border-color var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+
+    // Стилизация подсказки (placeholder)
+    &::placeholder {
+        color: var(--text-muted);
+        opacity: 0.8;
+    }
+
+    // Состояние фокуса (клик в поле)
+    &:focus {
+        border-color: var(--border-focus);
+    }
+}
+
+// 2. Применяем единый стиль ко ВСЕМ текстовым полям сайта
+input[type="text"],
+input[type="email"],
+input[type="search"], // Добавлено: теперь поиск оформлен идеально!
+input[type="tel"],
+input[type="url"],
+textarea,
+select,
+.form-input {         // Добавлено: класс .form-input теперь использует те же стили
+    @extend %input-base-styles;
+}
+
+// Селекты (курсор-рука)
+select {
+    cursor: pointer;
+}
+
+// Многострочное поле
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+
+/* ==========================================================================
+   2. ЧЕКБОКСЫ (Каталог и фильтры)
+   ========================================================================== */
 .form-checkbox {
     display: inline-flex;
     align-items: center;
@@ -9,59 +70,23 @@
     user-select: none;
 
     &__input {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         flex-shrink: 0;
+        cursor: pointer;
+        accent-color: var(--bg-accent);
+    }
+
+    &__label {
+        font-size: var(--text-sm);
+        color: var(--text-main);
     }
 }
 
-.form-input {
-    display: block;
-    width: 100%;
 
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-xl);
-    background-color: var(--bg-surface-alt);
-
-    padding: var(--space-2) var(--space-4);
-
-    font-family: inherit;
-    font-size: var(--text-base);
-    color: var(--text-main);
-    outline: none;
-
-    transition: border-color var(--duration-fast) var(--ease-in-out);
-    
-    &:focus {
-        border-color: var(--border-focus);
-    }
-}
-
-// Стили контактной формы
-
-%input-base-styles {
-    font-family: inherit;
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-xl);
-
-    padding: var(--space-3) var(--space-4);
-
-    &:focus {
-        border-color: var(--border-focus);
-    }
-}
-
-input[type="text"],
-input[type="email"],
-input[type="checkbox"],
-textarea,
-select {
-    @extend %input-base-styles;
-}
-
+/* ==========================================================================
+   3. ИНТЕГРАЦИЯ С ПЛАГИНОМ FLUENT FORMS (Форма контактов)
+   ========================================================================== */
 .custom-form-wrapper {
 
     .fluentform .ff-el-form-control {
@@ -74,16 +99,15 @@ select {
 
     .fluentform .ff-el-input--label {
         font-size: var(--text-sm);
+        font-weight: 600;
         color: var(--text-main);
+        margin-bottom: var(--space-2);
 
+        // Звездочка обязательного поля красится оранжевым акцентом
         &.ff-el-is-required label::after {
             color: var(--text-accent);
         }
     }
-
-    .fluentform select.ff-el-form-control {
-        cursor: pointer;
-     }
 
     .fluentform textarea.ff-el-form-control {
         min-height: 120px;
@@ -99,15 +123,17 @@ select {
             width: 18px;
             height: 18px;
             flex-shrink: 0;
+            accent-color: var(--color-orange-500);
         }
 
         span {
-          font-size: var(--text-sm);  
+            font-size: var(--text-sm);  
         }
     }
 
     .fluentform button.ff-btn-submit {
         display: flex;
+        justify-content: center;
         width: 100%;
     }
 

@@ -40,18 +40,22 @@
     &__label {
         white-space: nowrap;
         color: var(--text-muted);
+        font-size: var(--text-sm);
     }
 
     &__data {
         display: flex;
         flex-direction: row;
         gap: var(--space-1);
+        font-size: var(--text-base);
 
         white-space: nowrap;
     }
 
     &.is-best {
         background-color: var(--badge-success-bg);
+        border-radius: var(--radius-xl);
+        padding: var(--space-1) var(--space-2);
     }
 
     &--vertical {
@@ -67,7 +71,6 @@
         border-radius: var(--radius-xl);
 
         .spec-row__name {
-            font-size: var(--text-xs);
             text-transform: uppercase;
         }
     }
