@@ -18,10 +18,10 @@ get_header();
 
     <!-- Hero-секция таксономии -->
     <?php
-        get_template_part( 'template-parts/components/hero', null, [
+        get_template_part( 'template-parts/components/page-header', null, [
             'title' => $hero_title ? $hero_title : get_the_title(),
             'description' => $hero_description,
-            'background_image' => $hero_background,
+            'modifier' => 'page-header--large',
             'show_breadcrumbs' => true
         ] );
     ?>

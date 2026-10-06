@@ -7,7 +7,6 @@ $category = get_queried_object();
 
 $category_title = $category->name;
 $category_description = category_description();
-$category_count = $category->count;
 
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 ?>
@@ -19,12 +18,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         get_template_part( 'template-parts/components/page-header', null, [
             'title' => $category_title,
             'description' => $category_description,
-            'stats' => [
-                [
-                    'number' => $category_count,
-                    'label' => 'Статей в рубрике'
-                ]
-            ]
+            'modifier' => 'page-header--large'
         ] );
     ?>
 

@@ -21,7 +21,7 @@
                     "key": "layout_6a4935f85e301",
                     "name": "image-text",
                     "label": "Секция изображение + текст",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6a661821e2043",
@@ -188,7 +188,7 @@
                     "key": "layout_6a49422a27104",
                     "name": "advantages-showcase",
                     "label": "Секция преимущества",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6a661f53a907e",
@@ -393,7 +393,7 @@
                     "key": "layout_6a4a6c579873d",
                     "name": "info-showcase",
                     "label": "Секция информация",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6a6620e2b69d2",
@@ -570,7 +570,7 @@
                     "key": "layout_6a4bf1b850fb3",
                     "name": "cta-block",
                     "label": "Секция CTA",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6a650c0211d15",
@@ -693,7 +693,7 @@
                     "key": "layout_6a4e8961b36f2",
                     "name": "faq-block",
                     "label": "Секция FAQ",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6a662fa63382b",
@@ -841,7 +841,7 @@
                     "key": "layout_6a53d447b25cf",
                     "name": "feedback",
                     "label": "Секция фидбек (форма)",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6a68ea95072de",
@@ -1001,5 +1001,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1788794634
+    "modified": 1790812175
 }

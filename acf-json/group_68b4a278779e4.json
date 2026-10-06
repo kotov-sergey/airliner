@@ -21,7 +21,7 @@
                     "key": "layout_68b4a29c0ab31",
                     "name": "hero",
                     "label": "Hero-секция",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_68b4a2c057ade",
@@ -59,7 +59,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
@@ -80,7 +80,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
@@ -146,7 +146,7 @@
                     "key": "layout_69503cf1faf99",
                     "name": "brands",
                     "label": "Секция производителей",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_695114fa07ab5",
@@ -232,7 +232,7 @@
                     "key": "layout_6952d38d1140a",
                     "name": "aircrafts",
                     "label": "Секция авиалайнеры",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6952d39e1140d",
@@ -326,7 +326,7 @@
                     "key": "layout_698734216cbae",
                     "name": "history",
                     "label": "Секция история авиации",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6987347f6cbb1",
@@ -501,7 +501,7 @@
                     "key": "layout_698733b46cbaa",
                     "name": "fuselage-types",
                     "label": "Секция тип фюзеляжа",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_698733ca6cbad",
@@ -587,7 +587,7 @@
                     "key": "layout_69656fb93195d",
                     "name": "posts",
                     "label": "Секция последние статьи",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6965702e31964",
@@ -647,7 +647,7 @@
                     "key": "layout_6994b4ab015c6",
                     "name": "cta-home",
                     "label": "Секция призыв к действию",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_6994b4c7015c9",
@@ -762,5 +762,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1788798146
+    "modified": 1790812144
 }

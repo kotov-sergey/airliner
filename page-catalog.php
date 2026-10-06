@@ -4,18 +4,6 @@
 $catalog_title = get_field( 'catalog_title' );
 $catalog_description = get_field( 'catalog_description' );
 
-// Модели
-$airliner_count_obj = wp_count_posts( 'airliner');
-$total_airliners = $airliner_count_obj ? $airliner_count_obj->publish : 0;
-
-// Производители
-$total_brands = wp_count_terms( [ 'taxonomy' => 'manufacturer', 'hide_empty' => false ] );
-if ( is_wp_error( $total_brands ) ) $total_brands = 0;
-
-// Типы фюзеляжа
-$total_body_types = wp_count_terms( [ 'taxonomy' => 'body-type', 'hide_empty' => false ] );
-if ( is_wp_error( $total_body_types ) ) $total_body_types = 0;
-
 get_header();  
 ?>
 
@@ -28,20 +16,6 @@ get_header();
             get_template_part( 'template-parts/components/page-header', null, [
                 'title' => $catalog_title,
                 'description' => $catalog_description,
-                'stats' => [
-                    [
-                        'number' => $total_airliners,
-                        'label' => 'Моделей' 
-                    ],
-                    [
-                        'number' => $total_brands,
-                        'label' => 'Брендов'                     
-                    ],
-                    [
-                        'number' => $total_body_types,
-                        'label' => 'Фюзеляжей'                         
-                    ]
-                ]
             ] );
         ?>
 
