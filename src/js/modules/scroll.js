@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // Ищем кнопку внутри Hero
-    const scrollBtn = document.querySelector('.hero__scroll-btn');
+    const scrollBtn = document.querySelector('.page-header__scroll-btn');
     
     // Если кнопки нет на странице (например, мы в "Контактах"), код не выполняется
     if (!scrollBtn) return; 

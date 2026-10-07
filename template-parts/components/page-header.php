@@ -1,12 +1,12 @@
 <?php
 // Универсальная шапка страницы (Page-header)
 
-$title = $args['title'] ?? get_the_title(); // Заголовок
-$description = $args['description'] ?? ''; // Описание
-
-$bg_image = $args['bg_image'] ?? ''; // Фон секции
+$title = $args['title'] ?? get_the_title(); // Заголовок секции
+$description = $args['description'] ?? ''; // Описание секции
+$bg_image = $args['bg_image'] ?? null; // Фон секции
 
 $modifier = $args['modifier'] ?? 'page-header--default'; // Модификатор секции
+$scroll_target = $args['scroll_target'] ?? ''; // Кнопка-якорь секции
 
 $show_meta = $args['show_meta'] ?? false; // Мета-данные секции (для записей)
 $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные крошки
@@ -28,7 +28,7 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
                 ] ); 
         ?>
 
-        <?php elseif ( has_post_thumbnail () ) : ?>
+        <?php elseif ( is_singular() && has_post_thumbnail() ) : ?>
 
             <!-- Текущее изображение записи -->
             <?php
@@ -93,5 +93,19 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
         </div>
 
    </div>
+
+    <!-- Кнопка-якорь секции -->
+    <?php if ( $scroll_target ) : ?>
+        <button 
+            type="button" 
+            class="page-header__scroll-btn" 
+            data-target="<?php echo esc_attr( $scroll_target ); ?>"
+            aria-label="Прокрутить к следующей секции"
+        >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    <?php endif; ?>
 
 </header>

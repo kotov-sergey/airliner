@@ -1,5 +1,14 @@
 // Универсальная шапка страницы (Page-header)
 .page-header {
+    --scroll-btn-size: 48px; // Размер кнопки
+    --scroll-btn-bg: rgba(var(--rgb-white), 0.1); // Фон кнопки
+    --scroll-btn-border: rgba(var(--rgb-white), 0.3); // Граница кнопки
+    --scroll-btn-color: var(--text-inverse); // Цвет текста кнопки
+
+    --scroll-btn-bg-hover: var(--btn-primary-bg); // Фон наведения кнопки
+    --scroll-btn-border-hover: var(--btn-primary-bg); // Фон границы при наведении
+    --scroll-btn-color-hover: var(--btn-primary-text); // Цвет текста при наведении
+
     position: relative;
     overflow: hidden;
 
@@ -78,13 +87,107 @@
         }
     }
 
-    // Модификатор крупной секции (для статей)
+    &__scroll-btn {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 10;
 
+		border: none;
+		padding: 0;
+        cursor: pointer;
+
+		bottom: 16px;
+        @media ( min-width: 768px ) {
+            bottom: 32px;
+        }
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		width: var(--scroll-btn-size);
+		height: var(--scroll-btn-size);
+
+        color: var(--scroll-btn-color);
+        background-color: var(--scroll-btn-bg);
+
+        border: 1px solid var(--scroll-btn-border);
+        border-radius: var(--radius-full);
+
+        transition: all var(--duration-base) var(--ease-in-out);
+
+        &:hover {
+            background-color: var(--scroll-btn-bg-hover);
+            border-color: var(--scroll-btn-border-hover);
+            color: var(--scroll-btn-color-hover);
+
+            svg {
+                animation-play-state: paused;
+            }
+        }
+
+		svg {
+			width: 24px;
+			height: 24px;
+
+			animation: scroll-btn-bounce 2s infinite;
+		}
+	
+		@keyframes scroll-btn-bounce {
+			0%, 20%, 50%, 80%, 100% {
+				transform: translateY(0);
+			}
+			40% {
+				transform: translateY(6px);
+			}
+            60% {
+                transform: translateY(3px);
+            }
+		}
+	}
+
+    // Модификатор крупной секции
     &--large {
         min-height: 60dvh;
 
         @media ( min-width: 768px ) {
             padding-block: var(--space-20);
+        }
+    }
+
+    // Модификатор для текста по центру
+    &--center {
+        .page-header__content {
+            text-align: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    // Модификатор большого текста (для hero)
+    &--full {
+        min-height: 100dvh;
+
+        .page-header__title {
+            font-size: var(--text-4xl);
+
+            line-height: var(--leading-tighter); 
+            text-wrap: balance;
+
+            @media ( min-width: 1024px ) {
+                font-size: var(--text-7xl);
+                letter-spacing: var(--tracking-tight);
+            }
+        }
+
+        .page-header__description p {
+            font-size: var(--text-base);
+
+            @media ( min-width: 1024px ) {
+                font-size: var(--text-xl);
+            }
         }
     }
 }

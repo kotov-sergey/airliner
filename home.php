@@ -16,7 +16,6 @@ get_header();
         get_template_part( 'template-parts/components/page-header', null, [
             'title' => $blog_title,
             'description' => $blog_description,
-            'modifier' => 'page-header--large'
         ] );
     ?>
 

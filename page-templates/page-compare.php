@@ -45,7 +45,7 @@ $plane_ids = array_slice($plane_ids, 0, 4);
                     <?php 
                         get_template_part( 'template-parts/components/section-header', null, [
                             'data' => [
-                                'header_title' => 'Сравнение авиалайнеров'
+                                'header_title' => 'Результаты сравнения авиалайнеров'
                             ]
                         ] );
                     ?>                    
