@@ -47,8 +47,7 @@ get_header();
     <!-- Навигация категорий блога -->
     <div class="page-blog__categories l-bordered-section">
         <div class="container">
-            <?php 
-                get_template_part( 'template-parts/components/category-cloud' ); ?>
+            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
         </div>
     </div>
 

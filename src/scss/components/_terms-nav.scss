@@ -1,0 +1,37 @@
+// Стили для компонента навигации (ленты)
+
+.category-cloud {
+
+    &__list {
+        display: flex;
+        align-items: center;
+
+        gap: var(--space-2);
+
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+
+        @media ( min-width: 768px ) {
+            flex-wrap: wrap;
+            overflow-x: visible;
+        }
+    }
+
+    &__item {
+        flex-shrink: 0;
+    }
+
+    &__link {
+        transition: all var(--duration-base) var(--ease-in-out);
+
+        &.is-active {
+            background-color: var(--bg-accent);
+            color: var(--text-inverse);
+            font-weight: 600;
+
+            cursor: default;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Лендинг
+Template Name: Конструктор блоков
 */
 
 get_header();
@@ -14,9 +14,7 @@ get_header();
         $hero_description = get_field( 'hero_description' ); 
     ?>
 
-        <!-- Hero-секция -->
-        <?php if ( $hero_title ) : ?>
-
+        <!-- Шапка страницы -->
             <?php
                 get_template_part( 'template-parts/components/page-header', null, [
                     'title' => $hero_title,
@@ -24,8 +22,6 @@ get_header();
                     'bg_image' => $hero_background
                 ] );
             ?>
-
-        <?php endif; ?>
 
         <!-- Вывод кастомных блоков -->
         <?php get_template_part( 'template-parts/builder' ); ?>

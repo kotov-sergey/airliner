@@ -50,7 +50,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     <!-- Навигация подкатегорий основной категории -->
     <div class="page-category__tags l-bordered-section">
         <div class="container">
-            <?php get_template_part( 'template-parts/components/category-cloud' ); ?>
+            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
         </div>
     </div>
 

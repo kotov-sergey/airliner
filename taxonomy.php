@@ -5,9 +5,9 @@ $current_term = get_queried_object();
 
 $brand_image = get_field( 'brand_logo', $current_term );
 
-$hero_background = get_field( 'taxonomy_hero_bg', $current_term );
 $hero_title = $current_term->name;
 $hero_description = $current_term->description;
+$hero_background = get_field( 'taxonomy_hero_bg', $current_term );
 
 $seo_text = get_field( 'seo_text', $current_term );
 
@@ -21,6 +21,7 @@ get_header();
         get_template_part( 'template-parts/components/page-header', null, [
             'title' => $hero_title ? $hero_title : get_the_title(),
             'description' => $hero_description,
+            'bg_image' => $hero_background,
             'modifier' => 'page-header--large',
             'show_breadcrumbs' => true
         ] );
