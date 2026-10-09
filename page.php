@@ -9,7 +9,11 @@ get_header();
     <?php while ( have_posts() ) : the_post(); ?>
 
         <!-- Шапка страницы -->
-        <?php get_template_part( 'template-parts/components/page-header' ); ?>
+        <?php 
+            get_template_part( 'template-parts/components/page-header', null, [
+                'show_breadcrumbs' => true
+            ] ); 
+        ?>
 
         <!-- Стандартный контент -->
         <section class="section page-content">

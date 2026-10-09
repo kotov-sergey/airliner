@@ -18,9 +18,16 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         get_template_part( 'template-parts/components/page-header', null, [
             'title' => $category_title,
             'description' => $category_description,
-            'modifier' => 'page-header--large'
+            'show_breadcrumbs' => true
         ] );
     ?>
+
+    <!-- Навигация по категориям блога -->
+    <div class="page-category__tags l-bordered-section">
+        <div class="container">
+            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
+        </div>
+    </div>    
 
     <!-- Секция избранная статья -->
     <?php if ( $paged === 1 && have_posts() ) : the_post(); ?>
@@ -46,13 +53,6 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
             </div>
         </section>
     <?php endif; ?>
-
-    <!-- Навигация подкатегорий основной категории -->
-    <div class="page-category__tags l-bordered-section">
-        <div class="container">
-            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
-        </div>
-    </div>
 
     <!-- Секция все статьи рубрики -->
     <?php if ( have_posts() ) : ?>

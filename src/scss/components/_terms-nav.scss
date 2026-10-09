@@ -1,6 +1,7 @@
 // Стили для компонента навигации (ленты)
 
 .category-cloud {
+    padding-block: var(--space-2);
 
     &__list {
         display: flex;

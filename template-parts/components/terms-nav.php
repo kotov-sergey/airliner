@@ -8,7 +8,7 @@ $limit = $args['limit'] ?? '0'; // Лимит категорий
 
 // Текст и ссылка для первой кнопки "Все"
 $all_label = $args['all_label'] ?? ( $taxonomy === 'category' ? 'Все статьи' : 'Все' ); // Текст кнопки "Все"
-$all_url = $args['all_url'] ?? ( $taxonomy === 'category' ? get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog/' ) : get_post_type_archive_link( 'airliner' ) ); // Ссылка кнопки "Все"
+$all_url = $args['all_url'] ?? ( $taxonomy === 'category' ? ( get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog/' ) ) : home_url( '/airliners/' ) ); // Ссылка кнопки "Все"
 
 // Формирование запроса
 $query_args = [
@@ -29,7 +29,7 @@ $categories = get_terms( $query_args );
 if ( empty( $categories ) || is_wp_error( $categories ) ) return;
 
 $current_cat_id = ( is_category() || is_tax( $taxonomy ) ) ? get_queried_object_id() : 0; // ID текущей категории
-$is_all_active = is_home() || ( is_post_type_archive( 'airliner') && ! is_tax() ); // Проверка (если это страница блога)
+$is_all_active = is_home() || ( is_page( 'airliners' ) && empty( $_GET[ $taxonomy ] ) ); // Проверка (если это страница блога)
 ?>
 
 <nav class="category-cloud" aria-label="Навигация по категориям">

@@ -16,8 +16,16 @@ get_header();
         get_template_part( 'template-parts/components/page-header', null, [
             'title' => $blog_title,
             'description' => $blog_description,
+            'show_breadcrumbs' => true
         ] );
     ?>
+
+    <!-- Навигация по категориям блога -->
+    <div class="page-blog__categories l-bordered-section">
+        <div class="container">
+            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
+        </div>
+    </div>    
 
     <?php if ( have_posts() ) : the_post(); ?>
 
@@ -43,13 +51,6 @@ get_header();
             </div>
         </section>
     <?php endif; ?>
-
-    <!-- Навигация категорий блога -->
-    <div class="page-blog__categories l-bordered-section">
-        <div class="container">
-            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
-        </div>
-    </div>
 
     <!-- Секция свежих материалов -->
     <?php if ( have_posts() ) : ?>

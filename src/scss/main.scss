@@ -40,7 +40,6 @@
 
 @use 'components/catalog-filter';
 @use 'components/forms';
-@use 'components/catalog-stat';
 @use 'components/card-advantage';
 @use 'components/accordion';
 @use 'components/pill';
@@ -52,6 +51,7 @@
 @use 'components/compare-table';
 @use 'components/empty-state';
 @use 'components/specs-group';
+@use 'components/catalog-pills';
 
 // Sections (Крупные блоки)
 @use 'sections/history';
@@ -67,6 +67,7 @@
 @use 'pages/page-404';
 @use 'pages/search';
 @use 'pages/category';
+@use 'pages/page-catalog';
 
 // Utilities (Утилитарные классы)
 @use 'base/utilities';

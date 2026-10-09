@@ -16,8 +16,12 @@ get_header();
             get_template_part( 'template-parts/components/page-header', null, [
                 'title' => $catalog_title,
                 'description' => $catalog_description,
+                'show_breadcrumbs' => true
             ] );
         ?>
+        
+        <!-- Компонент быстрых фильтров (Бренды + Типы фюзеляжа) -->
+        <?php get_template_part( 'template-parts/components/catalog-pills' ); ?>
 
         <!-- Основной каталог с фильтрами -->
         <section class="section catalog-content page-catalog__content">
