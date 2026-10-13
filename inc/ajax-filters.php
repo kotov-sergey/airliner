@@ -1,124 +1,144 @@
 <?php
-// AJAX обработчик для фильтров
+add_action( 'wp_ajax_filter_airliners', 'handle_filter_airliners' );
+add_action( 'wp_ajax_nopriv_filter_airliners', 'handle_filter_airliners' );
 
-// Регистрируем хуки (Для авторизованных и неавторизованных юзеров)
-add_action('wp_ajax_filter_airliners', 'ajax_filter_airliners_handler');
-add_action('wp_ajax_nopriv_filter_airliners', 'ajax_filter_airliners_handler');
+function handle_filter_airliners() {
+    $tax_query  = [];
+    $meta_query = [];
 
-function ajax_filter_airliners_handler() {
-    
-    // Проверяем nonce (защита от хакеров)
-    check_ajax_referer('catalog_filter_nonce', 'security');
-
-    // ПОЛУЧАЕМ НОМЕР СТРАНИЦЫ ИЗ JS
-    $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
-    
-    // БАЗОВЫЕ АРГУМЕНТЫ
-    $args =[
-        'post_type'      => 'airliner',
-        'posts_per_page' => 9, // Выводим все (или задай лимит 12)
-        'paged' => $paged,
-        'tax_query'      => ['relation' => 'AND'],
-        'meta_query'     => ['relation' => 'AND']
-    ];
-
-    // ЛОВИМ ДАННЫЕ ИЗ ФОРМЫ
-
-
-    // Если пришли со страницы Таксономии
-    if ( !empty( $_POST['base_taxonomy'] ) && !empty( $_POST['base_term_id'] ) ) {
-        $args['tax_query'][] =[
-            'taxonomy' => sanitize_text_field($_POST['base_taxonomy']),
-            'field' => 'term_id',
-            'terms' => (int) $_POST['base_term_id'],
+    // 1. Учет архива таксономии
+    if ( ! empty( $_POST['base_taxonomy'] ) && ! empty( $_POST['base_term_id'] ) ) {
+        $tax_query[] = [
+            'taxonomy' => sanitize_text_field( $_POST['base_taxonomy'] ),
+            'field'    => 'term_id',
+            'terms'    => (int) $_POST['base_term_id'],
         ];
     }
-    
-    // Если выбрали производителя (Таксономия)
-    if ( !empty($_POST['brand']) ) {
-        $args['tax_query'][] =[
+
+    // 2. Чекбоксы таксономий из сайдбара
+    if ( ! empty( $_POST['brand'] ) && is_array( $_POST['brand'] ) ) {
+        $tax_query[] = [
             'taxonomy' => 'manufacturer',
             'field'    => 'term_id',
-            'terms'    => $_POST['brand'], // Массив выбранных ID
+            'terms'    => array_map( 'intval', $_POST['brand'] ),
         ];
-    }  
+    }
 
-    // Если выбрали тип фюзеляжа (Таксономия)
-    if ( !empty($_POST['fuselage']) ) {
-        $args['tax_query'][] =[
+    if ( ! empty( $_POST['fuselage'] ) && is_array( $_POST['fuselage'] ) ) {
+        $tax_query[] = [
             'taxonomy' => 'body-type',
             'field'    => 'term_id',
-            'terms'    => $_POST['fuselage'], // Массив выбранных ID
+            'terms'    => array_map( 'intval', $_POST['fuselage'] ),
         ];
     }
 
-    // Если выбрали статус лайнера (Таксономия)
-    if ( !empty($_POST['status']) ) {
-        $args['tax_query'][] =[
+    if ( ! empty( $_POST['status'] ) && is_array( $_POST['status'] ) ) {
+        $tax_query[] = [
             'taxonomy' => 'airliner-status',
             'field'    => 'term_id',
-            'terms'    => $_POST['status'], // Массив выбранных ID
+            'terms'    => array_map( 'intval', $_POST['status'] ),
         ];
-    }   
+    }
 
-    // Если ввели дальность полёта
-    if ( !empty($_POST['range']) ) {
-        $args['meta_query'][] =[
-            'key'     => 'specs_performance_range', // Имя твоего поля скорости в ACF
+    // 3. Числовые фильтры из сайдбара (УЧИТЫВАЕМ ГРУППЫ ACF)
+    if ( ! empty( $_POST['range'] ) ) {
+        $meta_query['filter_range'] = [
+            'key'     => 'specs_performance_range', // Реальное имя в БД
             'value'   => (int) $_POST['range'],
-            'compare' => '>=', // Меньше или равно
-            'type'    => 'NUMERIC'
+            'type'    => 'NUMERIC',
+            'compare' => '>=',
         ];
     }
 
-    // Если ввели вместимость
-    if ( !empty($_POST['passengers']) ) {
-        $args['meta_query'][] =[
-            'key'     => 'specs_weight_passengers', // Имя твоего поля скорости в ACF
+    if ( ! empty( $_POST['passengers'] ) ) {
+        $meta_query['filter_passengers'] = [
+            'key'     => 'specs_weight_passengers', // Реальное имя в БД
             'value'   => (int) $_POST['passengers'],
-            'compare' => '>=', // Меньше или равно
-            'type'    => 'NUMERIC'
+            'type'    => 'NUMERIC',
+            'compare' => '>=',
         ];
     }
 
-    // ДЕЛАЕМ ЗАПРОС И ВЫВОДИМ ВЕРСТКУ
-    $query = new WP_Query($args);
+    // Базовые параметры запроса
+    $args = [
+        'post_type'      => 'airliner',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+    ];
+
+    // Поиск по названию модели
+    if ( ! empty( $_POST['search'] ) ) {
+        $args['s'] = sanitize_text_field( $_POST['search'] );
+    }
+
+    // 4. СОРТИРОВКА (УЧИТЫВАЕМ ГРУППЫ ACF)
+    $sort = ! empty( $_POST['sort'] ) ? sanitize_text_field( $_POST['sort'] ) : 'popular';
+
+    switch ( $sort ) {
+        case 'range_desc':
+            $args['meta_key'] = 'specs_performance_range';
+            $args['orderby']  = 'meta_value_num';
+            $args['order']    = 'DESC';
+            break;
+
+        case 'capacity_desc':
+            $args['meta_key'] = 'specs_weight_passengers';
+            $args['orderby']  = 'meta_value_num';
+            $args['order']    = 'DESC';
+            break;
+
+        case 'name_asc':
+            $args['orderby'] = 'title';
+            $args['order']   = 'ASC';
+            break;
+
+        case 'year_desc':
+            // Сортировка по дате публикации (или замени на ACF поле года)
+            $args['orderby'] = 'date';
+            $args['order']   = 'DESC';
+            break;
+
+        case 'popular':
+        default:
+            $args['orderby'] = 'menu_order date';
+            $args['order']   = 'DESC';
+            break;
+    }
+
+    // Добавляем таксономии, если они выбраны
+    if ( ! empty( $tax_query ) ) {
+        $tax_query['relation'] = 'AND';
+        $args['tax_query']     = $tax_query;
+    }
+
+    // Добавляем мета-поля, если они выбраны (или участвуют в сортировке)
+    if ( ! empty( $meta_query ) ) {
+        $meta_query['relation'] = 'AND';
+        $args['meta_query']     = $meta_query;
+    }
+
+    $query = new WP_Query( $args );
+
+    $view = ! empty( $_POST['view'] ) ? sanitize_text_field( $_POST['view'] ) : 'grid';
+    
+    ob_start();
 
     if ( $query->have_posts() ) {
-        $columns = isset($_POST['grid_columns']) ? (int) $_POST['grid_columns'] : 3;
-
-        if ( ! in_array( $columns, [2, 3, 4] ) ) {
-            $columns = 3;
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            get_template_part( 'template-parts/components/card-aircraft', null, [
+                'view' => $view
+            ] );
         }
-
-        echo '<div class="l-grid l-grid--' . $columns . ' catalog-content__grid">';
-            while ( $query->have_posts() ) {
-                $query->the_post();
-                
-                get_template_part( 'template-parts/components/card-aircraft' );
-            }
-        echo '</div>';
-
-        if ( $query->max_num_pages > 1 ) {
-            
-            $current_page = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
-
-            echo '<div class="catalog-content__pagination">';
-            echo paginate_links( array(
-                'total'     => $query->max_num_pages,
-                'current'   => $current_page,
-                'prev_text' => '&larr; Назад',
-                'next_text' => 'Вперёд &rarr;',
-            ) );
-            echo '</div>';
-        }
-
+        wp_reset_postdata();
     } else {
-        echo '<p class="text-muted">По вашему запросу лайнеров не найдено.</p>';
+        echo '<div class="catalog-empty"><p>Лайнеров по заданным параметрам не найдено.</p></div>';
     }
 
-    wp_reset_postdata();
+    $html = ob_get_clean();
 
-    // УБИВАЕМ ПРОЦЕСС (Обязательно для AJAX в WP)
-    wp_die();
+    wp_send_json_success([
+        'html'  => $html,
+        'count' => $query->found_posts,
+    ]);
 }

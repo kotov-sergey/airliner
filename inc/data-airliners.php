@@ -125,7 +125,7 @@ function get_airliner_specs_config() {
 			'fields' => [
 				'engine' => ['label' => 'Двигатели', 'unit' => '', 'icon' => 'specs/engine'],
 				'thrust' => ['label' => 'Тяга (на двигатель)', 'unit' => 'кН', 'icon' => 'specs/thrust', 'better' => 'max'],
-				'fuel_consumption' => ['label' => 'Расход топлива', 'unit' => 'л/пкм', 'icon' => 'specs/fuel-consumption', 'is_key' => true, 'better' => 'min'],
+				'fuel_consumption' => ['label' => 'Расход топлива', 'unit' => 'л/пкм', 'icon' => 'specs/fuel-consumption', 'better' => 'min'],
 				'run-up' => ['label' => 'Длина разбега', 'unit' => 'м', 'icon' => 'specs/run-up', 'better' => 'min'],
 			]
 		],			

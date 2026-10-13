@@ -48,10 +48,15 @@ $is_all_active = is_home() || ( is_page( 'airliners' ) && empty( $_GET[ $taxonom
         <!-- Список основных категорий -->
         <?php foreach( $categories as $category ) : ?>
             <?php
-                $term_link = get_term_link( $category );
+                if ( $taxonomy === 'category' ) {
+                    $term_link = get_term_link( $category );
+                    $is_current = ( $current_cat_id === $category->term_id );
+                }
+                else {
+                    $term_link  = add_query_arg( $taxonomy, $category->slug, home_url( '/airliners/#catalog-results' ) );
+                    $is_current = ( isset( $_GET[ $taxonomy ] ) && $_GET[ $taxonomy ] === $category->slug );
+                }
                 if( is_wp_error( $term_link ) ) continue;
-
-                $is_current = ( $current_cat_id === $category->term_id );
             ?>
 
             <li class="category-cloud__item">

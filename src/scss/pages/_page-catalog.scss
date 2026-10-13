@@ -2,13 +2,85 @@
 
 .page-catalog {
 
-    &__content {
-        padding-top: var(--space-8);
-        padding-bottom: var(--space-16);
+    // Расположение каталога
+    .catalog-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+        align-items: start;
 
-        @media (min-width: 768px) {
-            padding-top: var(--space-10);
-            padding-bottom: var(--space-18);
+        @media (min-width: 992px) {
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+        }
+    }
+
+    // Сайдбар каталога
+    .catalog-sidebar {
+        @media (min-width: 992px) {
+            position: sticky;
+            top: 30px; 
+        }
+    }
+
+    // Сетка вывода авиалайнеров
+    .catalog-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+
+        position: relative;
+        width: 100%;
+
+        transition: opacity var(--duration-base) var(--ease-in-out);
+
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-5);
+        }
+
+        @media (min-width: 1280px) {
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+        }
+
+        &.is-view-table {
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+
+            @media (min-width: 768px) {
+                gap: var(--space-5);
+            }
+        }
+
+        .catalog-empty,
+        .error-msg {
+            grid-column: 1 / -1;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            min-height: 320px;
+            padding: var(--space-8) var(--space-6);
+
+            background-color: var(--bg-surface);
+            border: 1px dashed var(--border-light);
+            border-radius: var(--radius-2xl);
+
+            color: var(--text-muted);
+
+            p {
+                font-size: var(--text-base);
+                margin: 0;
+            }
+        }
+
+        .error-msg {
+            border-color: var(--color-error);
+            color: var(--color-error);
         }
     }
 }

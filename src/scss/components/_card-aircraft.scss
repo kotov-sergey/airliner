@@ -193,11 +193,35 @@
         background-color: var(--btn-secondary-bg-hover);
         color: var(--btn-secondary-text-hover);
     }
-    
+
+    &--vertical {
+        .spec-row__label {
+            display: block;
+        }
+        .card-aircraft__description {
+            display: none;
+        }
+
+        .card-aircraft__actions {
+            display: flex;
+        }
+    }
+
     &--horizontal {
+        .spec-row__label {
+            display: none;
+        }
 
         .card-aircraft__title {
             margin-bottom: var(--space-2);
+        }
+
+        .card-aircraft__description {
+            display: -webkit-box;
+        }
+
+        .card-aircraft__actions {
+            display: none;
         }
 
         .card-aircraft__specs {

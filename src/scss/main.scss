@@ -38,7 +38,7 @@
 
 @use 'components/post-meta';
 
-@use 'components/catalog-filter';
+@use 'components/catalog-filters';
 @use 'components/forms';
 @use 'components/card-advantage';
 @use 'components/accordion';
@@ -52,6 +52,7 @@
 @use 'components/empty-state';
 @use 'components/specs-group';
 @use 'components/catalog-pills';
+@use 'components/catalog-toolbar';
 
 // Sections (Крупные блоки)
 @use 'sections/history';
@@ -61,7 +62,6 @@
 @use 'sections/cta-block';
 @use 'sections/faq-block';
 @use 'sections/feedback';
-@use 'sections/catalog-layout';
 
 // Pages (Страницы)
 @use 'pages/page-404';

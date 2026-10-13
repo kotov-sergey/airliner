@@ -7,6 +7,8 @@
     align-items: center;
     justify-content: space-between;
 
+    gap: var(--space-2);
+
     &__name {
         display: flex;
         flex-direction: row;
@@ -90,14 +92,8 @@
     }
 
     &--no-label {
-        gap: var(--space-2);
-
         .spec-row__label {
             display: none;
-        }
-
-        .spec-row__name {
-            gap: 0;
         }
     }
 

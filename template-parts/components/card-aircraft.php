@@ -4,15 +4,25 @@
 // Получение ID текущей карточки
 $plane_id = get_the_ID();
 
-// Раскладка карточки авиалайнера
-$layout = $args['layout'] ?? 'vertical';
+// Определение раскладки карточки
+if ( isset( $args['layout'] ) ) {
+	$layout = $args['layout'];
+} elseif ( isset( $args['view'] ) ) {
+	$layout = ( $args['view'] === 'table' ) ? 'horizontal' : 'vertical';
+} else {
+	$layout = 'vertical';
+}
+
 $card_class = 'card-aircraft card-aircraft--' . $layout;
 
 // Модификаторы для характеристик авиалайнера
-$spec_mods = 'clean-icon';
+$spec_mods = ['clean-icon'];
+
 if ( $layout === 'horizontal' ) {
-	$spec_mods .= ' no-label';
+    $spec_mods[] = 'no-label';
 }
+
+$spec_mods_string = implode( ' ', $spec_mods );
 
 // Alt для изображения
 $alt_text = 'Самолет ' . get_the_title() . ' на взлетной полосе';
@@ -61,37 +71,28 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 			</a>
 		</h3>
 
-		<!-- Если карточка Горизонтальная -->
-		<?php if ( $layout === 'horizontal' ) : ?>
-			
-			<!-- Описание карточки -->
-			<p class="card-aircraft__description">
-				<?php
-					$excerpt = get_the_excerpt();
-					echo esc_html( wp_trim_words( $excerpt, 10, '&hellip;') );
-				?>
-			</p>
+		<!-- Описание карточки -->
+		<p class="card-aircraft__description">
+			<?php
+				$excerpt = get_the_excerpt();
+				echo esc_html( wp_trim_words( $excerpt, 10, '&hellip;') );
+			?>
+		</p>
 
-		<?php endif; ?>
-		
 		<!-- Характеристики авиалайнера -->
 		<div class="card-aircraft__specs">
 			<?php
 				get_template_part( 'template-parts/components/specs-key', null, [
 					'plane_id' => $plane_id,
-					'css_mod' => $spec_mods
+					'css_mod' => $spec_mods_string
 				] );
 			?>
 		</div>
 
-		<!-- Если карточка Вертикальная -->
-		<?php if ( $layout === 'vertical' ) : ?>
-
-			<!-- Кнопка карточки -->
-			<div class="card-aircraft__actions">
-				<span class="btn btn--secondary card-aircraft__btn">Подробнее</span>
-			</div>
-		<?php endif; ?>
+		<!-- Кнопка карточки -->
+		<div class="card-aircraft__actions">
+			<span class="btn btn--secondary card-aircraft__btn">Подробнее</span>
+		</div>
 
 	</div>
 	

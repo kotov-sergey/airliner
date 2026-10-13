@@ -1,8 +1,8 @@
 <?php
 
 /* Template Name: Каталог авиалайнеров */
-$catalog_title = get_field( 'catalog_title' );
-$catalog_description = get_field( 'catalog_description' );
+$catalog_title = get_field( 'catalog_title' ) ?: get_the_title();
+$catalog_description = get_field( 'catalog_description' ) ?: '';
 
 get_header();  
 ?>
@@ -23,41 +23,49 @@ get_header();
         <!-- Компонент быстрых фильтров (Бренды + Типы фюзеляжа) -->
         <?php get_template_part( 'template-parts/components/catalog-pills' ); ?>
 
+        <!-- Компонент панели поиска и сортировки каталога -->
+        <?php get_template_part( 'template-parts/components/catalog-toolbar' ); ?>
+
         <!-- Основной каталог с фильтрами -->
-        <section class="section catalog-content page-catalog__content">
-            <div class="container">
+        <section class="section section-catalog container page-catalog__container">
+            <div class="catalog-layout">
 
-                <!-- Запрос на получение всех авиалайнеров -->
-                <?php
-                    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-                    $catalog_query = new WP_Query( [
-                        'post_type' => 'airliner',
-                        'posts_per_page' => 9,
-                        'paged' => $paged
-                    ] );
+                <!-- Сайдбар с фильтрами -->
+                <aside class="catalog-sidebar">
+                    <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
+                </aside>
 
-                    // Компонент каталога авиалайнеров
-                    get_template_part( 'template-parts/sections/catalog-layout', null, [
-                        'query' => $catalog_query
-                    ] );
-                ?>
+                <!-- Сетка вывода авиалайнеров -->
+                <div class="catalog-content">
+                    <div id="airliner-results" class="catalog-grid">
+                        
+                        <?php
+                            $airliners_query = new WP_Query( [
+                                'post_type' => 'airliner',
+                                'posts_per_page' => 9,
+                                'post_status' => 'publish'
+                            ] );
+
+                            if ( $airliners_query->have_posts() ) :
+                                while ( $airliners_query->have_posts() ) : $airliners_query->the_post();
+                                    get_template_part( 'template-parts/components/card-aircraft', null, [
+                                        'view' => 'grid'
+                                    ] );
+                                endwhile;
+                                wp_reset_postdata();
+                            else :
+                                echo '<p>Лайнеры пока не добавлены.</p>';
+                            endif;
+                        ?>
+
+                    </div>
+                </div>
 
             </div>
         </section>
 
         <!-- Вывод кастомных секций -->
         <?php get_template_part( 'template-parts/builder' ); ?>
-    
-        <!-- SEO-текст каталога -->
-        <section class="section section--alt catalog-seo">
-            <div class="container container--narrow">
-                <div class="entry-content">
-                    <?php if ( get_the_content() ) : ?>
-                        <?php the_content(); ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </section>
     
     <?php endwhile; ?>
 

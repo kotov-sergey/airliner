@@ -1,0 +1,137 @@
+// Компонент панели поиска и сортировки каталога
+
+.catalog-toolbar {
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--border-light);
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4, 16px);
+
+        @media (min-width: 992px) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    // Левая группа (Поиск + Счетчик)
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        flex-grow: 1;
+        max-width: 600px;
+    }
+
+    &__search {
+        position: relative;
+        flex-grow: 1;
+
+        &-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+    }
+
+    &__input[type="search"] {
+        padding-left: 40px;
+    }
+
+    &__count {
+        font-size: var(--text-sm);
+        color: var(--text-brand);
+        white-space: nowrap;
+
+        &-num {
+            font-weight: 700;
+            color: var(--text-accent);
+        }
+    }
+
+    // Правая группа (Сортировка + Вид)
+    &__right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+
+        @media (min-width: 992px) {
+            justify-content: flex-end;
+        }
+    }
+
+    // Мобильная кнопка вызова фильтров (скрыта на десктопе)
+    &__filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        background: var(--bg-inverse);
+        border: 1px solid var(--border-inverse);
+        border-radius: var(--radius-md);
+        color: var(--text-brand);
+        cursor: pointer;
+
+        @media (min-width: 992px) {
+            display: none;
+        }
+    }
+
+    // Сортировка
+    &__sort {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+
+        &-label {
+            font-size: var(--text-sm);
+            color: var(--text-brand);
+            display: none;
+
+            @media (min-width: 768px) {
+                display: block;
+            }
+        }
+    }
+
+    &__select-wrapper {
+        position: relative;
+    }
+
+    // Переключатель вида (Сетка / Таблица)
+    &__views {
+        display: inline-flex;
+        gap: 2px;
+    }
+
+    &__view-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        background: var(--color-blue-100);
+        border: none;
+        border-radius: 6px;
+        color: var(--text-brand);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: var(--text-accent);
+        }
+
+        &.is-active {
+            color: var(--text-accent);
+        }
+    }
+}
