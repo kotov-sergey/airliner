@@ -59,6 +59,23 @@ get_header();
                         ?>
 
                     </div>
+                    
+                    <!-- Кнопка "Показать еще" -->
+                    <?php if ( $airliners_query->max_num_pages > 1 ) : ?>
+                        <div class="catalog-load-more" id="load-more-wrapper">
+                            <button
+                                type="button"
+                                id="load-more-btn"
+                                class="btn btn--secondary load-more-btn"
+                                data-page="1"
+                                 data-max-pages="<?php echo esc_attr( $airliners_query->max_num_pages ); ?>"
+                            >
+                                <span class="load-more-btn__text">Показать ещё</span>
+                                <span class="load-more-btn__loader" style="display: none;">Загрузка...</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
 
             </div>

@@ -19,7 +19,8 @@ $plane_ids = array_slice($plane_ids, 0, 4);
     <?php
         get_template_part( 'template-parts/components/page-header', null, [
             'title' => 'Сравнение авиалайнеров',
-            'description' => 'Сравнивайте характеристики и значения, выявляющие лучшие авиалайнеры в мире!'
+            'description' => 'Сравнивайте характеристики и значения, выявляющие лучшие авиалайнеры в мире!',
+            'show_breadcrumbs' => true
         ] );
     ?>
 

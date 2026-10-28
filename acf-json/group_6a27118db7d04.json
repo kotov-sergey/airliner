@@ -964,6 +964,149 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6ad659074a0ad": {
+                    "key": "layout_6ad659074a0ad",
+                    "name": "compare-duels",
+                    "label": "Секция дуэли авиалайнеров",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6ad659674a0b0",
+                            "label": "Заголовок секции",
+                            "name": "section_header",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_69510d97bdaaa"
+                            ],
+                            "display": "group",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_6ad659c64a0b1",
+                            "label": "Дуэли авиалайнеров",
+                            "name": "duels",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Добавить",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_6ad659e14a0b2",
+                                    "label": "Первый авиалайнер",
+                                    "name": "plane_1",
+                                    "aria-label": "",
+                                    "type": "post_object",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [
+                                        "airliner"
+                                    ],
+                                    "post_status": [
+                                        "publish"
+                                    ],
+                                    "taxonomy": "",
+                                    "return_format": "id",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "allow_in_bindings": 0,
+                                    "bidirectional": 0,
+                                    "ui": 1,
+                                    "bidirectional_target": [],
+                                    "parent_repeater": "field_6ad659c64a0b1"
+                                },
+                                {
+                                    "key": "field_6ad65a664a0b3",
+                                    "label": "Второй авиалайнер",
+                                    "name": "plane_2",
+                                    "aria-label": "",
+                                    "type": "post_object",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [
+                                        "airliner"
+                                    ],
+                                    "post_status": [
+                                        "publish"
+                                    ],
+                                    "taxonomy": "",
+                                    "return_format": "id",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "allow_in_bindings": 0,
+                                    "bidirectional": 0,
+                                    "ui": 1,
+                                    "bidirectional_target": [],
+                                    "parent_repeater": "field_6ad659c64a0b1"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_6ad65a9e4a0b4",
+                            "label": "Фон секции",
+                            "name": "section_background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "По умолчанию",
+                                "section--alt": "Белый",
+                                "section--dark": "Тёмно-синий"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -1001,5 +1144,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1790812175
+    "modified": 1792432848
 }

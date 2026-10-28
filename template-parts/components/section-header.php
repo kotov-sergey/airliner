@@ -23,7 +23,7 @@ if ( ! $section_title ) return;
 <div class="section-header <?php echo esc_attr( $section_modifier ); ?>">
 
 	<!-- Блок с мета-данными -->
-	<?php if ( $section_number || $section_label ) : ?>
+	<?php if ( $section_number && $section_label ) : ?>
 		<div class="section-header__meta">
 			
 			<?php if ( $section_number ) : ?>

@@ -83,4 +83,15 @@
             color: var(--color-error);
         }
     }
+
+    .catalog-load-more {
+        margin-top: var(--space-8);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .load-more-btn {
+            min-width: 200px;
+        }
+    }
 }

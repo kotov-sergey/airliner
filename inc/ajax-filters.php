@@ -6,6 +6,9 @@ function handle_filter_airliners() {
     $tax_query  = [];
     $meta_query = [];
 
+    $paged = ! empty( $_POST['page'] ) ? (int) $_POST['page'] : 1;
+    $posts_per_page = 9; // Должно совпадать с первичным выводом!
+
     // 1. Учет архива таксономии
     if ( ! empty( $_POST['base_taxonomy'] ) && ! empty( $_POST['base_term_id'] ) ) {
         $tax_query[] = [
@@ -63,7 +66,10 @@ function handle_filter_airliners() {
     $args = [
         'post_type'      => 'airliner',
         'post_status'    => 'publish',
-        'posts_per_page' => -1,
+        'posts_per_page' => $posts_per_page,
+        'paged'          => $paged,
+        'tax_query'      => $tax_query,
+        'meta_query'     => $meta_query 
     ];
 
     // Поиск по названию модели
@@ -140,5 +146,7 @@ function handle_filter_airliners() {
     wp_send_json_success([
         'html'  => $html,
         'count' => $query->found_posts,
+        'max_pages' => $query->max_num_pages,
+        'currentPage' => $paged
     ]);
 }

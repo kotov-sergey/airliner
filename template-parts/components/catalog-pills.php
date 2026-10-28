@@ -15,6 +15,7 @@ $show_types = $args['show_types'] ?? true;
                 <?php 
                     get_template_part( 'template-parts/components/terms-nav', null, [
                         'taxonomy' => 'manufacturer',
+                        'filter_name' => 'brand',
                         'all_label' => 'Все бренды'
                     ] ); 
                 ?>
@@ -29,6 +30,7 @@ $show_types = $args['show_types'] ?? true;
                 <?php 
                     get_template_part( 'template-parts/components/terms-nav', null, [
                         'taxonomy' => 'body-type',
+                        'filter_name' => 'fuselage',
                         'all_label' => 'Все типы'
                     ] ); 
                 ?>

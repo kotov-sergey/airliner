@@ -3,7 +3,7 @@
 
 // Если счетчик не передан извне, берем общее число бортов
 $total_count  = $args['total_count'] ?? wp_count_posts( 'airliner' )->publish; 
-$current_sort = $args['current_sort'] ?? 'popular'; // исправили опечатку
+$current_sort = $args['current_sort'] ?? 'popular';
 $current_view = $args['current_view'] ?? 'grid';
 ?>
 
