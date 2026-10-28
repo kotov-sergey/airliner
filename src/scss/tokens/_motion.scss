@@ -1,0 +1,16 @@
+/* Переходы */
+:root {
+  /* Длительности */
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+  --duration-slow: 350ms;
+
+  /* Функции сглаживания */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Готовые переходы */
+  --transition-color: var(--duration-fast) var(--ease-standard);
+  --transition-transform: var(--duration-base) var(--ease-standard);
+  --transition-shadow: var(--duration-base) var(--ease-standard);
+}

@@ -1,0 +1,15 @@
+/* Секция */
+.section {
+    padding-block: var(--section-padding-block);
+
+    /* Чередующиеся секции */
+    &--alt {
+        background-color: var(--color-bg-surface-alt);
+    }
+
+    /* CTA-секции */
+    &--dark {
+        background-color: var(--color-bg-inverse);
+        color: var(--color-text-inverse);
+    }
+}

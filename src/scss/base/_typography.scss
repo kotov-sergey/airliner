@@ -1,80 +1,111 @@
-//  Типографика
+/* ==========================================================================
+   BASE TYPOGRAPHY
+   Адаптивная типографическая шкала
+   ========================================================================== */
 
-body {
-    font-family: var(--font-body);
-    color: var(--text-main);
-    line-height: var(--leading-normal);
-    -webkit-font-smoothing: antialiased;
+/* Главный заголовок */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  color: var(--color-text-heading);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    color: var(--text-brand);
-    font-weight: 700;
-    line-height: var(--leading-tight);
-    margin: 0;
-}
+/* H1 — главный заголовок страницы */
+h1 {
+  font-size: var(--font-size-3xl); // 30px
+  line-height: var(--line-height-tighter);
+  letter-spacing: var(--letter-spacing-tight);
 
-h1 { 
-    font-size: var(--text-3xl);
-    letter-spacing: var(--tracking-tight);
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl); // 36px
+  }
 
-    @media (min-width: 1024px) {
-        font-size: var(--text-5xl);
-    }
-}
-
-h2 {
-    font-size: var(--text-2xl);
-
-    @media (min-width: 1024px) {
-        font-size: var(--text-3xl);
+  @media (min-width: 1024px) {
+    font-size: var(--font-size-5xl); // 48px
   }
 }
- 
+
+/* H2 — заголовок крупной секции */
+h2 {
+  font-size: var(--font-size-2xl); // 24px
+  line-height: var(--line-height-tight);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-3xl); // 30px
+  }
+
+  @media (min-width: 1024px) {
+    font-size: var(--font-size-4xl); // 36px
+  }
+}
+
+/* H3 — заголовок подраздела */
 h3 {
-    font-size: var(--text-xl);
+  font-size: var(--font-size-xl); // 20px
+  line-height: var(--line-height-tight);
 
-    @media (min-width: 1024px) {
-        font-size: var(--text-2xl);
-    }
+  @media (min-width: 768px) {
+    font-size: var(--font-size-2xl); // 24px
+  }
 }
 
+/* H4 — небольшой заголовок */
 h4 {
-    font-size: var(--text-base);
-    line-height: var(--leading-snug);
+  font-size: var(--font-size-lg); // 18px
+  line-height: var(--line-height-snug);
 
-    @media (min-width: 1024px) {
-        font-size: var(--text-lg);
-    }
+  @media (min-width: 768px) {
+    font-size: var(--font-size-xl); // 20px
+  }
 }
 
+/* H5 — компактный заголовок */
 h5 {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
+  font-size: var(--font-size-base); // 16px
+  line-height: var(--line-height-snug);
 }
 
+/* H6 — самый компактный заголовок */
 h6 {
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
+  font-size: var(--font-size-sm); // 14px
+  line-height: var(--line-height-snug);
+}
+
+/* ==========================================================================
+   Основной текст
+   ========================================================================== */
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
 }
 
 p {
-    font-family: var(--font-body);
-    color: var(--text-main);
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
-    margin: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  
-    transition: color var(--duration-fast) var(--ease-in-out);
-  
-    &:hover {
-        color: var(--link-color-hover); 
-    }
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+
+  transition: color var(--duration-fast) var(--ease-in-out);
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 3px;
+  }
 }

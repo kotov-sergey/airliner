@@ -1,0 +1,34 @@
+/* ==========================================================================
+   PRIMITIVE LAYOUT TOKENS
+   Базовая настройка основных контейнеров и секций.
+   ========================================================================== */
+   
+:root {
+/* Контейнер */
+--container-max-width: 1280px;
+--container-gutter: var(--space-4);
+
+/* Секции */
+--section-padding-block: var(--space-10);
+
+/* Сетки */
+--grid-gap: var(--space-4);
+}
+
+/* Планшеты */
+@media ( min-width: 768px ) {
+    :root {
+        --container-gutter: var(--space-6);
+        --section-padding-block: var(--space-12);
+        --grid-gap: var(--space-6);
+    }
+}
+
+/* Десктоп */
+@media ( min-width: 1024px ) {
+    :root {
+        --container-gutter: var(--space-8);
+        --section-padding-block: var(--space-16);
+        --grid-gap: var(--space-8);
+    }
+}

@@ -13,9 +13,11 @@
 @use 'base/global';
 
 // Layout (Каркас)
-@use 'layout/grid';
 @use 'layout/header';
 @use 'layout/footer';
+@use 'layout/grid';
+@use 'layout/container';
+@use 'layout/section';
 
 // Components (Кирпичики)
 @use 'components/buttons';
@@ -69,6 +71,3 @@
 @use 'pages/search';
 @use 'pages/category';
 @use 'pages/page-catalog';
-
-// Utilities (Утилитарные классы)
-@use 'base/utilities';
