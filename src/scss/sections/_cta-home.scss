@@ -1,10 +1,7 @@
-// Секция призыва CTA на главной
-
+// Секция: CTA-блок на главной странице
 .cta-home {
-
     position: relative;
     overflow: hidden;
-
 
     &__background {
         position: absolute;
@@ -19,7 +16,7 @@
 
         z-index: 2;
 
-        background: var(--bg-overlay-light-dark);
+        background: var(--color-overlay-subtle);
         pointer-events: none;
     }
 
@@ -47,7 +44,7 @@
         max-width: 600px;
         margin-inline: auto;
 
-        background: var(--bg-inverse);
+        background: var(--color-bg-inverse);
         border-radius: var(--radius-xl);
 
         @media ( min-width: 768px ) {
@@ -61,28 +58,26 @@
     }
 
     &__title {
-        font-size: var(--text-2xl);
-        color: var(--text-inverse);
+        font-size: var(--font-size-2xl);
+        color: var(--color-text-inverse);
 
         text-wrap: balance;
 
         @media ( min-width: 768px ) {
-            font-size: var(--text-3xl);
+            font-size: var(--font-size-3xl);
         }
 
         @media ( min-width: 1024px ) {
-            font-size: var(--text-4xl);
+            font-size: var(--font-size-4xl);
         }        
     }
 
     &__description p {
-        font-size: var(--text-base);
-        color: var(--text-inverse);
-
-        opacity: 0.8;
+        font-size: var(--font-size-base);
+        color: var(--color-text-inverse-muted);
 
         @media ( min-width: 768px ) {
-            font-size: var(--text-lg); // 18px на ПК
+            font-size: var(--font-size-lg);
         }        
     }
 

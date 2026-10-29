@@ -1,5 +1,4 @@
-// Стили секции обратной связи
-
+// Секция: Обратная связь + форма
 .feedback {
 
     &__layout {
@@ -16,15 +15,18 @@
 
     &__form {
         width: 100%;
-        background-color: var(--bg-surface);
+        min-width: 0;
+        background-color: var(--color-bg-surface);
 
-        border: 1px solid var(--border-light);
+        border: 1px solid var(--color-border);
         border-radius: var(--radius-xl);
 
         padding: var(--space-6);
 
         @media ( min-width: 1024px ) {
-            width: 50%;
+            flex: 1;
+            width: auto;
+
             padding: var(--space-10);
         }
     }
@@ -32,6 +34,7 @@
     &__media {
         position: relative;
         width: 100%;
+        min-width: 0;
 
         aspect-ratio: 4 / 3;
         overflow: hidden;
@@ -39,7 +42,8 @@
         border-radius: var(--radius-xl);
 
         @media ( min-width: 1024px ) {
-            width: 50%;
+            flex: 1;
+            width: auto;
         }
     }
 

@@ -2,8 +2,8 @@
 .entry-content {
 
     // Стили для всего контента
-    color: var(--text-main);
-    line-height: var(--leading-normal);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-normal);
 
     // Абзацы
     p {
@@ -17,7 +17,7 @@
 
     // Заголовки
     h2, h3, h4, h5, h6 {
-        color: var(--text-brand);
+        color: var(--color-text-heading);
 
         margin-top: var(--space-10);
         margin-bottom: var(--space-4);
@@ -36,12 +36,16 @@
 
     // Ссылки
     a {
-        color: var(--link-color);
+        color: var(--color-link);
         text-decoration: underline;
         
         &:hover {
-            color: var(--link-color-hover);
-            text-decoration: none;
+            color: var(--color-link-hover);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 3px;
         }
     }
 
@@ -55,7 +59,7 @@
             margin-bottom: var(--space-2);
 
             &::marker {
-                color: var(--text-accent);
+                color: var(--color-text-accent);
             }
         }
     }
@@ -74,10 +78,10 @@
 
         figcaption {
             margin: 0;
-            background-color: var(--bg-surface-alt);
+            background-color: var(--color-bg-surface-alt);
             border-radius: 0 0 var(--radius-xl) var(--radius-xl);
             padding: var(--space-4) var(--space-5);
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
 
             &::before {
                 content: '—';

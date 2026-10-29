@@ -1,5 +1,4 @@
 // Стили для основных видов кнопок
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -7,84 +6,90 @@
 
     padding: var(--space-3) var(--space-6);
     
-    border: none;
+    border: 1px solid transparent;
     border-radius: var(--radius-full);
 
-    font-weight: 400;
-    font-size: var(--text-base);
+    font-family: inherit;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
 
     text-decoration: none;
     cursor: pointer;
 
-    transition: all var(--duration-base) var(--ease-in-out);
+    transition: color var(--transition-color),
+                background-color var(--transition-color),
+                border-color var(--transition-color);
+
+    &:focus-visible {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 3px;
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
   
     // Сплошная кнопка (solid)
     &--primary {
-        background-color: var(--btn-primary-bg);
-        color: var(--btn-primary-text);
-        font-weight: 500;
+        background-color: var(--color-action-primary);
+        color: var(--color-action-primary-text);
+        font-weight: var(--font-weight-medium);
 
         &:hover {
-            background-color: var(--btn-primary-hover);
-            color: var(--btn-primary-text-hover); 
+            background-color: var(--color-action-primary-hover);
+            color: var(--color-action-primary-text-hover); 
         }
     }
 
     // Кнопка с обводкой (outline)
     &--secondary {
-        background-color: var(--btn-secondary-bg);
-        border: 1px solid var(--btn-secondary-border);
-        color: var(--btn-secondary-text);
+        background-color: var(--color-bg-surface);
+        border-color: var(--color-action-secondary-border);
+        color: var(--color-action-secondary-text);
 
         &:hover {
-            background-color: var(--btn-secondary-bg-hover);
-            color: var(--btn-secondary-text-hover);
+            background-color: var(--color-action-secondary-bg-hover);
+            border-color: var(--color-action-secondary-border-hover);
         }
     }
 
     // Текстовая кнопка (text)
     &--text {
-        background-color: var(--btn-text-background);
-        border-color: var(--btn-text-border);
-        
-        font-weight: 600;
-        color: var(--btn-text-color);
+        background-color: transparent;
+        color: var(--color-link);
 
         padding-inline: var(--space-2);
 
         &:hover {
-            background-color: var(--btn-text-bg-hover);
-            color: var(--btn-text-color-hover);
+            color: var(--color-link-hover);
         }
     }
 
     // Кнопка с обводкой для тёмных фонов (inverse)
     &--inverse {
         background-color: transparent;
-        border: 1px solid var(--color-white);
-        color: var(--color-white);
-        opacity: 0.8;
+        border-color: var(--color-border-inverse);
+        color: var(--color-text-inverse-muted);
 
         &:hover {
             background-color: transparent;
-            border: 1px solid var(--color-white);
-            color: var(--color-white);
-            opacity: 1;
+            border-color: var(--color-text-inverse);
+            color: var(--color-text-inverse);
         }
     }
 
+    /* Модификаторы размера */
 
-    // Модификаторы размера
-
-    // Маленькая кнопка (Для карточек, фильтров)
+    // Маленькая кнопка (для карточек, фильтров)
     &--sm {
         padding: var(--space-2) var(--space-4);
-        font-size: var(--text-sm);
+        font-size: var(--font-size-sm);
     }
 
-    // Большая кнопка (Для Hero-секций, CTA-баннеров)
+    // Большая кнопка (для Hero-секций, CTA-баннеров)
     &--lg {
         padding: var(--space-4) var(--space-10);
-        font-size: var(--text-lg);
+        font-size: var(--font-size-lg);
     }    
 }

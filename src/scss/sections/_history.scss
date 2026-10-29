@@ -1,8 +1,5 @@
-// Эволюция гражданской авиации
-
+// Секция: История авиации + таймлайн
 .section-history {
-    --history-dot-bg: var(--color-blue-500);
-    --history-timeline-bg: var(--color-blue-500);
 
     position: relative;
 
@@ -43,26 +40,26 @@
 
         margin-bottom: var(--space-16);
 
-        &:before {
+        &::before {
             content: '';
             position: absolute;
-            z-index: -1;
+            z-index: 0;
 
             width: 2px;
 
-            left: 16px;
+            left: var(--space-4);
             top: 14px;
             transform: translateX(-50%);
 
             height: calc(100% + var(--space-16)); 
 
-            background-color: var(--history-timeline-bg);
+            background-color: var(--color-graphic-accent);
         }
         
         &:last-child {
             margin-bottom: 0;
 
-            &:before {
+            &::before {
                 display: none;
             }
         }
@@ -71,7 +68,7 @@
             flex-direction: row;
             padding-left: 0;
 
-            &:before {
+            &::before {
                 left: 50%;
             }
 
@@ -95,8 +92,12 @@
     }
 
     &__content {
+        position: relative;
+        z-index: 1;
+
         display: block;
         width: 100%;
+        min-width: 0;
 
         @media (min-width: 768px) {
             width: 50%;
@@ -105,29 +106,31 @@
 
     &__date {
         display: inline-block;
-        font-size: var(--text-base);
+        font-size: var(--font-size-base);
 
         padding: var(--space-1) var(--space-4);
         margin-bottom: var(--space-4);
     }
 
     &__title {
-        font-size: var(--text-2xl);
+        font-size: var(--font-size-2xl);
         margin-bottom: var(--space-4);
     }
 
     &__dot {
         position: absolute;
-        left: 16px;
-        transform: translateX(-50%);
+        z-index: 2;
 
+        top: var(--space-2);
+        left: var(--space-4);
+
+        transform: translateX(-50%);
+    
         width: 12px;
         height: 12px;
 
-        background-color: var(--history-dot-bg);
+        background-color: var(--color-graphic-accent);
         border-radius: var(--radius-full);
-
-        margin-top: var(--space-2);
 
         @media (min-width: 768px) {
             left: 50%;

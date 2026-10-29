@@ -1,13 +1,7 @@
-// Стили для секции: Часто задаваемые вопросы (FAQ)
-
+// Секция: Часто задаваемые вопросы
 .faq-block {
-    
     &__accordion {
         align-items: start;
         gap: var(--space-4);
-
-        & > * {
-            height: auto;
-        }
     }
 }

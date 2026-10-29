@@ -1,12 +1,11 @@
-// Секция призыва CTA с изображением
-
+// Секция: CTA-блок с изображением
 .cta-block {
 
     &__inner {
         position: relative;
         overflow: hidden;
 
-        background-color: var(--bg-inverse);
+        background-color: var(--color-bg-inverse);
         border-radius: var(--radius-xl);
 
         padding: var(--space-8) var(--space-6);
@@ -34,17 +33,16 @@
     }
 
     &__title {
-        font-size: var(--text-2xl);
-        color: var(--text-inverse);
+        font-size: var(--font-size-2xl);
+        color: var(--color-text-inverse);
 
         @media ( min-width: 768px ) {
-            font-size: var(--text-3xl);
+            font-size: var(--font-size-3xl);
         }
     }
 
     &__description p {
-        color: var(--text-inverse);
-        opacity: 0.8;
+        color: var(--color-text-inverse-muted);
     }
 
     &__media {
@@ -56,14 +54,16 @@
         right: 0;
         left: 0;
 
+        background-color: var(--color-bg-inverse);
+
         @media ( min-width: 768px ) {
             left: 50%;
         }
 
         background-color: var(--color-black); 
 
-        -webkit-mask-image: var(--bg-overlay-dark-right);
-        mask-image: var(--bg-overlay-dark-right);
+        -webkit-mask-image: var(--gradient-overlay-dark-right);
+        mask-image: var(--gradient-overlay-dark-right);
     }
 
     &__image {

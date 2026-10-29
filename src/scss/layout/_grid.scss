@@ -37,11 +37,7 @@
     gap: var(--grid-gap);
     grid-template-columns: 1fr;
 
-    @media (min-width: 768px) {
-        gap: var(--space-6);
-
-
-
+    @media ( min-width: 768px ) {
         grid-template-columns: 1.5fr 1fr;
         grid-auto-rows: minmax(240px, auto);
  

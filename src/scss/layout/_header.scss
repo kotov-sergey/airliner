@@ -1,9 +1,8 @@
 // Стили для шапки сайта
-
 .header {
-
+    position: relative;
     width: 100%;
-    transition: background-color var(--duration-base), color var(--duration-base);
+    transition: background-color var(--transition-color), color var(--transition-color);
 
 	padding-block: var(--space-4);
 
@@ -33,30 +32,32 @@
     }
 
     // Навигация и список меню
-
     &__nav {
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
 
-        background-color: var(--bg-surface);
+        background-color: var(--color-bg-surface);
 
         max-height: 0;
         overflow: hidden;
         z-index: 100;
 
-        border-bottom: 0 solid var(--border-light);
-        transition: max-height var(--duration-base) var(--ease-in-out);
+        border-bottom: 0 solid var(--color-border);
+        transition: max-height var(--transition-transform),
+                    border-bottom-width var(--transition-color);
 
         &.active {
-            max-height: 320px;
+            max-height: 80vh;
+            overflow-y: auto;
             border-bottom-width: 1px;
         }
     }
 
     &__list {
         list-style: none;
+        margin: 0;
         padding: var(--space-4) var(--space-6);
     }
 
@@ -66,34 +67,30 @@
 
     &__list a {
         display: block;
-        color: var(--text-brand);
+        color: var(--color-text-heading);
         text-transform: uppercase;
         text-decoration: none;
-        font-size: var(--text-base);
-        font-family: var(--font-body);
-        transition: var(--duration-base) var(--ease-in-out);
-        font-weight: 500;     
+        font-size: var(--font-size-base);
+        transition: color var(--transition-color);
+        font-weight: var(--font-weight-medium);     
     }
 
-    &__list a:hover {
-        color: var(--text-accent);
-    }
-
-    &__list .current-menu-item a {
-        color: var(--text-accent);
+    &__list a:hover,
+    &__list .current-menu-item a  {
+        color: var(--color-text-accent);
     }
 
     // Адаптация под широкие экраны (Планшет, ПК)
-
     @media ( min-width: 1024px ) {
-        &__nav {
+        &__nav,
+        &__nav.active {
             position: static;
+            display: flex;
+            justify-content: flex-end;
             max-height: none;
             overflow: visible;
             background: none;
             border: none;
-            display: flex;
-            justify-content: flex-end;
             z-index: auto;
         }
 
@@ -112,6 +109,11 @@
             color: inherit;
             padding: var(--space-2) var(--space-4);
         }
+
+        &__list a:hover,
+        &__list .current-menu-item a {
+            color: var(--color-link-inverse-hover);
+        }
     }
 
     // Модификатор прозрачной шапки (для главной)
@@ -122,28 +124,26 @@
         left: 0;
         z-index: 10;
         background-color: transparent;
-        color: var(--color-white);
+        color: var(--color-text-inverse);
     }
 
     // Модификатор шапки с заливкой (для других страниц)
     &--solid {
         position: relative;
-        background-color: var(--bg-header);
-        color: var(--color-white);
+        background-color: var(--color-bg-header);
+        color: var(--color-text-inverse);
 
-        border-bottom: 1px solid var(--border-inverse);
+        border-bottom: 1px solid var(--color-border-inverse);
     }
 }
 
 // Кнопка Бургер-меню
-
 .burger {
 
     &__btn {
         background: none;
         border: none;
         cursor: pointer;
-        outline: none;
         width: 30px;
         height: 24px;
         position: relative;
@@ -154,7 +154,12 @@
 
         @media ( min-width: 1024px ) {
             display: none;
-        }        
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 4px;
+        } 
     }
 
     &__icon,
@@ -165,8 +170,10 @@
         width: 100%;
         height: 3px;
         background-color: currentColor; 
-        border-radius: var(--radius-xs);
-        transition: all var(--duration-base) var(--ease-in-out);
+        border-radius: var(--radius-sm);
+        transition: background-color var(--transition-color),
+                    transform var(--transition-transform),
+                    top var(--transition-transform);
     }
 
     &__icon {
