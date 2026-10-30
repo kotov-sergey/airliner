@@ -20,42 +20,58 @@
 @use 'layout/section';
 
 // Components (Кирпичики)
-@use 'components/buttons';
-@use 'components/section-header';
 
-@use 'components/card-brand';
-@use 'components/card-aircraft';
-@use 'components/card-post';
-@use 'components/card-promo';
-@use 'components/card-fuselage';
+// Универсальные элементы интерфейса
+@use 'components/ui/accordion';
+@use 'components/ui/badges';
+@use 'components/ui/buttons';
+@use 'components/ui/pills';
+@use 'components/ui/section-header';
 
-@use 'components/badges';
-@use 'components/spec-row';
+// Переиспользуемые карточки
+@use 'components/cards/card-advantage';
+@use 'components/cards/card-aircraft';
+@use 'components/cards/card-brand';
+@use 'components/cards/card-fuselage';
+@use 'components/cards/card-post';
+@use 'components/cards/card-promo';
 
-@use 'components/entry_content';
+// Элементы каталога авиалайнеров
+@use 'components/catalog/catalog-filters';
+@use 'components/catalog/catalog-pills';
+@use 'components/catalog/catalog-toolbar';
 
-@use 'components/airliner/airliner-hero';
+// Сравнение авиалайнеров
+@use 'components/comparison/card-duel';
+@use 'components/comparison/compare-bar';
+@use 'components/comparison/compare-table';
+
+// Навигационные компоненты
+@use 'components/navigation/breadcrumbs';
+@use 'components/navigation/pagination';
+@use 'components/navigation/terms-nav';
+
+// Оформление содержимого записей
+@use 'components/content/entry-content';
+@use 'components/content/post-meta';
+
+// Отображение характеристик и данных
+@use 'components/data-display/spec-row';
+@use 'components/data-display/specs-group';
+
+// Компоненты форм
+@use 'components/forms/forms';
+
+// Компоненты обратной связи
+@use 'components/feedback/empty-state';
+
+// Компоненты страниц
+@use 'components/pages/page-header';
+
+// Компоненты страницы авиалайнера
 @use 'components/airliner/airliner-gallery';
+@use 'components/airliner/airliner-hero';
 @use 'components/airliner/airliner-related';
-
-@use 'components/post-meta';
-
-@use 'components/catalog-filters';
-@use 'components/forms';
-@use 'components/card-advantage';
-@use 'components/accordion';
-@use 'components/pill';
-@use 'components/terms-nav';
-@use 'components/breadcrumbs';
-@use 'components/pagination';
-@use 'components/page-header';
-@use 'components/compare-bar';
-@use 'components/compare-table';
-@use 'components/empty-state';
-@use 'components/specs-group';
-@use 'components/catalog-pills';
-@use 'components/catalog-toolbar';
-@use 'components/card-duel';
 
 // Sections (Крупные блоки)
 @use 'sections/history';
@@ -69,5 +85,4 @@
 // Pages (Страницы)
 @use 'pages/page-404';
 @use 'pages/search';
-@use 'pages/category';
 @use 'pages/page-catalog';

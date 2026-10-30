@@ -1,6 +1,6 @@
 // Карточка авиалайнера
 
-@use '../abstracts/mixins' as *;
+@use '../../abstracts/mixins' as *;
 
 .card-aircraft {
     @include card-shell;

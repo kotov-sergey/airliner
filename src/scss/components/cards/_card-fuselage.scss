@@ -1,6 +1,6 @@
 // Карточка тип фюзеляжа
 
-@use '../abstracts/mixins' as *;
+@use '../../abstracts/mixins' as *;
 
 .card-fuselage {
     @include card-shell;

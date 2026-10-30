@@ -1,5 +1,4 @@
-// Стили страницы каталога
-
+// Шаблон страницы каталога авиалайнеров
 .page-catalog {
 
     // Расположение каталога
@@ -10,8 +9,8 @@
         align-items: start;
 
         @media (min-width: 992px) {
-            grid-template-columns: 300px 1fr;
-            gap: 40px;
+            grid-template-columns: 300px minmax(0, 1fr);
+            gap: var(--space-10);
         }
     }
 
@@ -19,7 +18,7 @@
     .catalog-sidebar {
         @media (min-width: 992px) {
             position: sticky;
-            top: 30px; 
+            top: var(--space-8); 
         }
     }
 
@@ -31,16 +30,17 @@
 
         position: relative;
         width: 100%;
+        min-width: 0;
 
         transition: opacity var(--duration-base) var(--ease-in-out);
 
         @media (min-width: 640px) {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: var(--space-5);
         }
 
         @media (min-width: 1280px) {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: var(--space-6);
         }
 
@@ -53,6 +53,7 @@
             }
         }
 
+        // Сообщение об ошибке
         .catalog-empty,
         .error-msg {
             grid-column: 1 / -1;
@@ -66,24 +67,26 @@
             min-height: 320px;
             padding: var(--space-8) var(--space-6);
 
-            background-color: var(--bg-surface);
-            border: 1px dashed var(--border-light);
-            border-radius: var(--radius-2xl);
+            background-color: var(--color-bg-surface);
+            border: 1px dashed var(--color-border);
+            border-radius: var(--radius-xl);
 
-            color: var(--text-muted);
+            color: var(--color-text-muted);
 
             p {
-                font-size: var(--text-base);
+                font-size: var(--font-size-base);
                 margin: 0;
             }
         }
 
         .error-msg {
-            border-color: var(--color-error);
-            color: var(--color-error);
+            background-color: var(--color-danger-bg);
+            border-color: var(--color-danger);
+            color: var(--color-danger-text);
         }
     }
 
+    // Кнопка "Загрузить еще"
     .catalog-load-more {
         margin-top: var(--space-8);
         display: flex;

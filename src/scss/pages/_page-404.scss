@@ -1,45 +1,49 @@
-// Стили для шаблона страницы 404
-
+// Шаблон страницы ошибки 404
 .hero-404 {
     &__inner {
         display: flex;
         flex-direction: column;
+
         align-items: center;
         text-align: center;
+
+        width: 100%;
         max-width: 768px;
+        margin-inline: auto;
+        
         gap: var(--space-4);
     }
 
     &__img {
         width: 100%;
-        max-width: 348px;
+        max-width: 350px;
     }
 
     &__title {
-        font-size: var(--text-5xl);
-        color: var(--text-brand);
-        line-height: 1;
+        font-size: var(--font-size-5xl);
+        color: var(--color-text-heading);
+        line-height: var(--line-height-none);
 
         @media ( min-width: 768px ) {
-            font-size: var(--text-7xl);
+            font-size: var(--font-size-7xl);
         }
     }
 
     &__subtitle {
-        font-size: var(--text-2xl);
-        color: var(--text-brand);
-        font-weight: 600;
+        font-size: var(--font-size-2xl);
+        color: var(--color-text-heading);
+        font-weight: var(--font-weight-semibold);
 
         @media ( min-width: 768px ) {
-            font-size: var(--text-4xl);
+            font-size: var(--font-size-4xl);
         }
     }
 
     &__text {
-        font-size: var(--text-base);
+        font-size: var(--font-size-base);
 
         @media ( min-width: 768px ) {
-            font-size: var(--text-lg);
+            font-size: var(--font-size-lg);
         }
     }
 
