@@ -32,7 +32,7 @@ get_header();
             <div class="l-grid l-grid--3">
 
                 <?php while ( have_posts() ) : the_post(); ?>
-                    <?php get_template_part( 'template-parts/components/card-post' ); ?>
+                    <?php get_template_part( 'template-parts/components/cards/card-post' ); ?>
                 <?php endwhile; ?>
 
             </div>

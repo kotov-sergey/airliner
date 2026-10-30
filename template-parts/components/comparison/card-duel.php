@@ -38,7 +38,7 @@ $compare_url = home_url( '/compare/?ids=' . $id1 . ',' . $id2 );
         <!-- Характеристики самолёта 1 -->
         <div class="card-duel__specs">
             <?php
-                get_template_part( 'template-parts/components/specs-key', null, [
+                get_template_part( 'template-parts/components/data-display/specs-key', null, [
                     'plane_id' => $id1,
                     'css_mod' => $spec_mods_string
                 ] );
@@ -67,7 +67,7 @@ $compare_url = home_url( '/compare/?ids=' . $id1 . ',' . $id2 );
         <!-- Характеристики самолёта 2 -->
         <div class="card-duel__specs">
             <?php
-                get_template_part( 'template-parts/components/specs-key', null, [
+                get_template_part( 'template-parts/components/data-display/specs-key', null, [
                     'plane_id' => $id2,
                     'css_mod' => $spec_mods_string
                 ] );

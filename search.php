@@ -97,7 +97,7 @@ wp_reset_postdata();
 
 						<!-- Заголовок секции Популярные авиалайнеры -->
 						<?php
-							get_template_part( 'template-parts/components/section-header', null, [
+							get_template_part( 'template-parts/components/ui/section-header', null, [
 								'data' => [
 									'header_title' => 'Популярные авиалайнеры'
 								]
@@ -121,7 +121,7 @@ wp_reset_postdata();
 									while ( $fallback_query->have_posts() ) {
 										$fallback_query->the_post();
 
-										get_template_part( 'template-parts/components/card-aircraft', null, [
+										get_template_part( 'template-parts/components/cards/card-aircraft', null, [
 											'layout' => 'vertical' 
 										] );
 									}
@@ -135,24 +135,13 @@ wp_reset_postdata();
 
 						<!-- Заголовок секции Популярные рубрики -->
 						<?php
-							get_template_part( 'template-parts/components/section-header', null, [
+							get_template_part( 'template-parts/components/ui/section-header', null, [
 								'data' => [
 									'header_title' => 'Популярные рубрики'
 								]
 							] );
 						?>							
-
-						<!-- Навигация по основным популярным категориям -->
-						<div class="search-fallback__actions">
-							<?php 
-								get_template_part( 'template-parts/components/category-cloud', null, [
-									'orderby' => 'count',
-									'order' => 'DESC',
-									'limit' => 6
-								] ); 
-							?>
-						</div>
-						
+				
 					</div>
 
 				</div>
@@ -166,9 +155,9 @@ wp_reset_postdata();
 		<section class="search-tabs">
 
 			<div class="container search-tabs__inner">
-				<button class="pill pill--lg pill--subtle search-tabs__button" type="button">Все результаты (<?php echo ( $total_results ); ?>)</button>
-				<button class="pill pill--lg pill--subtle search-tabs__button" type="button">Авиалайнеры (<?php echo count( $found_airliners); ?>)</button>
-				<button class="pill pill--lg pill--subtle search-tabs__button" type="button">Журнал (<?php echo count( $found_posts ); ?>)</button>
+				<button class="pill pill--lg pill--solid search-tabs__button" type="button">Все результаты (<?php echo ( $total_results ); ?>)</button>
+				<button class="pill pill--lg pill--solid search-tabs__button" type="button">Авиалайнеры (<?php echo count( $found_airliners); ?>)</button>
+				<button class="pill pill--lg pill--solid search-tabs__button" type="button">Журнал (<?php echo count( $found_posts ); ?>)</button>
 			</div>
 
 		</section>
@@ -191,7 +180,7 @@ wp_reset_postdata();
 									<?php
 										foreach ( $found_airliners as $post ) :
 											setup_postdata( $post );
-											get_template_part( 'template-parts/components/card-aircraft' );
+											get_template_part( 'template-parts/components/cards/card-aircraft' );
 										endforeach;
 										wp_reset_postdata();
 									?>
@@ -211,7 +200,7 @@ wp_reset_postdata();
 									<?php
 										foreach ( $found_posts as $post ) :
 											setup_postdata( $post );
-											get_template_part( 'template-parts/components/card-post' );
+											get_template_part( 'template-parts/components/cards/card-post' );
 										endforeach;
 										wp_reset_postdata();
 									?>

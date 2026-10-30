@@ -36,7 +36,7 @@ elseif ( $card_style === 'horizontal' ) {
 
         <!-- Блок заголовка секции -->
         <?php 
-            get_template_part( 'template-parts/components/section-header', null, [
+            get_template_part( 'template-parts/components/ui/section-header', null, [
                 'data' => $section_header,
                 'number' => $section_index
             ]);
@@ -50,7 +50,7 @@ elseif ( $card_style === 'horizontal' ) {
                 <?php while ( have_rows( 'section_cards' ) ) : the_row(); ?>
                    
                     <?php 
-                        get_template_part( 'template-parts/components/card-advantage', null, [
+                        get_template_part( 'template-parts/components/cards/card-advantage', null, [
                             'card_icon' => get_sub_field( 'card_icon' ),
                             'card_title' => get_sub_field( 'card_title' ),
                             'card_description' => get_sub_field( 'card_description' ),

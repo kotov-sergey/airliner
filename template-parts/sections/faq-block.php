@@ -22,7 +22,7 @@ if ( ! $section_header && ! $accordion ) return;
 
         <!-- Блок заголовка секции -->
         <?php 
-            get_template_part( 'template-parts/components/section-header', null, [
+            get_template_part( 'template-parts/components/ui/section-header', null, [
                 'data' => $section_header,
                 'number' => $section_index
             ]);

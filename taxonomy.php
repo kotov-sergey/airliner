@@ -18,7 +18,7 @@ get_header();
 
     <!-- Hero-секция таксономии -->
     <?php
-        get_template_part( 'template-parts/components/page-header', null, [
+        get_template_part( 'template-parts/components/pages/page-header', null, [
             'title' => $hero_title ? $hero_title : get_the_title(),
             'description' => $hero_description,
             'bg_image' => $hero_background,

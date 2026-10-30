@@ -10,7 +10,7 @@ $content = get_the_content();
   
             <!-- Заголовок секции -->
             <?php
-                get_template_part( 'template-parts/components/section-header', null, [
+                get_template_part( 'template-parts/components/ui/section-header', null, [
                     'number' => '04',
                     'data' => [
                         'header_label' => 'История',

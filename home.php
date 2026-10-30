@@ -13,7 +13,7 @@ get_header();
 
     <!-- Шапка страницы -->
     <?php 
-        get_template_part( 'template-parts/components/page-header', null, [
+        get_template_part( 'template-parts/components/pages/page-header', null, [
             'title' => $blog_title,
             'description' => $blog_description,
             'show_breadcrumbs' => true
@@ -23,7 +23,7 @@ get_header();
     <!-- Навигация по категориям блога -->
     <div class="page-blog__categories l-bordered-section">
         <div class="container">
-            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
+            <?php get_template_part( 'template-parts/components/navigation/terms-nav' ); ?>
         </div>
     </div>    
 
@@ -35,7 +35,7 @@ get_header();
 
                 <!-- Заголовок секции Featured-поста -->
                 <?php
-                    get_template_part( 'template-parts/components/section-header', null, [
+                    get_template_part( 'template-parts/components/ui/section-header', null, [
                         'data' => [
                             'header_title' => 'Выбор редакции'
                         ]
@@ -44,7 +44,7 @@ get_header();
 
                 <!-- Карточка Featured-поста -->
                 <?php 
-                    get_template_part( 'template-parts/components/card-post', null, [
+                    get_template_part( 'template-parts/components/cards/card-post', null, [
                         'layout' => 'featured'
                     ] );
                 ?>
@@ -59,7 +59,7 @@ get_header();
 
                 <!-- Заголовок секции Свежие материалы -->
                 <?php
-                    get_template_part( 'template-parts/components/section-header', null, [
+                    get_template_part( 'template-parts/components/ui/section-header', null, [
                         'data' => [
                             'header_title' => 'Свежие материалы'
                         ]
@@ -72,7 +72,7 @@ get_header();
                     for ( $i=0; $i<3; $i++ ) {
                         if ( !have_posts() ) break;
                         the_post();
-                        get_template_part( 'template-parts/components/card-post', null, [
+                        get_template_part( 'template-parts/components/cards/card-post', null, [
                             'layout' => 'overlay' 
                         ] );
                     }
@@ -91,7 +91,7 @@ get_header();
                 <!-- Заголовок секции Все публикации -->
                 <?php
                     
-                    get_template_part( 'template-parts/components/section-header', null, [
+                    get_template_part( 'template-parts/components/ui/section-header', null, [
                         'data' => [
                             'header_title' => 'Все публикации'
                         ]
@@ -101,7 +101,7 @@ get_header();
                 <!-- Сетка записей -->
                 <div class="l-grid l-grid--3">
                     <?php while ( have_posts() ) : the_post();
-                        get_template_part( 'template-parts/components/card-post' );
+                        get_template_part( 'template-parts/components/cards/card-post' );
                         endwhile;
                     ?>
                 </div>

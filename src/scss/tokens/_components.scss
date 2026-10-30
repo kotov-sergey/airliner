@@ -1,0 +1,29 @@
+/* ==========================================================================
+   COMPONENT TOKENS
+   Токены определенных компонентов.
+   Значения ссылаются на семантические токены из _semantic.scss.
+   ========================================================================== */
+
+:root {
+
+  /* ------------------------------------------------------------------------
+     Кнопки-пилюли
+     ------------------------------------------------------------------------ */
+
+    /* Залитая пилюля */
+    --pill-solid-bg: var(--color-bg-surface-tinted);
+    --pill-solid-bg-hover: var(--color-sky-300);
+    --pill-solid-text: var(--color-text-heading);
+
+    /* Пилюля с обводкой */
+    --pill-outline-bg: transparent;
+    --pill-outline-bg-hover: var(--color-bg-selected);
+    --pill-outline-border: var(--color-border-hover);
+    --pill-outline-border-hover: var(--color-border-focus);
+    --pill-outline-text: var(--color-text-secondary);
+    --pill-outline-text-hover: var(--color-text-heading);
+
+    /* Текстовая пилюля */
+    --pill-text-color: var(--color-link);
+    --pill-text-color-hover: var(--color-link-hover);
+}

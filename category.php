@@ -15,7 +15,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
     <!-- Шапка страницы -->
     <?php 
-        get_template_part( 'template-parts/components/page-header', null, [
+        get_template_part( 'template-parts/components/pages/page-header', null, [
             'title' => $category_title,
             'description' => $category_description,
             'show_breadcrumbs' => true
@@ -25,7 +25,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     <!-- Навигация по категориям блога -->
     <div class="page-category__tags l-bordered-section">
         <div class="container">
-            <?php get_template_part( 'template-parts/components/terms-nav' ); ?>
+            <?php get_template_part( 'template-parts/components/navigation/terms-nav' ); ?>
         </div>
     </div>    
 
@@ -36,7 +36,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
                 <!-- Заголовок секции Выбор редакции -->
                 <?php
-                    get_template_part( 'template-parts/components/section-header', null, [
+                    get_template_part( 'template-parts/components/pages/section-header', null, [
                         'data' => [
                             'header_title' => 'Выбор редакции'
                         ]
@@ -45,7 +45,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
                 <!-- Главный пост секции -->
                 <?php 
-                    get_template_part( 'template-parts/components/card-post', null, [
+                    get_template_part( 'template-parts/components/cards/card-post', null, [
                         'layout' => 'featured'
                     ]);
                 ?>
@@ -61,7 +61,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
                 <!-- Заголовок секции Все статьи и рубрики -->
                 <?php
-                    get_template_part( 'template-parts/components/section-header', null, [
+                    get_template_part( 'template-parts/components/ui/section-header', null, [
                         'data' => [
                             'header_title' => 'Все статьи рубрики'
                         ]
@@ -72,7 +72,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                 <div class="l-grid l-grid--3">
                     <?php 
                         while ( have_posts() ) : the_post();
-                            get_template_part( 'template-parts/components/card-post');
+                            get_template_part( 'template-parts/components/cards/card-post');
                         endwhile;
                     ?>
                 </div>

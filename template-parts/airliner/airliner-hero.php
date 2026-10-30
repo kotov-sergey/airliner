@@ -46,7 +46,7 @@ $plane_id = get_the_ID();
 
 						<!-- Вывод ключевых характеристик авиалайнера -->
 						<?php
-							get_template_part( 'template-parts/components/specs-key', null, [
+							get_template_part( 'template-parts/components/data-display/specs-key', null, [
 								'plane_id' => $plane_id,
 								'css_mod' => 'vertical'
 							] );

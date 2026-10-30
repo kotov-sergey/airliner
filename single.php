@@ -17,7 +17,7 @@
 			
 			<!-- Hero-секция -->
 			<?php
-				get_template_part( 'template-parts/components/page-header', null, [
+				get_template_part( 'template-parts/components/pages/page-header', null, [
 					'title' => $hero_title ? $hero_title : get_the_title(),
 					'modifier' => 'page-header--large',
 					'show_meta' => true,

@@ -35,7 +35,7 @@ if ( !empty( $ids ) ) {
     <div class="container">
 		
 		<?php 
-			get_template_part( 'template-parts/components/section-header', null, [
+			get_template_part( 'template-parts/components/ui/section-header', null, [
 				'data' => $section_header,
 				'number' => $section_index
 			] ); 
@@ -47,7 +47,7 @@ if ( !empty( $ids ) ) {
 				
 				<?php while ( $airliners_query->have_posts() ) : $airliners_query->the_post(); ?>
 				
-					<?php get_template_part( 'template-parts/components/card', 'aircraft', array(
+					<?php get_template_part( 'template-parts/components/cards/card', 'aircraft', array(
 						'show_specs' => $specs_to_show,
 						'layout' => 'horizontal',
 					) ); ?>

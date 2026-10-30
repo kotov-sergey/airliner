@@ -73,7 +73,7 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
             <?php if ( $show_meta ) : ?>
                 <div class="page-header__meta">
                     <?php 
-                        get_template_part( 'template-parts/components/post-meta', null, [
+                        get_template_part( 'template-parts/components/content/post-meta', null, [
                             'modifier' => 'post-meta--inverse'
                         ] ); 
                     ?>

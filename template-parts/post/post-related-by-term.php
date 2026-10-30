@@ -26,7 +26,7 @@ $related_query = new WP_Query( $query_args );
             
             <!-- Заголовок секции -->
             <?php
-                get_template_part( 'template-parts/components/section-header', null, [
+                get_template_part( 'template-parts/components/ui/section-header', null, [
                     'data' => [
                         'header_title' => 'Статьи о ' . $term->name
                     ]
@@ -39,7 +39,7 @@ $related_query = new WP_Query( $query_args );
                 <?php
                     while ( $related_query->have_posts() ) : $related_query->the_post();
 
-                        get_template_part( 'template-parts/components/card-post' );
+                        get_template_part( 'template-parts/components/cards/card-post' );
                     
                     endwhile;
 

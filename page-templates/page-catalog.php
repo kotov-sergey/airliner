@@ -13,7 +13,7 @@ get_header();
 
         <!-- Шапка страницы -->
         <?php
-            get_template_part( 'template-parts/components/page-header', null, [
+            get_template_part( 'template-parts/components/pages/page-header', null, [
                 'title' => $catalog_title,
                 'description' => $catalog_description,
                 'show_breadcrumbs' => true
@@ -21,10 +21,10 @@ get_header();
         ?>
         
         <!-- Компонент быстрых фильтров (Бренды + Типы фюзеляжа) -->
-        <?php get_template_part( 'template-parts/components/catalog-pills' ); ?>
+        <?php get_template_part( 'template-parts/components/catalog/catalog-pills' ); ?>
 
         <!-- Компонент панели поиска и сортировки каталога -->
-        <?php get_template_part( 'template-parts/components/catalog-toolbar' ); ?>
+        <?php get_template_part( 'template-parts/components/catalog/catalog-toolbar' ); ?>
 
         <!-- Основной каталог с фильтрами -->
         <section class="section section-catalog container page-catalog__container">
@@ -32,7 +32,7 @@ get_header();
 
                 <!-- Сайдбар с фильтрами -->
                 <aside class="catalog-sidebar">
-                    <?php get_template_part( 'template-parts/components/catalog-filter' ); ?>
+                    <?php get_template_part( 'template-parts/components/catalog/catalog-filter' ); ?>
                 </aside>
 
                 <!-- Сетка вывода авиалайнеров -->
@@ -48,7 +48,7 @@ get_header();
 
                             if ( $airliners_query->have_posts() ) :
                                 while ( $airliners_query->have_posts() ) : $airliners_query->the_post();
-                                    get_template_part( 'template-parts/components/card-aircraft', null, [
+                                    get_template_part( 'template-parts/components/cards/card-aircraft', null, [
                                         'view' => 'grid'
                                     ] );
                                 endwhile;

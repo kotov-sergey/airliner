@@ -82,7 +82,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 		<!-- Характеристики авиалайнера -->
 		<div class="card-aircraft__specs">
 			<?php
-				get_template_part( 'template-parts/components/specs-key', null, [
+				get_template_part( 'template-parts/components/data-display/specs-key', null, [
 					'plane_id' => $plane_id,
 					'css_mod' => $spec_mods_string
 				] );

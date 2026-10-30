@@ -27,7 +27,7 @@ if ( empty( $duels ) ) {
 
         <!-- Заголовок секции -->
         <?php 
-            get_template_part( 'template-parts/components/section-header', null, [
+            get_template_part( 'template-parts/components/ui/section-header', null, [
                 'data' => $section_header,
                 'number' => $section_index
             ]);
@@ -44,7 +44,7 @@ if ( empty( $duels ) ) {
             ?>
                 <!-- Компонент карточки дуэлей -->
                 <?php 
-                    get_template_part( 'template-parts/components/card-duel', null, [
+                    get_template_part( 'template-parts/components/comparison/card-duel', null, [
                         'plane_1' => $id1,
                         'plane_2' => $id2
                     ] ); 

@@ -16,7 +16,7 @@ get_header();
 
         <!-- Шапка страницы -->
             <?php
-                get_template_part( 'template-parts/components/page-header', null, [
+                get_template_part( 'template-parts/components/pages/page-header', null, [
                     'title' => $hero_title,
                     'description' => $hero_description,
                     'bg_image' => $hero_background,

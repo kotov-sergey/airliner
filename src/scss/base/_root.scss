@@ -1,4 +1,5 @@
 /* Общий файл подключения токенов дизайн-системы */
+
 @use '../tokens/colors';
 @use '../tokens/layout';
 @use '../tokens/typography';
@@ -8,3 +9,4 @@
 @use '../tokens/motion';
 @use '../tokens/icons';
 @use '../tokens/semantic';
+@use '../tokens/components';

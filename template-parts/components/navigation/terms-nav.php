@@ -40,7 +40,7 @@ $is_all_active = empty( $current_selected );
         <li class="category-cloud__item">
             <a 
                 href="<?php echo esc_url( remove_query_arg( $filter_name ) ); ?>" 
-                class="pill pill--subtle category-cloud__link <?php echo $is_all_active ? 'is-active' : ''; ?>"
+                class="pill pill--solid category-cloud__link <?php echo $is_all_active ? 'is-active' : ''; ?>"
                 data-pill-all="<?php echo esc_attr( $filter_name ); ?>"
             >
                 <?php echo esc_html( $all_label ); ?>
@@ -60,7 +60,7 @@ $is_all_active = empty( $current_selected );
             <li class="category-cloud__item">
                 <a
                     href="<?php echo esc_url( $term_url ); ?>"
-                    class="pill pill--subtle category-cloud__link <?php echo $is_current ? 'is-active' : ''; ?>"
+                    class="pill pill--solid category-cloud__link <?php echo $is_current ? 'is-active' : ''; ?>"
                     data-pill-item
                     data-pill-group="<?php echo esc_attr( $filter_name ); ?>"
                     data-term-id="<?php echo esc_attr( $category->term_id ); ?>"

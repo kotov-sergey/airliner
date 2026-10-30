@@ -39,7 +39,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
         <!-- Подпись карточки -->
         <?php if ( $label ) : ?>
-            <span class="pill pill--sm pill--subtle card-fuselage__label"><?php echo esc_html( $label ); ?></span>
+            <span class="pill pill--sm pill--solid card-fuselage__label"><?php echo esc_html( $label ); ?></span>
         <?php endif; ?>
 
     </div>
@@ -112,14 +112,14 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
                         <?php if ( $plane_link && ! is_wp_error( $plane_link ) ) : ?>
 
                             <!-- Тэг-пример авиалайнера -->
-                            <a href="<?php echo esc_url( $plane_link ); ?>" class="pill pill--sm pill--subtle card-fuselage__tag">
+                            <a href="<?php echo esc_url( $plane_link ); ?>" class="pill pill--sm pill--outline card-fuselage__tag">
                                 <?php echo esc_html( $plane_title ); ?>
                             </a>
 
                         <?php else : ?>
                             
                             <!-- Текст-заглушка авиалайнера -->
-                            <span class="pill pill--sm pill--subtle card-fuselage__tag">
+                            <span class="pill pill--sm pill--outline card-fuselage__tag">
                                 <?php echo esc_html( $plane_title ); ?>
                             </span>
 

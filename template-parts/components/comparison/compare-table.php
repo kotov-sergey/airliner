@@ -75,7 +75,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
                 <!-- Компонент группы характеристик авиалайнера -->  
                 <?php
-                    get_template_part( 'template-parts/components/specs-group', null, [
+                    get_template_part( 'template-parts/components/data-display/specs-group', null, [
                         'plane_id' => $plane_id,
                         'css_mod' => 'compact',
                         'winners' => $winners

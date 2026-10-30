@@ -33,7 +33,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
 				<!-- Мета-данные статьи -->
 				<div class="featured-card__meta">
-					<?php get_template_part( 'template-parts/components/post-meta' ); ?>
+					<?php get_template_part( 'template-parts/components/content/post-meta' ); ?>
 				</div>
 
 				<!-- Заголовок статьи -->
@@ -76,7 +76,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
 			<!-- Мета-данные статьи -->
 			<div class="promo-card__meta">
-				<?php get_template_part( 'template-parts/components/post-meta', null, [
+				<?php get_template_part( 'template-parts/components/content/post-meta', null, [
 					'modifier' => 'post-meta--inverse'
 				] ); ?>
 			</div>
@@ -125,7 +125,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
 			<!-- Мета-данные статьи -->
 			<div class="post-card__meta">
-				<?php get_template_part( 'template-parts/components/post-meta' ); ?>
+				<?php get_template_part( 'template-parts/components/content/post-meta' ); ?>
 			</div>
 
 			<!-- Заголовок статьи -->

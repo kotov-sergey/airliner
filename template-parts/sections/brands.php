@@ -22,7 +22,7 @@ if ( empty( $brands ) ) return;
     <div class="container">
 		
 		<?php 
-			get_template_part( 'template-parts/components/section-header', null, [
+			get_template_part( 'template-parts/components/ui/section-header', null, [
 				'data' => $section_header,
 				'number' => $section_index
 			] ); 
@@ -33,7 +33,7 @@ if ( empty( $brands ) ) return;
 			<?php foreach ($brands as $brand) : ?>
 				<li class="brands-grid__item">
 					<?php 
-						get_template_part( 'template-parts/components/card-brand', null, [
+						get_template_part( 'template-parts/components/cards/card-brand', null, [
 							'current_brand' => $brand
 						] );
 					?>

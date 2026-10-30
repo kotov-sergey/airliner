@@ -13,7 +13,7 @@ $show_types = $args['show_types'] ?? true;
                 <span class="catalog-pills__label">Бренд</span>
 
                 <?php 
-                    get_template_part( 'template-parts/components/terms-nav', null, [
+                    get_template_part( 'template-parts/components/navigation/terms-nav', null, [
                         'taxonomy' => 'manufacturer',
                         'filter_name' => 'brand',
                         'all_label' => 'Все бренды'
@@ -28,7 +28,7 @@ $show_types = $args['show_types'] ?? true;
                 <span class="catalog-pills__label">Тип фюзеляжа</span>
 
                 <?php 
-                    get_template_part( 'template-parts/components/terms-nav', null, [
+                    get_template_part( 'template-parts/components/navigation/terms-nav', null, [
                         'taxonomy' => 'body-type',
                         'filter_name' => 'fuselage',
                         'all_label' => 'Все типы'

@@ -27,7 +27,7 @@ $posts_query = new WP_Query([
   <div class="container">
 
     <?php 
-		get_template_part('template-parts/components/section-header', null, [
+		get_template_part('template-parts/components/ui/section-header', null, [
 			'data' => $section_header,
 			'number' => $section_index
 		]); 
@@ -39,7 +39,7 @@ $posts_query = new WP_Query([
 
 			<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
 
-				<?php get_template_part( 'template-parts/components/card', 'post', array (
+				<?php get_template_part( 'template-parts/components/cards/card', 'post', array (
 					'layout' => 'overlay',
 				) ); ?>
 

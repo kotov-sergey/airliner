@@ -22,7 +22,7 @@ if ( empty( $fuselage_types ) ) return;
     <div class="container">
 		
         <?php 
-            get_template_part( 'template-parts/components/section-header', null, [
+            get_template_part( 'template-parts/components/ui/section-header', null, [
                 'data' => $section_header,
                 'number' => $section_index
             ]);
@@ -32,7 +32,7 @@ if ( empty( $fuselage_types ) ) return;
 
             <?php foreach( $fuselage_types as $fuselage_type ) : ?>
                 <?php 
-                    get_template_part( 'template-parts/components/card-fuselage', null, [
+                    get_template_part( 'template-parts/components/cards/card-fuselage', null, [
                         'current_type' => $fuselage_type
                     ] );
                 ?>

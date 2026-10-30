@@ -24,7 +24,7 @@ foreach ( $config as $group_key => $group_data ) {
     
             <!-- Заголовок секции -->
             <?php
-                get_template_part( 'template-parts/components/section-header', null, [
+                get_template_part( 'template-parts/components/ui/section-header', null, [
                     'number' => '03',
                     'data' => [
                         'header_label' => 'Характеристики',
@@ -38,7 +38,7 @@ foreach ( $config as $group_key => $group_data ) {
             <div class="l-grid l-grid--2">
 
                 <!-- Компонент группы характеристик авиалайнера -->
-                <?php get_template_part( 'template-parts/components/specs-group' ); ?>
+                <?php get_template_part( 'template-parts/components/data-display/specs-group' ); ?>
 
             </div>
         

@@ -30,7 +30,7 @@ $classes = trim( 'section info-showcase ' . $section_background );
 
                     <!-- Заголовок секции -->
                     <?php
-                        get_template_part( 'template-parts/components/section-header', null, [
+                        get_template_part( 'template-parts/components/ui/section-header', null, [
                             'data' => $section_header,
                             'number' => $section_index
                         ] );
@@ -49,7 +49,7 @@ $classes = trim( 'section info-showcase ' . $section_background );
 
                         <!-- Карточка преимуществ -->
                         <?php 
-                            get_template_part( 'template-parts/components/card-advantage', null, [
+                            get_template_part( 'template-parts/components/cards/card-advantage', null, [
                                 'card_icon' => get_sub_field( 'card_icon' ),
                                 'card_title' => get_sub_field( 'card_title' ),
                                 'card_description' => get_sub_field( 'card_description' ),

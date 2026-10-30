@@ -45,7 +45,7 @@ else {
 
         <!-- Заголовок секции -->
         <?php
-            get_template_part( 'template-parts/components/section-header', null, [
+            get_template_part( 'template-parts/components/ui/section-header', null, [
                 'number' => '05',
                 'data' => [
                     'header_label' => 'Похожие модели',
@@ -67,7 +67,7 @@ else {
 
                     setup_postdata( $post );
 
-                        get_template_part( 'template-parts/components/card-aircraft' );
+                        get_template_part( 'template-parts/components/cards/card-aircraft' );
 
                     endforeach;
 

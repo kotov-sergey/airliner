@@ -17,7 +17,7 @@ $plane_ids = array_slice($plane_ids, 0, 4);
 
     <!-- Hero-секция -->
     <?php
-        get_template_part( 'template-parts/components/page-header', null, [
+        get_template_part( 'template-parts/components/pages/page-header', null, [
             'title' => 'Сравнение авиалайнеров',
             'description' => 'Сравнивайте характеристики и значения, выявляющие лучшие авиалайнеры в мире!',
             'show_breadcrumbs' => true
@@ -44,7 +44,7 @@ $plane_ids = array_slice($plane_ids, 0, 4);
 
                     <!-- Заголовок секции -->
                     <?php 
-                        get_template_part( 'template-parts/components/section-header', null, [
+                        get_template_part( 'template-parts/components/ui/section-header', null, [
                             'data' => [
                                 'header_title' => 'Результаты сравнения авиалайнеров'
                             ]
@@ -53,7 +53,7 @@ $plane_ids = array_slice($plane_ids, 0, 4);
                     
                     <!-- Таблица сравнения авиалайнеров -->
                     <?php 
-                        get_template_part( 'template-parts/components/compare-table', null, [
+                        get_template_part( 'template-parts/components/comparison/compare-table', null, [
                             'query' => $compare_query,
                             'winners' => $winners
                         ] );

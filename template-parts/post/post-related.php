@@ -23,7 +23,7 @@ if ( $related_query->have_posts() ) :
 
 		<!-- Заголовок секции -->
 		<?php
-			get_template_part( 'template-parts/components/section-header', null, [
+			get_template_part( 'template-parts/components/ui/section-header', null, [
 				'data' => [
 					'header_label' => 'Похожие записи',
 					'header_title' => 'Смотрите также',
@@ -41,7 +41,7 @@ if ( $related_query->have_posts() ) :
 					
 					$related_query->the_post();
 
-					get_template_part( 'template-parts/components/card-post' );
+					get_template_part( 'template-parts/components/cards/card-post' );
 
 				endwhile;
 

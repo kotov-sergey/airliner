@@ -16,7 +16,7 @@ $total_images = count( $gallery );
 
             <!-- Заголовок секции -->
             <?php
-                get_template_part( 'template-parts/components/section-header', null, [
+                get_template_part( 'template-parts/components/ui/section-header', null, [
                     'number' => '02',
                     'data' => [
                         'header_label' => 'Медиа',
