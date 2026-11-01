@@ -1,10 +1,7 @@
+
 // Стили компонента заголовка (для секций)
+
 .section-header {
-
-    --sh-number-color: var(--color-blue-500);
-    --sh-line-color: var(--color-blue-500);
-    --sh-label-color: var(--text-muted);
-
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -12,34 +9,35 @@
     margin-bottom: var(--space-8);
 
     &__meta {
-		display: flex;
-		align-items: center;
-		gap: var(--space-3);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
 
-		font-size: var(--text-sm);
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-normal);
         text-transform: uppercase;
-        letter-spacing: var(--tracking-wide);
+        letter-spacing: var(--letter-spacing-wide);
 
         .section-header__number + .section-header__label::before {
             display: inline-block;
-			vertical-align: middle;
+            vertical-align: middle;
 
-			width: 48px;
-			height: 1px;
+            width: 48px;
+            height: 1px;
 
-			content: '';
+            content: '';
             margin-right: var(--space-3);
-            background-color: var(--sh-line-color);
+
+            background-color: var(--color-border-accent);
         }
     }
 
     &__label {
-        color: var(--sh-label-color);
+        color: var(--color-text-accent);
     }
 
     &__number {
-        color: var(--sh-number-color);
-        font-weight: 600;
+        color: var(--color-text-accent);
     }
 
     &__content {
@@ -49,23 +47,21 @@
     }
 
     &__title {
-        color: var(--text-brand);
+        color: var(--color-text-heading);
         text-wrap: balance;
     }
 
     &__description {
-        color: var(--text-secondary);
+        color: var(--color-text-secondary);
         text-wrap: pretty;
     }
 
     // Модификатор: в строку, если есть мета
     &--row {
-
-        @media ( min-width: 768px ) {
-            
+        @media (min-width: 768px) {
             .section-header__content {
                 flex-direction: row;
-				align-items: center;
+                align-items: center;
                 justify-content: space-between;
             }
 
@@ -75,14 +71,14 @@
         }
     }
 
-    // Модификатор: в столбец, если нет меты
+    // Модификатор: в столбец, если нет мета
     &--column {
         align-items: center;
         text-align: center;
 
         gap: var(--space-2);
 
-        .section-header__content{
+        .section-header__content {
             align-items: center;
         }
 

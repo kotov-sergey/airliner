@@ -1,31 +1,70 @@
 // Стили пагинации
-
 .pagination {
-    --pagination-text: var(--color-white); // Цвет текста
-    --pagination-bg: var(--color-blue-500); // Базовый фон
-
-    --pagination-bg-hover: var(--color-blue-800); // Фон при наведении
-    --pagination-bg-current: var(--color-blue-800); // Фон текущей страницы
-
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    gap: var(--space-3);
+
+    gap: var(--space-2);
 
     .page-numbers {
-        color: var(--pagination-text);
-        background-color: var(--pagination-bg);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
 
-        padding: var(--space-2) var(--space-4);
+        min-width: var(--space-10);
+        min-height: var(--space-10);
+
+        padding: var(--space-2) var(--space-3);
+
+        color: var(--color-link);
+        background-color: var(--color-bg-surface);
+
+        border: 1px solid var(--color-border);
         border-radius: var(--radius-full);
 
-        transition: background-color var(--duration-base) var(--ease-in-out);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+
+        text-align: center;
+        text-decoration: none;
+
+        transition: color var(--transition-color),
+                    background-color var(--transition-color),
+                    border-color var(--transition-color);
     }
 
-    .page-numbers:hover {
-        background-color: var(--pagination-bg-hover);
+    a.page-numbers:not(.current):hover {
+        color: var(--color-link-hover);
+        background-color: var(--color-bg-hover);
+        border-color: var(--color-border-hover);
+    }
+
+    a.page-numbers:focus-visible {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 3px;
     }
 
     .page-numbers.current {
-        background-color: var(--pagination-bg-current);
+        color: var(--color-text-heading);
+        background-color: var(--color-bg-selected);
+        border-color: var(--color-border);
+
+        font-weight: var(--font-weight-semibold);
+        cursor: default;
+    }
+
+    .page-numbers.dots {
+        min-width: auto;
+        min-height: auto;
+
+        padding-inline: var(--space-1);
+
+        color: var(--color-text-muted);
+        background-color: transparent;
+        border-color: transparent;
+
+        cursor: default;
     }
 }

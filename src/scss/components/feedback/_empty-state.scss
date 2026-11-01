@@ -1,5 +1,4 @@
 // Блок пустого состояния
-
 .empty-state {
     display: flex;
     flex-direction: column;
@@ -11,8 +10,8 @@
     padding: var(--space-12) 0;
 
     &__text {
-        color: var(--text-secondary);
-        font-weight: 400;
+        color: var(--color-text-secondary);
+        font-weight: var(--font-weight-regular);
         max-width: 600px;
     }
 }

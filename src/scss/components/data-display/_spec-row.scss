@@ -1,9 +1,8 @@
 // Стили для строки характеристик
-
 .spec-row {
     position: relative;
-    display: flex;
 
+    display: flex;
     align-items: center;
     justify-content: space-between;
 
@@ -12,9 +11,9 @@
     &__name {
         display: flex;
         flex-direction: row;
-        gap: var(--space-2);
-
         align-items: center;
+
+        gap: var(--space-2);
     }
 
     &__icon {
@@ -27,50 +26,63 @@
         height: 36px;
 
         border-radius: var(--radius-lg);
-        background-color: var(--icon-bg);
+        background-color: var(--color-icon-container-bg);
 
         svg {
-            width: 16px;
-            height: 16px;
+            width: var(--icon-size-inline);
+            height: var(--icon-size-inline);
 
-            color: var(--icon-main);
-
-            object-fit: contain;
+            color: var(--color-icon-primary);
         }
     }
 
     &__label {
         white-space: nowrap;
-        color: var(--text-muted);
-        font-size: var(--text-sm);
+
+        color: var(--color-text-muted);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
     }
 
     &__data {
         display: flex;
         flex-direction: row;
+        align-items: center;
+
         gap: var(--space-1);
-        font-size: var(--text-base);
+
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+
+        color: var(--color-text-primary);
 
         white-space: nowrap;
     }
 
     &.is-best {
-        background-color: var(--badge-success-bg);
+        background-color: var(--color-success-bg);
         border-radius: var(--radius-xl);
+
         padding: var(--space-1) var(--space-2);
+
+        .spec-row__data {
+            color: var(--color-success-text);
+        }
     }
 
     &--vertical {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--space-3);
 
+        gap: var(--space-3);
         padding: var(--space-5);
 
-        background-color: var(--bg-surface);
+        background-color: var(--color-bg-surface);
 
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-xl);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-card);
 
         .spec-row__name {
             text-transform: uppercase;
@@ -85,8 +97,8 @@
             background-color: transparent;
 
             svg {
-                width: 16px;
-                height: 16px;
+                width: var(--icon-size-inline);
+                height: var(--icon-size-inline);
             }
         }
     }
@@ -107,6 +119,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+
         gap: var(--space-1);
 
         .spec-row__icon {

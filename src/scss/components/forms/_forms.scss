@@ -1,51 +1,69 @@
+
 // Стили элементов форм и полей ввода
 
 /* ==========================================================================
-   1. БАЗОВЫЙ ШАБЛОН ПОЛЯ ВВОДА (%input-base-styles)
+   1. БАЗОВЫЙ ШАБЛОН ПОЛЯ ВВОДА
    ========================================================================== */
+
 %input-base-styles {
     display: block;
     width: 100%;
-    
+
     font-family: inherit;
-    font-size: var(--text-sm);
-    color: var(--text-main);
-    
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-light);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+
+    color: var(--color-text-primary);
+
+    background-color: var(--color-bg-surface);
+
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    
+
     padding: var(--space-3) var(--space-4);
-    outline: none;
-    -webkit-appearance: none; // Сброс системных стилей в Safari и iOS
 
-    transition: border-color var(--duration-base) var(--ease-in-out),
-                box-shadow var(--duration-base) var(--ease-in-out);
+    transition: border-color var(--transition-color),
+                background-color var(--transition-color);
 
-    // Стилизация подсказки (placeholder)
     &::placeholder {
-        color: var(--text-muted);
-        opacity: 0.8;
+        color: var(--color-text-muted);
+        opacity: 1;
     }
 
-    // Состояние фокуса (клик в поле)
     &:focus {
-        border-color: var(--border-focus);
+        border-color: var(--color-border-focus);
+        outline: none;
+    }
+
+    &:disabled {
+        color: var(--color-text-muted);
+        background-color: var(--color-bg-surface-alt);
+        border-color: var(--color-border);
+        cursor: not-allowed;
+    }
+
+    &.is-invalid,
+    &[aria-invalid="true"] {
+        border-color: var(--color-danger);
     }
 }
 
 input[type="text"],
 input[type="email"],
+input[type="password"],
 input[type="search"],
 input[type="tel"],
 input[type="url"],
+input[type="number"],
+input[type="date"],
 textarea,
 select,
 .form-input {
     @extend %input-base-styles;
 }
 
-// Селекты (курсор-рука)
+// Селекты
 select {
     cursor: pointer;
 }
@@ -58,8 +76,9 @@ textarea {
 
 
 /* ==========================================================================
-   2. ЧЕКБОКСЫ (Каталог и фильтры)
+   2. ЧЕКБОКСЫ
    ========================================================================== */
+
 .form-checkbox {
     display: inline-flex;
     align-items: center;
@@ -72,68 +91,133 @@ textarea {
         width: 18px;
         height: 18px;
         flex-shrink: 0;
+
         cursor: pointer;
-        accent-color: var(--bg-accent);
+        accent-color: var(--color-action-primary);
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 3px;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
     }
 
     &__label {
-        font-size: var(--text-sm);
-        color: var(--text-main);
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-primary);
     }
 }
 
 
 /* ==========================================================================
-   3. ИНТЕГРАЦИЯ С ПЛАГИНОМ FLUENT FORMS (Форма контактов)
+   3. ИНТЕГРАЦИЯ С FLUENT FORMS
    ========================================================================== */
+
 .custom-form-wrapper {
 
     .fluentform .ff-el-form-control {
         @extend %input-base-styles;
     }
 
+    // Заголовок HTML-блока
     .fluentform .ff-custom_html h3 {
         text-align: center;
     }
 
+    // Подписи полей
     .fluentform .ff-el-input--label {
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--text-main);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+
+        color: var(--color-text-primary);
+
         margin-bottom: var(--space-2);
 
-        // Звездочка обязательного поля
+        // Обязательное поле
         &.ff-el-is-required label::after {
-            color: var(--text-accent);
+            color: var(--color-text-accent);
         }
     }
 
+    // Многострочное поле
     .fluentform textarea.ff-el-form-control {
         min-height: 120px;
         resize: vertical;
     }
 
-    .fluentform .ff-el-form-check .ff-el-form-check-label { 
+    // Чекбоксы и их подписи
+    .fluentform .ff-el-form-check .ff-el-form-check-label {
         display: inline-flex;
         align-items: center;
         gap: var(--space-3);
+
+        cursor: pointer;
 
         .ff-el-form-check-input {
             width: 18px;
             height: 18px;
             flex-shrink: 0;
-            accent-color: var(--color-orange-500);
+
+            accent-color: var(--color-action-primary);
+
+            &:focus-visible {
+                outline: 2px solid var(--color-focus-ring);
+                outline-offset: 3px;
+            }
         }
 
         span {
-            font-size: var(--text-sm);  
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-normal);
+            color: var(--color-text-primary);
         }
     }
 
+    // Кнопка отправки
     .fluentform button.ff-btn-submit {
-        display: flex;
+        display: inline-flex;
+        align-items: center;
         justify-content: center;
+
         width: 100%;
+
+        padding: var(--space-3) var(--space-6);
+
+        font-family: inherit;
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-normal);
+
+        color: var(--color-action-primary-text);
+        background-color: var(--color-action-primary);
+
+        border: none;
+        border-radius: var(--radius-full);
+
+        cursor: pointer;
+
+        transition: color var(--transition-color),
+                    background-color var(--transition-color);
+
+        &:hover:not(:disabled) {
+            color: var(--color-action-primary-text-hover);
+            background-color: var(--color-action-primary-hover);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 3px;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
     }
 
     .ff_submit_btn_wrapper {

@@ -1,21 +1,19 @@
 // Стили карточки преимуществ
-
 .card-advantage {
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
     gap: var(--space-4);
 
-    background-color: var(--bg-surface);
-    
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-xl);
+    background-color: var(--color-bg-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
 
     padding: var(--space-4);
 
-    @media ( min-width: 768px ) {
+    @media (min-width: 768px) {
         padding: var(--space-6);
     }
 
@@ -28,15 +26,15 @@
         width: 48px;
         height: 48px;
 
-        background-color: var(--icon-bg);
+        background-color: var(--color-icon-container-bg);
         border-radius: var(--radius-xl);
 
         svg {
-            color: var(--icon-main);
+            color: var(--color-icon-primary);
 
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
+            width: var(--icon-size-feature);
+            height: var(--icon-size-feature);
+
             stroke: currentColor;
         }
     }
@@ -48,46 +46,56 @@
     }
 
     &__title {
-        font-size: var(--text-lg);
-        color: var(--text-brand);
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
+        color: var(--color-text-heading);
     }
 
     &__description p {
-        font-size: var(--text-base);
-        color: var(--text-secondary);
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-secondary);
     }
 
     // Маленькая карточка
     &--compact {
 
         .card-advantage__title {
-            font-size: var(--text-base);
+            font-size: var(--font-size-base);
         }
 
         .card-advantage__description p {
-            font-size: var(--text-sm);
+            font-size: var(--font-size-sm);
+
             display: -webkit-box;
             -webkit-line-clamp: 3;
             line-clamp: 3;
-            -webkit-box-orient: vertical;  
+            -webkit-box-orient: vertical;
             overflow: hidden;
-        }        
+        }
     }
 
     // Горизонтальная карточка
     &--horizontal {
 
-        @media ( min-width: 768px ) {
+        @media (min-width: 768px) {
             flex-direction: row;
             align-items: flex-start;
         }
 
+        .card-advantage__content {
+            flex: 1;
+            min-width: 0;
+        }
+
         .card-advantage__title {
-            font-size: var(--text-base);
+            font-size: var(--font-size-base);
         }
 
         .card-advantage__description p {
-            font-size: var(--text-sm);
+            font-size: var(--font-size-sm);
         }
     }
 }

@@ -1,4 +1,4 @@
-// Карточка тип фюзеляжа
+// Карточка типа фюзеляжа
 
 @use '../../abstracts/mixins' as *;
 
@@ -7,66 +7,68 @@
 
     display: flex;
     flex-direction: column;
-    height: 100%;
 
     position: relative;
 
     &__picture {
         position: relative;
 
-        aspect-ratio: 16/9;
+        aspect-ratio: 16 / 9;
         overflow: hidden;
         flex-shrink: 0;
-
-        transform: translateZ(0); 
     }
 
     &__image {
+        display: block;
+
         width: 100%;
         height: 100%;
 
         object-fit: cover;
 
-        transform: scale(1);
-        will-change: transform;
-
-        transition: transform var(--duration-base) var(--ease-in-out);
+        transition: transform var(--transition-transform);
     }
 
-    &:hover &__image {
-        transform: scale( 1.1 );
+    &:hover &__image,
+    &:focus-within &__image {
+        transform: scale(1.1);
     }
 
     &__label {
         position: absolute;
         z-index: 2;
+        pointer-events: none;
 
         top: var(--space-4);
         left: var(--space-4);
 
-        @media ( min-width: 768px ) {
-            top: var(--space-6);
-            left: var(--space-6);   
-        }
+        text-transform: uppercase;
+        letter-spacing: var(--letter-spacing-wide);
 
-        text-transform: uppercase; 
-    }    
+        @media (min-width: 768px) {
+            top: var(--space-6);
+            left: var(--space-6);
+        }
+    }
 
     &__link {
-        transition: color var(--duration-base) var(--ease-in-out);
-    
+        color: inherit;
+        text-decoration: none;
+
+        transition: color var(--transition-color);
+
         &::after {
             content: '';
-            
             position: absolute;
-            inset: 0;
 
+            inset: 0;
             z-index: 1;
         }
     }
 
-    &:hover &__link {
-        color: var(--link-color);
+    &:hover &__link,
+    &:focus-within &__link {
+        color: var(--color-link);
     }
 
     &__body {
@@ -77,39 +79,42 @@
         gap: var(--space-3);
         padding: var(--space-4);
 
-        @media ( min-width: 768px ) {
+        @media (min-width: 768px) {
             gap: var(--space-4);
-            padding: var(--space-6);   
+            padding: var(--space-6);
         }
     }
 
     &__title {
-        font-size: var(--text-xl);
-        color: var(--text-brand);
-        line-height: var(--leading-snug);
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
 
-        @media ( min-width: 768px ) {
-            font-size: var(--text-2xl);
-        }
-
+        color: var(--color-text-heading);
 
         display: -webkit-box;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        @media (min-width: 768px) {
+            font-size: var(--font-size-2xl);
+        }
     }
 
     &__description {
-        font-size: var(--text-sm);
-        color: var(--text-secondary);
-        line-height: var(--leading-normal);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
+
+        color: var(--color-text-secondary);
 
         display: -webkit-box;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;        
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     &__specs {
@@ -117,30 +122,29 @@
         flex-direction: column;
         gap: var(--space-2);
 
-        margin-top: auto;
         padding-top: var(--space-2);
 
         .spec-row__name,
-        .spec-row__data
-         {
-            font-size: var(--text-sm);
+        .spec-row__data {
+            font-size: var(--font-size-sm);
         }
     }
 
     &__examples {
+        margin-top: auto;
         padding-top: var(--space-4);
-        border-top: 1px solid var(--border-light);
+        border-top: 1px solid var(--color-border);
     }
 
     &__subtitle {
         display: block;
         margin-bottom: var(--space-2);
 
-        font-size: var(--text-xs);
-        color: var(--text-muted);
+        font-size: var(--font-size-xs);
+        color: var(--color-text-muted);
 
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: var(--letter-spacing-wide);
     }
 
     &__tags {
@@ -151,5 +155,16 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-2);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-fuselage__image {
+        transition: none;
+    }
+
+    .card-fuselage:hover .card-fuselage__image,
+    .card-fuselage:focus-within .card-fuselage__image {
+        transform: none;
     }
 }

@@ -2,132 +2,172 @@
 
 @use '../../abstracts/mixins' as *;
 
-// Карточка статьи для Bento-сетки ( с затемнением )
 .promo-card {
-	@include card-shell;
+    @include card-shell;
 
-	position: relative;
+    position: relative;
 
-	background-color: transparent;
-	isolation: isolate;
+    background-color: transparent;
+    isolation: isolate;
 
-	&__background {
-		position: absolute;
-		inset: 0;
+    &__background {
+        position: absolute;
+        inset: 0;
 
-		z-index: 0;
-	}
+        z-index: 0;
 
-	&__background::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		z-index: 1;
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
 
-		background: var(--bg-overlay-dark);
-		pointer-events: none;
-	}
+            background: var(--gradient-overlay-dark-bottom);
+            pointer-events: none;
+        }
+    }
 
-	&__image {
-		width: 100%;
-		height: 100%;
+    &__image {
+        display: block;
 
-		object-fit: cover;
-		will-change: transform;
+        width: 100%;
+        height: 100%;
 
-		transition: transform var(--duration-base) var(--ease-in-out);
-	}
+        object-fit: cover;
 
-	&:hover &__image {
-		transform: scale(1.1);
-	}
+        transition: transform var(--transition-transform);
+    }
 
-	&__link {
-		transition: color var(--duration-base) var(--ease-in-out);
+    &:hover &__image,
+    &:focus-within &__image {
+        transform: scale(1.1);
+    }
 
-		&::after {
-			content: '';
-			position: absolute;
+    &__link {
+        color: inherit;
+        text-decoration: none;
 
-			inset: 0;
-			z-index: 2;
-		}
-	}
+        transition: color var(--transition-color);
 
-	&:hover &__link {
-		color: var(--link-color);
-	}	
+        &::after {
+            content: '';
+            position: absolute;
 
-	&__content {
-		position: relative;
-		z-index: 3;
+            inset: 0;
+            z-index: 2;
+        }
+    }
 
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		height: 100%;
-		pointer-events: none;
+    &:hover &__link,
+    &:focus-within &__link {
+        color: var(--color-link-inverse-hover);
+    }
 
-		gap: var(--space-3);
+    &__content {
+        position: relative;
+        z-index: 3;
 
-		padding: var(--space-5);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
 
-		@media ( min-width: 768px ) {
-			padding: var(--space-6);
-		}
-	}
+        height: 100%;
+
+        pointer-events: none;
+
+        gap: var(--space-3);
+        padding: var(--space-5);
+
+        @media (min-width: 768px) {
+            padding: var(--space-6);
+        }
+    }
 
     &__action,
     .post-meta {
-		position: relative;
-		z-index: 4;
+        position: relative;
+        z-index: 4;
         pointer-events: auto;
     }
 
-	&__title {
-		font-size: var(--text-lg);
-        line-height: var(--leading-tight);
-        color: var(--text-inverse);
+    &__title {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
 
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-		pointer-events: auto;
+        color: var(--color-text-inverse);
 
-		@media ( min-width: 768px ) {
-			font-size: var(--text-xl);
-		}
-	}
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
 
-	&__description {
-		font-size: var(--text-sm);
-        color: var(--text-inverse);
-		opacity: 0.8;
+        pointer-events: auto;
 
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
+        @media (min-width: 768px) {
+            font-size: var(--font-size-xl);
+        }
+    }
 
-	&__action {
-		display: flex;
-		gap: var(--space-2);
-		align-items: center;
+    &__description {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
 
-		font-size: var(--text-sm);
-		color: var(--text-inverse);
+        color: var(--color-text-inverse-muted);
 
-		opacity: 0;
-		transform: translateY(10px);
-		transition: all var(--duration-base) var(--ease-in-out);
-	}
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-	&:hover &__action {
-		opacity: 1;
-		transform: translateY(0);
-	}
+    &__action {
+        display: flex;
+        gap: var(--space-2);
+        align-items: center;
+
+        font-size: var(--font-size-sm);
+        color: var(--color-text-inverse);
+
+        opacity: 0;
+        transform: translateY(10px);
+
+        transition: opacity var(--transition-color),
+                    transform var(--transition-transform);
+    }
+
+    &:hover &__action,
+    &:focus-within &__action {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (hover: none) {
+    .promo-card__action {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .promo-card__image {
+        transition: none;
+    }
+
+    .promo-card__action {
+        transition: none;
+    }
+
+    .promo-card:hover .promo-card__image,
+    .promo-card:focus-within .promo-card__image {
+        transform: none;
+    }
+
+    .promo-card__action {
+        transform: none;
+    }
 }

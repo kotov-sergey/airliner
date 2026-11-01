@@ -1,112 +1,140 @@
 // Карточка производителя (бренда)
 
 .card-brand {
-	position: relative;
+    position: relative;
 
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
-	color: inherit;
-	cursor: pointer;
-	text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
 
-	&__link {
-		transition: color var(--duration-base) var(--ease-in-out);
+    &__link {
+        color: inherit;
+        text-decoration: none;
+        transition: color var(--transition-color);
 
-		&::after {
-			content: '';
-			position: absolute;
+        &::after {
+            content: '';
+            position: absolute;
 
-			inset: 0;
-			z-index: 1;
-		}
-	}
+            inset: 0;
+            z-index: 1;
+        }
+    }
 
-	&:hover &__link {
-		color: var(--link-color);
-	}
+    &:hover &__link,
+    &:focus-within &__link {
+        color: var(--color-link);
+    }
 
-	&__picture {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+    &__picture {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-		height: 120px;
+        height: 120px;
 
-		padding: var(--space-4);
-		margin-bottom: var(--space-4);
+        padding: var(--space-4);
+        margin-bottom: var(--space-4);
 
-		@media ( min-width: 768px ) {
-			height: 144px;
-			padding: var(--space-6);
-		    margin-bottom: var(--space-5);
-		}
+        background-color: var(--color-bg-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-card);
 
-		background-color: var(--bg-surface);
-		border: 1px solid var(--border-light);
-		border-radius: var(--radius-xl);
+        overflow: hidden;
 
-		transition: border-color var(--duration-base) var(--ease-in-out);
-	}
+        transition: border-color var(--transition-color);
 
-	&:hover &__picture {
-		border-color: var(--border-hover);
-	}
+        @media (min-width: 768px) {
+            height: 144px;
+            padding: var(--space-6);
+            margin-bottom: var(--space-5);
+        }
+    }
 
-	&__image {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
+    &:hover &__picture,
+    &:focus-within &__picture {
+        border-color: var(--color-border-hover);
+    }
 
-		filter: grayscale(100%);
-		opacity: 0.6;
+    &__image {
+        width: 100%;
+        height: 100%;
 
-		will-change: transform;
-		transition: all var(--duration-base) var(--ease-in-out);
-	}
+        object-fit: contain;
 
-	&:hover &__image {
-		filter: grayscale(0);
-		opacity: 1;
-		transform: scale(1.1);
-	}
+        filter: grayscale(100%);
+        opacity: 0.6;
 
-	&__body {
-		display: flex;
-		flex-direction: column;
-		flex-grow: 1;
+        transition: transform var(--transition-transform),
+                    filter var(--transition-color),
+                    opacity var(--transition-color);
+    }
 
-		gap: var(--space-2);
-	}
+    &:hover &__image,
+    &:focus-within &__image {
+        filter: grayscale(0);
+        opacity: 1;
+        transform: scale(1.1);
+    }
 
-	&__title {
-		font-size: var(--text-base);
-		color: var(--text-main);
-		text-align: left;
+    &__body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
 
-		@media ( min-width: 768px ) {
-			font-size: var(--text-lg);
-		}
-	}
+        gap: var(--space-2);
+    }
 
-	&__meta {
-		position: relative;
-		z-index: 2;
-		pointer-events: none;
+    &__title {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
 
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+        color: var(--color-text-heading);
+        text-align: left;
 
-		gap: var(--space-2);
+        @media (min-width: 768px) {
+            font-size: var(--font-size-lg);
+        }
+    }
 
-		color: var(--text-muted);
+    &:hover &__title,
+    &:focus-within &__title {
+        color: var(--color-link);
+    }
 
-		font-size: var(--text-xs);
+    &__meta {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
 
-		@media ( min-width: 768px ) {
-			font-size: var(--text-sm);
-		}
-	}
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: var(--space-2);
+
+        color: var(--color-text-muted);
+
+        font-size: var(--font-size-xs);
+
+        @media (min-width: 768px) {
+            font-size: var(--font-size-sm);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-brand__image {
+        transition: none;
+    }
+
+    .card-brand:hover .card-brand__image,
+    .card-brand:focus-within .card-brand__image {
+        transform: none;
+    }
 }

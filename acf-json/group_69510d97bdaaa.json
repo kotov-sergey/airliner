@@ -12,7 +12,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -33,7 +33,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -45,6 +45,37 @@
             "append": ""
         },
         {
+            "key": "field_6a662b419d0b5",
+            "label": "Тэг заголовка",
+            "name": "header_tag",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "h2": "Заголовок 2 (h2)",
+                "h3": "Заголовок 3 (h3)",
+                "h4": "Заголовок 4 (h4)",
+                "h5": "Заголовок 5 (h5)",
+                "h6": "Заголовок 6 (h6)",
+                "div": "Обычный текст (div)"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_69510f128966a",
             "label": "Описание секции",
             "name": "header_description",
@@ -54,7 +85,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "66",
                 "class": "",
                 "id": ""
             },
@@ -75,7 +106,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "34",
                 "class": "",
                 "id": ""
             },
@@ -90,37 +121,6 @@
             "allow_in_bindings": 0,
             "layout": "vertical",
             "save_other_choice": 0
-        },
-        {
-            "key": "field_6a662b419d0b5",
-            "label": "Тэг заголовка",
-            "name": "header_tag",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "h2": "Заголовок 2 (h2)",
-                "h3": "Заголовок 3 (h3)",
-                "h4": "Заголовок 4 (h4)",
-                "h5": "Заголовок 5 (h5)",
-                "h6": "Заголовок 6 (h6)",
-                "div": "Обычный текст (div)"
-            },
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "allow_in_bindings": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
         }
     ],
     "location": [
@@ -146,5 +146,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1785174149
+    "modified": 1793564259
 }

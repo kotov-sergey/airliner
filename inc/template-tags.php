@@ -174,7 +174,7 @@ function the_airliner_spec( $group_key, $field_key, $group_data, $css_mod ='', $
         'is_winner' => $is_winner
     ];
 
-    get_template_part( 'template-parts/components/spec-row', null, $data_to_pass );
+    get_template_part( 'template-parts/components/data-display/spec-row', null, $data_to_pass );
 }
 
 // Вычисляет лучшие (рекордные) значения характеристик среди сравниваемых самолетов
