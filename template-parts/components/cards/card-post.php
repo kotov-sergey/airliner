@@ -4,6 +4,12 @@
 // Модификатор-раскладка для карточки статьи
 $layout = $args['layout'] ?? 'standard';
 
+// Модификатор размера промо-карточки статьи
+$variant = $args['variant'] ?? 'compact';
+if ( ! in_array( $variant, [ 'featured', 'compact' ], true ) ) {
+    $variant = 'compact';
+}
+
 // Alt-аттрибут для изображения
 $alt_text = get_the_title();
 
@@ -60,7 +66,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 <!-- Карточка статьи для Bento-сетки ( с затемнением ) -->
 <?php elseif ( $layout === 'overlay' ) : ?>
 
-	<article class="promo-card">
+	<article class="promo-card promo-card--<?php echo esc_attr( $variant ); ?>">
 
 		<!-- Фоновое изображение статьи -->
 		<div class="promo-card__background">
@@ -77,7 +83,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 			<!-- Мета-данные статьи -->
 			<div class="promo-card__meta">
 				<?php get_template_part( 'template-parts/components/content/post-meta', null, [
-					'modifier' => 'post-meta--inverse'
+					'modifier' => 'post-meta--compact post-meta--inverse'
 				] ); ?>
 			</div>
 

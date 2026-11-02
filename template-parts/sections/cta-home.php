@@ -1,5 +1,5 @@
 <?php 
-// Секция призыва CTA на главной
+// Секция: CTA-блок на главной странице
 
 $section_image = get_sub_field( 'section_background' ); // Фоновое изображение секции
 

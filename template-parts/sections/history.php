@@ -1,6 +1,6 @@
 <?php
 
-// Верстка секции история авиалайнеров
+// Секция: История авиалайнеров
 $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
 

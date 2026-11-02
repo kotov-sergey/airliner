@@ -1,5 +1,5 @@
 <?php
-// Верстка секции тип фюзеляжа
+// Секция: Типы фюзеляжа
 
 $fuselage_types = get_sub_field( 'fuselage_type' );
 

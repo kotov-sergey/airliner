@@ -1,4 +1,5 @@
-// Стили компонента мета-данных карточки
+// Компонент мета-данных (для поста)
+
 .post-meta {
     display: flex;
     align-items: center;
@@ -7,12 +8,24 @@
     column-gap: var(--space-4);
     row-gap: var(--space-2);
 
-    font-size: var(--font-size-xs);
+    // Размер по умолчанию
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-normal);
 
     color: var(--color-text-muted);
 
+    // Компактный вариант для карточек
+    &--compact {
+        font-size: var(--font-size-xs);
+
+        .post-meta__category {
+            font-size: var(--font-size-xs);
+            padding: var(--space-1) var(--space-2);
+        }
+    }
+
+    // Светлый вариант для тёмных фонов
     &--inverse {
         color: var(--color-text-inverse-muted);
     }

@@ -1,5 +1,5 @@
 <?php
-// Секция похожие записи
+// Секция: Похожие статьи
 $post_id = get_the_ID();
 $category_ids = wp_get_post_categories( $post_id, ['fields' => 'ids'] );
 

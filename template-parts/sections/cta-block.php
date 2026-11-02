@@ -1,5 +1,5 @@
 <?php
-// Секция призыва CTA с изображением
+// Секция: CTA-блок с изображением
 
 $section_image = $args['section_image'] ?? get_sub_field( 'section_image' ); // Фоновое изображение секции
 

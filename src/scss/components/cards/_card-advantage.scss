@@ -1,4 +1,4 @@
-// Стили карточки преимуществ
+// Карточка преимущества
 .card-advantage {
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
     }
 
     &__title {
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-xl);
         font-weight: var(--font-weight-semibold);
         line-height: var(--line-height-tight);
         color: var(--color-text-heading);
@@ -63,7 +63,7 @@
     &--compact {
 
         .card-advantage__title {
-            font-size: var(--font-size-base);
+            font-size: var(--font-size-lg);
         }
 
         .card-advantage__description p {
@@ -91,7 +91,7 @@
         }
 
         .card-advantage__title {
-            font-size: var(--font-size-base);
+            font-size: var(--font-size-lg);
         }
 
         .card-advantage__description p {

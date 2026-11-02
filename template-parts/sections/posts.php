@@ -1,6 +1,5 @@
 <?php
-
-// Верстка секции последние статьи
+// Секция: Последние статьи
 
 $section_index = $args['index'] ?? '';
 $section_header = get_sub_field( 'section_header' );
@@ -37,17 +36,26 @@ $posts_query = new WP_Query([
 
 		<div class="l-bento-grid">
 
-			<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
+		<?php
+		$post_index = 0;
+		while ( $posts_query->have_posts() ) : 
+			$posts_query->the_post();
 
-				<?php get_template_part( 'template-parts/components/cards/card', 'post', array (
-					'layout' => 'overlay',
-				) ); ?>
+			$card_variant = ( $post_index === 0 ) ? 'featured' : 'compact';
+		
+			get_template_part( 'template-parts/components/cards/card', 'post', array (
+				'layout' => 'overlay',
+				'variant' => $card_variant
+			) );
 
-			<?php endwhile; ?>
+			$post_index++;
+
+		endwhile; 
+		?>
 		
 		</div>
 
-		<?php wp_reset_postdata(); ?>
+	<?php wp_reset_postdata(); ?>
 	
 	<?php endif; ?>
 

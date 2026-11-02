@@ -1,4 +1,4 @@
-// Карточка поста на главной
+// Промо карточка поста (оверлей)
 
 @use '../../abstracts/mixins' as *;
 
@@ -104,10 +104,6 @@
         overflow: hidden;
 
         pointer-events: auto;
-
-        @media (min-width: 768px) {
-            font-size: var(--font-size-xl);
-        }
     }
 
     &__description {
@@ -143,6 +139,36 @@
     &:focus-within &__action {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    // Большая карточка Featured
+    &--featured {
+        .promo-card__title {
+            font-size: var(--font-size-xl);
+
+            @media ( min-width: 768px ) {
+                font-size: var(--font-size-2xl);
+            }
+        }
+
+        .promo-card__description {
+            font-size: var(--font-size-sm);
+
+            @media ( min-width: 768px ) {
+                font-size: var(--font-size-base);
+            }
+        }
+    }
+
+    // Компактная карточка Compact
+    &--compact {
+        .promo-card__title {
+            font-size: var(--font-size-lg);
+        }
+
+        .promo-card__description {
+            display: none;
+        }
     }
 }
 

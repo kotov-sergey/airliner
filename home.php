@@ -36,8 +36,11 @@ get_header();
                 <!-- Заголовок секции Featured-поста -->
                 <?php
                     get_template_part( 'template-parts/components/ui/section-header', null, [
+                        'number' => '01',
                         'data' => [
-                            'header_title' => 'Выбор редакции'
+                            'header_label' => 'Редакция',
+                            'header_title' => 'Выбор редакции',
+                            'header_description' => 'Ознакомьтесь с выбором нашей редакции'
                         ]
                     ] );
                 ?>
@@ -60,8 +63,11 @@ get_header();
                 <!-- Заголовок секции Свежие материалы -->
                 <?php
                     get_template_part( 'template-parts/components/ui/section-header', null, [
+                        'number' => '02',
                         'data' => [
-                            'header_title' => 'Свежие материалы'
+                            'header_label' => 'Материалы',
+                            'header_title' => 'Свежие материалы',
+                            'header_description' => 'Ознакомтесь со свежими материалами'
                         ]
                     ] );
                 ?>
@@ -71,9 +77,12 @@ get_header();
                     <?php
                     for ( $i=0; $i<3; $i++ ) {
                         if ( !have_posts() ) break;
+                        $card_variant = ( $i === 0 ) ? 'featured' : 'compact';
+
                         the_post();
                         get_template_part( 'template-parts/components/cards/card-post', null, [
-                            'layout' => 'overlay' 
+                            'layout' => 'overlay',
+                            'variant' => $card_variant
                         ] );
                     }
                     ?>
@@ -92,8 +101,11 @@ get_header();
                 <?php
                     
                     get_template_part( 'template-parts/components/ui/section-header', null, [
+                        'number' => '03',
                         'data' => [
-                            'header_title' => 'Все публикации'
+                            'header_label' => 'Публикации',
+                            'header_title' => 'Все публикации',
+                            'header_description' => 'Ознакомтесь со всеми публикациями'
                         ]
                     ] );
                 ?>
