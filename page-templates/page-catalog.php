@@ -20,9 +20,6 @@ get_header();
             ] );
         ?>
         
-        <!-- Компонент быстрых фильтров (Бренды + Типы фюзеляжа) -->
-        <?php get_template_part( 'template-parts/components/catalog/catalog-pills' ); ?>
-
         <!-- Компонент панели поиска и сортировки каталога -->
         <?php get_template_part( 'template-parts/components/catalog/catalog-toolbar' ); ?>
 

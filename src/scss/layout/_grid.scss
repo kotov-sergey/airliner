@@ -1,6 +1,7 @@
+// Общие стили сеток
+
 @use '../abstracts/mixins' as *;
 
-/* Общие стили сеток */
 .l-grid {
     display: grid;
     gap: var(--grid-gap);

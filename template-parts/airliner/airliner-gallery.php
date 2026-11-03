@@ -17,11 +17,12 @@ $total_images = count( $gallery );
             <!-- Заголовок секции -->
             <?php
                 get_template_part( 'template-parts/components/ui/section-header', null, [
+                    'theme' => 'inverse',
                     'number' => '02',
                     'data' => [
                         'header_label' => 'Медиа',
                         'header_title' => 'Галерея самолета',
-                        'header_description' => 'Подборка лучших фотографий в высоком разрешении. От аэродинамики фюзеляжа до компоновки кресел.',
+                        'header_description' => 'Подборка лучших фотографий в высоком разрешении. От аэродинамики фюзеляжа до компоновки кресел.'
                     ]
                 ]);
             ?>

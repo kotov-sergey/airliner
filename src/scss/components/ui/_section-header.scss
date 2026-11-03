@@ -1,4 +1,3 @@
-
 // Стили компонента заголовка (для секций)
 
 .section-header {
@@ -54,6 +53,17 @@
     &__description {
         color: var(--color-text-secondary);
         text-wrap: pretty;
+    }
+
+    // Модификатор: в тёмных секциях
+    &--inverse {
+        .section-header__title {
+            color: var(--color-text-inverse);
+        }
+
+        .section-header__description {
+            color: var(--color-text-inverse-muted);
+        }
     }
 
     // Модификатор: в строку, если есть мета

@@ -1,8 +1,7 @@
-// Стили для детальной страницы авиалайнера Галерея
-.section-gallery {
-    --gallery-bg: var(--color-blue-800);
+// Секция: Галерея на странице авиалайнера
 
-    background-color: var(--gallery-bg);
+.section-gallery {
+    background-color: var(--color-bg-inverse);
 }
 
 .gallery-grid {
@@ -33,7 +32,7 @@
         
         object-fit: cover;
         
-        transition: transform var(--duration-slow) var(--ease-in-out);
+        transition: transform var(--transition-transform);
         will-change: transform;       
     }   
 
@@ -42,23 +41,23 @@
         z-index: 2;
 
         padding: var(--space-2);
-        background-color: var(--color-white);
+        background-color: var(--color-icon-container-bg);
 
         border-top-left-radius: var(--radius-xl);
 
-        color: var(--icon-main);
+        color: var(--color-icon-primary);
 
         bottom: 0;
         right:0;
 
         transform: translateX( 100% );
 
-        transition: transform var(--duration-base) var(--ease-in-out);
+        transition: transform var(--transition-transform);
         will-change: transform; 
 
         svg {
-            width: 24px;
-            height: 24px;
+            width: var(--icon-size-control);
+            height: var(--icon-size-control);
         }
     }
 

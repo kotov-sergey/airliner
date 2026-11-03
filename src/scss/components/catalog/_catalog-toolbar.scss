@@ -2,12 +2,12 @@
 
 .catalog-toolbar {
     padding-block: var(--space-6);
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--color-border);
 
     &__container {
         display: flex;
         flex-direction: column;
-        gap: var(--space-4, 16px);
+        gap: var(--space-4);
 
         @media (min-width: 992px) {
             flex-direction: row;
@@ -16,49 +16,66 @@
         }
     }
 
-    // Левая группа (Поиск + Счетчик)
+    // Левая группа (Поиск + Счётчик)
     &__left {
         display: flex;
         align-items: center;
         gap: var(--space-4);
-        flex-grow: 1;
+
+        flex: 1 1 auto;
         max-width: 600px;
+        min-width: 0;
     }
 
+    // Поиск
     &__search {
         position: relative;
-        flex-grow: 1;
+        flex: 1 1 auto;
+        min-width: 0;
 
         &-icon {
             position: absolute;
-            left: 14px;
             top: 50%;
+            left: var(--space-3);
+
             transform: translateY(-50%);
-            color: var(--text-muted);
+
+            color: var(--color-icon-secondary);
             pointer-events: none;
         }
     }
 
     &__input[type="search"] {
-        padding-left: 40px;
+        width: 100%;
+        padding-left: var(--space-10);
+
+        font-family: inherit;
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-primary);
     }
 
+    // Счётчик
     &__count {
-        font-size: var(--text-sm);
-        color: var(--text-brand);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-secondary);
         white-space: nowrap;
 
         &-num {
-            font-weight: 700;
-            color: var(--text-accent);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-accent);
         }
     }
 
-    // Правая группа (Сортировка + Вид)
+    // Правая группа (Фильтры + Сортировка + Вид)
     &__right {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
         gap: var(--space-4);
 
         @media (min-width: 992px) {
@@ -66,19 +83,39 @@
         }
     }
 
-    // Мобильная кнопка вызова фильтров (скрыта на десктопе)
+    // Мобильная кнопка фильтров
     &__filter-btn {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 8px 14px;
-        font-size: var(--text-sm);
-        font-weight: 500;
-        background: var(--bg-inverse);
-        border: 1px solid var(--border-inverse);
+        justify-content: center;
+        gap: var(--space-2);
+
+        min-height: var(--space-11);
+        padding-inline: var(--space-3);
+
+        font-family: inherit;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+
+        color: var(--color-text-inverse);
+        background-color: var(--color-bg-inverse);
+
+        border: 1px solid var(--color-border-inverse);
         border-radius: var(--radius-md);
-        color: var(--text-brand);
+
         cursor: pointer;
+
+        transition: background-color var(--transition-color);
+
+        &:hover {
+            background-color: var(--color-navy-800);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 2px;
+        }
 
         @media (min-width: 992px) {
             display: none;
@@ -92,9 +129,12 @@
         gap: var(--space-2);
 
         &-label {
-            font-size: var(--text-sm);
-            color: var(--text-brand);
             display: none;
+
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-regular);
+            line-height: var(--line-height-normal);
+            color: var(--color-text-secondary);
 
             @media (min-width: 768px) {
                 display: block;
@@ -106,7 +146,15 @@
         position: relative;
     }
 
-    // Переключатель вида (Сетка / Таблица)
+    &__select {
+        font-family: inherit;
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-primary);
+    }
+
+    // Переключатель вида (Сетка / Список)
     &__views {
         display: inline-flex;
         gap: 2px;
@@ -116,22 +164,35 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 34px;
-        height: 34px;
+
+        width: var(--space-10);
+        height: var(--space-10);
         padding: 0;
-        background: var(--color-blue-100);
+
+        background-color: var(--color-icon-container-bg);
         border: none;
-        border-radius: 6px;
-        color: var(--text-brand);
+        border-radius: var(--radius-sm);
+
+        color: var(--color-icon-primary);
+
         cursor: pointer;
-        transition: all 0.2s ease;
+
+        transition:
+            color var(--transition-color),
+            background-color var(--transition-color);
 
         &:hover {
-            color: var(--text-accent);
+            color: var(--color-icon-accent);
         }
 
         &.is-active {
-            color: var(--text-accent);
+            color: var(--color-icon-accent);
+            background-color: var(--color-bg-selected);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 2px;
         }
     }
 }

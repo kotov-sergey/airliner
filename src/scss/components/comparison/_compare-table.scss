@@ -1,26 +1,24 @@
-// scss/components/_compare-table.scss (или _compare-grid.scss)
+// Таблица / карточка сравнения
 
-/* ==========================================================================
-   1. Сетка / Лента сравнения (Контейнер)
-   ========================================================================== */
 .compare-grid {
     display: flex;
     gap: var(--space-4);
-    
-    // Адаптивный скролл на мобильных устройствах (Mobile First)
+
     overflow-x: auto;
-    padding-bottom: var(--space-4); // Место для скроллбара
+    padding-bottom: var(--space-4);
+
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--container-padding, 16px);
     -webkit-overflow-scrolling: touch;
-    
-    // Учитываем отступы сайта при "прилипании" карточки
-    scroll-padding: 0 var(--container-padding, 16px);
+
+    // Полоса прокрутки
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-hover) transparent;
 
     @media (min-width: 768px) {
         gap: var(--space-6);
     }
 
-    // На больших экранах (от 1024px) отключаем скролл и выравниваем по левому краю
     @media (min-width: 1024px) {
         overflow-x: visible;
         scroll-snap-type: none;
@@ -28,18 +26,17 @@
         justify-content: flex-start;
     }
 
-    // Стилизация полосы прокрутки через дизайн-токены
-    &::-webkit-scrollbar { 
-        height: 6px; 
+    &::-webkit-scrollbar {
+        height: 6px;
     }
 
     &::-webkit-scrollbar-track {
         background: transparent;
     }
 
-    &::-webkit-scrollbar-thumb { 
-        background: var(--border-light); 
-        border-radius: var(--radius-full);
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-border-hover);
+        border-radius: 999px;
 
         &:hover {
             background: var(--color-blue-500);
@@ -47,17 +44,19 @@
     }
 }
 
-/* ==========================================================================
-   2. Карточка сравнения
-   ========================================================================== */
+
+// Карточка сравнения
+
 .compare-card {
     position: relative;
+
     display: flex;
     flex-direction: column;
-    
-    // Фиксированная ширина на смартфонах для эффекта "карусели"
-    flex: 0 0 280px; 
+
+    flex: 0 0 280px;
     max-width: 280px;
+    min-width: 0;
+
     scroll-snap-align: start;
 
     @media (min-width: 768px) {
@@ -65,73 +64,100 @@
         max-width: 320px;
     }
 
-    // На десктопе делят место поровну, но не раздуваются шире 360px при 2 самолетах
     @media (min-width: 1024px) {
         flex: 1 1 0;
         max-width: 360px;
     }
 
-    // Кнопка удаления (крестик)
+    // Кнопка удаления
     &__remove {
         position: absolute;
         top: var(--space-3);
         right: var(--space-3);
         z-index: 10;
-        
-        width: 32px;
-        height: 32px;
-        border-radius: var(--radius-full);
-        background-color: var(--bg-surface-alt);
-        border: none;
-        color: var(--text-muted);
-        
+
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
+
+        width: var(--space-9);
+        height: var(--space-9);
+
+        padding: 0;
+
+        font-family: inherit;
+        font-size: var(--font-size-lg);
         line-height: 1;
+
+        color: var(--color-icon-secondary);
+        background-color: var(--color-bg-surface-alt);
+
+        border: none;
+        border-radius: 50%;
+
         cursor: pointer;
-        
-        transition: all var(--duration-base) var(--ease-in-out);
-        
+
+        transition:
+            background-color var(--transition-color),
+            color var(--transition-color);
+
         &:hover {
-            background-color: var(--bg-accent);
-            color: var(--color-white);
+            color: var(--color-danger);
+            background-color: var(--color-danger-bg);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 2px;
         }
     }
 
     // Шапка карточки
     &__header {
         text-align: left;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--space-4);
     }
 
+    // Изображение
     &__media {
         aspect-ratio: 16 / 9;
         overflow: hidden;
+
+        margin-bottom: var(--space-4);
+
         border-radius: var(--radius-lg);
-        margin-bottom: var(--space-6);
-        background-color: var(--bg-surface-alt);
+        background-color: var(--color-bg-surface-alt);
     }
 
     &__image {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
+    // Метаданные
     &__meta {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-2);
+
         margin-bottom: var(--space-3);
+
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-muted);
     }
 
+    // Название авиалайнера
     &__title {
-        font-size: var(--text-base);
-        font-weight: 700;
-        line-height: var(--leading-snug);
         margin: 0;
+
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-snug);
+        color: var(--color-text-heading);
 
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -139,31 +165,39 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
 
-        @media ( min-width: 768px ) {
-            font-size: var(--text-lg);
+        @media (min-width: 768px) {
+            font-size: var(--font-size-xl);
         }
 
-        a { 
-            color: var(--text-brand); 
+        a {
+            color: var(--color-link);
             text-decoration: none;
-            transition: color var(--duration-fast) var(--ease-in-out);
+
+            transition: color var(--transition-color);
 
             &:hover {
-                color: var(--color-orange-500);
+                color: var(--color-link-hover);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--color-focus-ring);
+                outline-offset: 3px;
             }
         }
     }
 
-    // Тело карточки (список групп характеристик)
+    // Тело карточки
     &__body {
         display: flex;
         flex-direction: column;
         gap: var(--space-4);
+
         flex-grow: 1;
+
         margin-bottom: var(--space-6);
     }
 
-    // Подвал карточки с кнопкой
+    // Подвал карточки
     &__footer {
         margin-top: auto;
 
