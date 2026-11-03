@@ -57,6 +57,15 @@
 
     // Модификатор: в тёмных секциях
     &--inverse {
+        .section-header__number,
+        .section-header__label {
+            color: var(--color-text-inverse-muted);
+        }
+
+        .section-header__number + .section-header__label::before {
+            background-color: var(--color-text-inverse-muted);
+        }
+
         .section-header__title {
             color: var(--color-text-inverse);
         }

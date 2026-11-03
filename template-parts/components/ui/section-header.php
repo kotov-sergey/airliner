@@ -4,23 +4,50 @@
 $section_number = $args['number'] ?? '';
 $header_data = $args['data'] ?? null;
 
-if ( ! $header_data || empty( $header_data['header_title'] ) ) {
+// Проверка наличия данных
+if ( ! is_array( $header_data ) || empty( $header_data['header_title'] ) ) {
     return;
 }
 
+// Основные данные
 $section_label = $header_data['header_label'] ?? '';
 $section_title = $header_data['header_title'];
 $section_description = $header_data['header_description'] ?? '';
 
-$section_alignment = ! empty( $header_data['header_alignment'] ) ? $header_data['header_alignment'] : 'row';
-$section_tag = ! empty( $header_data['header_tag'] ) ? $header_data['header_tag'] : 'h2';
+// Варианты оформления
+$section_theme = $header_data['header_theme'] ?? 'default';
+$section_alignment = $header_data['header_alignment'] ?? 'row';
+$section_tag = $header_data['header_tag'] ?? 'h2';
 
-$section_modifier = 'section-header--' . $section_alignment;
+// Разрешенные значения
+$allowed_themes = [ 'default', 'inverse' ];
+$allowed_alignments = [ 'row', 'column' ];
+$allowed_tags = [ 'h2', 'h3', 'h4', 'h5', 'h6' ];
 
-if ( ! $section_title ) return;
+// Проверка темы оформления
+if ( ! in_array( $section_theme, $allowed_themes, true ) ) {
+    $section_theme = 'default';
+}
+
+// Проверка выравнивания
+if ( ! in_array( $section_alignment, $allowed_alignments, true ) ) {
+    $section_alignment = 'row';
+}
+
+// Проверка HTML-тега
+if ( ! in_array( $section_tag, $allowed_tags, true ) ) {
+    $section_tag = 'h2';
+}
+
+// Формирование классов
+$section_classes = [
+    'section-header',
+    'section-header--' . $section_theme,
+    'section-header--' . $section_alignment,
+];
 ?>
 
-<div class="section-header <?php echo esc_attr( $section_modifier ); ?>">
+<div class="<?php echo esc_attr( implode( ' ', $section_classes ) ); ?>">
 
 	<!-- Блок с мета-данными -->
 	<?php if ( $section_number && $section_label ) : ?>
@@ -41,9 +68,9 @@ if ( ! $section_title ) return;
 	<div class="section-header__content">
 
 		<!-- Заголовок секции -->
-		<<?php echo esc_attr( $section_tag ); ?> class="section-header__title">
+		<<?php echo $section_tag; ?> class="section-header__title">
 			<?php echo esc_html( $section_title ); ?>
-		</<?php echo esc_attr( $section_tag ); ?>>
+		</<?php echo $section_tag; ?>>
 
 		<!-- Описание секции -->
 		<?php if ( $section_description ) : ?>

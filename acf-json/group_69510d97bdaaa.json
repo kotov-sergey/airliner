@@ -97,6 +97,33 @@
             "new_lines": ""
         },
         {
+            "key": "field_6aea246f89590",
+            "label": "Текст заголовка",
+            "name": "header_theme",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Обычный",
+                "inverse": "Секция на тёмном фоне"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_6a66247d3827d",
             "label": "Положение секции",
             "name": "header_alignment",
@@ -146,5 +173,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1793564259
+    "modified": 1793729723
 }
