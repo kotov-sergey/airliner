@@ -23,9 +23,9 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     ?>
 
     <!-- Навигация по категориям блога -->
-    <div class="page-category__tags l-bordered-section">
+    <div class="category-tags">
         <div class="container">
-            <?php get_template_part( 'template-parts/components/navigation/terms-nav' ); ?>
+            <?php get_template_part( 'template-parts/components/navigation/blog-nav' ); ?>
         </div>
     </div>    
 

@@ -21,9 +21,9 @@ get_header();
     ?>
 
     <!-- Навигация по категориям блога -->
-    <div class="page-blog__categories l-bordered-section">
+    <div class="blog-categories">
         <div class="container">
-            <?php get_template_part( 'template-parts/components/navigation/terms-nav' ); ?>
+            <?php get_template_part( 'template-parts/components/navigation/blog-nav' ); ?>
         </div>
     </div>    
 

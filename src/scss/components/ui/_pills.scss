@@ -24,6 +24,10 @@
         outline-offset: 3px;
     }
 
+    &.is-active {
+        background-color: var(--pill-solid-bg-hover);
+    }
+
     // Базовый размер
     padding: var(--space-2) var(--space-4);
     font-size: var(--font-size-sm);
