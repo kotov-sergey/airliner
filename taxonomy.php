@@ -3,11 +3,8 @@
 
 $current_term = get_queried_object();
 
-$brand_image = get_field( 'brand_logo', $current_term );
-
 $hero_title = $current_term->name;
 $hero_description = $current_term->description;
-$hero_background = get_field( 'taxonomy_hero_bg', $current_term );
 
 $seo_text = get_field( 'seo_text', $current_term );
 
@@ -19,23 +16,30 @@ get_header();
     <!-- Hero-секция таксономии -->
     <?php
         get_template_part( 'template-parts/components/pages/page-header', null, [
-            'title' => $hero_title ? $hero_title : get_the_title(),
+            'title' => $hero_title,
             'description' => $hero_description,
-            'bg_image' => $hero_background,
             'modifier' => 'page-header--large',
             'show_breadcrumbs' => true
         ] );
     ?>
 
-    <!-- Секция каталог таксономии -->
-    <section class="section catalog-content page-taxonomy__content">
-        <div class="container">
+    <!-- Компонент каталога авиалайнеров -->
+    <?php
+        global $wp_query;
 
-            <!-- Компонент каталога авиалайнеров -->
-            <?php get_template_part( 'template-parts/sections/catalog-layout'); ?>
+        get_template_part( 'template-parts/sections/catalog/catalog', null, 
+            [
+                'query' => $wp_query,
 
-        </div>
-    </section>
+                'show_toolbar' => true,
+                'show_filters' => true,
+                'show_load_more' => true,
+
+                'card_view' => 'grid',
+                'empty_message' => 'В этой категории пока нет авиалайнеров.',
+            ]
+        );
+    ?>
 
     <!-- Секция связанные статьи таксономии -->
     <?php 
@@ -46,7 +50,7 @@ get_header();
 
     <!-- Секция SEO-текст таксономии -->
     <?php if ( $seo_text ) : ?>
-        <section class="section taxonomy-seo">
+        <section class="section page-taxonomy__seo">
             <div class="container container--narrow">
                 <div class="entry-content">
                     <?php echo wp_kses_post( $seo_text ); ?>

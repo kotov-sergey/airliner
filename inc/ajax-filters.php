@@ -1,152 +1,432 @@
 <?php
+
+// AJAX-обработчики каталога авиалайнеров
 add_action( 'wp_ajax_filter_airliners', 'handle_filter_airliners' );
 add_action( 'wp_ajax_nopriv_filter_airliners', 'handle_filter_airliners' );
 
+
 function handle_filter_airliners() {
-    $tax_query  = [];
-    $meta_query = [];
 
-    $paged = ! empty( $_POST['page'] ) ? (int) $_POST['page'] : 1;
-    $posts_per_page = 9; // Должно совпадать с первичным выводом!
+    // Проверка безопасности AJAX-запроса
+    if ( false === check_ajax_referer( 'filter_airliners', 'filter_airliners_nonce', false ) ) {
+        wp_send_json_error(
+            [
+                'message' => 'Ошибка проверки безопасности. Обновите страницу и попробуйте снова.',
+            ],
+            403
+        );
+    }
 
-    // 1. Учет архива таксономии
-    if ( ! empty( $_POST['base_taxonomy'] ) && ! empty( $_POST['base_term_id'] ) ) {
+    // Настройки каталога
+    $posts_per_page = 9;
+
+    // Разрешённые таксономии
+    $allowed_taxonomies = [
+        'manufacturer',
+        'body-type',
+        'airliner-status',
+    ];
+
+    // ==========================================
+    // 1. ПАГИНАЦИЯ
+    // ==========================================
+
+    $paged = isset( $_POST['page'] ) && is_scalar( $_POST['page'] )
+        ? max( 1, absint( wp_unslash( $_POST['page'] ) ) )
+        : 1;
+
+
+    // ==========================================
+    // 2. ТАКСОНОМИЧЕСКИЕ ФИЛЬТРЫ
+    // ==========================================
+
+    $tax_query = [];
+
+    // Функция проверки и получения допустимых ID терминов
+    $get_valid_term_ids = static function ( $taxonomy, $raw_ids ) use ( $allowed_taxonomies ) {
+
+        if (
+            ! in_array( $taxonomy, $allowed_taxonomies, true )
+            || ! taxonomy_exists( $taxonomy )
+            || ! is_object_in_taxonomy( 'airliner', $taxonomy )
+            || ! is_array( $raw_ids )
+        ) {
+            return [];
+        }
+
+        $raw_ids = wp_unslash( $raw_ids );
+
+        $term_ids = [];
+
+        foreach ( $raw_ids as $raw_id ) {
+
+            if ( ! is_scalar( $raw_id ) ) {
+                continue;
+            }
+
+            $raw_id = (string) $raw_id;
+
+            if ( ! preg_match( '/^[1-9][0-9]*$/D', $raw_id ) ) {
+                continue;
+            }
+
+            $term_ids[] = absint( $raw_id );
+        }
+
+        $term_ids = array_values( array_unique( $term_ids ) );
+
+        if ( empty( $term_ids ) ) {
+            return [];
+        }
+
+        // Проверяем существование терминов именно в указанной таксономии
+        $valid_ids = get_terms( [
+            'taxonomy'   => $taxonomy,
+            'include'    => $term_ids,
+            'hide_empty' => false,
+            'fields'     => 'ids',
+        ] );
+
+        if ( is_wp_error( $valid_ids ) || empty( $valid_ids ) ) {
+            return [];
+        }
+
+        $valid_ids = array_map( 'absint', $valid_ids );
+
+        return array_values( array_intersect( $term_ids, $valid_ids ) );
+    };
+
+    // Учитываем текущую страницу таксономии
+    $base_taxonomy = '';
+    $base_term_id  = 0;
+
+    $has_base_taxonomy = isset( $_POST['base_taxonomy'] );
+    $has_base_term     = isset( $_POST['base_term_id'] );
+
+    if ( $has_base_taxonomy || $has_base_term ) {
+
+        if (
+            ! $has_base_taxonomy
+            || ! $has_base_term
+            || ! is_string( $_POST['base_taxonomy'] )
+            || ! is_scalar( $_POST['base_term_id'] )
+        ) {
+            wp_send_json_error(
+                [ 'message' => 'Некорректные параметры таксономии.' ],
+                400
+            );
+        }
+
+        $base_taxonomy = sanitize_key(
+            wp_unslash( $_POST['base_taxonomy'] )
+        );
+
+        $base_term_raw = (string) wp_unslash( $_POST['base_term_id'] );
+
+        $base_term_id = preg_match( '/^[1-9][0-9]*$/D', $base_term_raw )
+            ? absint( $base_term_raw )
+            : 0;
+
+        // Проверяем допустимость таксономии
+        if (
+            ! in_array( $base_taxonomy, $allowed_taxonomies, true )
+            || ! taxonomy_exists( $base_taxonomy )
+            || ! is_object_in_taxonomy( 'airliner', $base_taxonomy )
+            || ! $base_term_id
+        ) {
+            wp_send_json_error(
+                [ 'message' => 'Некорректная таксономия или термин.' ],
+                400
+            );
+        }
+
+        // Проверяем существование текущего термина
+        $base_term = get_term( $base_term_id, $base_taxonomy );
+
+        if ( ! ( $base_term instanceof WP_Term ) ) {
+            wp_send_json_error(
+                [ 'message' => 'Указанный термин не найден.' ],
+                400
+            );
+        }
+
         $tax_query[] = [
-            'taxonomy' => sanitize_text_field( $_POST['base_taxonomy'] ),
+            'taxonomy' => $base_taxonomy,
             'field'    => 'term_id',
-            'terms'    => (int) $_POST['base_term_id'],
+            'terms'    => [ $base_term_id ],
         ];
     }
 
-    // 2. Чекбоксы таксономий из сайдбара
-    if ( ! empty( $_POST['brand'] ) && is_array( $_POST['brand'] ) ) {
+    // Фильтр производителей
+    $brand_ids = isset( $_POST['brand'] )
+        ? $get_valid_term_ids( 'manufacturer', $_POST['brand'] )
+        : [];
+
+    if ( ! empty( $brand_ids ) ) {
+
         $tax_query[] = [
             'taxonomy' => 'manufacturer',
             'field'    => 'term_id',
-            'terms'    => array_map( 'intval', $_POST['brand'] ),
+            'terms'    => $brand_ids,
         ];
     }
 
-    if ( ! empty( $_POST['fuselage'] ) && is_array( $_POST['fuselage'] ) ) {
+    // Фильтр типов фюзеляжа
+    $fuselage_ids = isset( $_POST['fuselage'] )
+        ? $get_valid_term_ids( 'body-type', $_POST['fuselage'] )
+        : [];
+
+    if ( ! empty( $fuselage_ids ) ) {
+
         $tax_query[] = [
             'taxonomy' => 'body-type',
             'field'    => 'term_id',
-            'terms'    => array_map( 'intval', $_POST['fuselage'] ),
+            'terms'    => $fuselage_ids,
         ];
     }
 
-    if ( ! empty( $_POST['status'] ) && is_array( $_POST['status'] ) ) {
+    // Фильтр статусов
+    $status_ids = isset( $_POST['status'] )
+        ? $get_valid_term_ids( 'airliner-status', $_POST['status'] )
+        : [];
+
+    if ( ! empty( $status_ids ) ) {
+
         $tax_query[] = [
             'taxonomy' => 'airliner-status',
             'field'    => 'term_id',
-            'terms'    => array_map( 'intval', $_POST['status'] ),
+            'terms'    => $status_ids,
         ];
     }
 
-    // 3. Числовые фильтры из сайдбара (УЧИТЫВАЕМ ГРУППЫ ACF)
-    if ( ! empty( $_POST['range'] ) ) {
+
+    // Добавляем отношение между группами таксономий
+    if ( count( $tax_query ) > 1 ) {
+        $tax_query['relation'] = 'AND';
+    }
+
+    // ==========================================
+    // 3. ЧИСЛОВЫЕ ФИЛЬТРЫ ACF
+    // ==========================================
+
+    $meta_query = [];
+
+    // Получение корректного положительного целого числа
+    $get_positive_integer = static function ( $key ) {
+
+        if ( ! isset( $_POST[ $key ] ) || ! is_scalar( $_POST[ $key ] ) ) {
+            return null;
+        }
+
+        $value = trim( (string) wp_unslash( $_POST[ $key ] ) );
+
+        if ( $value === '' || ! preg_match( '/^[0-9]+$/D', $value ) ) {
+            return null;
+        }
+
+        $value = (int) $value;
+
+        return $value > 0 ? $value : null;
+    };
+
+    // Минимальная дальность полёта
+    $range = $get_positive_integer( 'range' );
+
+    if ( null !== $range ) {
+
         $meta_query['filter_range'] = [
-            'key'     => 'specs_performance_range', // Реальное имя в БД
-            'value'   => (int) $_POST['range'],
+            'key'     => 'specs_performance_range',
+            'value'   => $range,
             'type'    => 'NUMERIC',
             'compare' => '>=',
         ];
     }
 
-    if ( ! empty( $_POST['passengers'] ) ) {
+    // Минимальная вместимость
+    $passengers = $get_positive_integer( 'passengers' );
+
+    if ( null !== $passengers ) {
+
         $meta_query['filter_passengers'] = [
-            'key'     => 'specs_weight_passengers', // Реальное имя в БД
-            'value'   => (int) $_POST['passengers'],
+            'key'     => 'specs_weight_passengers',
+            'value'   => $passengers,
             'type'    => 'NUMERIC',
             'compare' => '>=',
         ];
     }
 
-    // Базовые параметры запроса
+
+    if ( count( $meta_query ) > 1 ) {
+        $meta_query['relation'] = 'AND';
+    }
+
+    // ==========================================
+    // 4. БАЗОВЫЕ ПАРАМЕТРЫ ЗАПРОСА
+    // ==========================================
+
     $args = [
-        'post_type'      => 'airliner',
-        'post_status'    => 'publish',
-        'posts_per_page' => $posts_per_page,
-        'paged'          => $paged,
-        'tax_query'      => $tax_query,
-        'meta_query'     => $meta_query 
+        'post_type'           => 'airliner',
+        'post_status'         => 'publish',
+        'posts_per_page'      => $posts_per_page,
+        'paged'               => $paged,
+        'ignore_sticky_posts' => true,
     ];
 
-    // Поиск по названию модели
-    if ( ! empty( $_POST['search'] ) ) {
-        $args['s'] = sanitize_text_field( $_POST['search'] );
+    if ( ! empty( $tax_query ) ) {
+        $args['tax_query'] = $tax_query;
     }
 
-    // 4. СОРТИРОВКА (УЧИТЫВАЕМ ГРУППЫ ACF)
-    $sort = ! empty( $_POST['sort'] ) ? sanitize_text_field( $_POST['sort'] ) : 'popular';
+    if ( ! empty( $meta_query ) ) {
+        $args['meta_query'] = $meta_query;
+    }
+
+    // ==========================================
+    // 5. ПОИСК ПО НАЗВАНИЮ МОДЕЛИ
+    // ==========================================
+
+    $search = '';
+
+    if ( isset( $_POST['search'] ) && is_string( $_POST['search'] ) ) {
+
+        $search = sanitize_text_field(
+            wp_unslash( $_POST['search'] )
+        );
+
+        if ( $search !== '' ) {
+            $args['s'] = $search;
+        }
+    }
+
+    // ==========================================
+    // 6. СОРТИРОВКА
+    // ==========================================
+
+    $allowed_sorts = [
+        'default',
+        'range_desc',
+        'capacity_desc',
+        'name_asc',
+        'year_desc',
+    ];
+
+    $sort = isset( $_POST['sort'] ) && is_string( $_POST['sort'] )
+        ? sanitize_key( wp_unslash( $_POST['sort'] ) )
+        : 'default';
+
+    if ( ! in_array( $sort, $allowed_sorts, true ) ) {
+        $sort = 'default';
+    }
 
     switch ( $sort ) {
+
         case 'range_desc':
+
             $args['meta_key'] = 'specs_performance_range';
             $args['orderby']  = 'meta_value_num';
             $args['order']    = 'DESC';
+
             break;
 
+
         case 'capacity_desc':
+
             $args['meta_key'] = 'specs_weight_passengers';
             $args['orderby']  = 'meta_value_num';
             $args['order']    = 'DESC';
+
             break;
+
 
         case 'name_asc':
+
             $args['orderby'] = 'title';
             $args['order']   = 'ASC';
+
             break;
+
 
         case 'year_desc':
-            // Сортировка по дате публикации (или замени на ACF поле года)
+
+            // Сортировка по дате добавления записи
             $args['orderby'] = 'date';
             $args['order']   = 'DESC';
+
             break;
 
-        case 'popular':
+
+        case 'default':
         default:
-            $args['orderby'] = 'menu_order date';
+
+            // Текущий вариант сортировки по menu_order и дате
+            $args['orderby'] = 'date';
             $args['order']   = 'DESC';
+
             break;
     }
 
-    // Добавляем таксономии, если они выбраны
-    if ( ! empty( $tax_query ) ) {
-        $tax_query['relation'] = 'AND';
-        $args['tax_query']     = $tax_query;
+    // ==========================================
+    // 7. ВЫБОР ВИДА ОТОБРАЖЕНИЯ
+    // ==========================================
+
+    $view = isset( $_POST['view'] ) && is_string( $_POST['view'] )
+        ? sanitize_key( wp_unslash( $_POST['view'] ) )
+        : 'grid';
+
+    $allowed_views = [
+        'grid',
+        'table',
+    ];
+
+    if ( ! in_array( $view, $allowed_views, true ) ) {
+        $view = 'grid';
     }
 
-    // Добавляем мета-поля, если они выбраны (или участвуют в сортировке)
-    if ( ! empty( $meta_query ) ) {
-        $meta_query['relation'] = 'AND';
-        $args['meta_query']     = $meta_query;
-    }
+    // ==========================================
+    // 8. ВЫПОЛНЕНИЕ ЗАПРОСА
+    // ==========================================
 
     $query = new WP_Query( $args );
 
-    $view = ! empty( $_POST['view'] ) ? sanitize_text_field( $_POST['view'] ) : 'grid';
-    
+    // ==========================================
+    // 9. ФОРМИРОВАНИЕ HTML КАРТОЧЕК
+    // ==========================================
+
     ob_start();
 
     if ( $query->have_posts() ) {
+
         while ( $query->have_posts() ) {
+
             $query->the_post();
-            get_template_part( 'template-parts/components/card-aircraft', null, [
-                'view' => $view
-            ] );
+
+            get_template_part(
+                'template-parts/components/cards/card-aircraft',
+                null,
+                [
+                    'view' => $view,
+                ]
+            );
         }
-        wp_reset_postdata();
+
     } else {
-        echo '<div class="catalog-empty"><p>Лайнеров по заданным параметрам не найдено.</p></div>';
+
+        echo '<div class="catalog-empty catalog-layout__empty">';
+        echo '<p>Лайнеров по заданным параметрам не найдено.</p>';
+        echo '</div>';
     }
+
+    wp_reset_postdata();
 
     $html = ob_get_clean();
 
-    wp_send_json_success([
-        'html'  => $html,
-        'count' => $query->found_posts,
-        'max_pages' => $query->max_num_pages,
-        'currentPage' => $paged
-    ]);
+    // ==========================================
+    // 10. JSON-ОТВЕТ
+    // ==========================================
+
+    wp_send_json_success( [
+        'html'        => $html,
+        'count'       => number_format_i18n( $query->found_posts ),
+        'max_pages'   => (int) $query->max_num_pages,
+        'currentPage' => $paged,
+    ] );
 }

@@ -1,57 +1,89 @@
 export function initCatalogView() {
     const viewButtons = document.querySelectorAll('[data-catalog-view]');
-    // В верстке у тебя контейнер назывался #airliner-results
-    const resultsContainer = document.getElementById('airliner-results') || document.querySelector('.catalog-grid');
+
+    const resultsContainer =
+        document.getElementById('airliner-results') ||
+        document.querySelector('.catalog-grid');
+
     const viewInput = document.querySelector('[data-catalog-view-input]');
+    const filterForm = document.getElementById('airliner-filter');
+
+    const storageKey = 'airliner_catalog_view';
+    const allowedViews = ['grid', 'table'];
 
     if (!viewButtons.length || !resultsContainer) return;
 
-    // Единая функция переключения вида
-    const setView = (viewType) => {
-        // 1. Переключаем активный класс у кнопок в тулбаре
-        viewButtons.forEach(btn => {
-            btn.classList.toggle('is-active', btn.dataset.catalogView === viewType);
-        });
+    // Получение сохранённого вида
+    const getSavedView = () => {
+        try {
+            const savedView = localStorage.getItem(storageKey);
 
-        // 2. Обновляем значение скрытого инпута для AJAX
-        if (viewInput) {
-            viewInput.value = viewType;
+            return allowedViews.includes(savedView)
+                ? savedView
+                : 'grid';
+
+        } catch (error) {
+            return 'grid';
         }
-
-        // 3. Переключаем класс на контейнере сетки
-        if (viewType === 'table') {
-            resultsContainer.classList.add('is-view-table');
-            resultsContainer.classList.remove('is-view-grid');
-        } else {
-            resultsContainer.classList.add('is-view-grid');
-            resultsContainer.classList.remove('is-view-table');
-        }
-
-        // 4. Меняем модификаторы у всех карточек
-        const cards = resultsContainer.querySelectorAll('.card-aircraft');
-        cards.forEach(card => {
-            if (viewType === 'table') {
-                card.classList.remove('card-aircraft--vertical');
-                card.classList.add('card-aircraft--horizontal');
-            } else {
-                card.classList.remove('card-aircraft--horizontal');
-                card.classList.add('card-aircraft--vertical');
-            }
-        });
-
-        // 5. Запоминаем выбор пользователя в браузере!
-        localStorage.setItem('airliner_catalog_view', viewType);
     };
 
-    // При первой загрузке страницы: восстанавливаем сохраненный вид или ставим 'grid'
-    const savedView = localStorage.getItem('airliner_catalog_view') || 'grid';
-    setView(savedView);
+    // Переключение вида каталога
+    const setView = (viewType) => {
+        const view = allowedViews.includes(viewType)
+            ? viewType
+            : 'grid';
 
-    // Вешаем клик на кнопки
+        // Обновляем кнопки переключения вида
+        viewButtons.forEach(btn => {
+            const isActive = btn.dataset.catalogView === view;
+
+            btn.classList.toggle('is-active', isActive);
+            btn.setAttribute('aria-pressed', String(isActive));
+        });
+
+        // Обновляем скрытое поле формы
+        if (viewInput) {
+            viewInput.value = view;
+        }
+
+        // Переключаем класс контейнера каталога
+        const isTable = view === 'table';
+
+        resultsContainer.classList.toggle('is-view-table', isTable);
+        resultsContainer.classList.toggle('is-view-grid', !isTable);
+
+        // Обновляем модификаторы карточек
+        const cards = resultsContainer.querySelectorAll('.card-aircraft');
+
+        cards.forEach(card => {
+            card.classList.toggle('card-aircraft--horizontal', isTable);
+            card.classList.toggle('card-aircraft--vertical', !isTable);
+        });
+
+        // Сохраняем выбор пользователя
+        try {
+            localStorage.setItem(storageKey, view);
+        } catch (error) {
+            // Каталог продолжает работать без localStorage
+        }
+    };
+
+    // Восстанавливаем сохранённый вид при загрузке
+    setView(getSavedView());
+
+    // Обработчики кнопок переключения вида
     viewButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const viewType = btn.dataset.catalogView; // 'grid' или 'table'
-            setView(viewType);
+            setView(btn.dataset.catalogView);
         });
     });
+
+    // Восстанавливаем вид после сброса формы фильтров
+    if (filterForm) {
+        filterForm.addEventListener('reset', () => {
+            setTimeout(() => {
+                setView(getSavedView());
+            }, 0);
+        });
+    }
 }

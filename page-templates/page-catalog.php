@@ -19,64 +19,25 @@ get_header();
                 'show_breadcrumbs' => true
             ] );
         ?>
-        
-        <!-- Компонент панели поиска и сортировки каталога -->
-        <?php get_template_part( 'template-parts/components/catalog/catalog-toolbar' ); ?>
 
-        <!-- Основной каталог с фильтрами -->
-        <section class="section section-catalog container page-catalog__container">
-            <div class="catalog-layout">
+        <!-- Компонент каталога авиалайнеров -->
+        <?php
+            get_template_part( 'template-parts/sections/catalog/catalog', null, 
+                [
+                    'query_args' => [
+                        'post_type' => 'airliner',
+                        'posts_per_page' => 9,
+                        'post_status' => 'publish',
+                    ],
 
-                <!-- Сайдбар с фильтрами -->
-                <aside class="catalog-sidebar">
-                    <?php get_template_part( 'template-parts/components/catalog/catalog-filter' ); ?>
-                </aside>
+                    'show_toolbar' => true,
+                    'show_filters' => true,
+                    'show_load_more' => true,
 
-                <!-- Сетка вывода авиалайнеров -->
-                <div class="catalog-content">
-                    <div id="airliner-results" class="catalog-grid">
-                        
-                        <?php
-                            $airliners_query = new WP_Query( [
-                                'post_type' => 'airliner',
-                                'posts_per_page' => 9,
-                                'post_status' => 'publish'
-                            ] );
-
-                            if ( $airliners_query->have_posts() ) :
-                                while ( $airliners_query->have_posts() ) : $airliners_query->the_post();
-                                    get_template_part( 'template-parts/components/cards/card-aircraft', null, [
-                                        'view' => 'grid'
-                                    ] );
-                                endwhile;
-                                wp_reset_postdata();
-                            else :
-                                echo '<p>Лайнеры пока не добавлены.</p>';
-                            endif;
-                        ?>
-
-                    </div>
-                    
-                    <!-- Кнопка "Показать еще" -->
-                    <?php if ( $airliners_query->max_num_pages > 1 ) : ?>
-                        <div class="catalog-load-more" id="load-more-wrapper">
-                            <button
-                                type="button"
-                                id="load-more-btn"
-                                class="btn btn--secondary load-more-btn"
-                                data-page="1"
-                                 data-max-pages="<?php echo esc_attr( $airliners_query->max_num_pages ); ?>"
-                            >
-                                <span class="load-more-btn__text">Показать ещё</span>
-                                <span class="load-more-btn__loader" style="display: none;">Загрузка...</span>
-                            </button>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-
-            </div>
-        </section>
+                    'card_view' => 'grid',
+                ] 
+            );
+        ?>
 
         <!-- Вывод кастомных секций -->
         <?php get_template_part( 'template-parts/builder' ); ?>

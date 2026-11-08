@@ -40,6 +40,7 @@
 @use 'components/catalog/catalog-filters';
 @use 'components/catalog/catalog-pills';
 @use 'components/catalog/catalog-toolbar';
+@use 'components/catalog/catalog-section';
 
 // Сравнение авиалайнеров
 @use 'components/comparison/card-duel';
@@ -84,4 +85,3 @@
 // Pages (Страницы)
 @use 'pages/page-404';
 @use 'pages/search';
-@use 'pages/page-catalog';
