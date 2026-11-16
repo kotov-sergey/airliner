@@ -37,7 +37,7 @@
 		</article>
 
 		<!-- Секция Похожие статьи (рекомендуемые) -->
-		<?php get_template_part( 'template-parts/post/post', 'related' ); ?>
+		<?php get_template_part( 'template-parts/sections/post/post', 'related' ); ?>
 
 		<!-- CTA-секция -->
 		<?php get_template_part( 'template-parts/sections/cta-block', null, [

@@ -43,14 +43,14 @@ get_header();
 
     <!-- Секция связанные статьи таксономии -->
     <?php 
-        get_template_part( 'template-parts/post/post-related-by-term', null, [
+        get_template_part( 'template-parts/sections/post/post-related-by-term', null, [
             'term' =>$current_term
         ] );
     ?>
 
     <!-- Секция SEO-текст таксономии -->
     <?php if ( $seo_text ) : ?>
-        <section class="section page-taxonomy__seo">
+        <section class="section taxonomy-seo">
             <div class="container container--narrow">
                 <div class="entry-content">
                     <?php echo wp_kses_post( $seo_text ); ?>
