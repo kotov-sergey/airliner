@@ -3,18 +3,65 @@
 .header {
     position: relative;
     width: 100%;
+    background-color: var(--color-bg-header);
+    color: var(--color-text-inverse);
+    border-bottom: 1px solid var(--color-border-inverse);
+
     transition: background-color var(--transition-color), color var(--transition-color);
 
 	padding-block: var(--space-4);
+
+        background-color: var(--color-bg-header);
+        color: var(--color-text-inverse);
+
+        border-bottom: 1px solid var(--color-border-inverse);
 
 	@media ( min-width: 1024px ) {
 		padding-block: var(--space-6);
 	}
 
-    &__container {
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    &__top {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    &__search {
+        position: relative;
+        min-width: 600px;
+    }
+
+    &__search-button {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+    }
+
+    &__action {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        font-size: var(--font-size-sm);
+        color: var(--color-text-inverse);
+
+        text-decoration: none;
+    }
+
+    &__count {
+        display: none;
     }
 
     .custom-logo-link {
@@ -56,17 +103,17 @@
         }
     }
 
-    &__list {
+    &__menu {
         list-style: none;
         margin: 0;
         padding: var(--space-4) var(--space-6);
     }
 
-    &__list li {
+    &__menu li {
         padding: var(--space-3) 0;
     }
 
-    &__list a {
+    &__menu a {
         display: block;
         color: var(--color-text-heading);
         text-transform: uppercase;
@@ -76,8 +123,8 @@
         font-weight: var(--font-weight-medium);     
     }
 
-    &__list a:hover,
-    &__list .current-menu-item a  {
+    &__menu a:hover,
+    &__menu .current-menu-item a  {
         color: var(--color-text-accent);
     }
 
@@ -87,7 +134,7 @@
         &__nav.active {
             position: static;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             max-height: none;
             overflow: visible;
             background: none;
@@ -95,77 +142,54 @@
             z-index: auto;
         }
 
-        &__list {
+        &__menu {
             display: flex;
             align-items: center;
             padding: 0;
             gap: var(--space-2);
         }
 
-        &__list li {
+        &__menu li {
             padding: 0;
         }
 
-        &__list a {
+        &__menu a {
             color: inherit;
             padding: var(--space-2) var(--space-4);
         }
 
-        &__list a:hover,
-        &__list .current-menu-item a {
+        &__menu a:hover,
+        &__menu .current-menu-item a {
             color: var(--color-link-inverse-hover);
         }
-    }
-
-    // Модификатор прозрачной шапки (для главной)
-    &--transparent {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        background-color: transparent;
-        color: var(--color-text-inverse);
-    }
-
-    // Модификатор шапки с заливкой (для других страниц)
-    &--solid {
-        position: relative;
-        background-color: var(--color-bg-header);
-        color: var(--color-text-inverse);
-
-        border-bottom: 1px solid var(--color-border-inverse);
     }
 }
 
 // Кнопка Бургер-меню
-.burger {
+.header__burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 110;
 
-    &__btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        z-index: 110;
+    padding: 0;
+    color: inherit;
 
-        padding: 0;
-        color: inherit;
-
-        @media ( min-width: 1024px ) {
-            display: none;
-        }
-
-        &:focus-visible {
-            outline: 2px solid var(--color-focus-ring);
-            outline-offset: 4px;
-        } 
+    @media ( min-width: 1024px ) {
+        display: none;
     }
 
-    &__icon,
-    &__icon::before,
-    &__icon::after {
+    &:focus-visible {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 4px;
+    } 
+
+    &-icon,
+    &-icon::before,
+    &-icon::after {
         position: absolute;
         left: 0;
         width: 100%;
@@ -177,34 +201,34 @@
                     top var(--transition-transform);
     }
 
-    &__icon {
+    &-icon {
         top: 50%;
         transform: translateY(-50%);
     }
 
-    &__icon::before {
+    &-icon::before {
         content: '';
         top: -8px;
     }
     
-    &__icon::after {
+    &-icon::after {
         content: '';
         top: 8px;
     }
 
     // Активное состояние Бургер-меню
-    &__btn.active {
+    &.active {
 
-        .burger__icon {
+        .header__burger-icon {
             background-color: transparent;
         }
 
-        .burger__icon::before {
+        .header__burger-icon::before {
             transform: rotate(45deg);
             top: 0;
         }
 
-        .burger__icon::after {
+        .header__burger-icon::after {
             transform: rotate(-45deg);
             top: 0;
         }
