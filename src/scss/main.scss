@@ -43,7 +43,6 @@
 @use 'components/catalog/catalog-section';
 
 // Сравнение авиалайнеров
-@use 'components/comparison/card-duel';
 @use 'components/comparison/compare-bar';
 @use 'components/comparison/compare-table';
 
@@ -74,13 +73,14 @@
 @use 'components/airliner/airliner-hero';
 
 // Sections (Крупные блоки)
-@use 'sections/history';
-@use 'sections/cta-home';
-@use 'sections/image-text';
-@use 'sections/info-showcase';
-@use 'sections/cta-block';
-@use 'sections/faq-block';
-@use 'sections/feedback';
+@use 'sections/front-page/history';
+@use 'sections/front-page/cta-home';
+
+@use 'sections/shared/image-text';
+@use 'sections/shared/info-showcase';
+@use 'sections/shared/cta-block';
+@use 'sections/shared/faq-block';
+@use 'sections/shared/feedback';
 
 // Pages (Страницы)
 @use 'pages/page-404';

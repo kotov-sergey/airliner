@@ -97,7 +97,7 @@
 
                             <span class="header__action-label">Избранное</span>
 
-                            <span class="header__count" data-favorites-count aria-hidden="true">0</span>
+                            <span class="header__action-count" data-favorites-count aria-hidden="true">0</span>
                         </a>
 
                         <!-- Сравнение -->
@@ -114,7 +114,7 @@
 
                             <span class="header__action-label">Сравнение</span>
                         
-                            <span class="header__count" data-compare-count aria-hidden="true">0</span>
+                            <span class="header__action-count" data-compare-count aria-hidden="true">0</span>
                         </a>
 
                     </div>
@@ -136,7 +136,7 @@
                     </button>
                     
                     <!-- Меню навигации сайта -->
-                    <nav id="header-nav" class="header__nav" aria-label="Основная навигация">
+                    <nav id="header-nav" class="header__nav" inert aria-label="Основная навигация">
                         <?php 
                             wp_nav_menu( array(
                                 'theme_location' => 'primary',
