@@ -88,11 +88,6 @@
 	</div>
 </footer>
 
-<!-- Вывод всплывающей панели сравнения самолётов -->
-<?php if( ! is_page ( 'compare' ) ) : ?>
-    <?php get_template_part( 'template-parts/components/comparison/compare-bar' ); ?>
-<?php endif; ?>
-
 <!-- Основной Хук Wordpress-->
 <?php wp_footer(); ?>
 

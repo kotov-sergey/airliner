@@ -65,7 +65,7 @@ get_header();
                     <?php while ( $favorites_query->have_posts() ) : ?>
                         <?php $favorites_query->the_post(); ?>
 
-                            <?php get_template_part( 'template-parts/components/card-aircraft' ); ?>
+                            <?php get_template_part( 'template-parts/components/cards/card-aircraft' ); ?>
 
                     <?php endwhile; ?>
                 </div>
