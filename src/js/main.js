@@ -9,9 +9,12 @@ import './modules/catalog-filter-accordion.js'; // Скрипт аккардео
 
 import {initCatalogView } from './modules/catalog-view.js' // Скрипт панели поиска и сортировки каталога
 
-import { initCompare } from './modules/compare-table.js'; // Скрипт обработки и вывода выбранных авиалайнеров
+import { initCompare } from './modules/compare.js'; // Скрипт обработки и вывода авиалайнеров для сравнения
+
+import { initFavorites } from './modules/favorites.js'; // Скрипт обработки и вывода избранных авиалайнеров
 
 document.addEventListener('DOMContentLoaded', () => {
     initCompare();
+    initFavorites();
     initCatalogView();
 });
