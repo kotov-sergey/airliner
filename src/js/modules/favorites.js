@@ -1,4 +1,9 @@
-// src/js/modules/favorites.js
+// src/js/modules/favorites.js 
+
+import {
+    showToast,
+    queueToast
+} from './notification-toast.js';
 
 const STORAGE_KEY = 'airliner_favorite_ids';
 const MAX_ITEMS = 4;
@@ -125,11 +130,44 @@ export function initFavorites() {
 
         if (btn) {
             e.preventDefault();
-            toggleFavorite(btn.dataset.id);
+
+            const wasActive = btn.classList.contains('is-active');
+            const isChanged = toggleFavorite(btn.dataset.id);
+
+            if (!isChanged) return;
+
+            const isFavoritesPage = document.body.classList.contains(
+                'page-template-page-favorites'
+            );
+
+            // Удаление на странице избранного.
+            if (wasActive && isFavoritesPage) {
+                queueToast({
+                    message: 'Авиалайнер удалён из избранного',
+                    url: FAVORITES_PAGE_URL
+                });
+
+                const list = getFavoritesList();
+
+                window.location.href = list.length > 0
+                    ? `${FAVORITES_PAGE_URL}?ids=${list.join(',')}`
+                    : FAVORITES_PAGE_URL;
+
+                return;
+            }
+
+            // Добавление или удаление в каталоге и других разделах.
+            showToast({
+                message: wasActive
+                    ? 'Авиалайнер удалён из избранного'
+                    : 'Авиалайнер добавлен в избранное',
+                url: FAVORITES_PAGE_URL
+            });
+
             return;
         }
 
-        // Удаление авиалайнера на странице избранного.
+        // Удаление авиалайнера отдельной кнопкой.
         const removeBtn = e.target.closest('.js-favorite-remove');
 
         if (removeBtn) {
@@ -137,13 +175,18 @@ export function initFavorites() {
 
             const isRemoved = removeFavorite(removeBtn.dataset.id);
 
-            if (isRemoved) {
-                const list = getFavoritesList();
+            if (!isRemoved) return;
 
-                window.location.href = list.length > 0
-                    ? `${FAVORITES_PAGE_URL}?ids=${list.join(',')}`
-                    : FAVORITES_PAGE_URL;
-            }
+            queueToast({
+                message: 'Авиалайнер удалён из избранного',
+                url: FAVORITES_PAGE_URL
+            });
+
+            const list = getFavoritesList();
+
+            window.location.href = list.length > 0
+                ? `${FAVORITES_PAGE_URL}?ids=${list.join(',')}`
+                : FAVORITES_PAGE_URL;
         }
     });
 
@@ -154,6 +197,13 @@ export function initFavorites() {
     window.addEventListener('storage', (e) => {
         if (e.key === STORAGE_KEY) {
             updateFavoritesUI();
+
+            // На странице избранного обновляем список карточек.
+            if (
+                document.body.classList.contains('page-template-page-favorites')
+            ) {
+                window.location.reload();
+            }
         }
     });
 

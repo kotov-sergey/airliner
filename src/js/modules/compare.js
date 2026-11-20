@@ -1,4 +1,9 @@
-// src/js/modules/compare.js
+// src/js/modules/compare.js 
+
+import {
+    showToast,
+    queueToast
+} from './notification-toast.js';
 
 const STORAGE_KEY = 'airliner_compare_ids';
 const MAX_ITEMS = 4;
@@ -125,11 +130,23 @@ export function initCompare() {
 
         if (btn) {
             e.preventDefault();
-            toggleCompare(btn.dataset.id);
+
+            const wasActive = btn.classList.contains('is-active');
+            const isChanged = toggleCompare(btn.dataset.id);
+
+            if (!isChanged) return;
+
+            showToast({
+                message: wasActive
+                    ? 'Авиалайнер удалён из сравнения'
+                    : 'Авиалайнер добавлен к сравнению',
+                url: COMPARE_PAGE_URL
+            });
+
             return;
         }
 
-        // Удаление авиалайнера на странице сравнения.
+        // Удаление авиалайнера непосредственно на странице сравнения.
         const removeBtn = e.target.closest('.js-compare-remove');
 
         if (removeBtn) {
@@ -137,13 +154,18 @@ export function initCompare() {
 
             const isRemoved = removeCompare(removeBtn.dataset.id);
 
-            if (isRemoved) {
-                const list = getCompareList();
+            if (!isRemoved) return;
 
-                window.location.href = list.length >= 2
-                    ? `${COMPARE_PAGE_URL}?ids=${list.join(',')}`
-                    : COMPARE_PAGE_URL;
-            }
+            queueToast({
+                message: 'Авиалайнер удалён из сравнения',
+                url: COMPARE_PAGE_URL
+            });
+
+            const list = getCompareList();
+
+            window.location.href = list.length >= 2
+                ? `${COMPARE_PAGE_URL}?ids=${list.join(',')}`
+                : COMPARE_PAGE_URL;
         }
     });
 
@@ -154,6 +176,13 @@ export function initCompare() {
     window.addEventListener('storage', (e) => {
         if (e.key === STORAGE_KEY) {
             updateCompareUI();
+
+            // На странице сравнения обновляем таблицу.
+            if (
+                document.body.classList.contains('page-template-page-compare')
+            ) {
+                window.location.reload();
+            }
         }
     });
 

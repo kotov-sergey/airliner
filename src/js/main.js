@@ -13,8 +13,11 @@ import { initCompare } from './modules/compare.js'; // Скрипт обрабо
 
 import { initFavorites } from './modules/favorites.js'; // Скрипт обработки и вывода избранных авиалайнеров
 
+import { initNotificationToast } from './modules/notification-toast.js'; // Скрипт обработки авиалайнеров для сравнения и избранных
+
 document.addEventListener('DOMContentLoaded', () => {
     initCompare();
     initFavorites();
     initCatalogView();
+    initNotificationToast();
 });

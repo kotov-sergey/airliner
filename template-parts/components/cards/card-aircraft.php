@@ -25,7 +25,7 @@ if ( $layout === 'horizontal' ) {
 $spec_mods_string = implode( ' ', $spec_mods );
 
 // Alt для изображения
-$alt_text = 'Самолет ' . get_the_title() . ' на взлетной полосе';
+$alt_text = 'Авиалайнер ' . get_the_title();
 
 // Путь к картинке-заглушке
 $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.svg';
@@ -43,33 +43,37 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 			<img src="<?php echo esc_url( $placeholder); ?>" class="card-aircraft__image" alt="<?php echo esc_attr( $alt_text ); ?>" loading="lazy" />
 		<?php endif; ?>
 
-		<!-- Кнопка добавления в избранное -->
-		<button 
-			type="button"
-			data-id="<?php echo esc_attr( $plane_id ); ?>" 
-			class="card-aircraft__favorite js-favorite-btn"
-			aria-label="Добавить в избранное"
-			aria-pressed="false"
-		>
+		<div class="card-aircraft__tools">
 
-			<svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-			</svg>
-		</button>
+			<!-- Кнопка добавления к сравнению -->
+			<button 
+				type="button"
+				data-id="<?php echo esc_attr( $plane_id ); ?>" 
+				class="card-aircraft__compare js-compare-btn"
+				aria-label="Добавить к сравнению"
+				aria-pressed="false"
+			>
 
-		<!-- Кнопка добавления к сравнению -->
-		<button 
-			type="button"
-			data-id="<?php echo esc_attr( $plane_id ); ?>" 
-			class="card-aircraft__compare js-compare-btn"
-			aria-label="Добавить к сравнению"
-			aria-pressed="false"
-		>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 12H3M16 6H3M16 18H3M18 9v6M21 12h-6"></path>
+				</svg>
+			</button>
 
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 12H3M16 6H3M16 18H3M18 9v6M21 12h-6"></path>
-			</svg>
-		</button>
+			<!-- Кнопка добавления в избранное -->
+			<button 
+				type="button"
+				data-id="<?php echo esc_attr( $plane_id ); ?>" 
+				class="card-aircraft__favorite js-favorite-btn"
+				aria-label="Добавить в избранное"
+				aria-pressed="false"
+			>
+
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+				</svg>
+			</button>
+
+		</div>
 
 	</div>
 
@@ -82,7 +86,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 
 		<!-- Название авиалайнера -->
 		<h3 class="card-aircraft__title">
-			<a href="<?php the_permalink(); ?>" class="card-aircraft__link">
+			<a href="<?php echo esc_url( get_permalink() ); ?>" class="card-aircraft__link">
 				<?php the_title(); ?>
 			</a>
 		</h3>
@@ -91,7 +95,7 @@ $placeholder = get_template_directory_uri() . '/public/images/placeholder-image.
 		<p class="card-aircraft__description">
 			<?php
 				$excerpt = get_the_excerpt();
-				echo esc_html( wp_trim_words( $excerpt, 10, '&hellip;') );
+				echo esc_html( wp_trim_words( $excerpt, 10, '...') );
 			?>
 		</p>
 

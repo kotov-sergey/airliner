@@ -35,62 +35,21 @@
         transform: scale(1.1);
     }
 
-    &__favorite {
-        position: absolute;
-        z-index: 3;
-        pointer-events: auto;
-
-        top: var(--space-4);
-        right: var(--space-15);
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        width: 36px;
-        height: 36px;
-        padding: 0;
-
-        cursor: pointer;
-
-        background-color: var(--color-bg-surface);
-        border: none;
-        border-radius: var(--radius-full);
-        color: var(--color-text-muted);
-
-        transition: color var(--transition-color),
-                    background-color var(--transition-color);
-
-        svg {
-            width: var(--icon-size-control);
-            height: var(--icon-size-control);
-        }
-
-        &:hover {
-            color: var(--color-icon-primary);
-            background-color: var(--color-bg-selected);
-        }
-
-        &.is-active {
-            color: var(--color-icon-primary);
-            background-color: var(--color-bg-selected);
-
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        &:focus-visible {
-            outline: 2px solid var(--color-focus-ring);
-            outline-offset: 3px;
-        }      
-    }
-
-    &__compare {
+    &__tools {
         position: absolute;
         z-index: 3;
         pointer-events: auto;
 
         top: var(--space-4);
         right: var(--space-4);
+        
+        display: flex;
+        gap: var(--space-1);
+    }
+
+    &__favorite,
+    &__compare {
+        position: static;
 
         display: flex;
         align-items: center;
@@ -107,8 +66,9 @@
         border-radius: var(--radius-full);
         color: var(--color-text-muted);
 
-        transition: color var(--transition-color),
-                    background-color var(--transition-color);
+        transition:
+            color var(--transition-color),
+            background-color var(--transition-color);
 
         svg {
             width: var(--icon-size-control);
@@ -325,11 +285,14 @@
         transition: none;
     }
 
-    .card-aircraft:hover .card-aircraft__image {
-        transform: none;
+    .card-aircraft__favorite,
+    .card-aircraft__compare,
+    .card-aircraft__btn {
+        animation: none;
+        transition: none;
     }
 
-    .card-aircraft__compare.is-active {
-        animation: none;
+    .card-aircraft:hover .card-aircraft__image {
+        transform: none;
     }
 }

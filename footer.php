@@ -88,6 +88,9 @@
 	</div>
 </footer>
 
+<!-- Плашка уведомления избранных авиалайнеров и сравнения -->
+<?php get_template_part( 'template-parts/components/ui/notification-toast' ); ?>
+
 <!-- Основной Хук Wordpress-->
 <?php wp_footer(); ?>
 
