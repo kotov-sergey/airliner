@@ -91,14 +91,14 @@
                             data-favorites-link
                         >
                             <span class="header__action-icon" aria-hidden="true">
-								<svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 								    <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
 								</svg>
+
+                                <span class="header__action-count" data-favorites-count aria-hidden="true">0</span>
                             </span>
 
                             <span class="header__action-label">Избранное</span>
-
-                            <span class="header__action-count" data-favorites-count aria-hidden="true">0</span>
                         </a>
 
                         <!-- Сравнение -->
@@ -112,11 +112,11 @@
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
 									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 12H3M16 6H3M16 18H3M18 9v6M21 12h-6"></path>
 								</svg>
+
+                                <span class="header__action-count" data-compare-count aria-hidden="true">0</span>
                             </span>
 
                             <span class="header__action-label">Сравнение</span>
-                        
-                            <span class="header__action-count" data-compare-count aria-hidden="true">0</span>
                         </a>
 
                     </div>
