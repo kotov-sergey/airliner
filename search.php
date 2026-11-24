@@ -1,13 +1,13 @@
 <?php
-// Шаблон страницы поиска (search.php)
+// Шаблон страницы поиска
 
 get_header();
 
-// Получаем глобальный объект запроса
+// Получение глобального объекта запроса
 global $wp_query;
 $total_results = $wp_query->found_posts;
 
-// Сортируем посты по массивам
+// Сортировка постов по массивам
 global $post;
 $found_airliners = [];
 $found_posts = [];
@@ -21,59 +21,26 @@ while ( have_posts() ) {
         $found_posts[] = $post; 
     }
 }
-wp_reset_postdata();
+	wp_reset_postdata();
 ?>
 
 <main class="site-main page-search">
 
-    <!--Hero-секция -->
-    <section class="hero hero--default hero--center">
+    <!-- Hero-секция -->
+	<?php 
+		get_template_part( 'template-parts/components/pages/page-header', null, [
+			'title' => 'Поиск: «' . get_search_query() . '»',
+			'description' => 'Результаты поиска – найдено ' . $total_results . ' записей',
+			'show_breadcrumbs' => false,
+			'modifier' => 'page-header--center',
+		] );
+	?>
 
-        <!-- Фоновое изображение секции -->
-        <div class="hero__background">
-
-			<img src="<?php echo esc_url( get_template_directory_uri() . '/public/images/search-placeholder.webp' ); ?>" 
-                alt="Фон Hero-секции страницы поиска" 
-                class="hero__image" 
-                loading="eager" 
-                fetchpriority="high" 
-            />
-            
-            <!-- Затемнение фона секции -->
-            <div class="hero__overlay"></div>
-
-        </div>
-
-        <div class="container hero__container">
-            <div class="hero__content">
-
-                <!-- Результат поиска -->
-                <p class="hero__search-results">Результаты поиска – найдено <?php echo esc_html( $total_results ); ?></p>
-
-                <!-- Заголовок секции -->
-                <h1 class="hero__title">Поиск: «<?php echo get_search_query(); ?>»</h1>
-
-                <!-- Форма поиска секции -->
-                <form role="search" method="get" class="hero__search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <input 
-                        id="search-input" 
-                        class="hero__search-input" 
-                        type="search" 
-                        name="s" 
-                        placeholder="Введите название самолёта, бренда или темы..." 
-                        value="<?php echo esc_attr( get_search_query() ); ?>"
-                    />
-                </form>
-
-            </div>
-        </div>
-
-    </section>
-
+	<!-- Если постов не было найдено (фоллбек) -->
 	<?php if ( $total_results === 0 ) : ?>
 
 		<!-- Секция результат поиска -->
-		<section class="section search-empty section--white">
+		<section class="section search-empty section--alt">
 			<div class="container">
 
 				<div class="search-empty__info">
@@ -87,69 +54,77 @@ wp_reset_postdata();
 			</div>
 		</section>
 
-		<!-- Секция фоллбэк ( популярные лайнеры и рубрики ) -->
-		<section class="section search-fallback">
+		<!-- Секция фоллбэк (популярные авиалайнеры) -->
+		<section class="section search-fallback-airliners">
 			<div class="container">
 
-				<div class="search-fallback__layout">
+				<!-- Заголовок секции популярных авиалайнеров -->
+				<?php
+					get_template_part( 'template-parts/components/ui/section-header', null, [
+						'number' => '01',
+						'data' => [
+							'header_label' => 'Авиалайнеры',
+							'header_title' => 'Популярные авиалайнеры',
+							'header_description' => 'Посмотрите наши популярные авиалайнеры',
+						]
+					] );
+				?>
+
+				<!-- Сетка популярных авиалайнеров -->
+				<div class="l-grid l-grid--4 search-fallback-airliners__grid">
+					<?php
 					
-					<div class="search-fallback__group">
+						$fallback_args = [
+							'post_type' => 'airliner',
+							'posts_per_page' => '4',
+							'orderby' => 'comment_count',
+							'ignore_sticky_posts' => 1
+						];
 
-						<!-- Заголовок секции Популярные авиалайнеры -->
-						<?php
-							get_template_part( 'template-parts/components/ui/section-header', null, [
-								'data' => [
-									'header_title' => 'Популярные авиалайнеры'
-								]
-							] );
-						?>						
+						$fallback_query = new WP_Query( $fallback_args );
 
-						<div class="l-grid l-grid--4">
-							<?php
+						if ( $fallback_query->have_posts() ) {
 							
-								$fallback_args = [
-									'post_type' => 'airliner',
-									'posts_per_page' => '4',
-									'orderby' => 'comment_count',
-									'ignore_sticky_posts' => 1
-								];
+							while ( $fallback_query->have_posts() ) {
+								$fallback_query->the_post();
 
-								$fallback_query = new WP_Query( $fallback_args );
-
-								if ( $fallback_query->have_posts() ) {
-									
-									while ( $fallback_query->have_posts() ) {
-										$fallback_query->the_post();
-
-										get_template_part( 'template-parts/components/cards/card-aircraft', null, [
-											'layout' => 'vertical' 
-										] );
-									}
-									wp_reset_postdata();
-								}
-							?>
-						</div>
-					</div>
-
-					<div class="search-fallback__group">
-
-						<!-- Заголовок секции Популярные рубрики -->
-						<?php
-							get_template_part( 'template-parts/components/ui/section-header', null, [
-								'data' => [
-									'header_title' => 'Популярные рубрики'
-								]
-							] );
-						?>							
-				
-					</div>
-
+								get_template_part( 'template-parts/components/cards/card-aircraft', null, [
+									'layout' => 'vertical' 
+								] );
+							}
+							wp_reset_postdata();
+						}
+					?>
 				</div>
-			
+
 			</div>
 		</section>
 
+		<!-- Секция фоллбек (популярные рубрики) -->
+		<section class="section section-fallback-posts">
+			<div class="container">
+
+				<!-- Заголовок секции популярные рубрики -->
+				<?php
+					get_template_part( 'template-parts/components/ui/section-header', null, [
+						'number' => '02',
+						'data' => [
+							'header_label' => 'Рубрики',
+							'header_title' => 'Популярные рубрики',
+							'header_description' => 'Посмотрите наши популярные рубрики',
+						]
+					] );
+				?>
+
+				<!-- Компонент навигации (популярные рубрики) -->
+				<?php get_template_part( 'template-parts/components/navigation/blog-nav' ); ?>
+				
+			</div>
+		</section>
+						
 	<?php else : ?>
+
+		<!-- Если были найдены посты -->
 
 		<!--Навигационное меню (вкладки)-->
 		<section class="search-tabs">
@@ -162,70 +137,79 @@ wp_reset_postdata();
 
 		</section>
 
-		<!-- Найденные авиалайнеры и посты -->
 		<?php if ( have_posts() ) : ?>
-			<section class="section search-workspace">
-				<div class="container">
 
-					<div class="search-workspace__layout">
-						<?php if ( ! empty( $found_airliners ) ) : ?>
-							<div class="search-workspace__group">
-								<div class="search-workspace__header">
-									<div class="search-workspace__icon"><?php echo airliner_get_svg( 'specs/run-up' ); ?></div>
-									<h2 class="search-workspace__title">В каталоге лайнеров: <?php echo count( $found_airliners); ?> моделей</h2>
-								</div>
+			<!-- Найденные авиалайнеры -->
+			<?php if ( ! empty( $found_airliners ) ) : ?>
+				<section class="section search-airliners">
+					<div class="container">
 
-								<!-- Сетка карточек найденных авиалайнеров -->
-								<div class="l-grid l-grid--4 search-workspace__grid">
-									<?php
-										foreach ( $found_airliners as $post ) :
-											setup_postdata( $post );
-											get_template_part( 'template-parts/components/cards/card-aircraft' );
-										endforeach;
-										wp_reset_postdata();
-									?>
-								</div>
-							</div>
-						<?php endif; ?>
+						<!-- Заголовок секции авиалайнеров -->
+						<?php 
+							get_template_part( 'template-parts/components/ui/section-header', null, [
+								'number' => '01',
+								'data' => [
+									'header_label' => 'Модели',
+									'header_title' => 'В каталоге авиалайнеров: ' . count( $found_airliners ),
+									'header_description' => 'Посмотрите авиалайнеры, найденные по вашему запросу',
+								]
+							] );
+						?>
 
-						<?php if ( ! empty( $found_posts ) ) : ?>
-							<div class="search-workspace__group">
-								<div class="search-workspace__header">
-									<div class="search-workspace__icon"><?php echo airliner_get_svg( 'specs/thrust' ); ?></div>
-									<h2 class="search-workspace__title">В бортовом журнале: <?php echo count( $found_posts ); ?> статей</h2>
-								</div>
+						<!-- Сетка карточек найденных авиалайнеров -->
+						<div class="l-grid l-grid--4 search-workspace__grid">
+							<?php
+								foreach ( $found_airliners as $post ) :
+									setup_postdata( $post );
+									get_template_part( 'template-parts/components/cards/card-aircraft' );
+								endforeach;
+								wp_reset_postdata();
+							?>
+						</div>
 
-								<!-- Сетка карточек найденных постов -->
-								<div class="l-grid l-grid--3 search-workspace__grid">
-									<?php
-										foreach ( $found_posts as $post ) :
-											setup_postdata( $post );
-											get_template_part( 'template-parts/components/cards/card-post' );
-										endforeach;
-										wp_reset_postdata();
-									?>
-								</div>
-							</div>
-						<?php endif; ?>
 					</div>
+				</section>
+			<?php endif; ?>
 
-				</div>
-			</section>
+			<!-- Найденные посты -->
+			<?php if ( ! empty( $found_posts ) ) : ?>
+				<section class="section search-posts">
+					<div class="container">
+
+						<!-- Заголовок секции постов -->
+						<?php 
+							get_template_part( 'template-parts/components/ui/section-header', null, [
+								'number' => '02',
+								'data' => [
+									'header_label' => 'Посты',
+									'header_title' => 'В каталоге постов: ' . count( $found_posts ),
+									'header_description' => 'Посмотрите посты, найденные по вашему запросу',
+								]
+							] );
+						?>
+
+						<!-- Сетка карточек найденных постов -->
+						<div class="l-grid l-grid--3 search-workspace__grid">
+							<?php
+								foreach ( $found_posts as $post ) :
+									setup_postdata( $post );
+									get_template_part( 'template-parts/components/cards/card-post' );
+								endforeach;
+								wp_reset_postdata();
+							?>
+						</div>
+
+					</div>
+				</section>
+			<?php endif; ?>
+
 		<?php endif; ?>
-
-		<!--
-		<section class="section search-pagination">
-			<div class="container">
-				<?php the_posts_pagination(['prev_text' => '←', 'next_text' => '→']); ?>
-			</div>
-		</section>
-		-->
 	
 	<?php endif; ?>
 
     <!-- Секция призыва к действию -->
 	<?php 
-		get_template_part( 'template-parts/sections/cta-block', null, [
+		get_template_part( 'template-parts/sections/shared/cta-block', null, [
 			'section_title' => 'Не нашли нужный самолёт?',
 			'section_description' => 'Откройте полный каталог авиалайнеров с умными фильтрами.',
 			'section_button' => [
