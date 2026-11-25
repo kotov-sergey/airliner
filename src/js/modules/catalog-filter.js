@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const filterForm = document.getElementById('airliner-filter');
     const resultsContainer = document.getElementById('airliner-results');
@@ -14,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const allowedGroups = ['brand', 'fuselage', 'status'];
     const pillGroups = ['brand', 'fuselage'];
 
+    const rangeFields = [
+        'range_min',
+        'range_max',
+        'passengers_min',
+        'passengers_max'
+    ];
+
     let replaceController = null;
     let appendController = null;
 
@@ -24,13 +32,266 @@ document.addEventListener('DOMContentLoaded', () => {
     let suppressResetHandler = false;
 
     // ==========================================
-    // 1. URL И HISTORY API
+    // 1. ДВОЙНЫЕ RANGE-СЛАЙДЕРЫ
+    // ==========================================
+
+    const rangeSliders = [];
+
+    const clamp = (value, min, max) => {
+        return Math.min(Math.max(value, min), max);
+    };
+
+    const initRangeSliders = () => {
+        const sliders = filterForm.querySelectorAll('[data-range-slider]');
+
+        sliders.forEach(slider => {
+            const minFieldName = slider.dataset.minField;
+            const maxFieldName = slider.dataset.maxField;
+
+            if (!minFieldName || !maxFieldName) return;
+
+            const minField = filterForm.querySelector(
+                `input[name="${minFieldName}"]`
+            );
+
+            const maxField = filterForm.querySelector(
+                `input[name="${maxFieldName}"]`
+            );
+
+            const minRange = slider.querySelector('[data-range-min]');
+            const maxRange = slider.querySelector('[data-range-max]');
+
+            const progress = slider.querySelector(
+                '.catalog-range__progress'
+            );
+
+            if (!minField || !maxField || !minRange || !maxRange) return;
+
+            const minLimit = Number(minRange.min);
+            const maxLimit = Number(minRange.max);
+
+            const step = Number(minRange.step) || 1;
+
+            // Округление используется только для бегунков.
+            // Числовые поля сохраняют точные значения.
+            const normalize = value => {
+                const clamped = clamp(value, minLimit, maxLimit);
+
+                const normalized = minLimit +
+                    Math.round((clamped - minLimit) / step) * step;
+
+                return clamp(normalized, minLimit, maxLimit);
+            };
+
+            const getFieldValue = (field, fallback) => {
+                if (field.value === '') return fallback;
+
+                const value = Number(field.value);
+
+                if (!Number.isFinite(value)) return fallback;
+
+                return clamp(value, minLimit, maxLimit);
+            };
+
+            // ------------------------------------------
+            // Обновление выделенной области слайдера.
+            // ------------------------------------------
+
+            const updateProgress = () => {
+                if (!progress) return;
+
+                const minValue = Number(minRange.value);
+                const maxValue = Number(maxRange.value);
+
+                const range = maxLimit - minLimit;
+
+                if (range <= 0) {
+                    progress.style.left = '0%';
+                    progress.style.width = '100%';
+                    return;
+                }
+
+                const left = ((minValue - minLimit) / range) * 100;
+                const right = ((maxValue - minLimit) / range) * 100;
+
+                progress.style.left = `${left}%`;
+                progress.style.width = `${right - left}%`;
+            };
+
+            // ------------------------------------------
+            // Синхронизация бегунков с числовыми полями.
+            // ------------------------------------------
+
+            const syncFromFields = () => {
+                let minValue = getFieldValue(minField, minLimit);
+                let maxValue = getFieldValue(maxField, maxLimit);
+
+                // Защита от некорректного диапазона.
+                if (minValue > maxValue) {
+                    maxValue = minValue;
+                    maxField.value = maxValue;
+                }
+
+                minRange.value = normalize(minValue);
+                maxRange.value = normalize(maxValue);
+
+                updateProgress();
+            };
+
+            // ------------------------------------------
+            // Перемещение нижнего бегунка.
+            // ------------------------------------------
+
+            minRange.addEventListener('input', () => {
+                const value = normalize(Number(minRange.value));
+                const maxValue = Number(maxRange.value);
+
+                const newValue = Math.min(value, maxValue);
+
+                minRange.value = newValue;
+                minField.value = newValue;
+
+                updateProgress();
+            });
+
+            // ------------------------------------------
+            // Перемещение верхнего бегунка.
+            // ------------------------------------------
+
+            maxRange.addEventListener('input', () => {
+                const value = normalize(Number(maxRange.value));
+                const minValue = Number(minRange.value);
+
+                const newValue = Math.max(value, minValue);
+
+                maxRange.value = newValue;
+                maxField.value = newValue;
+
+                updateProgress();
+            });
+
+            // ------------------------------------------
+            // Ручной ввод минимального значения.
+            // ------------------------------------------
+
+            minField.addEventListener('input', () => {
+                if (minField.value === '') {
+                    syncFromFields();
+                    return;
+                }
+
+                const value = Number(minField.value);
+
+                if (!Number.isFinite(value)) return;
+
+                const newValue = clamp(value, minLimit, maxLimit);
+
+                // Во время набора не изменяем числовые поля.
+                // Только обновляем положение бегунка.
+                minRange.value = Math.min(
+                    normalize(newValue),
+                    Number(maxRange.value)
+                );
+
+                updateProgress();
+            });
+
+            // Проверка минимального значения после завершения ввода.
+            minField.addEventListener('change', () => {
+                if (minField.value === '') {
+                    syncFromFields();
+                    return;
+                }
+
+                const value = Number(minField.value);
+
+                if (!Number.isFinite(value)) return;
+
+                let newValue = clamp(value, minLimit, maxLimit);
+
+                const maxValue = getFieldValue(maxField, maxLimit);
+
+                // Минимум не может превышать максимум.
+                if (newValue > maxValue) {
+                    newValue = maxValue;
+                }
+
+                minField.value = newValue;
+
+                syncFromFields();
+            });
+
+            // ------------------------------------------
+            // Ручной ввод максимального значения.
+            // ------------------------------------------
+
+            maxField.addEventListener('input', () => {
+                if (maxField.value === '') {
+                    syncFromFields();
+                    return;
+                }
+
+                const value = Number(maxField.value);
+
+                if (!Number.isFinite(value)) return;
+
+                const newValue = clamp(value, minLimit, maxLimit);
+
+                // Во время набора не изменяем числовые поля.
+                // Только обновляем положение бегунка.
+                maxRange.value = Math.max(
+                    normalize(newValue),
+                    Number(minRange.value)
+                );
+
+                updateProgress();
+            });
+
+            // Проверка максимального значения после завершения ввода.
+            maxField.addEventListener('change', () => {
+                if (maxField.value === '') {
+                    syncFromFields();
+                    return;
+                }
+
+                const value = Number(maxField.value);
+
+                if (!Number.isFinite(value)) return;
+
+                let newValue = clamp(value, minLimit, maxLimit);
+
+                const minValue = getFieldValue(minField, minLimit);
+
+                // Максимум не может быть меньше минимума.
+                if (newValue < minValue) {
+                    newValue = minValue;
+                }
+
+                maxField.value = newValue;
+
+                syncFromFields();
+            });
+
+            rangeSliders.push(syncFromFields);
+
+            syncFromFields();
+        });
+    };
+
+    // Обновление всех слайдеров без повторной регистрации событий.
+    const syncRangeSliders = () => {
+        rangeSliders.forEach(sync => sync());
+    };
+
+    // ==========================================
+    // 2. URL И HISTORY API
     // ==========================================
 
     const updateURL = () => {
         const formData = new FormData(filterForm);
         const params = new URLSearchParams();
 
+        // Чекбоксы.
         allowedGroups.forEach(group => {
             const values = formData.getAll(`${group}[]`);
 
@@ -39,20 +300,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        ['range', 'passengers'].forEach(field => {
+        // Четыре числовых поля.
+        rangeFields.forEach(field => {
             const value = formData.get(field);
 
-            if (value) {
+            if (value !== null && value !== '') {
                 params.set(field, value);
             }
         });
 
+        // Поиск.
         const search = formData.get('search');
 
         if (typeof search === 'string' && search.trim()) {
             params.set('search', search.trim());
         }
 
+        // Сортировка.
         const sort = formData.get('sort');
 
         if (sort && sort !== 'default') {
@@ -71,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.search +
             window.location.hash;
 
-        // Не создаём повторную запись с тем же URL.
         if (newUrl === currentUrl) return;
 
         window.history.pushState(
@@ -107,19 +370,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Восстанавливаем числовые поля.
-        ['range', 'passengers'].forEach(field => {
+        // Восстанавливаем четыре числовых поля.
+        rangeFields.forEach(field => {
             if (!params.has(field)) return;
-
-            hasFilterParams = true;
 
             const input = filterForm.querySelector(
                 `input[name="${field}"]`
             );
 
-            if (input) {
-                input.value = params.get(field);
-            }
+            if (!input) return;
+
+            const value = params.get(field);
+
+            if (value === '' || !Number.isFinite(Number(value))) return;
+
+            input.value = value;
+            hasFilterParams = true;
         });
 
         // Восстанавливаем поиск.
@@ -146,10 +412,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================
-    // 2. ИНДИКАЦИЯ ЗАГРУЗКИ
+    // 3. ИНДИКАЦИЯ ЗАГРУЗКИ
     // ==========================================
 
-    const setLoadMoreLoading = (loading) => {
+    const setLoadMoreLoading = loading => {
         if (!loadMoreBtn) return;
 
         const text = loadMoreBtn.querySelector(
@@ -161,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         loadMoreBtn.disabled = loading;
+
         loadMoreBtn.setAttribute(
             'aria-busy',
             loading ? 'true' : 'false'
@@ -175,17 +442,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
-    const setResultsLoading = (loading) => {
+    const setResultsLoading = loading => {
         resultsContainer.style.opacity = loading ? '0.3' : '1';
+
         resultsContainer.setAttribute(
             'aria-busy',
             loading ? 'true' : 'false'
         );
     };
 
-
-    const updateLoadMore = (data) => {
+    const updateLoadMore = data => {
         if (!loadMoreBtn || !loadMoreBtn.parentElement) return;
 
         const currentPage = Number(data.currentPage) || 1;
@@ -199,14 +465,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================
-    // 3. AJAX ЗАПРОСЫ
+    // 4. AJAX ЗАПРОСЫ
     // ==========================================
 
     const fetchAirliners = async (
         isAppend = false,
         { updateHistory = true } = {}
     ) => {
-        // Не допускаем повторную загрузку следующей страницы.
         if (isAppend) {
             if (!loadMoreBtn || isAppendLoading || replaceController) {
                 return;
@@ -219,6 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             isAppendLoading = true;
             setLoadMoreLoading(true);
+
         } else {
             // Отменяем предыдущие запросы.
             if (replaceController) {
@@ -231,6 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 appendRequestId++;
                 isAppendLoading = false;
+
                 setLoadMoreLoading(false);
             }
 
@@ -270,8 +537,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 signal: controller.signal
             });
 
-            // Читаем JSON даже при HTTP-ошибке,
-            // чтобы получить сообщение от WordPress.
             let result;
 
             try {
@@ -288,7 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(message);
             }
 
-            // Проверяем, что ответ всё ещё актуален.
             const isCurrentRequest = isAppend
                 ? requestId === appendRequestId
                 : requestId === replaceRequestId;
@@ -322,15 +586,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.error('Ошибка загрузки каталога:', error);
 
-            // Сохраняем текущие результаты при ошибке.
-            // Подробности доступны в консоли разработчика.
         } finally {
             const isCurrentRequest = isAppend
                 ? requestId === appendRequestId
                 : requestId === replaceRequestId;
 
-            // Старый запрос не должен менять состояние
-            // более нового запроса.
             if (!isCurrentRequest) return;
 
             if (isAppend) {
@@ -338,6 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isAppendLoading = false;
 
                 setLoadMoreLoading(false);
+
             } else {
                 replaceController = null;
 
@@ -347,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================
-    // 4. СИНХРОНИЗАЦИЯ PILLS
+    // 5. СИНХРОНИЗАЦИЯ PILLS
     // ==========================================
 
     const syncPillsWithForm = () => {
@@ -368,7 +629,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 `[data-pill-group="${group}"]`
             );
 
-            // Если ничего не выбрано — активна кнопка «Все».
             if (checkedIds.size === 0) {
                 if (allPill) {
                     allPill.classList.add('is-active');
@@ -397,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================
-    // 5. СОБЫТИЯ ФОРМЫ
+    // 6. СОБЫТИЯ ФОРМЫ
     // ==========================================
 
     // Отправка фильтров.
@@ -429,16 +689,16 @@ document.addEventListener('DOMContentLoaded', () => {
     filterForm.addEventListener('reset', () => {
         if (suppressResetHandler) return;
 
-        // Браузер сбрасывает поля после события reset.
-        // Поэтому выполняем запрос в следующем цикле.
         setTimeout(() => {
+            syncRangeSliders();
             syncPillsWithForm();
+
             fetchAirliners(false);
         }, 0);
     });
 
     // ==========================================
-    // 6. ПОКАЗАТЬ ЕЩЁ
+    // 7. ПОКАЗАТЬ ЕЩЁ
     // ==========================================
 
     if (loadMoreBtn) {
@@ -448,30 +708,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 7. ИСТОРИЯ БРАУЗЕРА
+    // 8. ИСТОРИЯ БРАУЗЕРА
     // ==========================================
 
     window.addEventListener('popstate', () => {
-        // Отключаем AJAX-обработчик стандартного reset.
         suppressResetHandler = true;
 
         filterForm.reset();
 
         suppressResetHandler = false;
 
-        // Восстанавливаем значения из текущего URL.
+        // Восстанавливаем значения из URL.
         applyURLParams();
 
+        syncRangeSliders();
         syncPillsWithForm();
 
-        // Загружаем результаты без создания новой записи истории.
         fetchAirliners(false, {
             updateHistory: false
         });
     });
 
     // ==========================================
-    // 8. БЫСТРЫЕ ТАБЛЕТКИ
+    // 9. БЫСТРЫЕ ТАБЛЕТКИ
     // ==========================================
 
     document.addEventListener('click', event => {
@@ -528,11 +787,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 9. ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+    // 10. ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
     // ==========================================
 
+    // Инициализируем слайдеры один раз.
+    initRangeSliders();
+
+    // Восстанавливаем параметры URL.
     const hasParamsOnLoad = applyURLParams();
 
+    syncRangeSliders();
     syncPillsWithForm();
 
     if (hasParamsOnLoad) {

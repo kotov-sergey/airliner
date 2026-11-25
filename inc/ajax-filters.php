@@ -229,29 +229,67 @@ function handle_filter_airliners() {
         return $value > 0 ? $value : null;
     };
 
-    // Минимальная дальность полёта
-    $range = $get_positive_integer( 'range' );
+    // Минимальная и максимальная дальность полёта
+    $range_min = $get_positive_integer( 'range_min' );
+    $range_max = $get_positive_integer( 'range_max' );
 
-    if ( null !== $range ) {
+    // Проверка корректности диапазона
+    if ( null !== $range_min && null !== $range_max && $range_min > $range_max ) {
+        wp_send_json_error(
+            [ 'message' => 'Некорректный диапазон дальности.' ],
+            400
+        );
+    }
 
-        $meta_query['filter_range'] = [
+    if ( null !== $range_min ) {
+
+        $meta_query[] = [
             'key'     => 'specs_performance_range',
-            'value'   => $range,
+            'value'   => $range_min,
             'type'    => 'NUMERIC',
             'compare' => '>=',
         ];
     }
 
-    // Минимальная вместимость
-    $passengers = $get_positive_integer( 'passengers' );
+    if ( null !== $range_max ) {
 
-    if ( null !== $passengers ) {
+        $meta_query[] = [
+            'key'     => 'specs_performance_range',
+            'value'   => $range_max,
+            'type'    => 'NUMERIC',
+            'compare' => '<=',
+        ];
+    }
 
-        $meta_query['filter_passengers'] = [
+    // Минимальная и максимальная вместимость
+    $passengers_min = $get_positive_integer( 'passengers_min' );
+    $passengers_max = $get_positive_integer( 'passengers_max' );
+
+    // Проверка корректности диапазона
+    if ( null !== $passengers_min && null !== $passengers_max && $passengers_min > $passengers_max ) {
+        wp_send_json_error(
+            [ 'message' => 'Некорректный диапазон вместимости.' ],
+            400
+        );
+    }
+
+    if ( null !== $passengers_min ) {
+
+        $meta_query[] = [
             'key'     => 'specs_weight_passengers',
-            'value'   => $passengers,
+            'value'   => $passengers_min,
             'type'    => 'NUMERIC',
             'compare' => '>=',
+        ];
+    }
+
+    if ( null !== $passengers_max ) {
+
+        $meta_query[] = [
+            'key'     => 'specs_weight_passengers',
+            'value'   => $passengers_max,
+            'type'    => 'NUMERIC',
+            'compare' => '<=',
         ];
     }
 

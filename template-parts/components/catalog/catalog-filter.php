@@ -10,6 +10,31 @@ $args = wp_parse_args(
 
 $columns = max( 1, (int) $args['columns'] );
 
+// Максимальные значения характеристик в каталоге.
+global $wpdb;
+
+$get_meta_max = static function ( $meta_key ) use ( $wpdb ) {
+    $value = $wpdb->get_var(
+        $wpdb->prepare(
+            "SELECT MAX( CAST( pm.meta_value AS UNSIGNED ) )
+            FROM {$wpdb->postmeta} AS pm
+            INNER JOIN {$wpdb->posts} AS p ON p.ID = pm.post_id
+            WHERE pm.meta_key = %s
+            AND p.post_type = %s
+            AND p.post_status = %s
+            AND pm.meta_value REGEXP '^[0-9]+$'",
+            $meta_key,
+            'airliner',
+            'publish'
+        )
+    );
+
+    return max( 1, (int) $value );
+};
+
+$range_limit      = $get_meta_max( 'specs_performance_range' );
+$passengers_limit = $get_meta_max( 'specs_weight_passengers' );
+
 // Текущая таксономия
 $current_term = is_tax() ? get_queried_object() : null;
 
@@ -235,17 +260,79 @@ $current_tax = $is_airliner_taxonomy
         <div class="catalog-filters__content">
 
             <div class="catalog-filters__inner">
-
-                <input
-                    type="number"
-                    id="catalog-filter-range"
-                    name="range"
-                    class="form-input"
-                    placeholder="Например: 5000"
-                    min="0"
-                    step="100"
-                    aria-labelledby="catalog-filter-range-title"
+                
+                <div 
+                    class="catalog-range" 
+                    data-range-slider  
+                    data-min-field="range_min" 
+                    data-max-field="range_max"
                 >
+
+                    <div class="catalog-range__values">
+
+                        <label class="catalog-range__field">
+
+                            <input
+                                type="number"
+                                id="catalog-filter-range-min"
+                                name="range_min"
+                                class="form-input"
+                                min="1"
+                                max="<?php echo esc_attr( $range_limit ); ?>"
+                                step="1"
+                                placeholder="От"
+                                aria-label="Минимальная дальность полёта"
+                            >
+                        </label>
+
+
+                        <label class="catalog-range__field">
+
+                            <input
+                                type="number"
+                                id="catalog-filter-range-max"
+                                name="range_max"
+                                class="form-input"
+                                min="1"
+                                max="<?php echo esc_attr( $range_limit ); ?>"
+                                step="1"
+                                placeholder="До"
+                                aria-label="Максимальная дальность полёта"
+                            >
+                        </label>
+
+                    </div>
+
+                    <div class="catalog-range__slider">
+
+                        <div class="catalog-range__track"></div>
+                        <div class="catalog-range__progress"></div>
+
+                        <input
+                            type="range"
+                            class="catalog-range__input"
+                            data-range-min
+                            min="1"
+                            max="<?php echo esc_attr( $range_limit ); ?>"
+                            step="1"
+                            value="1"
+                            aria-label="Минимальная дальность полёта"
+                        >
+
+                        <input
+                            type="range"
+                            class="catalog-range__input"
+                            data-range-max
+                            min="1"
+                            max="<?php echo esc_attr( $range_limit ); ?>"
+                            step="1"
+                            value="<?php echo esc_attr( $range_limit ); ?>"
+                            aria-label="Максимальная дальность полёта"
+                        >
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -267,16 +354,78 @@ $current_tax = $is_airliner_taxonomy
 
             <div class="catalog-filters__inner">
 
-                <input
-                    type="number"
-                    id="catalog-filter-passengers"
-                    name="passengers"
-                    class="form-input"
-                    placeholder="Например: 150"
-                    min="0"
-                    step="10"
-                    aria-labelledby="catalog-filter-passengers-title"
+                <div 
+                    class="catalog-range" 
+                    data-range-slider  
+                    data-min-field="passengers_min" 
+                    data-max-field="passengers_max"
                 >
+
+                    <div class="catalog-range__values">
+
+
+                        <label class="catalog-range__field">
+
+                            <input
+                                type="number"
+                                id="catalog-filter-passengers-min"
+                                name="passengers_min"
+                                class="form-input"
+                                min="1"
+                                max="<?php echo esc_attr( $passengers_limit ); ?>"
+                                step="1"
+                                placeholder="От"
+                                aria-label="Минимальная вместимость"
+                            >                           
+                        </label>
+
+                        <label class="catalog-range__field">
+
+                            <input
+                                type="number"
+                                id="catalog-filter-passengers-max"
+                                name="passengers_max"
+                                class="form-input"
+                                min="1"
+                                max="<?php echo esc_attr( $passengers_limit ); ?>"
+                                step="1"
+                                placeholder="До"
+                                aria-label="Максимальная вместимость"
+                            >                        
+                        </label>
+
+                    </div>
+
+                    <div class="catalog-range__slider">
+
+                        <div class="catalog-range__track"></div>
+                        <div class="catalog-range__progress"></div>
+
+                        <input
+                            type="range"
+                            class="catalog-range__input"
+                            data-range-min
+                            min="1"
+                            max="<?php echo esc_attr( $passengers_limit ); ?>"
+                            step="1"
+                            value="1"
+                            aria-label="Минимальная вместимость"
+                        >
+
+                        <input
+                            type="range"
+                            class="catalog-range__input"
+                            data-range-max
+                            min="1"
+                            max="<?php echo esc_attr( $passengers_limit ); ?>"
+                            step="1"
+                            value="<?php echo esc_attr( $passengers_limit ); ?>"
+                            aria-label="Максимальная вместимость"
+                        >
+
+                    </div>
+
+                </div>
 
             </div>
 
