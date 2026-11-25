@@ -1,27 +1,30 @@
 <?php
 // Шаблон страницы поиска
-
 get_header();
 
 // Получение глобального объекта запроса
 global $wp_query;
-$total_results = $wp_query->found_posts;
+$total_results = (int) $wp_query->found_posts;
 
 // Сортировка постов по массивам
-global $post;
 $found_airliners = [];
 $found_posts = [];
 
-while ( have_posts() ) {
-    the_post();
-    if ( get_post_type() === 'airliner' ) { 
-        $found_airliners[] = $post; 
-    }
-    elseif ( get_post_type() === 'post' ) { 
-        $found_posts[] = $post; 
+if ( have_posts() ) {
+    while ( have_posts() ) {
+        the_post();
+        $current_post = get_post();
+        $current_post_type = get_post_type();
+
+        if ( $current_post_type === 'airliner' ) { 
+            $found_airliners[] = $current_post; 
+        } elseif ( $current_post_type === 'post' ) { 
+            $found_posts[] = $current_post; 
+        }
     }
 }
-	wp_reset_postdata();
+
+wp_reset_postdata();
 ?>
 
 <main class="site-main page-search">
@@ -44,8 +47,17 @@ while ( have_posts() ) {
 			<div class="container">
 
 				<div class="search-empty__info">
-					<div class="search-empty__image">
-						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-radar text-primary/40"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"></path><path d="M4 6h.01"></path><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"></path><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"></path><path d="M12 18h.01"></path><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"></path><circle cx="12" cy="12" r="2"></circle><path d="m13.41 10.59 5.66-5.66"></path></svg>
+					<div class="search-empty__icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-empty__svg" aria-hidden="true">
+                            <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"></path>
+                            <path d="M4 6h.01"></path>
+                            <path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"></path>
+                            <path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"></path>
+                            <path d="M12 18h.01"></path>
+                            <path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"></path>
+                            <circle cx="12" cy="12" r="2"></circle>
+                            <path d="m13.41 10.59 5.66-5.66"></path>
+                        </svg>
 					</div>
 					<h2 class="search-empty__title">Ничего не найдено</h2>
 					<p class="search-empty__description">Проверьте правильность написания или попробуйте более короткий запрос – например, «Boeing 737» вместо «Boeing 737-800 MAX».</p>
@@ -76,9 +88,12 @@ while ( have_posts() ) {
 					
 						$fallback_args = [
 							'post_type' => 'airliner',
-							'posts_per_page' => '4',
+                            'post_status' => 'publish',
+							'posts_per_page' => 4,
 							'orderby' => 'comment_count',
-							'ignore_sticky_posts' => 1
+                            'order' => 'DESC',
+							'ignore_sticky_posts' => true,
+                            'no_found_rows' => true,
 						];
 
 						$fallback_query = new WP_Query( $fallback_args );
@@ -89,11 +104,12 @@ while ( have_posts() ) {
 								$fallback_query->the_post();
 
 								get_template_part( 'template-parts/components/cards/card-aircraft', null, [
-									'layout' => 'vertical' 
+								    'layout' => 'vertical' 
 								] );
 							}
-							wp_reset_postdata();
 						}
+
+                        wp_reset_postdata();
 					?>
 				</div>
 
@@ -101,7 +117,7 @@ while ( have_posts() ) {
 		</section>
 
 		<!-- Секция фоллбек (популярные рубрики) -->
-		<section class="section section-fallback-posts">
+		<section class="section search-fallback-posts">
 			<div class="container">
 
 				<!-- Заголовок секции популярные рубрики -->
@@ -126,84 +142,96 @@ while ( have_posts() ) {
 
 		<!-- Если были найдены посты -->
 
-		<!--Навигационное меню (вкладки)-->
-		<section class="search-tabs">
+		<!-- Навигация по результатам поиска -->
+        <?php if ( ! empty( $found_airliners ) || ! empty( $found_posts ) ) : ?>
+            <nav class="search-tabs" aria-label="Навигация по результатам поиска">
+                <div class="container search-tabs__inner">
 
-			<div class="container search-tabs__inner">
-				<button class="pill pill--lg pill--solid search-tabs__button" type="button">Все результаты (<?php echo ( $total_results ); ?>)</button>
-				<button class="pill pill--lg pill--solid search-tabs__button" type="button">Авиалайнеры (<?php echo count( $found_airliners); ?>)</button>
-				<button class="pill pill--lg pill--solid search-tabs__button" type="button">Журнал (<?php echo count( $found_posts ); ?>)</button>
-			</div>
+                    <?php if ( ! empty( $found_airliners ) ) : ?>
+                        <a class="pill pill--solid search-tabs__link" href="#search-airliners">
+                            Авиалайнеры (<?php echo count( $found_airliners ); ?>)
+                        </a>
+                    <?php endif; ?>
 
-		</section>
+                    <?php if ( ! empty( $found_posts ) ) : ?>
+                        <a class="pill pill--solid search-tabs__link" href="#search-posts">
+                            Журнал (<?php echo count( $found_posts ); ?>)
+                        </a>
+                    <?php endif; ?>
 
-		<?php if ( have_posts() ) : ?>
+                </div>
+            </nav>
+        <?php endif; ?>
 
-			<!-- Найденные авиалайнеры -->
-			<?php if ( ! empty( $found_airliners ) ) : ?>
-				<section class="section search-airliners">
-					<div class="container">
 
-						<!-- Заголовок секции авиалайнеров -->
-						<?php 
-							get_template_part( 'template-parts/components/ui/section-header', null, [
-								'number' => '01',
-								'data' => [
-									'header_label' => 'Модели',
-									'header_title' => 'В каталоге авиалайнеров: ' . count( $found_airliners ),
-									'header_description' => 'Посмотрите авиалайнеры, найденные по вашему запросу',
-								]
-							] );
-						?>
+        <!-- Найденные авиалайнеры -->
+        <?php global $post; ?>
+        <?php if ( ! empty( $found_airliners ) ) : ?>
+            <section id="search-airliners" class="section search-airliners">
+                <div class="container">
 
-						<!-- Сетка карточек найденных авиалайнеров -->
-						<div class="l-grid l-grid--4 search-workspace__grid">
-							<?php
-								foreach ( $found_airliners as $post ) :
-									setup_postdata( $post );
-									get_template_part( 'template-parts/components/cards/card-aircraft' );
-								endforeach;
-								wp_reset_postdata();
-							?>
-						</div>
+                    <!-- Заголовок секции авиалайнеров -->
+                    <?php 
+                        get_template_part( 'template-parts/components/ui/section-header', null, [
+                            'number' => '01',
+                            'data' => [
+                                'header_label' => 'Авиалайнеры',
+                                'header_title' => 'Найдено авиалайнеров: ' . count( $found_airliners ),
+                                'header_description' => 'Посмотрите авиалайнеры, найденные по вашему запросу',
+                            ]
+                        ] );
+                    ?>
 
-					</div>
-				</section>
-			<?php endif; ?>
+                    <!-- Сетка карточек найденных авиалайнеров -->
+                    <div class="l-grid l-grid--4 search-airliners__grid">
+                        <?php
 
-			<!-- Найденные посты -->
-			<?php if ( ! empty( $found_posts ) ) : ?>
-				<section class="section search-posts">
-					<div class="container">
+                            foreach ( $found_airliners as $post ) :
+                                setup_postdata( $post );
+                                get_template_part( 'template-parts/components/cards/card-aircraft' );
+                            endforeach;
 
-						<!-- Заголовок секции постов -->
-						<?php 
-							get_template_part( 'template-parts/components/ui/section-header', null, [
-								'number' => '02',
-								'data' => [
-									'header_label' => 'Посты',
-									'header_title' => 'В каталоге постов: ' . count( $found_posts ),
-									'header_description' => 'Посмотрите посты, найденные по вашему запросу',
-								]
-							] );
-						?>
+                            wp_reset_postdata();
+                        ?>
+                    </div>
 
-						<!-- Сетка карточек найденных постов -->
-						<div class="l-grid l-grid--3 search-workspace__grid">
-							<?php
-								foreach ( $found_posts as $post ) :
-									setup_postdata( $post );
-									get_template_part( 'template-parts/components/cards/card-post' );
-								endforeach;
-								wp_reset_postdata();
-							?>
-						</div>
+                </div>
+            </section>
+        <?php endif; ?>
 
-					</div>
-				</section>
-			<?php endif; ?>
+        <!-- Найденные посты -->
+        <?php if ( ! empty( $found_posts ) ) : ?>
+            <section id="search-posts" class="section search-posts">
+                <div class="container">
 
-		<?php endif; ?>
+                    <!-- Заголовок секции постов -->
+                    <?php 
+                        get_template_part( 'template-parts/components/ui/section-header', null, [
+                            'number' => '02',
+                            'data' => [
+                                'header_label' => 'Журнал',
+                                'header_title' => 'Найдено публикаций: ' . count( $found_posts ),
+                                'header_description' => 'Посмотрите посты, найденные по вашему запросу',
+                            ]
+                        ] );
+                    ?>
+
+                    <!-- Сетка карточек найденных постов -->
+                    <div class="l-grid l-grid--3 search-posts__grid">
+                        <?php
+
+                            foreach ( $found_posts as $post ) :
+                                setup_postdata( $post );
+                                get_template_part( 'template-parts/components/cards/card-post' );
+                            endforeach;
+
+                            wp_reset_postdata();
+                        ?>
+                    </div>
+
+                </div>
+            </section>
+        <?php endif; ?>
 	
 	<?php endif; ?>
 
