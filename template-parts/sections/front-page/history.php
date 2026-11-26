@@ -17,7 +17,7 @@ $classes = trim( 'section section-history ' . $section_background );
 ?>
 
 <!-- Секция эволюция гражданской авиации -->
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="history" class="<?php echo esc_attr( $classes ); ?>">
     
 	<?php if ( $section_image ) : ?>
 		<div class="section-history__bg">

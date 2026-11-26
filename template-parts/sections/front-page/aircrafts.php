@@ -31,7 +31,7 @@ if ( !empty( $ids ) ) {
 ?>
 
 <!-- Секция популярные авиалайнеры -->
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="aircrafts" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 		
 		<?php 

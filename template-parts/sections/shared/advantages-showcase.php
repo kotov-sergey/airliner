@@ -31,7 +31,7 @@ elseif ( $card_style === 'horizontal' ) {
 }
 ?>
 
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="advantages-showcase" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <!-- Блок заголовка секции -->

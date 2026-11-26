@@ -22,7 +22,7 @@ $posts_query = new WP_Query([
 ?>
 
 <!-- Секция последние статьи -->
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="posts" class="<?php echo esc_attr( $classes ); ?>">
   <div class="container">
 
     <?php 

@@ -23,15 +23,18 @@
 
 				<h3 class="footer__title">Меню</h3>
 				
-                <!-- Второстепенное меню -->
+                <!-- Основное меню -->
 				<nav class="footer__nav" aria-label="Меню в подвале">
-					<?php wp_nav_menu( array(
-						'theme_location' => 'primary',
-						'menu_class'     => 'footer__list',
-						'menu_id'        => 'footer__menu',
-						'container'		 => false,
-						'depth'          => '1'
-					)); ?>
+					<?php 
+						wp_nav_menu( array(
+							'theme_location' => 'primary',
+							'menu_class'     => 'footer__list',
+							'menu_id'        => 'footer__menu',
+							'container'		 => false,
+							'depth'          => 1,
+							'fallback_cb'    => false,
+						) ); 
+					?>
 				</nav>
 
 			</div>
@@ -50,12 +53,14 @@
 				<h3 class="footer__title">Полезные ссылки</h3>
 				
                 <!-- Меню полезных ссылок -->
-				<?php wp_nav_menu(array(
-					'theme_location' => 'secondary',
-					'menu_class'     => 'footer__list',
-					'container'		 => false,
-					'menu_id'        => ''
-				)); ?>
+				<?php 
+					wp_nav_menu( array(
+						'theme_location' => 'secondary',
+						'menu_class'     => 'footer__list',
+						'container'		 => false,
+						'fallback_cb'    => false,
+					) ); 
+				?>
 
 			</div>
 
@@ -66,7 +71,9 @@
             <!-- Копирайт сайта -->
 			<div class="footer__copyright">
 				<p class="footer__copy">
-					&copy; <?php echo date( 'Y' ); ?> <?php bloginfo('name'); ?>. Все права защищены.
+					&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?>
+					<?php echo esc_html( get_bloginfo( 'name' ) ); ?>.
+					Все права защищены.
 				</p>
 			</div>
 
@@ -74,12 +81,26 @@
 			<div class="footer__links">
 
                 <!-- Страница Политики конфиденциальности-->
-                <?php if ( get_privacy_policy_url() ) : ?>
-                    <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Политика конфиденциальности</a>
+                <?php 
+					$privacy_url = get_privacy_policy_url();
+
+					if ( $privacy_url ) : 
+				?>
+                    	<a href="<?php echo esc_url( $privacy_url ); ?>">
+							Политика конфиденциальности
+						</a>
                 <?php endif; ?>
 
                 <!-- Страница Условия использования-->
-				<a href="<?php echo esc_url( home_url( '/terms-of-use' ) ); ?>">Условия использования</a>
+				<?php
+					$terms_page = get_page_by_path( 'terms-of-use' );
+
+					if ( $terms_page && $terms_page->post_status === 'publish' ) :
+				?>
+					<a href="<?php echo esc_url( get_permalink( $terms_page ) ); ?>">
+						Условия использования
+					</a>
+				<?php endif; ?>
 
 			</div>
 

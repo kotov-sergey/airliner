@@ -18,7 +18,7 @@ if ( empty( $fuselage_types ) ) return;
 ?>
 
 <!-- Секция тип фюзеляжа -->
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="fuselage-types" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 		
         <?php 

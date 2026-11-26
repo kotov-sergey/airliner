@@ -17,7 +17,7 @@ $accordion = get_sub_field( 'accordion' );
 if ( ! $section_header && ! $accordion ) return;
 ?>
 
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="faq-block" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <!-- Блок заголовка секции -->

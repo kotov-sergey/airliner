@@ -2,20 +2,28 @@
 
 // Функция вывода всех производителей (брендов) списком
 function the_airliner_footer_all_brands( $limit = null ) {
-    $brands = get_terms([
+    
+    $args = [
         'taxonomy' => 'manufacturer',
-        'hide_empty' => false,
+        'hide_empty' => true,
         'orderby' => 'name',
         'order' => 'ASC',
-        'number' => $limit,
-    ]);
+    ];
 
-    if ( ! $brands || is_wp_error( $brands ) ) return;
+    if ( $limit !== null ) {
+        $args['number'] = max( 1, (int) $limit );
+    }
+
+    $brands = get_terms( $args );
+
+    if ( empty( $brands ) || is_wp_error( $brands ) ) {
+        return;
+    }
 
     echo '<ul class="footer__list">';
 
     foreach ( $brands as $brand ) {
-        $name = $brand->name;
+        
         $link = get_term_link( $brand );
 
         if ( is_wp_error( $link )  ) continue;
@@ -23,7 +31,7 @@ function the_airliner_footer_all_brands( $limit = null ) {
         echo '<li class="footer__item">';
             
             echo '<a href="' . esc_url( $link ) . '" class="brand-link">';
-                echo esc_html( $name );
+                echo esc_html( $brand->name );
             echo '</a>';
 
         echo '</li>';

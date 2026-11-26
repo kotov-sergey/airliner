@@ -16,7 +16,7 @@ if ( $section_background === 'default' || ! $section_background ) {
 $classes = trim( 'section feedback ' . $section_background );
 
 ?>
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="feedback" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <!-- Блок заголовка секции -->

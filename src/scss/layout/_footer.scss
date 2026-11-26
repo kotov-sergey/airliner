@@ -1,99 +1,93 @@
 // Стили для подвала сайта
 
 .footer {
-	color: var(--color-text-inverse);
-	background-color: var(--color-bg-footer);
-	
-	padding: var(--space-20) 0 var(--space-8);
+    color: var(--color-text-inverse);
+    background-color: var(--color-bg-footer);
+
+    padding: var(--space-20) 0 var(--space-8);
 
     @media (min-width: 1024px) {
         padding: var(--space-24) 0 var(--space-8);
     }
 
-	&__grid {
-		gap: var(--space-6);
-		margin-bottom: var(--space-20);
+    &__grid {
+        gap: var(--space-6);
+        margin-bottom: var(--space-20);
 
-		@media (min-width: 768px) {
-			gap: var(--space-8);
-		}
-	}
+        @media (min-width: 768px) {
+            gap: var(--space-8);
+        }
+    }
 
-	&__title {
-		font-size: var(--font-size-lg);
+    &__title {
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        color: var(--color-text-inverse);
+        text-transform: uppercase;
+        margin-bottom: var(--space-5);
+    }
 
-		color: var(--color-text-inverse);
-		text-transform: uppercase;
-
-		margin-bottom: var(--space-5);
-	}
-
-	&__list {
-		display: flex;
-		flex-direction: column;
-
-		gap: var(--space-3);
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
         list-style: none;
         margin: 0;
         padding: 0;
-	}    
+    }
 
-	&__logo {
-		margin-bottom: var(--space-6);
-	}
+    &__logo {
+        margin-bottom: var(--space-6);
+    }
 
-	&__description {
-		color: var(--color-text-inverse-muted);
+    &__description {
         max-width: 280px;
-	}
+        color: var(--color-text-inverse-muted);
+    }
 
-	a {
-		color: var(--color-text-inverse-muted);
-		text-decoration: none;
+    a {
+        color: var(--color-text-inverse-muted);
+        text-decoration: none;
         transition: color var(--transition-color);
 
-		&:hover,
+        &:hover,
         &:focus-visible {
-			color: var(--color-link-inverse-hover);
-		}
-	}
+            color: var(--color-link-inverse-hover);
+        }
 
-    // Нижняя часть футера (Копирайт и ссылки)
-	&__bottom {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-4);
+        &:focus-visible {
+            outline-offset: 3px;
+        }
+    }
 
-		font-size: var(--font-size-sm);
+    &__bottom {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        font-size: var(--font-size-sm);
+        padding-top: var(--space-8);
+        border-top: 1px solid var(--color-border-inverse);
 
-		padding-top: var(--space-8);
-		border-top: 1px solid var(--color-border-inverse);
+        @media (min-width: 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
 
-		@media (min-width: 768px) {
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-		}
-	}
+    &__copy {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-inverse-muted);
+    }
 
-	&__copyright {
-		display: flex;
-		flex-direction: column;
-	}
+    &__links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
 
-	&__copy {
-		font-size: var(--font-size-sm);
-		color: var(--color-text-inverse-muted);
-	}
-
-	&__links {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-2);
-
-		@media (min-width: 768px) {
-			flex-direction: row;
-			gap: var(--space-6);
-		}
-	}
+        @media (min-width: 768px) {
+            flex-direction: row;
+            gap: var(--space-6);
+        }
+    }
 }

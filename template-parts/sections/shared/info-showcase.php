@@ -19,7 +19,7 @@ if ( $section_background === 'default' || ! $section_background ) {
 $classes = trim( 'section info-showcase ' . $section_background );
 ?>
 
-<section class="<?php echo esc_attr( $classes ); ?>">
+<section id="info-showcase" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
 
         <!-- Сетка разделения контента -->
