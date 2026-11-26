@@ -92,6 +92,23 @@
                             "append": ""
                         },
                         {
+                            "key": "field_6b088bae1de22",
+                            "label": "Кнопка секции",
+                            "name": "cta_button",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
                             "key": "field_6a73774727b2b",
                             "label": "Якорь для кнопки",
                             "name": "hero_target",
@@ -736,5 +753,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1791395248
+    "modified": 1795722192
 }

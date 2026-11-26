@@ -12,7 +12,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -33,7 +33,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -54,7 +54,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
@@ -85,7 +85,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "66",
+                "width": "80",
                 "class": "",
                 "id": ""
             },
@@ -106,7 +106,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -133,7 +133,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "34",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -173,5 +173,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1793729723
+    "modified": 1795641601
 }

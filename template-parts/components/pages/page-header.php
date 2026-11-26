@@ -6,10 +6,15 @@ $description = $args['description'] ?? ''; // Описание секции
 $bg_image = $args['bg_image'] ?? null; // Фон секции
 
 $modifier = $args['modifier'] ?? 'page-header--default'; // Модификатор секции
-$scroll_target = $args['scroll_target'] ?? ''; // Кнопка-якорь секции
 
 $show_meta = $args['show_meta'] ?? false; // Мета-данные секции (для записей)
 $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные крошки
+
+$scroll_target = $args['scroll_target'] ?? ''; // Кнопка-якорь секции
+
+$cta_text = $args['cta_text'] ?? ''; // Текст CTA-кнопки
+$cta_url = $args['cta_url'] ?? ''; // Ссылка CTA-кнопки
+$cta_target = $args['cta_target'] ?? ''; // Способ перехода CTA-кнопки
 ?>
 
 <header class="page-header <?php echo esc_attr( $modifier ); ?>">
@@ -32,12 +37,12 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
 
             <!-- Текущее изображение записи -->
             <?php
-            the_post_thumbnail( 'full', [
-                'class'=> 'page-header__image',
-                'alt' => esc_attr( $title ),
-                'loading' => 'eager',
-                'fetchpriority'=>'high'
-            ] );
+                the_post_thumbnail( 'full', [
+                    'class'=> 'page-header__image',
+                    'alt' => $title,
+                    'loading' => 'eager',
+                    'fetchpriority'=>'high'
+                ] );
             ?>
 
         <?php else : ?>
@@ -63,7 +68,7 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
         <div class="page-header__content">
 
             <!-- Хлебные крошки -->
-            <?php if ( $show_breadcrumbs && function_exists( "rank_math_the_breadcrumbs" ) ) : ?>
+            <?php if ( $show_breadcrumbs && function_exists( 'rank_math_the_breadcrumbs' ) ) : ?>
                 <div class="breadcrumbs breadcrumbs--inverse page-header__breadcrumbs">
                     <?php rank_math_the_breadcrumbs(); ?>
                 </div>
@@ -87,6 +92,24 @@ $show_breadcrumbs = $args['show_breadcrumbs'] ?? false; // Хлебные кро
             <?php if ( $description ) : ?>
                 <div class="page-header__description">
                     <?php echo wp_kses_post( wpautop( $description ) ); ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- CTA-кнопка -->
+            <?php if ( ! empty( $cta_text ) && ! empty( $cta_url ) ) : ?>
+                <div class="page-header__actions">
+                    <a
+                        href="<?php echo esc_url( $cta_url ); ?>"
+                        class="btn btn--lg btn--primary"
+                        <?php if ( $cta_target ) : ?>
+                            target="<?php echo esc_attr( $cta_target ); ?>"
+                        <?php endif; ?>
+                        <?php if ( $cta_target === '_blank' ) : ?>
+                            rel="noopener noreferrer"
+                        <?php endif; ?>
+                    >
+                        <?php echo esc_html( $cta_text ); ?>
+                    </a>
                 </div>
             <?php endif; ?>
 

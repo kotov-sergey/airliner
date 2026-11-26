@@ -77,6 +77,12 @@
         }
     }
 
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+    }
+
     &__scroll-btn {
         position: absolute;
         left: 50%;
